@@ -1,0 +1,109 @@
+/* Forms */
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.input-group-append,
+.input-group-prepend {
+  color: $input-placeholder-color;
+  width: auto;
+  border: none;
+
+  .input-group-text {
+    border-color: $border-color;
+    padding: $input-padding-y .75rem;
+    color: $input-placeholder-color;
+  }
+}
+.form-control {
+  border: 1px solid $border-color;
+  font-weight: 400;
+  font-size: $input-font-size;
+  height: auto;
+  padding: 0.875rem 0.875rem;
+}
+
+select {
+  &.form-control {
+    padding: .4375rem .75rem;
+    border: 0;
+    outline: 1px solid $border-color;
+    color: $input-placeholder-color;
+    &:focus {
+      outline: 1px solid $border-color;
+    }
+    @each $color, $value in $theme-colors {
+      &.border-#{$color} {
+        outline: 1px solid $value;
+        &:focus {
+          outline: 1px solid $value;
+        }
+      }
+    }
+  }
+}
+.form-group {
+  label {
+    font-size: $default-font-size;
+    line-height: 1.4rem;
+    vertical-align: top;
+    margin-bottom: .5rem;
+  }
+  &.has-danger {
+    .form-control {
+      border-color: theme-color(danger);
+    }
+  }
+  .file-upload-default {
+    visibility: hidden;
+    position: absolute;
+  }
+  .file-upload-info {
+    background: transparent;
+  }
+}
+.auth .auth-form-transparent .lk-form{
+  max-width: 400px;
+}
+.auth .auth-form-transparent .lk-form .form-control{
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: 0 13px 47px -18px rgba(32, 45, 63, .22);
+}
+.auth .auth-form-transparent .lk-form .form-control:focus{
+  box-shadow: 0 13px 47px -18px #62ab0091;
+  border: solid 1px #62ab00;
+}
+
+.auth .auth-form-transparent .lk-form .form-control::-webkit-input-placeholder {
+  color: #1c2c42;
+  font-size: 16px;
+}
+.auth .auth-form-transparent .lk-form .form-control:-ms-input-placeholder { color: #1c2c42;font-size: 16px; }
+.auth .auth-form-transparent .lk-form .form-control::-ms-input-placeholder { color: #1c2c42;font-size: 16px; }
+.auth .auth-form-transparent .lk-form .form-control::placeholder { color: #1c2c42;font-size: 16px; }
+
+.auth .auth-form-transparent .lk-btn{
+  box-shadow: 0 10px 13px -8px rgba(98, 171, 0, 0.62);
+  background: #62AB00;
+  border-radius: 30px;
+  border: none;
+}
+.auth .auth-form-transparent .lk-btn:hover {
+  opacity: 0.8;
+}
+
+.lk-h1{
+  font-size: 2rem;
+}
+
+.lk-form .form-check .form-check-label input[type=checkbox]:checked + .input-helper:before{
+  background: #62AB00;
+}
+
+@media (max-width: 575.98px) {
+  .d-xs-none{
+    display: none !important;
+  }
+}

@@ -1,0 +1,126 @@
+.max-w{
+    /*max-width: 1400px;*/
+}
+.table-tr-right2 td:last-child {
+    text-align: right;
+}
+
+.card .card-title {
+    text-transform: inherit;
+}
+
+.k-grid {
+    display: grid;
+    width: 100%;
+    margin: 0;
+    flex-direction: column;
+    min-width: 400px;
+}
+
+.k-grid .k-grid-row {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #E7EAED;
+}
+
+.k-grid .k-last {
+    border-right: 1px solid #E7EAED;;
+}
+
+.k-grid .k-grid-col {
+    flex-basis: 270px;
+    border-left: 1px solid #E7EAED;
+}
+
+.k-grid .k-grid-col-an {
+    flex-basis: 120px;
+    width: 60px;
+    min-width: 60px;
+    border-left: 1px solid #E7EAED;
+}
+
+.k-grid .k-grid-col-an-u {
+    flex-basis: 180px;
+    width: 180px;
+    min-width: 180px;
+    border-left: 1px solid #E7EAED;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.k-grid .k-grid-row-title {
+    border-top: 1px solid #E7EAED;
+    text-align: center;
+    font-weight: bold;
+}
+
+.k-grid .k-grid-col-focus {
+    cursor: pointer;
+}
+
+.k-grid .k-grid-col-focus span:hover {
+    background: rgba(2, 171, 254, 0.2);
+}
+
+.k-grid .k-grid-col span,
+.k-grid .k-grid-col-an span,
+.k-grid .k-grid-col-an-u span {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: .5rem 0.2rem;
+}
+
+.k-grid .k-grid-competitors,
+.k-grid .k-grid-competitors:hover {
+    background: rgba(251, 188, 6, 0.2) !important;
+    cursor: not-allowed;
+}
+
+.k-grid .k-grid-busy,
+.k-grid .k-grid-busy:hover {
+    background: rgba(233, 68, 55, 0.2) !important;
+    cursor: not-allowed;
+}
+
+.k-grid .k-grid-disallow,
+.k-grid .k-grid-disallow:hover {
+    background: rgba(28, 44, 66, 0.2) !important;
+    cursor: not-allowed;
+}
+
+.pointer-m {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.mtb {
+    margin: 20px 0;
+}
+
+.sm-input {
+    padding: 0.275rem 0.575rem !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.grid-margin-right {
+    margin-right: 30px;
+}
+
+.nav-pad-sm {
+    padding: .55rem 0.5rem !important;
+}
+
+.mb-small {
+    margin-bottom: 0.20rem !important;
+}
+
+.group-mb {
+    margin-bottom: 1rem;
+}

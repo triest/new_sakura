@@ -1,0 +1,125 @@
+@charset "utf-8";
+@media only screen and (max-width: 1199px) {
+    .advantage_item .txt{
+        max-width: 600px;
+    }
+}
+@media only screen and (max-width: 1163px) {
+    .header .menu a{
+        margin: 0 10px;
+        font-size: 16px;
+    }
+    .header .menu{
+        margin-left: 0;
+    }
+
+
+}
+
+@media only screen and (max-width: 991px) {
+    .block5 .item{
+        height: auto;
+        margin-bottom: 30px;
+    }
+
+    .footer .logo img{
+        height: 30px;
+    }
+    .footer .menu{
+        margin-left: 20px;
+    }
+    .footer .menu a{
+        margin: 0 10px;
+        font-size: 15px;
+    }
+    .advantage_item{
+        flex-direction: column;
+    }
+    .block2-item .txt{
+        max-width: 500px;
+    }
+    .block1 .title,
+    .content h1,
+    .lesson_slide .h1{
+        font-size: 50px;
+    }
+
+    .lesson .h2,
+    .advantage_item .name,
+    .block2-item .title,
+    .block6 .title,
+    .block3 .txt,
+    .block7 .title{
+        font-size: 34px;
+    }
+
+    .speakers_right{
+        width: 275px;
+    }
+    .speakers_left {
+        width: calc(100% - 300px);
+    }
+    .speakers-item_c .name{
+        font-size: 36px;
+    }
+
+}
+
+@media only screen and (max-width: 980px) {
+
+
+    .header {
+        border-bottom-width: 0;
+    }
+
+    .header .container {
+        height: 88px;
+    }
+
+
+    .header .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: #fff;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin: 0;
+        padding: 23px 20px;
+        -webkit-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+        -webkit-transform: scale(1, 0);
+        transform: scale(1, 0);
+        -webkit-transform-origin: 50% 0;
+        transform-origin: 50% 0;
+    }
+
+    .header.open-menu .menu {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    .header .menu a {
+        margin: 10px 0;
+    }
+
+    .header .toggle-menu,
+    .header .toggle-search.for-mob {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .header .menu .toggle-search {
+        display: none;
+    }
+
+    .block2-item .txt{
+        max-width: 500px
+    }
+
+}

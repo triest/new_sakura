@@ -1,0 +1,26 @@
+
+/node_modules
+/vendor
+/public/storage
+/public/uploads/*
+/public/img/*
+/public/upload/lk_profile
+/storage/*.key
+
+.env
+.idea
+
+.phpunit.result.cache
+.phpstorm.meta.php
+_ide_helper.php
+_ide_helper_models.php
+
+/bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock  # Remove this one after you create a project
+.env.*.php
+.env.php
+.DS_Store
+Thumbs.db
+wanderer/config.conf
