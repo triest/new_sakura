@@ -140,5 +140,16 @@
             $this->notify(new ResetPassword($token));
         }
 
+        public function target()
+        {
+            return $this->belongsToMany('App\Target', 'user_target', 'user_id',
+                    'target_id');
+        }
+
+        public function interest()
+        {
+            return $this->belongsToMany('App\Interest', 'user_interest', 'user_id',
+                    'interest_id');
+        }
 
     }

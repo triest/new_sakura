@@ -12,82 +12,25 @@
 
             <form class="form-lk" action="{{ route('lk.profileStore') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                @if ($errors->has('last_name'))
+                @if ($errors->has('name'))
                     <div class="announcement_p">
-                        <strong>{{ $errors->first('last_name') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('first_name'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('first_name') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('middle_name'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('middle_name') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('position'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('position') }}</strong>
+                        <strong>{{ $errors->first('name') }}</strong>
                     </div>
                 @endif
 
-                @if ($errors->has('name_company'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('name_company') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('phone'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('phone') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('job_phone'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('job_phone') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('email'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('work_email'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('work_email') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('inn'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('inn') }}</strong>
-                    </div>
-                @endif
                 @if ($errors->has('date_birth'))
                     <div class="announcement_p">
                         <strong>{{ $errors->first('date_birth') }}</strong>
                     </div>
                 @endif
-                @if ($errors->has('file-upload-photo-profile'))
+
+                @if ($errors->has('description'))
                     <div class="announcement_p">
-                        <strong>{{ $errors->first('file-upload-photo-profile') }}</strong>
+                        <strong>{{ $errors->first('description') }}</strong>
                     </div>
                 @endif
-                @if ($errors->has('file-upload-doc'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('file-upload-doc') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('file-upload-photo'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('file-upload-photo') }}</strong>
-                    </div>
-                @endif
-                @if ($errors->has('education'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('education') }}</strong>
-                    </div>
-                @endif
+
+
                 <div class="form-lk_h2">Личные данные</div>
 
                 <div class="group">
@@ -124,36 +67,15 @@
                     </div>
                 </div>
 
-                <div class="group">
-                    <label class="label_txt"><span></span>Фамилия</label>
-                    <div class="group_input">
-                        <input type="text" class="input" id="last_name" name="last_name"
-                               value="{{old('last_name') ?? $user->last_name }}">
-                    </div>
-                </div>
 
                 <div class="group">
                     <label class="label_txt"><span></span>Имя</label>
                     <div class="group_input">
-                        <input type="text" class="input" id="first_name" name="first_name"
-                               value="{{old('first_name') ?? $user->first_name }}">
+                        <input type="text" class="input" id="name" name="name"
+                               value="{{old('first_name') ?? $user->name }}">
                     </div>
                 </div>
 
-                <div class="group">
-                    <label class="label_txt"><span></span>Отчество</label>
-                    <div class="group_input">
-                        <input type="text" class="input" id="middle_name" name="middle_name"
-                               value="{{old('middle_name') ?? $user->middle_name }}">
-                    </div>
-                </div>
-
-                <div class="group">
-                    <label class="label_txt"><span></span>ИИН</label>
-                    <div class="group_input">
-                        <input type="text" class="input" id="inn" name="inn" value="{{old('inn') ?? $user->inn }}">
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-sm-6 col-12">
@@ -165,122 +87,51 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-sm-6 col-12">
-                        <div class="group">
-                            <label class="label_txt"><span></span>Образование</label>
-
-                            <div class="select-box">
-
-                                <select class="nice-select wide" id="education" name="education" class="list">
-                                    <option class="current" value="">
-                                        Выберите
-                                    </option>
-                                    <option class="current" value="higher"
-                                            @if($user->education=="higher")selected @endif>Высшее
-                                    </option>
-                                    <option class="current" value="middle"
-                                            @if($user->education=="middle")selected @endif>Среднее
-                                    </option>
-                                </select>
-
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
+                <div class="row">
+                    @if($targets->isNotEmpty())
+                        <div class="col-sm-6 col-12">
+                            <div class="group">
+                                <label class="label_txt"><span></span>Цель знакомства</label>
+                                @foreach($targets as $item)
+                                    <p>
+                                        <input class="form-check-input" type="checkbox" value="{{$item->id}}"
+                                               name="target[]"
+                                               @if(in_array($item->id,$anketTarget)) checked="1" @endif >
+                                        {{$item->name}}
+                                    </p>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
 
-                <div class="form-lk_h2">Ваши контакты</div>
+                    @if($interests->isNotEmpty())
+                        <div class="col-sm-6 col-12">
+                            <div class="group">
+                                <label class="label_txt"><span></span>Интересы</label>
+                                @foreach($interests as $item)
+                                    <p>
+                                        <input class="form-check-input" type="checkbox" value="{{$item->id}}"
+                                               name="interest[]"
+                                               @if(in_array($item->id,$anketInterests)) checked="1" @endif >
+                                        {{$item->name}}
+                                    </p>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                </div>
 
                 <div class="row">
                     <div class="col-sm-6 col-12">
                         <div class="group">
-                            <label class="label_txt"><span></span>E-mail</label>
-                            <div class="group_input">
-                                <input type="text" class="input" id="contact_email" name="contact_email"
-                                       value="{{old('contact_email') ?? $user->email }}">
-                            </div>
-                        </div>
+                            <label class="label_txt"><span></span>Обо мне</label>
+                            <textarea name="description" cols="55" required> {{$user->description}}</textarea>
 
-
-                        <div class="group">
-                            <label class="label_txt">E-mail (Рабочий)</label>
-                            <div class="group_input">
-                                <input type="text" class="input" id="work_email" name="work_email"
-                                       value="{{old('work_email') ?? $user->work_email }}">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-sm-6 col-12">
-                        <div class="group">
-                            <label class="label_txt"><span></span>Телефон</label>
-                            <div class="group_input">
-                                <input type="text" class="input" id="phone" name="phone"
-                                       value="{{old('phone') ?? $user->phone }}">
-                            </div>
-                        </div>
-
-                        <div class="group">
-                            <label class="label_txt">Телефон (Рабочий)</label>
-                            <div class="group_input">
-                                <input type="text" class="input" id="job_phone" name="job_phone"
-                                       value="{{old('job_phone') ?? $user->job_phone }}">
-                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-lk_h2">Рабочие данные</div>
-
-                <div class="group">
-                    <label class="label_txt"><span></span>Организация</label>
-                    <div class="group_input">
-                        <input type="text" class="input" id="name_company" name="name_company"
-                               value="{{old('name_company') ?? $user->name_company }}">
-                    </div>
-                </div>
-
-                <div class="group">
-                    <label class="label_txt"><span></span>Должность</label>
-                    <div class="group_input">
-                        <input type="text" class="input" name="position" id="position"
-                               value="{{old('position') ?? $user->position }}">
-                    </div>
-                </div>
-
-                <div class="form-lk_h2">Ваши документы</div>
-
-                <div class="row">
-                    <div class="col-sm-6 col-12">
-                        <div class="group group-upload">
-                            <label class="label_txt"><span></span>Удостоверение личности</label>
-                            <div class="group-upload_txt">
-                                Прикрепите сканы документа формате .jpg .png (не более 3Мб)
-                            </div>
-                            <div class="group-file_upload">
-                                <label for="file-upload-doc" class="custom-file-upload">
-                                    Прикрепить документ
-                                </label>
-                                <input id="file-upload-doc" name="file-upload-doc" type="file"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-12">
-                        <div class="group group-upload">
-                            <label class="label_txt"><span></span>Фотографии 3×4</label>
-                            <div class="group-upload_txt">
-                                Прикрепите фотографии 3×4 формате .jpg .png (не более 3Мб)
-                            </div>
-                            <div class="group-file_upload">
-                                <label for="file-upload-photo" class="custom-file-upload">
-                                    Прикрепить фотографию
-                                </label>
-                                <input id="file-upload-photo" name="file-upload-photo" type="file"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <p class="politics">
                     Нажимая на кнопку &laquo;Продолжить&raquo; Вы даете согласие на обработку данных согласно <a
@@ -448,7 +299,6 @@
                 }
 
             });
-
 
 
             function onShowModal() {

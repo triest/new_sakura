@@ -3,7 +3,9 @@
     namespace App\Http\Controllers\Lk;
 
     use App\Http\Controllers\Controller;
+    use App\Interest;
     use App\Models\Lk\Purchase;
+    use App\Target;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Input;
@@ -12,24 +14,26 @@
     {
 
         // создание каталогов
-        function _create_dir($patch = '') {
-            if(empty($patch)) {
+        function _create_dir($patch = '')
+        {
+            if (empty($patch)) {
                 return false;
             }
 
             $dir = explode('/', $patch);
             $pp = '';
-            foreach($dir as $k => $v) {
-                if($k) {
+            foreach ($dir as $k => $v) {
+                if ($k) {
                     $pp .= '/';
                 }
 
                 $pp .= $v;
-                if(! file_exists($pp)) {
+                if (!file_exists($pp)) {
                     mkdir($pp);
                 }
             }
         }
+
         /**
          * Show the application dashboard.
          *
@@ -60,77 +64,72 @@
                 $size = '';
             }
 
-            return view('lk.profile.index', ['user' => $user, "size" => $size]);
+            //
+            $target = Target::select(['*'])->get();
+            $interst = Interest::select(['*'])->get();
+
+
+
+            $targets = $user->target()->get();
+            $anketTarget = [];
+            foreach ($targets as $tag) {
+                array_push($anketTarget, $tag->id);
+            }
+
+            $interests = $user->interest()->get();
+
+            $anketInterest = [];
+            foreach ($interests as $item) {
+                array_push($anketInterest, $item->id);
+            }
+
+            return view('lk.profile.index')->with([
+                    'user' => $user,
+                    'targets' => $target,
+                    'interests' => $interst,
+                    'size' => $size,
+                    'anketTarget' => $anketTarget,
+                    'anketInterests' => $anketInterest,
+            ]);
         }
 
         public function store_profile(Request $request)
         {
 
             $validatedData = $request->validate([
-                    'last_name' => 'required',
-                    'first_name' => 'required',
-                    'middle_name' => 'required',
-                    'position' => 'required',
-                    'name_company' => 'required',
-                    'phone' => 'required|numeric',
-                    'job_phone' => 'numeric',
-                    'contact_email' => 'required|email',
-                    'work_email' => 'email',
-                    'inn' => 'required|max:255|min:10',
-                    'education' => 'required',
-                    'date_birth' => 'required|string',
-                    'file-upload-photo-profile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3072',
-                    'file-upload-doc' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3072',
-                    'file-upload-photo' => 'image|mimes:jpeg,png,jpg|max:3072',
-
+                    'name' => 'required',
+                    'date_birth' => 'date',
+                    'description' => 'required'
             ]);
+
 
             $user = Auth::user();
             $data = $request->all();
             $user->fill($data);
+            $user->description = $request->description;
             $user->save();
 
-            if ($request->file('file-upload-photo-profile') != null) {
-
-                $file = $request->file('file-upload-photo-profile')->getClientOriginalName();
-                $temp = explode('.', $file);
-                $name = 'profile' . '.' . $temp[1];
-                $midle_path = '/public/upload/lk_profile/' . $user->id;
-                $patch = base_path() . $midle_path;
-                //проверка на чушествование папки
-                $patch .= '/';
-                $request->file('file-upload-photo-profile')
-                        ->move($patch, strtolower($name));
-                $user->profile_url = $midle_path . '/' . $name;
-                $user->save();
+            $user->target()->detach();
+            if ($request->has('target')) {
+                foreach ($request->target as $item) {
+                    $target = Target::select(['id', 'name'])->where('id', $item)
+                            ->first();
+                    if ($target != null) {
+                        $user->target()->attach($target);
+                    }
+                }
+            }
+            $user->interest()->detach();
+            if ($request->has('interest')) {
+                foreach ($request->interest as $item) {
+                    $interestt = Interest::select(['id', 'name'])->where('id', $item)
+                            ->first();
+                    if ($interestt != null) {
+                        $user->interest()->attach($interestt);
+                    }
+                }
             }
 
-            if ($request->file('file-upload-doc') != null) {
-                $file = $request->file('file-upload-doc')->getClientOriginalName();
-                $temp = explode('.', $file);
-                $name = 'doc' . '.' . $temp[1];
-                $midle_path = '/public/upload/lk_profile/' . $user->id;
-                $patch = base_path() . $midle_path;
-                //проверка на чушествование папки
-                $patch .= "/";
-                $request->file('file-upload-doc')
-                        ->move($patch, strtolower($name));
-                $user->doc_url = $midle_path . '/' . $name;
-            }
-
-            if ($request->file('file-upload-photo') != null) {
-                $file = $request->file('file-upload-photo')->getClientOriginalName();
-                $temp = explode('.', $file);
-
-                $name = 'photo' . '.' . $temp[1];
-                $midle_path = '/public/upload/lk_profile/' . $user->id;
-                $patch = base_path() . $midle_path;
-                //проверка на чушествование папки
-                $patch .= '/';
-                $request->file('file-upload-photo')
-                        ->move($patch, strtolower($name));
-                $user->photo_url = $midle_path . '/' . $name;
-            }
 
             $user->save();
             return redirect('lk/profile');
@@ -144,7 +143,7 @@
             $img = str_replace('data:image/png;base64,', '', $img);
             $img = str_replace(' ', '+', $img);
             $fileData = base64_decode($img);
-            $name =  md5(microtime(true));;
+            $name = md5(microtime(true));;
             $midle_path = '/public/upload/lk_profile/' . $user->id;
             $midle_path2 = '/upload/lk_profile/' . $user->id;
             $patch = base_path() . $midle_path;
