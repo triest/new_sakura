@@ -69,7 +69,6 @@
             $interst = Interest::select(['*'])->get();
 
 
-
             $targets = $user->target()->get();
             $anketTarget = [];
             foreach ($targets as $tag) {
@@ -83,6 +82,8 @@
                 array_push($anketInterest, $item->id);
             }
 
+
+            $user->getAge();
             return view('lk.profile.index')->with([
                     'user' => $user,
                     'targets' => $target,

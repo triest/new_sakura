@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title>@yield('title') - Corp Solution</title>
+    <title>@yield('title')</title>
     <meta name="description" content="Corp Solutions - центр инновационных образовательных решений">
     <meta name="keywords" content="Corp Solutions - центр инновационных образовательных решений">
 
@@ -30,11 +30,11 @@
         <a href="/" class="logo"><img src="/home/img/logo.svg" alt="Corp Solutions"/></a>
         <!-- end .logo-->
         <nav class="menu">
-            <a href="collections.html">Обучение</a>
-            <a href="{{ route('lesson') }}">Проекты</a>
-            <a href="#">СДОТ</a>
-            <a href="#">Тренеры</a>
-            <a href="#">Контакты</a>
+            <a href="collections.html">Plaseholder</a>
+            <a href="{{ route('lesson') }}">Plaseholder</a>
+            <a href="#">Plaseholder</a>
+            <a href="#">Plaseholder</a>
+            <a href="#">Plaseholder</a>
 
 
             <a href="{{ route('admin.register') }}" class="mob personal-a">Вход</a>
@@ -64,11 +64,11 @@
             <a href="/" class="logo"><img src="/home/img/logo.svg" alt="Corp Solutions"/></a>
             <!-- end .logo-->
             <nav class="menu">
-                <a href="#">Обучение</a>
-                <a href="#">Проекты</a>
-                <a href="#">СДОТ</a>
-                <a href="#">Тренеры</a>
-                <a href="#">Контакты</a>
+                <a href="#">Plaseholder</a>
+                <a href="#">Plaseholder</a>
+                <a href="#">Plaseholder</a>
+                <a href="#">Plaseholder</a>
+                <a href="#">Plaseholder</a>
             </nav>
 
             <div class="social">
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="copy">
-            ©2020 — CORP solutions
+            ©2020 —Plaseholder
         </div>
     </div>
 </footer>

@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Albums extends Model
+class Target extends Model
 {
     //
-    protected $table="albums";
+    protected $table="targets";
 }

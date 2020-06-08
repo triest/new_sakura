@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title>Corp Solution - @yield('title')</title>
+    <title>@yield('title')</title>
     <meta name="description" content="Corp Solutions - центр инновационных образовательных решений">
     <meta name="keywords" content="Corp Solutions - центр инновационных образовательных решений">
 
@@ -15,16 +15,17 @@
     <link href="/home/css/style.css" rel="stylesheet" type="text/css">
     <link href="/home/css/tablet.css" rel="stylesheet" type="text/css">
     <link href="/home/css/mobile.css" rel="stylesheet" type="text/css">
-
-
-
-
+    <script src="/home/js/jquery-3.5.0.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/home/css/bootstrap.min.css"/>
 
     <link rel="stylesheet" href="/home/css/cropper.css"/>
 
     <link rel="stylesheet" href="/home/css/modal.css"/>
-    <script>let $a=[],$$=a=>a&&$a.push(a);$$.init=()=>{while($a.length)($a.shift())()}</script>
+    <script>let $a = [], $$ = a => a && $a.push(a);
+        $$.init = () => {
+            while ($a.length) ($a.shift())()
+        }</script>
 </head>
 <body>
 
@@ -55,13 +56,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3 col-12">
-                <div class="copy">©2020 — CORP solutions</div>
+                <div class="copy"></div>
             </div>
             <div class="col-sm-9 col-12">
                 <nav class="menu">
-                    <a href="#">Все курсы</a>
-                    <a href="#">Вопросы и ответы</a>
-                    <a href="#">Обратная связь</a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
                 </nav>
 
                 <div class="multi-language">
@@ -74,7 +75,16 @@
         </div>
     </div>
 </footer>
-<script src="/home/js/jquery-3.5.0.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
+</script>
+
 <script type=" text/javascript" src="/home/js/wow.js"></script>
 <script type=" text/javascript" src="/home/js/main.js"></script>
 <script type=" text/javascript" src="/js/remodal.min.js"></script>
@@ -83,7 +93,9 @@
 
 <script src="/home/js/cropper.js"></script>
 <script src="/js/sctipt.js"></script>
-<script>$(function() {$$.init();});</script>
+<script>$(function () {
+        $$.init();
+    });</script>
 </body>
 </html>
 

@@ -4,6 +4,7 @@
 
     use App\Notifications\ResetPassword;
     use App\Notifications\VerifyEmail;
+    use Carbon\Carbon;
     use Illuminate\Contracts\Auth\MustVerifyEmail;
     use Illuminate\Database\Eloquent\SoftDeletes;
     use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -150,6 +151,27 @@
         {
             return $this->belongsToMany('App\Interest', 'user_interest', 'user_id',
                     'interest_id');
+        }
+
+
+        public function getAge()
+        {
+            $dateBith = $this->date_birth;
+
+            $mytime = Carbon::now();
+            $last_login = Carbon::createFromFormat('Y-m-d', $dateBith);
+            $datediff = date_diff($last_login, $mytime);
+            return $datediff->y;
+        }
+
+        public static function get($id)
+        {
+            return User::select(['*'])->where('id', $id)->first();
+        }
+
+        public function albums()
+        {
+            return $this->hasMany('App\Album');
         }
 
     }
