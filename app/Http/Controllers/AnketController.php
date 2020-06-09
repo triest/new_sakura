@@ -98,8 +98,9 @@
 
 
             $photos = $album->photos()->get();
+            $user = User::get($id);
 
-            return view("anket.album")->with(["album" => $album, "photos" => $photos]);
+            return view("anket.album")->with(["album" => $album, "photos" => $photos, "user" => $user]);
         }
 
         public function uploadPhoto(Request $request)
@@ -108,23 +109,23 @@
 
             $user = Auth::user();
             //dump($user);
-            dump($request);
-            dump($request->input("album"));
+
             $album = $request->input("album");
-            $midle_path = '/public/upload/lk_profile/' . $user->id . '/' . 'albums/' . $album;
-            dump($midle_path);
+            $midle_path = 'public/upload/lk_profile/' . $user->id . '/' . 'albums/' . $album;
+            $midle_path2 = '/upload/lk_profile/' . $user->id . '/' . 'albums/' . $album;
+
 
             $image_new_name = md5(microtime(true)) . ".png";;
 
             $request->file('image')
-                    ->move(base_path() . $midle_path,
+                    ->move(base_path() .'/'. $midle_path,
                             strtolower($image_new_name));
 
             //save photo
             $alpumPhoto = new AlbumPhoto();
             $alpumPhoto->name = $image_new_name;
             $alpumPhoto->album_id = $album;
-            $alpumPhoto->url = $midle_path . "/" . $image_new_name;
+            $alpumPhoto->url = $midle_path2 . "/" . $image_new_name;
             $alpumPhoto->save();
 
         }

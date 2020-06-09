@@ -4,23 +4,29 @@
 
 @section('content')
 
-    <div class="col-sm-6 col-12">
-        <button type="button" onclick="upload()">Загрузить1</button>
+    <div class="container">
+        <div class="profile-form">
 
-        <input id="image" name="image" type="file"/>
-        <input type="hidden" id="alnumId" value="{{$album->id}}">
-        @foreach($photos as $item)
-            <a href="{{route('anket.albumItem',['id'=>$user->id,'albumid'=>$item->id])}}">
-                <img width="200" height="200" src="<?php echo asset($item->url)?>">
-                <div class="cell">
-                    <div class="cell-overflow">
+            <button type="button" onclick="upload()">Загрузить1</button>
 
+            <input id="image" name="image" type="file"/>
+            <input type="hidden" id="alnumId" value="{{$album->id}}">
+            <div class="row">
+                @foreach($photos as $item)
+                    <div class="col-sm-6 col-12">
+                        <a href="{{route('anket.albumItem',['id'=>$user->id,'albumid'=>$item->id])}}">
+                            <img width="200" height="200" src="<?php echo asset($item->url)?>">
+                            <div class="cell">
+                                <div class="cell-overflow">
+
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </div>
-            </a>
-        @endforeach
+                @endforeach
+            </div>
+        </div>
     </div>
-
     <script type="text/javascript">
         function upload() {
             let upload = document.getElementById("image");
@@ -79,5 +85,4 @@
         }
 
     </script>
-
 @endsection
