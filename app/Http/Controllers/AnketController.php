@@ -91,12 +91,7 @@
 
         public function albumItem($id, $albumid, Request $request)
         {
-            dump($request);
-            dump($albumid);
-            dump($id);
             $album = Album::select(['*'])->where('id', $albumid)->first();
-
-
             $photos = $album->photos()->get();
             $user = User::get($id);
 

@@ -15,13 +15,17 @@
     <link href="/home/css/style.css" rel="stylesheet" type="text/css">
     <link href="/home/css/tablet.css" rel="stylesheet" type="text/css">
     <link href="/home/css/mobile.css" rel="stylesheet" type="text/css">
-    <script src="/home/js/jquery-3.5.0.min.js"></script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/home/css/bootstrap.min.css"/>
 
     <link rel="stylesheet" href="/home/css/cropper.css"/>
 
     <link rel="stylesheet" href="/home/css/modal.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>let $a = [], $$ = a => a && $a.push(a);
         $$.init = () => {
             while ($a.length) ($a.shift())()
@@ -76,7 +80,7 @@
     </div>
 </footer>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         jQuery.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

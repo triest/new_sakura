@@ -139,7 +139,7 @@
                 </p>
 
                 <button class="mt-24 btn-light btn_100 btn-small btn-animate" type="button"
-                        data-remodal-target="upload_img_crop" id="buttonTarget" hidden>Продолжить
+                        data-remodal-target="upload_img" id="buttonTarget" hidden>Продолжить
                 </button>
                 <button class="mt-24 btn-light btn_100 btn-small btn-animate" type="submit">Продолжить</button>
             </form>
