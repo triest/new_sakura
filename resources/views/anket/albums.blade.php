@@ -7,7 +7,7 @@
         <div class="col-sm-6 col-12">
             @foreach($albums as $item)
                 <a href="{{route('anket.albumItem',['id'=>$user->id,'albumid'=>$item->id])}}">
-                    <img width="200" height="200" src="<?php echo asset("/images/albums/" . $item->getCover())?>">
+                    <img width="200" height="200" src="<?php echo asset( $item->getCover()->url)?>">
                     <div class="cell">
                         <div class="cell-overflow">
                             {{$item->name}},

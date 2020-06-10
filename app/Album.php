@@ -16,8 +16,9 @@ class Album extends Model
     public function getCover()
     {
         $item = $this->Photos()->first();
+
         if ($item != null) {
-            return $item->photo_name;
+            return $item;
         } else {
             return "no_avatar.gif";
         }

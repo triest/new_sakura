@@ -33,6 +33,11 @@
             }
         }
 
+        public function index(Request $request)
+        {
+            return view("anket.index");
+        }
+
         //
         public function view(Request $request, $id)
         {
@@ -113,7 +118,7 @@
             $image_new_name = md5(microtime(true)) . ".png";;
 
             $request->file('image')
-                    ->move(base_path() .'/'. $midle_path,
+                    ->move(base_path() . '/' . $midle_path,
                             strtolower($image_new_name));
 
             //save photo

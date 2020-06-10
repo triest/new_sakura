@@ -1,6 +1,4 @@
 {
-    "/js/admin_app.js": "/js/admin_app.js",
-    "/css/admin_style.css": "/css/admin_style.css",
-    "/css/lk_style.css": "/css/lk_style.css",
-    "/js/lk_app.js": "/js/lk_app.js"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css"
 }

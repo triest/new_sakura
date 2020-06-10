@@ -7,7 +7,7 @@
 //Route::redirect('/', '/lk');
     Route::prefix('anket')->name('anket.')->group(function () {
         Route::get('{id}', 'AnketController@view')->name('view');
-        Route::get('/', 'AnketController@view')->name('main');
+        Route::get('/', 'AnketController@index')->name('main');
         Route::get('{id}/albums', 'AnketController@albums')->name('albums');
         Route::get('{id}/albums/{albumid}', 'AnketController@albumItem')->name('albumItem');
         Route::post('{id}/albums/upload/image', 'AnketController@uploadPhoto');
@@ -35,6 +35,11 @@
                 return view('test.video');
             });
         });
+    });
+
+    //поиск
+    Route::prefix('seach')->name('seach.')->group(function () {
+        Route::get('/', 'SeachController@seach')->name('main');
     });
 
 // Закрытая часть для сотрудников

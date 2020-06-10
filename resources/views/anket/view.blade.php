@@ -1,11 +1,11 @@
 @extends('layouts.lk')
 
-@section('title', 'Профиль')
+@section('title', $user->name)
 
 @section('content')
 
 
-    <div class="container">
+    <div class="container" id="app">
         <div class="profile-form">
 
             <div class="form-lk_name">{{$user->name}}</div>
@@ -80,7 +80,7 @@
             </form>
 
         </div>
-
+        <a class="btn btn-primary" href="{{route("anket.main")}}">К списку анкет</a>
     </div>
 
 
