@@ -12,6 +12,7 @@
     use App\Smoking;
     use App\Target;
     use App\User;
+    use Carbon\Carbon;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\DB;
@@ -123,12 +124,14 @@
 
 
             if ($seachSettings->age_from != null) {
-                $users->where('age', '>=', $seachSettings->age_from);
+                //  $users->where(date_diff('age',NOW()) AS YEAR, '>=', $seachSettings->age_from);
+                $users->whereRaw('datediff(NOW(),date_birth ) >=?', [$seachSettings->age_from]);
             }
 
 
             if ($seachSettings->age_to != null) {
-                $users->where('age', '<=', $seachSettings->age_to);
+                //  $users->where('age', '<=', $seachSettings->age_to);
+                $users->whereRaw('datediff(date_birth,NOW() ) <=?', [$seachSettings->age_to]);
             }
 
             if ($seachSettings->meet != null
@@ -162,6 +165,13 @@
             $users->orderByDesc('created_at');
 
             $users = $users->get();
+            $now = Carbon::now();
+
+            foreach ($users as $key => $value) {
+                $now = Carbon::now();
+                $year = (date_diff($now, new \DateTime($value->date_birth)));
+                $users[$key]->age = $year->y;
+            }
 
             return response()->json([
                     'ankets' => $users,
@@ -183,15 +193,15 @@
             $targets = Target::select(['id', 'name'])->get();
             $interests = Interest::select(['id', 'name'])->get();
             $aperance_array = array();
-            $apperance = Aperance::select(['id', 'name'])->get();
-            $relations = Relationh::select(['id', 'name'])->get();
-            $chidren = Children::select(['id', 'name'])->get();
-            $smoking = Smoking::select(['id', 'name'])->get();
-
-            foreach ($apperance as $item) {
-                $aperance_array[] = $item->id;
-            }
-
+            //   $apperance = Aperance::select(['id', 'name'])->get();
+            //   $relations = Relationh::select(['id', 'name'])->get();
+            //   $chidren = Children::select(['id', 'name'])->get();
+            //    $smoking = Smoking::select(['id', 'name'])->get();
+            /*
+                        foreach ($apperance as $item) {
+                            $aperance_array[] = $item->id;
+                        }
+            */
 
             $userAuth = Auth::user();
             if ($userAuth != null) {
@@ -291,11 +301,11 @@
                     "selectedTargets" => $targets_array,
                     "interests" => $interests,
                     "selectedInterest" => $interest_array,
-                    "apperance" => $apperance,
-                    "relations" => $relations,
-                    "chidren" => $chidren,
+                    "apperance" => null,
+                    "relations" => null,
+                    "chidren" => null,
                     "sechSettings" => $seachSettingsArray,
-                    "smoking" => $smoking,
+                    "smoking" => null,
 
             ]);
 

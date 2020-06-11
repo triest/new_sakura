@@ -170,7 +170,7 @@
 
             },
             saveChange() {
-                axios.post('/anket2/savesettings', {
+                axios.post('/seach/savesettings', {
                     meet: this.meet,
                     from: this.from,
                     to: this.to,
@@ -185,7 +185,7 @@
 
             },
             getSettings() {
-                axios.get('anket2/getsrttings')
+                axios.get('seach/getsettings')
                     .then((response) => {
                         let res = response.data;
                         this.targets = res.targets;

@@ -10,7 +10,7 @@
                     </a>
                     <div class="cell">
                         <div class="cell-overflow">
-                            {{item.name}}
+                            {{item.name}},
                         </div>
                         {{item.age}}
                     </div>
@@ -20,7 +20,8 @@
                 Анкет не найденно
             </div>
             <br>
-
+            <seachModal v-if="seachModal" @closeSeachModal="closeSeachModal()"
+                        @closeNewMessageAlert="closeNewMessageAlert()"></seachModal>
 
         </div>
         <div class="row">
@@ -32,7 +33,7 @@
 </template>
 
 <script>
-
+    import SeachModal from './SeachModal'
 
     export default {
 
@@ -50,7 +51,7 @@
                 event: "",
             }
         },
-        components: {},
+        components: {SeachModal},
         methods: {
 
             seach() {

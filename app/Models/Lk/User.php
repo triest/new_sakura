@@ -203,4 +203,23 @@
             return null;
         }
 
+
+        public function seachsettings()
+        {
+            return $this->hasOne('App\SearchSettings');
+        }
+
+        public function age()
+        {
+            $now = Carbon::now();
+            $year = (date_diff($now, $this->date_birth));
+            $now = Carbon::now();
+            $year = (date_diff($now, $this->date_birth));
+            dump($year);
+            $year = $year->y;
+
+            return $year;
+        }
+
+
     }

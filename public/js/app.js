@@ -1932,9 +1932,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/anket-list.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/SeachModal.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/anket-list.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/SeachModal.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1974,6 +1974,246 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {},
+  name: 'modal',
+  mounted: function mounted() {
+    this.getSettings();
+  },
+
+  /* считаем выделенные*/
+  computed: {
+    countSelectedTargets: function countSelectedTargets() {
+      return this.select2targets.length;
+    },
+    countSelectedInteres: function countSelectedInteres() {
+      return this.select2inters.length;
+    },
+    countSelectedChildren: function countSelectedChildren() {
+      if (this.select2children != null) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    countSelectedRelation: function countSelectedRelation() {},
+    // вычисляем макс
+    minAge: function minAge() {
+      return this.from;
+    },
+    maxAge: function maxAge() {
+      return this.to;
+    }
+  },
+  data: function data() {
+    return {
+      seach: "",
+      from: "18",
+      to: "18",
+      targets: "",
+      interest: " ",
+      relation: "",
+      meet: "",
+      children: [],
+      select2targets: [],
+      select2inters: [],
+      select2children: null,
+      select2relation: [],
+      seachSettings: null,
+      targets_show: false,
+      interes_show: false,
+      children_show: false,
+      relation_show: false
+    };
+  },
+  methods: {
+    close: function close() {
+      this.$emit('closeSeachModal');
+    },
+    findUserByid: function findUserByid() {},
+    saveChange: function saveChange() {
+      var _this = this;
+
+      axios.post('/seach/savesettings', {
+        meet: this.meet,
+        from: this.from,
+        to: this.to,
+        interests: this.select2inters,
+        children: this.select2children,
+        targets: this.select2targets,
+        relation: this.select2relation
+      }).then(function (response) {
+        //this.getSettings();
+        _this.$emit('closeSeachModal');
+      });
+    },
+    getSettings: function getSettings() {
+      var _this2 = this;
+
+      axios.get('seach/getsettings').then(function (response) {
+        var res = response.data;
+        _this2.targets = res.targets;
+        _this2.select2targets = res.selectedTargets;
+        _this2.select2inters = res.selectedInterest;
+        _this2.interest = res.interests;
+        _this2.children = res.chidren;
+        _this2.seachSettings = res.sechSettings;
+        _this2.from = _this2.seachSettings.age_from;
+        _this2.to = _this2.seachSettings.age_to;
+        _this2.select2children = _this2.seachSettings.children;
+        _this2.meet = _this2.seachSettings.meet;
+        _this2.relation = res.relations;
+      }).then(console.log(this.relation));
+    },
+    show: function show(input) {
+      console.log(input);
+
+      switch (input) {
+        case "target":
+          this.targets_show = !this.targets_show;
+          break;
+
+        case "interes":
+          this.interes_show = !this.interes_show;
+          break;
+
+        case "children":
+          this.children_show = !this.children_show;
+          break;
+
+        case "relations":
+          console.log("res");
+          this.relation_show = !this.relation_show;
+          break;
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/anket-list.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/anket-list.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SeachModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SeachModal */ "./resources/js/components/anket/SeachModal.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.seach();
@@ -1989,7 +2229,9 @@ __webpack_require__.r(__webpack_exports__);
       event: ""
     };
   },
-  components: {},
+  components: {
+    SeachModal: _SeachModal__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   methods: {
     seach: function seach() {
       var _this = this;
@@ -6469,6 +6711,25 @@ __webpack_require__.r(__webpack_exports__);
 
 })));
 //# sourceMappingURL=bootstrap.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/SeachModal.vue?vue&type=style&index=0&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/SeachModal.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ntextarea {\n    width: 90%; /* Ширина поля в процентах */\n    height: 200px; /* Высота поля в пикселах */\n    resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 600px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n.newMessageModal {\n    position: fixed;\n    bottom: 0;\n    right: 0;\n    z-index: 999;\n}\ninput.apple-switch {\n    position: relative;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    outline: none;\n    width: 50px;\n    height: 30px;\n    background-color: #ffffff;\n    border: 1px solid #D9DADC;\n    border-radius: 50px;\n    box-shadow: inset -20px 0 0 0 #ffffff;\n    transition-duration: 200ms;\n}\ninput.apple-switch:after {\n    content: \"\";\n    position: absolute;\n    top: 1px;\n    left: 1px;\n    width: 26px;\n    height: 13px;\n    background-color: transparent;\n    border-radius: 50%;\n    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\n    border-color: #4ED164;\n    box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\n    left: 20px;\n    box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\n    -webkit-animation: bounce-in .5s;\n            animation: bounce-in .5s;\n}\n.bounce-leave-active {\n    animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n.v-fade {\n    transition: all 4s ease-out;\n}\n\n\n", ""]);
+
+// exports
 
 
 /***/ }),
@@ -37602,6 +37863,36 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/SeachModal.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/SeachModal.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./SeachModal.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/SeachModal.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/anket-list.vue?vue&type=style&index=0&id=228b89eb&scoped=true&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/anket-list.vue?vue&type=style&index=0&id=228b89eb&scoped=true&lang=css& ***!
@@ -38263,6 +38554,578 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/SeachModal.vue?vue&type=template&id=142e6746&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/SeachModal.vue?vue&type=template&id=142e6746& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "newMessageModal" },
+    [
+      _c(
+        "transition",
+        {
+          attrs: { name: "modal" },
+          on: {
+            close: function($event) {
+              _vm.showModal = false
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "modal-mask" }, [
+            _c("div", { staticClass: "modal-wrapper" }, [
+              _c(
+                "div",
+                { staticClass: "modal-container" },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "modal-body" },
+                    [
+                      _vm._t("body", [
+                        _c("p", [
+                          _c("label", [_vm._v("Ищу:")]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.meet,
+                                  expression: "meet"
+                                }
+                              ],
+                              staticClass: "meet",
+                              attrs: { id: "meet", name: "meet" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.meet = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "famele" } }, [
+                                _vm._v("Девушку")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "male" } }, [
+                                _vm._v("Парня")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "nomatter" } }, [
+                                _vm._v("неважно")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("label", [_vm._v("Возраст:")]),
+                          _vm._v(" от "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.from,
+                                expression: "from"
+                              }
+                            ],
+                            staticStyle: { width: "50px" },
+                            attrs: {
+                              type: "number",
+                              name: "from",
+                              id: "from",
+                              min: "18",
+                              max: _vm.maxAge,
+                              onkeypress: "return isNumber(event)"
+                            },
+                            domProps: { value: _vm.from },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.from = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v("\n                                до "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.to,
+                                expression: "to"
+                              }
+                            ],
+                            staticStyle: { width: "50px" },
+                            attrs: {
+                              type: "number",
+                              name: "to",
+                              id: "to",
+                              min: _vm.minAge,
+                              max: 100,
+                              onkeypress: "return isNumber(event)"
+                            },
+                            domProps: { value: _vm.to },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.to = $event.target.value
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", [_vm._v("Цель:")]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn-default",
+                            on: {
+                              click: function($event) {
+                                return _vm.show("target")
+                              }
+                            }
+                          },
+                          [_vm._v("выбрать")]
+                        ),
+                        _vm._v(" "),
+                        _vm.countSelectedTargets > 0
+                          ? _c("b", [
+                              _vm._v(" " + _vm._s(_vm.countSelectedTargets))
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._l(_vm.targets, function(item) {
+                          return _vm.targets_show
+                            ? _c("div", { staticClass: "v-fade" }, [
+                                _c("label", { staticClass: "switch" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.select2targets,
+                                        expression: "select2targets"
+                                      }
+                                    ],
+                                    attrs: { type: "checkbox", id: item.id },
+                                    domProps: {
+                                      value: item.id,
+                                      checked: Array.isArray(_vm.select2targets)
+                                        ? _vm._i(_vm.select2targets, item.id) >
+                                          -1
+                                        : _vm.select2targets
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$a = _vm.select2targets,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = item.id,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (_vm.select2targets = $$a.concat([
+                                                $$v
+                                              ]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (_vm.select2targets = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          _vm.select2targets = $$c
+                                        }
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "onoffswitch-label",
+                                      attrs: { for: "myonoffswitch" }
+                                    },
+                                    [
+                                      _c("span", {
+                                        staticClass: "onoffswitch-inner"
+                                      }),
+                                      _vm._v(" "),
+                                      _c("span", {
+                                        staticClass: "onoffswitch-switch"
+                                      })
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(item.name) +
+                                    "\n                            "
+                                )
+                              ])
+                            : _vm._e()
+                        }),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", [_vm._v("Интересы:")]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn-default",
+                            on: {
+                              click: function($event) {
+                                return _vm.show("interes")
+                              }
+                            }
+                          },
+                          [_vm._v("выбрать")]
+                        ),
+                        _vm._v(" "),
+                        _vm.countSelectedInteres > 0
+                          ? _c("b", [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.countSelectedInteres) +
+                                  "\n                            "
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._l(_vm.interest, function(item) {
+                          return _vm.interes_show
+                            ? _c("div", [
+                                _c("label", { staticClass: "switch" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.select2inters,
+                                        expression: "select2inters"
+                                      }
+                                    ],
+                                    attrs: { type: "checkbox", id: item.id },
+                                    domProps: {
+                                      value: item.id,
+                                      checked: Array.isArray(_vm.select2inters)
+                                        ? _vm._i(_vm.select2inters, item.id) >
+                                          -1
+                                        : _vm.select2inters
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$a = _vm.select2inters,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = item.id,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (_vm.select2inters = $$a.concat([
+                                                $$v
+                                              ]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (_vm.select2inters = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          _vm.select2inters = $$c
+                                        }
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "slider round" })
+                                ]),
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(item.name) +
+                                    "\n                            "
+                                )
+                              ])
+                            : _vm._e()
+                        }),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", [_vm._v("Дети:")]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn-default",
+                            on: {
+                              click: function($event) {
+                                return _vm.show("children")
+                              }
+                            }
+                          },
+                          [_vm._v("выбрать")]
+                        ),
+                        _vm._v(" "),
+                        _vm.countSelectedChildren
+                          ? _c("b", [_vm._v("Выбранн")])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.children_show
+                          ? _c(
+                              "div",
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.select2children,
+                                      expression: "select2children"
+                                    }
+                                  ],
+                                  attrs: { type: "radio" },
+                                  domProps: {
+                                    value: 0,
+                                    checked: _vm._q(_vm.select2children, 0)
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.select2children = 0
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                                Не важно\n                                "
+                                ),
+                                _c("span", { staticClass: "slider round" }),
+                                _vm._v(" "),
+                                _vm._l(_vm.children, function(item) {
+                                  return _c("div", [
+                                    _c("label", { staticClass: "switch" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.select2children,
+                                            expression: "select2children"
+                                          }
+                                        ],
+                                        attrs: { type: "radio" },
+                                        domProps: {
+                                          value: item.id,
+                                          checked: _vm._q(
+                                            _vm.select2children,
+                                            item.id
+                                          )
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            _vm.select2children = item.id
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("span", {
+                                        staticClass: "slider round"
+                                      })
+                                    ]),
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(item.name) +
+                                        "\n                                "
+                                    )
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", [_vm._v("Отношения:")]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn-default",
+                            on: {
+                              click: function($event) {
+                                return _vm.show("relations")
+                              }
+                            }
+                          },
+                          [_vm._v("выбрать")]
+                        ),
+                        _vm._v(" "),
+                        _vm.relation_show
+                          ? _c(
+                              "div",
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.select2relation,
+                                      expression: "select2relation"
+                                    }
+                                  ],
+                                  attrs: { type: "radio" },
+                                  domProps: {
+                                    value: 0,
+                                    checked: _vm._q(_vm.select2relation, 0)
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.select2relation = 0
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                                Не важно\n                                "
+                                ),
+                                _c("span", { staticClass: "slider round" }),
+                                _vm._v(" "),
+                                _vm._l(_vm.relation, function(item) {
+                                  return _c("div", [
+                                    _c("label", { staticClass: "switch" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.select2relation,
+                                            expression: "select2relation"
+                                          }
+                                        ],
+                                        attrs: { type: "radio" },
+                                        domProps: {
+                                          value: item.id,
+                                          checked: _vm._q(
+                                            _vm.select2relation,
+                                            item.id
+                                          )
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            _vm.select2relation = item.id
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("span", {
+                                        staticClass: "slider round"
+                                      })
+                                    ]),
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(item.name) +
+                                        "\n                                "
+                                    )
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          : _vm._e()
+                      ])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm._t("footer", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.saveChange()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Сохранить\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        on: {
+                          click: function($event) {
+                            return _vm.close()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Закрыть\n                        "
+                        )
+                      ]
+                    )
+                  ])
+                ],
+                2
+              )
+            ])
+          ])
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/anket-list.vue?vue&type=template&id=228b89eb&scoped=true&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/anket-list.vue?vue&type=template&id=228b89eb&scoped=true& ***!
@@ -38317,7 +39180,7 @@ var render = function() {
                     _vm._v(
                       "\n                        " +
                         _vm._s(item.name) +
-                        "\n                    "
+                        ",\n                    "
                     )
                   ]),
                   _vm._v(
@@ -38337,7 +39200,20 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("br")
+        _c("br"),
+        _vm._v(" "),
+        _vm.seachModal
+          ? _c("seachModal", {
+              on: {
+                closeSeachModal: function($event) {
+                  return _vm.closeSeachModal()
+                },
+                closeNewMessageAlert: function($event) {
+                  return _vm.closeNewMessageAlert()
+                }
+              }
+            })
+          : _vm._e()
       ],
       2
     ),
@@ -50690,6 +51566,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/anket/SeachModal.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/anket/SeachModal.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SeachModal_vue_vue_type_template_id_142e6746___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SeachModal.vue?vue&type=template&id=142e6746& */ "./resources/js/components/anket/SeachModal.vue?vue&type=template&id=142e6746&");
+/* harmony import */ var _SeachModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SeachModal.vue?vue&type=script&lang=js& */ "./resources/js/components/anket/SeachModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _SeachModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SeachModal.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/anket/SeachModal.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _SeachModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SeachModal_vue_vue_type_template_id_142e6746___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SeachModal_vue_vue_type_template_id_142e6746___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/anket/SeachModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/anket/SeachModal.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/anket/SeachModal.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SeachModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/SeachModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/anket/SeachModal.vue?vue&type=style&index=0&lang=css&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/anket/SeachModal.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./SeachModal.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/SeachModal.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/anket/SeachModal.vue?vue&type=template&id=142e6746&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/anket/SeachModal.vue?vue&type=template&id=142e6746& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_template_id_142e6746___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./SeachModal.vue?vue&type=template&id=142e6746& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/SeachModal.vue?vue&type=template&id=142e6746&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_template_id_142e6746___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SeachModal_vue_vue_type_template_id_142e6746___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
