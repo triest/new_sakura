@@ -84,7 +84,6 @@
 
             $interest = $seachSettings->interest()->get();
 
-
             if ($interest->isNotEmpty()) {
                 $users->leftJoin('user_interest', 'user_interest.user_id', '=',
                         'users.id');
@@ -100,15 +99,15 @@
             $targets = $seachSettings->target()->get();
 
             if ($targets->isNotEmpty()) {
-                $users->leftJoin('user_target ', 'user_target .user_id', '=',
-                        'user.id');
+
+                $users->leftJoin('user_target', 'user_target.user_id', '=',
+                        'users.id');
                 // надо плдучить массив id штеукуыщцж
                 $interest_array = array();
                 foreach ($targets as $item) {
                     array_push($interest_array, $item->id);
                 }
-
-                $users->whereIn('user_target .target_id', $interest_array);
+                $users->whereIn('user_target.target_id', $interest_array);
             }
 
 
@@ -207,16 +206,16 @@
             if ($userAuth != null) {
                 $user = User::select(['id', 'name'])
                         ->where('id', $userAuth->id)->first();
-                $anket = $user->girl()->first();
 
-                $selectedTargets = $anket->target(['id', 'name'])->get();
+
+                $selectedTargets = $user->target(['id', 'name'])->get();
                 $targets_array = array();
                 foreach ($selectedTargets as $item) {
                     $targets_array[] = $item->id;
                 }
 
 
-                $selectedInteres = $anket->interest(['id', 'name'])->get();
+                $selectedInteres = $user->interest(['id', 'name'])->get();
                 $interest_array = array();
                 foreach ($selectedInteres as $item) {
                     $interest_array[] = $item->id;
@@ -224,13 +223,8 @@
 
                 //;jcnftv j,obt yfcnhjqrb
                 $sechSettings = SearchSettings::select([
-                        'id',
-                        'girl_id',
-                        'meet',
-                        'age_from',
-                        'age_to',
-                        'children',
-                ])->where('girl_id', $anket->id)->first();
+                   '*',
+                ])->where('girl_id', $user->id)->first();
             } else {
                 if (isset($_COOKIE["seachSettings"])) {
                     $cookie = $_COOKIE["seachSettings"];
@@ -240,12 +234,7 @@
 
                 if ($cookie != null) {
                     $sechSettings = SearchSettings::select([
-                            'id',
-                            'girl_id',
-                            'meet',
-                            'age_from',
-                            'age_to',
-                            'children',
+                            '*',
                     ])
                             ->where('cookie', $cookie)->first();
                 }
@@ -271,8 +260,8 @@
             }
 
 
-            if (!isset($anket)) {
-                $anket = null;
+            if (!isset($user)) {
+                $user = null;
             }
             if (!isset($targets_array)) {
                 $targets_array = array();
@@ -288,7 +277,6 @@
             $seachSettingsArray = array();
             if (!empty($sechSettings)) {
                 $seachSettingsArray['id'] = $sechSettings->id;
-                $seachSettingsArray['girl_id'] = $sechSettings->girl_id;
                 $seachSettingsArray['meet'] = $sechSettings->meet;
                 $seachSettingsArray['age_from'] = $sechSettings->age_from;
                 $seachSettingsArray['age_to'] = $sechSettings->age_to;
@@ -296,7 +284,7 @@
             }
 
             return \response()->json([
-                    "anket" => $anket,
+                    "anket" => $user,
                     "targets" => $targets,
                     "selectedTargets" => $targets_array,
                     "interests" => $interests,
