@@ -150,7 +150,7 @@
             $count = $users->count();
             $num_pages = intval($count / $this->limit);
 
-            $users->select('users.*')->limit($this->limit);
+            $users->select('users.id','users.name','users.profile_url','users.date_birth','users.created_at')->limit($this->limit);
 
 
             if (isset($_GET['page']) && intval($_GET['page']) > 1) {

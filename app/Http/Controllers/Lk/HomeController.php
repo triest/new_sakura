@@ -83,7 +83,7 @@
             }
 
 
-            $user->getAge();
+        //    $user->getAge();
             return view('lk.profile.index')->with([
                     'user' => $user,
                     'targets' => $target,

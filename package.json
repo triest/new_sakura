@@ -26,6 +26,8 @@
     },
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^16.0.0",
-        "croppie": "^2.6.4"
+        "croppie": "^2.6.4",
+        "laravel-echo": "^1.8.0",
+        "pusher-js": "^6.0.3"
     }
 }

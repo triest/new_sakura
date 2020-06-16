@@ -1,8 +1,8 @@
 @extends('layouts.auth_lk')
 
-@push('styles')
-    <link rel="stylesheet" href="{{ mix('css/admin_style.css') }}">
-@endpush
+{{--@push('styles')--}}
+{{--    <link rel="stylesheet" href="{{ mix('css/admin_style.css') }}">--}}
+{{--@endpush--}}
 
 @section('title',  trans('auth.register2'))
 @section('content')

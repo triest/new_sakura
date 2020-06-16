@@ -13,6 +13,14 @@
         Route::post('{id}/albums/upload/image', 'AnketController@uploadPhoto');
     });
 
+    Route::prefix('contact')->name('anket.')->group(function () {
+         Route::get('/', 'ContactController@index')->name('main')->middleware('auth');
+        Route::get('/contacts', 'ContactController@get');
+        Route::get('/conversation/{id}', 'ContactController@getMessagesFor');
+        Route::post('/conversation/send', 'ContactController@send');
+        Route::post('/conversation/sendModal', 'ContactController@sendModal');
+    });
+
 
 // Личный кабинет
     Route::prefix('lk')->name('lk.')->namespace('Lk')->group(function () {

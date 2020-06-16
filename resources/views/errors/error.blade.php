@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ mix('css/admin_style.css') }}">
+
 @endpush
 
 @section('content')

@@ -1,0 +1,97 @@
+<template>
+    <div class="chat-app"> <!-- lg комп-->
+        <div class="col-lg-3">
+            <ContactsList :contacts="contacts" @selected="startConversationWith"/>
+        </div>
+        <div class="col-lg-9">
+            <Conversation :contact="selectedContact" :unreaded="unreaded" :messages="messages" @new="saveNewMessage"/>
+        </div>
+    </div>
+</template>
+
+<script>
+    import Conversation from './Conversation';
+    import ContactsList from './ContactsList';
+
+    export default {
+        props: {
+            user: {
+                type: Object,
+                required: true
+            }
+        },
+        data() {
+            return {
+                selectedContact: null,
+                messages: [],
+                contacts: [],
+                unreaded: 0
+            };
+        },
+        mounted() {
+            console.log("listen");
+            console.log(`messages.${this.user.id}`);
+            Echo.private(`messages.${this.user.id}`)
+                .listen('NewMessage', (e) => {
+                    console.log("newMessage");
+                    this.hanleIncoming(e.message);
+
+                });
+            console.log("contacts");
+            console.log(this.user.id)
+            axios.get('contact/contacts')
+                .then((response) => {
+                    this.contacts = response.data;
+                });
+        },
+        methods: {
+            startConversationWith(contact, image) {
+                console.log("start conversation");
+                //     this.updateUnreadCount(contact, true);
+
+                axios.get(`contact/conversation/${contact.id}`)
+                    .then((response) => {
+                        this.messages = response.data;
+                        this.selectedContact = contact;
+                    })
+
+            },
+            saveNewMessage(message) {
+                this.messages.push(message);
+            },
+            hanleIncoming(message) {
+                if (this.selectedContact && message.from == this.selectedContact.id) {
+                    this.saveNewMessage(message);
+                    return;
+                }
+
+                this.updateUnreadCount(message.from_contact, false);
+            },
+            /*  updateUnreadCount(contact, reset) {
+                  this.contacts = this.contacts.map((single) => {
+                      if (single.id !== contact.id) {
+                          return single;
+                      }
+
+                      if (reset)
+                          single.unread = 0;
+                      else
+                          single.unread += 1;
+
+                      return single;
+                  }),
+                      this.unreaded = single.unread;
+              }
+              */
+        },
+        components: {Conversation, ContactsList}
+    }
+</script>
+
+<!--
+<style lang="scss" scoped>
+    .chat-app {
+        display: flex;
+    }
+</style>
+-->
