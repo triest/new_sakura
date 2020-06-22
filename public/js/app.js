@@ -2331,6 +2331,7 @@ __webpack_require__.r(__webpack_exports__);
     console.log("messages.".concat(this.user.id));
     Echo["private"]("messages.".concat(this.user.id)).listen('NewMessage', function (e) {
       console.log("newMessage");
+      console.log(e.message);
 
       _this.hanleIncoming(e.message);
     });
@@ -45802,7 +45803,7 @@ var render = function() {
   return _c("div", { staticClass: "chat-app" }, [
     _c(
       "div",
-      { staticClass: "col-lg-3" },
+      { staticClass: "col-sm-6 col-12" },
       [
         _c("ContactsList", {
           attrs: { contacts: _vm.contacts },
@@ -45814,7 +45815,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "col-lg-9" },
+      { staticClass: "col-sm-6 col-12" },
       [
         _c("Conversation", {
           attrs: {
@@ -46054,7 +46055,7 @@ var render = function() {
                               attrs: {
                                 width: "30",
                                 height: "30",
-                                src: "images/upload/" + _vm.contact.main_image
+                                src: _vm.contact.profile_url
                               }
                             })
                           ]

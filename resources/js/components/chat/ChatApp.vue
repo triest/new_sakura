@@ -1,9 +1,9 @@
 <template>
     <div class="chat-app"> <!-- lg комп-->
-        <div class="col-lg-3">
+        <div class="col-sm-6 col-12">
             <ContactsList :contacts="contacts" @selected="startConversationWith"/>
         </div>
-        <div class="col-lg-9">
+        <div class="col-sm-6 col-12">
             <Conversation :contact="selectedContact" :unreaded="unreaded" :messages="messages" @new="saveNewMessage"/>
         </div>
     </div>
@@ -34,6 +34,7 @@
             Echo.private(`messages.${this.user.id}`)
                 .listen('NewMessage', (e) => {
                     console.log("newMessage");
+                    console.log(e.message)
                     this.hanleIncoming(e.message);
 
                 });

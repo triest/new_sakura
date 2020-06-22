@@ -14,11 +14,20 @@
     });
 
     Route::prefix('contact')->name('anket.')->group(function () {
-         Route::get('/', 'ContactController@index')->name('main')->middleware('auth');
+        Route::get('/', 'ContactController@index')->name('main')->middleware('auth');
         Route::get('/contacts', 'ContactController@get');
         Route::get('/conversation/{id}', 'ContactController@getMessagesFor');
         Route::post('/conversation/send', 'ContactController@send');
         Route::post('/conversation/sendModal', 'ContactController@sendModal');
+    });
+
+    Route::prefix('events')->name('events.')->group(function () {
+        Route::get('/', 'EventController@index')->name('index'); //сщбытия в моём горроде
+        Route::get('/my', 'EventController@my')->name('my'); //мои события
+        Route::get('/create', 'EventController@create')->name('create')->middleware('auth');
+        Route::post('/store', 'EventController@store')->name('store')->middleware('auth');
+        Route::get('/{id}', 'EventController@view')->name('view');
+
     });
 
 

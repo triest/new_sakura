@@ -9,7 +9,7 @@
                 <div class="text2">
                     <div class="avatar" v-if="message.to != contact.id ">
                         <a :href="/anket/+contact.anket_id" target="_blank">
-                            <img width="30" height="30" :src="'images/upload/'+contact.main_image">
+                            <img width="30" height="30" :src="contact.profile_url">
                         </a>
                     </div>
                 </div>

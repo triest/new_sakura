@@ -174,6 +174,11 @@
             return $this->hasMany('App\Album');
         }
 
+        public function events()
+        {
+            return $this->hasMany('App\Event');
+        }
+
         public static function getIpstatic()
         {
             foreach (
@@ -213,12 +218,7 @@
         {
             $now = Carbon::now();
             $year = (date_diff($now, $this->date_birth));
-            $now = Carbon::now();
-            $year = (date_diff($now, $this->date_birth));
-            dump($year);
-            $year = $year->y;
-
-            return $year;
+            return $year->y;
         }
 
 
