@@ -33,7 +33,7 @@
         }</script>
 </head>
 <body>
-
+<? $city = \App\City::GetCurrentCity(); ?>
 <!-- end .content-->
 <header class="header">
     <div class="container-h2">
@@ -55,6 +55,7 @@
 </header>
 <!-- end .header-->
 <div id="app">
+    <event-in-my-city-side :city="{{$city}}"></event-in-my-city-side>
     @yield('content')
 </div>
 <footer class="footer_lk">

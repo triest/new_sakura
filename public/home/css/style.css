@@ -369,7 +369,7 @@ a[href^=tel] {
     color: #ffffff;
     padding: 19px 10px;
     cursor: pointer;
-    margin: 0 auto 20px;
+  /*  margin: 0 auto 20px;*/
     -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
     display: block;

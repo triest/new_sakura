@@ -22,12 +22,13 @@
     });
 
     Route::prefix('events')->name('events.')->group(function () {
+        Route::get('/inmycity', 'EventController@inmycity')->name('inmycity');
         Route::get('/', 'EventController@index')->name('index'); //сщбытия в моём горроде
         Route::get('/my', 'EventController@my')->name('my'); //мои события
         Route::get('/create', 'EventController@create')->name('create')->middleware('auth');
         Route::post('/store', 'EventController@store')->name('store')->middleware('auth');
         Route::get('/{id}', 'EventController@view')->name('view');
-
+      //  Route::get('/singup/{id}', 'MyEventController@singup')->name('viewmyevent')->middleware('auth');
     });
 
 

@@ -102,4 +102,95 @@
 
 
         }
+
+        public function inmycity(Request $request)
+        {
+            if ($request->city) {
+                $city = City::get(intval($request->get('city')));
+                $events = Event::inMyCity($city);
+
+                $partificator = null;
+                $partifucationArray = array();
+                foreach ($events as $item) {
+                    $partificator = $item->checkUserPartification();
+                    if ($partificator != false) {
+                        array_push($partifucationArray, $partificator);
+                    }
+                }
+
+                return response()->json([
+                        "events"        => $events,
+                        "partification" => $partifucationArray,
+                ]);
+            } else {
+                return response()->json();
+            }
+        }
+
+        public function singup($id)
+        {
+            $events = Myevent::select([
+                    'id',
+                    'name',
+                    'place',
+                    'begin',
+                    'description',
+                    'max_people',
+                    'organizer_id',
+            ])->where('id', $id)->first();
+            //моё ли это событие
+            $auth_user = Auth::user();
+            $girl_id = $auth_user->get_girl_id();
+
+            if ($girl_id == $events->organizer_id) {
+                return redirect("/myevent/".$id);
+            }
+
+            $days = [
+                    'Воскресенье',
+                    'Понедельник',
+                    'Вторник',
+                    'Среда',
+                    'Четверг',
+                    'Пятница',
+                    'Суббота',
+            ];
+            $months = [
+                    'Январь',
+                    'Февраль',
+                    'Март',
+                    'Апрель',
+                    'Май',
+                    'Июнь',
+                    'Июль',
+                    'Август',
+                    'Сентябрь',
+                    'Октябрь',
+                    'Ноябрь',
+                    'Декабрь',
+            ];
+            $arr = explode(" ", $events->begin);
+            $day_num = date("w", strtotime($arr[0]));
+            $day_name = $days[$day_num];
+            $d = date_parse_from_format("Y-m-d", $arr[0]);
+            $month_name = $months[$d["month"]];
+            $day = $d["day"];
+
+
+            $organizer = Girl::select(['id', 'name', 'main_image'])
+                    ->where('id', $events->organizer_id)->first();
+            $photo = $events->photo()->get();
+
+
+            return view('event.singup')->with([
+                    'event'      => $events,
+                    'day_name'   => $day_name,
+                    'month_name' => $month_name,
+                    'day'        => $day,
+                    'time'       => $arr[1],
+                    'organizer'  => $organizer,
+                    'photo'      => $photo
+                /* 'count' => $count*/
+            ]);
+        }
     }
