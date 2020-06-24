@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('anket-list', require('./components/anket/anket-list.vue').default);
 Vue.component('chat-app', require('./components/chat/ChatApp.vue').default);
 Vue.component('event-in-my-city-side', require('./components/events/EventInMyCitySide2').default);
+Vue.component('event-requwest', require('./components/events/event-requwest').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

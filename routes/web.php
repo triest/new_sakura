@@ -27,7 +27,11 @@
         Route::get('/my', 'EventController@my')->name('my'); //мои события
         Route::get('/create', 'EventController@create')->name('create')->middleware('auth');
         Route::post('/store', 'EventController@store')->name('store')->middleware('auth');
+
+        Route::get('/check-requwest', 'EventController@check_requwest')->name('check-requwest');
+        Route::get('/make-requwest', 'EventController@makeRequwest')->name('make-requwest');
         Route::get('/{id}', 'EventController@view')->name('view');
+
       //  Route::get('/singup/{id}', 'MyEventController@singup')->name('viewmyevent')->middleware('auth');
     });
 

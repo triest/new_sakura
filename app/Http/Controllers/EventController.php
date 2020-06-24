@@ -4,6 +4,7 @@
 
     use App\City;
     use App\Event;
+    use App\EventRequwest;
     use App\Models\Lk\User;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
@@ -90,17 +91,24 @@
                 $end = $event->end_applications;
                 $end = explode(" ", $end);
 
-                dump($event);
+
+                // проверяем запросы от этого пользователя
+                $eventRequwest = null;
+                if ($user != null) {
+                    $eventRequwest = EventRequwest::select(["*"])->where("name", "event")->where("who_id",
+                            $user->id)->where("target_id", $id)->get();
+
+                }
+
                 return view("event.view")->with([
                         "event" => $event,
                         "date_begin" => $date[0],
                         "time_begin" => $date[1],
                         "date_applications" => $end[0],
-                        "time_applications" => $end[1]
+                        "time_applications" => $end[1],
+                        "event_requwest" => $eventRequwest
                 ]);
             }
-
-
         }
 
         public function inmycity(Request $request)
@@ -119,7 +127,7 @@
                 }
 
                 return response()->json([
-                        "events"        => $events,
+                        "events" => $events,
                         "partification" => $partifucationArray,
                 ]);
             } else {
@@ -143,7 +151,7 @@
             $girl_id = $auth_user->get_girl_id();
 
             if ($girl_id == $events->organizer_id) {
-                return redirect("/myevent/".$id);
+                return redirect("/myevent/" . $id);
             }
 
             $days = [
@@ -183,14 +191,39 @@
 
 
             return view('event.singup')->with([
-                    'event'      => $events,
-                    'day_name'   => $day_name,
+                    'event' => $events,
+                    'day_name' => $day_name,
                     'month_name' => $month_name,
-                    'day'        => $day,
-                    'time'       => $arr[1],
-                    'organizer'  => $organizer,
-                    'photo'      => $photo
+                    'day' => $day,
+                    'time' => $arr[1],
+                    'organizer' => $organizer,
+                    'photo' => $photo
                 /* 'count' => $count*/
             ]);
+        }
+
+        public function check_requwest(Request $request)
+        {
+            //dump($request);
+            $user_id = intval($request->user);
+            $event = intval($request->event);
+            $eventRequwest = EventRequwest::select(["*"])->where("name", "event")->where("who_id",
+                    $user_id)->where("target_id", $event)->first();
+
+            return response()->json(["eventRequwest" => $eventRequwest]);
+        }
+
+        public function makeRequwest(Request $request)
+        {
+
+            $user_id = intval($request->user);
+            $event = intval($request->event);
+            $eventRequwest = new EventRequwest();
+            $eventRequwest->who_id = $user_id;
+            $eventRequwest->target_id = $event;
+            $eventRequwest->name = "event";
+            $eventRequwest->save();
+
+            return response()->json(true);
         }
     }

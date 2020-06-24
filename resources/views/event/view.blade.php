@@ -11,6 +11,8 @@
                     {{$event->name}}
                 </div>
             </div>
+
+            <event-requwest :event="{{$event}}" :user="{{ Auth::user()}}"></event-requwest>
             <div class="form-group">
                 <div class="col-xs-17">
                     {{$event->description}}
