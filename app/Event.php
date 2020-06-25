@@ -55,4 +55,9 @@
             */
             return null;
         }
+
+        public static function get($id)
+        {
+            return Event::select(["*"])->where("id", $id)->first();
+        }
     }

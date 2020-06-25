@@ -30,7 +30,10 @@
 
         Route::get('/check-requwest', 'EventController@check_requwest')->name('check-requwest');
         Route::get('/make-requwest', 'EventController@makeRequwest')->name('make-requwest');
+        Route::get('/accept', 'EventController@accept')->name('accept');
+        Route::get('/denided', 'EventController@denided')->name('requwestlist');
         Route::get('/{id}', 'EventController@view')->name('view');
+        Route::get('/{id}/requwestlist', 'EventController@requwestlist')->name('requwestlist');
 
       //  Route::get('/singup/{id}', 'MyEventController@singup')->name('viewmyevent')->middleware('auth');
     });

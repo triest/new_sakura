@@ -2647,8 +2647,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     city: {
@@ -2771,6 +2769,269 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this2.getRequwest();
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/events/requwest-check.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/events/requwest-check.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    event: {
+      type: Object,
+      required: false
+    }
+  },
+  components: {},
+  mounted: function mounted() {
+    console.log("requwesteventlist1");
+    this.getrequwests(); //  this.getunreaded();
+    //this.getacepted();
+    // this.getdenided();
+    // this.requwestcount();
+  },
+  data: function data() {
+    return {
+      requwestlist: null,
+      currentTab: 'all',
+      accepted: null,
+      rejected: null,
+      unredded: null,
+      countaccepted: null,
+      max_people: null
+    };
+  },
+  methods: {
+    gatall: function gatall() {
+      this.getrequwests();
+      this.getacepted();
+      this.getdenided();
+      this.requwestcount();
+    },
+    accept: function accept(req_id) {
+      this.requwestlist = [];
+      this.accepted = null;
+      this.rejected = null;
+      this.unredded = null;
+      axios.get('/events/accept', {
+        params: {
+          action: 'accept',
+          req_id: req_id
+        }
+      }).then(function (response) {}); //    this.gatall();
+      //   this.getacepted();
+    },
+    reject: function reject(req_id) {
+      console.log("denide");
+      axios.get('/events/denided', {
+        params: {
+          action: 'denided',
+          req_id: req_id
+        }
+      }).then(function (response) {}); //  this.gatall();
+    },
+    getrequwests: function getrequwests() {
+      var _this = this;
+
+      this.requwestlist = null;
+      axios.get('/events/' + this.event.id + '/requwestlist').then(function (response) {
+        _this.requwestlist = response.data.requwest;
+        console.log(_this.requwestlist);
       });
     }
   }
@@ -46327,96 +46588,74 @@ var render = function() {
     _vm.eventList.length
       ? _c(
           "div",
-          [
-            _c(
-              "carousel",
-              {
-                attrs: {
-                  "per-page": 1,
-                  "mouse-drag": false,
-                  autoplay: true,
-                  loop: true,
-                  navigationEnabled: true,
-                  paginationEnabled: false
-                }
-              },
-              _vm._l(_vm.eventList, function(event) {
-                return _c("slide", { key: event.id }, [
-                  _c("div", { staticClass: "col-sm-1" }),
-                  _vm._v(" "),
-                  _c("b", [_vm._v(_vm._s(event.name))]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(
-                    "\n                Место:" + _vm._s(event.place) + " "
-                  ),
-                  _c("br"),
-                  _vm._v(
-                    "\n                Дата: " + _vm._s(event.begin) + " "
-                  ),
-                  _c("br"),
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(event.status_name) +
-                      "\n                "
-                  ),
-                  _vm.checkRequsest(event.id) !== false
-                    ? _c("div", [
-                        _vm.checkRequsest(event.id) == "accept"
-                          ? _c("div", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn ",
-                                  attrs: { href: "event/" + event.id }
-                                },
-                                [_vm._v(" Заявка принята")]
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.checkRequsest(event.id) == "denide"
-                          ? _c("div", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn ",
-                                  attrs: { href: "event/" + event.id }
-                                },
-                                [_vm._v("Заявка отклонена")]
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.checkRequsest(event.id) == "unreaded"
-                          ? _c("div", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn ",
-                                  attrs: { href: "event/" + event.id }
-                                },
-                                [_vm._v("Заявка не прочитана")]
-                              )
-                            ])
-                          : _vm._e()
-                      ])
-                    : _c("div", [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "btn ",
-                            attrs: { href: "events/" + event.id }
-                          },
-                          [_vm._v("Записаться!")]
-                        )
-                      ])
-                ])
-              }),
-              1
-            )
-          ],
-          1
+          _vm._l(_vm.eventList, function(event) {
+            return _c("div", { key: event.id }, [
+              _c("div", { staticClass: "col-sm-1" }),
+              _vm._v(" "),
+              _c("b", [_vm._v(_vm._s(event.name))]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v("\n            Место:" + _vm._s(event.place) + " "),
+              _c("br"),
+              _vm._v("\n            Дата: " + _vm._s(event.begin) + " "),
+              _c("br"),
+              _vm._v(
+                "\n            " + _vm._s(event.status_name) + "\n            "
+              ),
+              _vm.checkRequsest(event.id) !== false
+                ? _c("div", [
+                    _vm.checkRequsest(event.id) == "accept"
+                      ? _c("div", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn ",
+                              attrs: { href: "event/" + event.id }
+                            },
+                            [_vm._v(" Заявка принята")]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.checkRequsest(event.id) == "denide"
+                      ? _c("div", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn ",
+                              attrs: { href: "event/" + event.id }
+                            },
+                            [_vm._v("Заявка отклонена")]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.checkRequsest(event.id) == "unreaded"
+                      ? _c("div", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn ",
+                              attrs: { href: "event/" + event.id }
+                            },
+                            [_vm._v("Заявка не прочитана")]
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _c("div", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn ",
+                        attrs: { href: "events/" + event.id }
+                      },
+                      [_vm._v("Записаться!")]
+                    )
+                  ])
+            ])
+          }),
+          0
         )
       : _c("div", [
           _vm._v("\n        Событий в вашем городе нет.\n        "),
@@ -46486,6 +46725,744 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/events/requwest-check.vue?vue&type=template&id=18561d3c&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/events/requwest-check.vue?vue&type=template&id=18561d3c&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("b", [_vm._v("Принятых заявок:")]),
+    _vm._v("\n        " + _vm._s(_vm.countaccepted) + " "),
+    _c("br"),
+    _vm._v(" "),
+    _c("b", [_vm._v("Максимальное число заявок:")]),
+    _vm._v(" " + _vm._s(_vm.max_people) + "\n\n        "),
+    _vm.countaccepted == _vm.max_people
+      ? _c("div", [_c("b", [_vm._v(" Максимальное число участников! ")])])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("ul", { staticClass: "nav nav-tabs" }, [
+      _c(
+        "li",
+        {
+          attrs: { role: "presentation" },
+          on: {
+            click: function($event) {
+              _vm.currentTab = "accepted"
+            }
+          }
+        },
+        [_vm._m(0)]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          attrs: { role: "presentation" },
+          on: {
+            click: function($event) {
+              _vm.currentTab = "rejected"
+            }
+          }
+        },
+        [_vm._m(1)]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          attrs: { role: "presentation" },
+          on: {
+            click: function($event) {
+              _vm.currentTab = "unredded"
+            }
+          }
+        },
+        [_vm._m(2)]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          attrs: { role: "presentation" },
+          on: {
+            click: function($event) {
+              _vm.currentTab = "all"
+            }
+          }
+        },
+        [_vm._m(3)]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "applicationClass" }, [
+      _c("div", { staticClass: "tab-content" }, [
+        _vm.currentTab == "all"
+          ? _c(
+              "div",
+              _vm._l(_vm.requwestlist, function(requwest) {
+                return _c("div", [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "col-lg-4 col-md-3 col-sm-5 col-xs-9 box-shadow"
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card  border-dark",
+                          staticStyle: {
+                            width: "18rem",
+                            "background-color": "#eeeeee",
+                            border: "1px solid transparent",
+                            "border-color": "#666869"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.myFunction(requwest.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("img", {
+                                  attrs: {
+                                    src: requwest.profile_url,
+                                    height: "150"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.myFunction(requwest.id)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                  " +
+                                    _vm._s(requwest.name) +
+                                    ", " +
+                                    _vm._s(requwest.age)
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            requwest.requwest_status == "not_read"
+                              ? _c("h5", [
+                                  _c("b", [
+                                    _c("p", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-primary",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.accept(
+                                                requwest.requwest_id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            Принять\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("p", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-danger",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.reject(
+                                                requwest.requwest_id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                Отклонить\n                                            "
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            requwest.requwest_status == "accept"
+                              ? _c("h5", [
+                                  _c("b", [
+                                    _vm._v(
+                                      "\n                                        Заявка принята\n                                        "
+                                    ),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-danger",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.reject(
+                                              requwest.requwest_id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                            Отклонить\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            requwest.requwest_status == "denide"
+                              ? _c("h5", [
+                                  _c("b", [
+                                    _vm._v(
+                                      "\n                                        Заявка отклонена\n                                        "
+                                    ),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-danger",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.accept(
+                                              requwest.requwest_id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                            Принять\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              : _vm._e()
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              }),
+              0
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _vm.currentTab == "accepted"
+        ? _c(
+            "div",
+            _vm._l(_vm.requwestlist, function(requwest) {
+              return _c("div", [
+                requwest.requwest_status == "accept"
+                  ? _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card  border-dark",
+                          staticStyle: {
+                            width: "18rem",
+                            "background-color": "#eeeeee",
+                            border: "1px solid transparent",
+                            "border-color": "#666869"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.myFunction(requwest.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("img", {
+                                  attrs: {
+                                    src: requwest.profile_url,
+                                    height: "150"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.myFunction(requwest.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("p", [
+                                  _vm._v(
+                                    _vm._s(requwest.name) +
+                                      ",\n                                        " +
+                                      _vm._s(requwest.age)
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            requwest.requwest_status == "not_read"
+                              ? _c("h5", [
+                                  _c("p", [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.accept(
+                                              requwest.requwest_id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                            Принять\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-danger",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.reject(
+                                              requwest.requwest_id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                            Отклонить1\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            requwest.requwest_status == "accept"
+                              ? _c("h5", [
+                                  _c("b", [
+                                    _c("p", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-danger",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.reject(
+                                                requwest.requwest_id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            Отклонить\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            requwest.requwest_status == "denide"
+                              ? _c("h5", [
+                                  _c("b", [
+                                    _c("p", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-primary",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.accept(
+                                                requwest.requwest_id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            Принять\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              : _vm._e()
+                          ])
+                        ]
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentTab == "rejected"
+        ? _c(
+            "div",
+            _vm._l(_vm.requwestlist, function(requwest) {
+              return _c("div", [
+                requwest.requwest_status == "denide"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-lg-4 col-md-3 col-sm-5 col-xs-9 box-shadow"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "card  border-dark",
+                            staticStyle: {
+                              width: "18rem",
+                              "background-color": "#eeeeee",
+                              border: "1px solid transparent",
+                              "border-color": "#666869"
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "card-body" }, [
+                              _c(
+                                "a",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.myFunction(requwest.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src: requwest.profile_url,
+                                      height: "150"
+                                    }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.myFunction(requwest.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("p", [
+                                    _vm._v(
+                                      _vm._s(requwest.name) +
+                                        ",\n                                        " +
+                                        _vm._s(requwest.age)
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              requwest.requwest_status == "denide"
+                                ? _c("h5", [
+                                    _c("b", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-primary",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.accept(
+                                                requwest.requwest_id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        Принять\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentTab == "unredded"
+        ? _c(
+            "div",
+            _vm._l(_vm.unredded, function(requwest) {
+              return _c("div", [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "col-lg-4 col-md-3 col-sm-5 col-xs-9 box-shadow"
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "card  border-dark",
+                        staticStyle: {
+                          width: "18rem",
+                          "background-color": "#eeeeee",
+                          border: "1px solid transparent",
+                          "border-color": "#666869"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "card-body" }, [
+                          _c(
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.myFunction(requwest.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: requwest.profile_url,
+                                  height: "150"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.myFunction(requwest.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("p", [
+                                _vm._v(
+                                  _vm._s(requwest.name) +
+                                    ",\n                                        " +
+                                    _vm._s(requwest.age)
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          requwest.requwest_status == "not_read"
+                            ? _c("h5", [
+                                _c("b", [
+                                  _c("p", [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "button",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.accept(
+                                              requwest.requwest_id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                        Принять1\n                                    "
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "button btn-danger",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.reject(
+                                              requwest.requwest_id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                            Отклонить\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          requwest.requwest_status == "accept"
+                            ? _c("h5", [
+                                _c("b", [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "button ",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.reject(
+                                            requwest.requwest_id
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                        Отклонить\n                                    "
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          requwest.requwest_status == "denide"
+                            ? _c("h5", [
+                                _c("b", [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "button ",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.reject(
+                                            requwest.requwest_id
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                        Отклонить\n                                    "
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ])
+                            : _vm._e()
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ])
+            }),
+            0
+          )
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "#" } }, [_c("b", [_vm._v("Принятые")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "#" } }, [_c("b", [_vm._v("Отклоненные")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "#" } }, [
+      _c("b", [_vm._v("Непрочитанные")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "#" } }, [_c("b", [_vm._v("Все")])])
+  }
+]
 render._withStripped = true
 
 
@@ -58679,6 +59656,7 @@ Vue.component('anket-list', __webpack_require__(/*! ./components/anket/anket-lis
 Vue.component('chat-app', __webpack_require__(/*! ./components/chat/ChatApp.vue */ "./resources/js/components/chat/ChatApp.vue")["default"]);
 Vue.component('event-in-my-city-side', __webpack_require__(/*! ./components/events/EventInMyCitySide2 */ "./resources/js/components/events/EventInMyCitySide2.vue")["default"]);
 Vue.component('event-requwest', __webpack_require__(/*! ./components/events/event-requwest */ "./resources/js/components/events/event-requwest.vue")["default"]);
+Vue.component('requwest-check', __webpack_require__(/*! ./components/events/requwest-check */ "./resources/js/components/events/requwest-check.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -59568,6 +60546,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_event_requwest_vue_vue_type_template_id_5f540294_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_event_requwest_vue_vue_type_template_id_5f540294_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/events/requwest-check.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/events/requwest-check.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _requwest_check_vue_vue_type_template_id_18561d3c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./requwest-check.vue?vue&type=template&id=18561d3c&scoped=true& */ "./resources/js/components/events/requwest-check.vue?vue&type=template&id=18561d3c&scoped=true&");
+/* harmony import */ var _requwest_check_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./requwest-check.vue?vue&type=script&lang=js& */ "./resources/js/components/events/requwest-check.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _requwest_check_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _requwest_check_vue_vue_type_template_id_18561d3c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _requwest_check_vue_vue_type_template_id_18561d3c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "18561d3c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/events/requwest-check.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/events/requwest-check.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/events/requwest-check.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_requwest_check_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./requwest-check.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/events/requwest-check.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_requwest_check_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/events/requwest-check.vue?vue&type=template&id=18561d3c&scoped=true&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/events/requwest-check.vue?vue&type=template&id=18561d3c&scoped=true& ***!
+  \******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_requwest_check_vue_vue_type_template_id_18561d3c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./requwest-check.vue?vue&type=template&id=18561d3c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/events/requwest-check.vue?vue&type=template&id=18561d3c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_requwest_check_vue_vue_type_template_id_18561d3c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_requwest_check_vue_vue_type_template_id_18561d3c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

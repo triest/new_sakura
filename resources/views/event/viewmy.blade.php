@@ -4,7 +4,7 @@
 
     <div class="container" id="app">
         <div class="profile-form">
-
+            <b>Моё события</b>
 
             <div class="form-group">
                 <div class="col-xs-11">
@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-         <event-requwest></event-requwest>
+
             <div class="form-group">
                 <div class="col-xs-17">
                     {{$event->description}}
@@ -21,12 +21,13 @@
 
             <div class="col-xs-11">
                 @if(isset($city) && $city!=null)
-                    {{$city}}
+                    {{$city->name}}
                     <br>
                 @endif
                 <label for="title">Место:</label>
                 {{$event->place }}
             </div>
+            <requwest-check :event="{{$event}}" :user="{{\Illuminate\Support\Facades\Auth::user()}}"></requwest-check>
             <div class="col-xs-11">
                 <p>
                     Дата:{{$date_begin}}
@@ -42,19 +43,7 @@
                     {{$time_applications}}
                 </p>
             </div>
-            @if($event->max_people!=null)
-                <label for="max">Максимальное число участников (если нет ограничения, оставьте пустым):
-                    {{$event->max_people}}
-                </label><br>
-            @endif
-            @if($event->min_people!=null)
-                <label for="min">Минимальное число участников (если нет ограничения, оставьте пустым):
-                    {{$event->max_people}}
-                </label><br>
-            @endif
-
-            Фотографии события:
-
         </div>
     </div>
+
 @endsection

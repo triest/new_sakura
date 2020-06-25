@@ -1,30 +1,28 @@
 <template>
     <div>
         <div v-if="eventList.length">
-            <carousel :per-page="1" :mouse-drag="false" :autoplay="true" :loop="true"
-                      :navigationEnabled="true" :paginationEnabled="false">
-                <slide v-for="event in eventList" :key="event.id">
-                    <div class="col-sm-1"></div>
-                    <b>{{event.name}}</b> <br>
-                    Место:{{event.place}} <br>
-                    Дата: {{event.begin}} <br>
-                    {{event.status_name}}
-                    <div v-if="checkRequsest(event.id)!==false">
-                        <div v-if="checkRequsest(event.id)=='accept'">
-                            <a class="btn " v-bind:href="'event/'+event.id"> Заявка принята</a>
-                        </div>
-                        <div v-if="checkRequsest(event.id)=='denide'">
-                            <a class="btn " v-bind:href="'event/'+event.id">Заявка отклонена</a>
-                        </div>
-                        <div v-if="checkRequsest(event.id)=='unreaded'">
-                            <a class="btn " v-bind:href="'event/'+event.id">Заявка не прочитана</a>
-                        </div>
+
+            <div v-for="event in eventList" :key="event.id">
+                <div class="col-sm-1"></div>
+                <b>{{event.name}}</b> <br>
+                Место:{{event.place}} <br>
+                Дата: {{event.begin}} <br>
+                {{event.status_name}}
+                <div v-if="checkRequsest(event.id)!==false">
+                    <div v-if="checkRequsest(event.id)=='accept'">
+                        <a class="btn " v-bind:href="'event/'+event.id"> Заявка принята</a>
                     </div>
-                    <div v-else>
-                        <a class="btn " v-bind:href="'events/'+event.id">Записаться!</a>
+                    <div v-if="checkRequsest(event.id)=='denide'">
+                        <a class="btn " v-bind:href="'event/'+event.id">Заявка отклонена</a>
                     </div>
-                </slide>
-            </carousel>
+                    <div v-if="checkRequsest(event.id)=='unreaded'">
+                        <a class="btn " v-bind:href="'event/'+event.id">Заявка не прочитана</a>
+                    </div>
+                </div>
+                <div v-else>
+                    <a class="btn " v-bind:href="'events/'+event.id">Записаться!</a>
+                </div>
+            </div>
         </div>
         <div v-else>
             Событий в вашем городе нет.

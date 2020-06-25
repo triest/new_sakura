@@ -42,7 +42,7 @@
 
         @auth
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form-head').submit();"
-               style="margin-right: 30px;">Выйти (ВР.)</a>
+               style="margin-right: 30px;"> {{\Illuminate\Support\Facades\Auth::user()->email}} Выйти</a>
             <form id="logout-form-head" action="{{ route('lk.logout') }}" method="POST"
                   style="display: none;">@csrf</form>
         @endauth
