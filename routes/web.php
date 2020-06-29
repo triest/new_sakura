@@ -67,7 +67,6 @@
         Route::get('/', 'SeachController@seach')->name('main');
         Route::post('/savesettings', 'SeachController@saveSettings')->name('main');
         Route::get('/getsettings', 'SeachController@getSettings')->name('main');
-
     });
 
 // Закрытая часть для сотрудников

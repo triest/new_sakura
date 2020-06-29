@@ -46529,7 +46529,7 @@ var render = function() {
                           "a",
                           {
                             attrs: {
-                              href: /anket/ + _vm.contact.anket_id,
+                              href: /anket/ + message.from,
                               target: "_blank"
                             }
                           },
