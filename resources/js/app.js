@@ -25,6 +25,7 @@ Vue.component('chat-app', require('./components/chat/ChatApp.vue').default);
 Vue.component('event-in-my-city-side', require('./components/events/EventInMyCitySide2').default);
 Vue.component('event-requwest', require('./components/events/event-requwest').default);
 Vue.component('requwest-check', require('./components/events/requwest-check').default);
+Vue.component('anket-component', require('./components/anket/anket-component').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1,17 +1,21 @@
 <template>
-    <div>
-        вы
+    <div class="card  border-dark" style="width: 18rem; background-color: #eeeeee;
+             border: 1px solid transparent;
+             border-color: #666869;
+">
         <div v-if="eventRequwest==null">
             <button class="btn btn-secondary" v-on:click="makeRequwest()">Оставить заявку на участие</button>
         </div>
-        <div v-if="eventRequwest.status==='not_read'">
-            Ваша заявка не прочитанна!
-        </div>
-        <div v-if="eventRequwest.status==='accept'">
-            Ваша заявка принята
-        </div>
-        <div v-if="eventRequwest.status==='denide'">
-            Ваша заявка отклонена
+        <div v-else-if="eventRequwest!=null">
+            <div v-if="eventRequwest.status==='not_read'">
+                Ваша заявка не прочитанна!
+            </div>
+            <div v-if="eventRequwest.status==='accept'">
+                Ваша заявка принята
+            </div>
+            <div v-if="eventRequwest.status==='denide'">
+                Ваша заявка отклонена!
+            </div>
         </div>
     </div>
 </template>

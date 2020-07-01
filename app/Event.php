@@ -47,13 +47,14 @@
             if ($user == null) {
                 return false;
             }
-            /*
-                    $partificatpr = DB::table('event_requwest')->select('*')
-                            ->where('girl_id', '=', $anket->id)
-                            ->where('event_id', '=', $this->id)
-                            ->get();
-            */
-            return null;
+
+            $partificatpr = DB::table('requwest')->select('*')
+                    ->where('name', 'event')
+                    ->where('who_id', '=', $user->id)
+                    ->where('target_id', '=', $this->id)
+                    ->get();
+
+            return $partificatpr;
         }
 
         public static function get($id)

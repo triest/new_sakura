@@ -8,7 +8,7 @@
     <div class="container" id="app">
         <div class="profile-form">
 
-            <div class="form-lk_name">{{$user->name}}</div>
+            <div class="form-lk_name">{{$user->name}}</div> {{$user->age()}}
 
             <form class="form-lk" action="{{ route('lk.profileStore') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
@@ -22,8 +22,7 @@
                     <div class="group-photo_upload">
 
                         <div class="group-upload_profile">
-                            {{$user->name}}
-
+                         <anket-component :user="{{$user}}"></anket-component>
                         </div>
 
                         <div class="photo_profile" id="photo_profile" data-remodal-target="upload_img">

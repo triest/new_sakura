@@ -126,6 +126,8 @@
                     }
                 }
 
+
+
                 return response()->json([
                         "events" => $events,
                         "partification" => $partifucationArray,

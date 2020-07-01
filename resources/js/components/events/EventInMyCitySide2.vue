@@ -60,12 +60,15 @@
                     });
             },
             checkRequsest(event_id) {
+                console.log("event_id "+event_id)
                 for (let i = 0; i < this.partification.length; i++) {
                     if (typeof this.partification[i][0] === "undefined") {
                         return false;
                     }
 
-                    if (this.partification[i][0].event_id === event_id) {
+
+                    if (this.partification[i][0].target_id === event_id) {
+                        console.log("statys"+this.partification[i][0].status);
                         return this.partification[i][0].status;
                     }
                 }

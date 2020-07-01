@@ -60,6 +60,11 @@
                 if ($city != null) {
                     $users->where('city_id', $city->id);
                 }
+
+                if (Auth::user() != null) {
+                    $users->where('id', '!=', Auth::user()->id);
+                }
+
                 $count = $users->count();
                 if (isset($_GET['page']) && intval($_GET['page']) > 1) {
                     $page = intval($_GET['page']);
@@ -115,6 +120,8 @@
                 $users->where('children_id', '=', $seachSettings->children);
             }
 
+
+
             $city = City::GetCurrentCity();
 
             if ($city != null) {
@@ -143,14 +150,17 @@
                 $users->where('relation_id', '=', $seachSettings->relation);
             }
 
-            if (isset($Autchgirls) && $Autchgirls != null) {
-                $users->where('users.id', '!=', $Autchgirls->id);
+
+
+            if (Auth::user() != null) {
+                $users->where('users.id', '!=', Auth::user()->id);
             }
 
             $count = $users->count();
             $num_pages = intval($count / $this->limit);
 
-            $users->select('users.id','users.name','users.profile_url','users.date_birth','users.created_at')->limit($this->limit);
+            $users->select('users.id', 'users.name', 'users.profile_url', 'users.date_birth',
+                    'users.created_at')->limit($this->limit);
 
 
             if (isset($_GET['page']) && intval($_GET['page']) > 1) {
@@ -223,7 +233,7 @@
 
                 //;jcnftv j,obt yfcnhjqrb
                 $sechSettings = SearchSettings::select([
-                   '*',
+                        '*',
                 ])->where('girl_id', $user->id)->first();
             } else {
                 if (isset($_COOKIE["seachSettings"])) {

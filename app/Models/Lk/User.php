@@ -217,7 +217,11 @@
         public function age()
         {
             $now = Carbon::now();
-            $year = (date_diff($now, $this->date_birth));
+            if ($this->date_birth == null) {
+                return null;
+            }
+            $data=Carbon::createFromDate($this->date_birth);
+            $year = (date_diff($now,$data));
             return $year->y;
         }
 

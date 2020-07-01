@@ -98,7 +98,7 @@
 <script src="/home/js/bootstrap.min.js"></script>
 
 <script src="/home/js/cropper.js"></script>
-<script src="/js/sctipt.js"></script>
+<script src="/js/script.js"></script>
 <script>$(function () {
         $$.init();
     });</script>

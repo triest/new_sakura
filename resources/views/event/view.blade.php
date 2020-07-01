@@ -12,7 +12,12 @@
                 </div>
             </div>
 
-         <event-requwest></event-requwest>
+            @if(Auth::user())
+
+                <span class="border border-dark">
+                <event-requwest :user="{{Auth::user()}}" :event="{{$event}}"></event-requwest>
+                </span>
+            @endif
             <div class="form-group">
                 <div class="col-xs-17">
                     {{$event->description}}
@@ -55,6 +60,7 @@
 
             Фотографии события:
 
+            <a class="btn btn-primary" href="{{route("anket.main")}}">К списку анкет</a>
         </div>
     </div>
 @endsection

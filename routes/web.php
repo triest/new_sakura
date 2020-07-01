@@ -69,6 +69,13 @@
         Route::get('/getsettings', 'SeachController@getSettings')->name('main');
     });
 
+    //подарки
+    Route::prefix('presents')->name('seach.')->group(function () {
+        Route::get('/', 'SeachController@seach')->name('main');
+        Route::post('/savesettings', 'SeachController@saveSettings')->name('main');
+        Route::get('/getsettings', 'SeachController@getSettings')->name('main');
+    });
+
 // Закрытая часть для сотрудников
     Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
         Route::auth(['verify' => true]);
