@@ -26,6 +26,8 @@ Vue.component('event-in-my-city-side', require('./components/events/EventInMyCit
 Vue.component('event-requwest', require('./components/events/event-requwest').default);
 Vue.component('requwest-check', require('./components/events/requwest-check').default);
 Vue.component('anket-component', require('./components/anket/anket-component').default);
+Vue.component('like-carusel', require('./components/like-carusel/like-carusel').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

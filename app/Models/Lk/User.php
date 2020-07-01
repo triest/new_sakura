@@ -2,6 +2,7 @@
 
     namespace App\Models\Lk;
 
+    use App\Like;
     use App\Notifications\ResetPassword;
     use App\Notifications\VerifyEmail;
     use Carbon\Carbon;
@@ -9,6 +10,7 @@
     use Illuminate\Database\Eloquent\SoftDeletes;
     use Illuminate\Foundation\Auth\User as Authenticatable;
     use Illuminate\Notifications\Notifiable;
+    use Illuminate\Support\Facades\Auth;
 
     /**
      * App\Models\Lk\User
@@ -226,4 +228,88 @@
         }
 
 
+        public function isOnline()
+        {
+            return \Cache::has('user-is-online-'.$this->id);
+        }
+
+        public function lastLoginFormat()
+        {
+            $last_login = $this->last_login;
+            if ($this->last_login == null) {
+                return "";
+            }
+            $mytime = Carbon::now();
+            $last_login = Carbon::createFromFormat('Y-m-d H:i:s', $last_login);
+            $datediff = date_diff($last_login, $mytime);
+            if ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0) {
+                if ($datediff->h < 1) {
+                    $last_login = "менее часа назад";
+                } elseif ($datediff->h == 1) {
+                    $last_login = "час назад";
+                } elseif (($datediff->h > 1 && $datediff->h <= 4)
+                        || ($datediff->h >= 22 && $datediff->h <= 23)
+                ) {
+                    $last_login = $datediff->h . " часа назад";
+                } elseif ($datediff->h >= 5 && $datediff->h <= 20) {
+                    $last_login = $datediff->h . " часов назад";
+                } elseif ($datediff->h == 21) {
+                    $last_login = $datediff->h . " час назад";
+                }
+            } elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d > 0) {
+                if ($datediff->d == 1) {
+                    $last_login = "вчера";
+                } elseif ($datediff->d < 7) {
+                    $last_login = $datediff->d . " дня назад";
+                } elseif ($datediff->d >= 7 && $datediff->d <= 13) {
+                    $last_login = "неделю назад";
+                } elseif ($datediff->d > 13 && $datediff->d < 21) {
+                    $last_login = "две недели назад";
+                } elseif ($datediff->d >= 21) {
+                    $last_login = "три недели назад";
+                }
+            } elseif ($datediff->y == 0 && $datediff->m == 1) {
+                $last_login = "месяц назад";
+            } elseif ($datediff->y == 0 && $datediff->m > 1) {
+                $last_login = $datediff->m . "месяцев назад";
+            } elseif ($datediff->y >= 1) {
+                $last_login = "давно";
+            }
+
+            return $last_login;
+        }
+
+        public function newLike($user = null)
+        {
+            if ($user == null) {
+                $user = Auth::user();
+            }
+
+            if ($user == null) {
+                return false;
+            }
+
+
+
+
+
+            $like = new Like();
+            $like->target_id = $this->id;
+            $like->who_id = $user->id;
+            $like->save();
+
+            /*
+             * ищим поставил ли он вам дфйк
+             * */
+/*
+            $first = Like::select(['id'])->where('who_id', $this->id)
+                    ->where('target_id', $whoGirl->id)->first();
+
+            if ($first != null) {
+                $whoGirl->sendMessage("Мы понравились друг другу ");
+                $this->sendMessage("Мы понравились друг другу ");
+            }
+*/
+            return true;
+        }
     }

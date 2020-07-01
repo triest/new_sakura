@@ -35,7 +35,7 @@
         Route::get('/{id}', 'EventController@view')->name('view');
         Route::get('/{id}/requwestlist', 'EventController@requwestlist')->name('requwestlist');
 
-      //  Route::get('/singup/{id}', 'MyEventController@singup')->name('viewmyevent')->middleware('auth');
+        //  Route::get('/singup/{id}', 'MyEventController@singup')->name('viewmyevent')->middleware('auth');
     });
 
 
@@ -60,6 +60,12 @@
                 return view('test.video');
             });
         });
+    });
+
+    Route::prefix('like-carusel')->name('like-carusel.')->group(function () {
+        Route::get('/', 'LikeCaruselConroller@index')->name('index');
+        Route::get('/getAnket', 'LikeCaruselConroller@getAnket')->name('getAnket');
+        Route::get('/newLike', 'LikeCaruselConroller@newLike');
     });
 
     //поиск
