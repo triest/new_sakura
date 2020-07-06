@@ -1,54 +1,57 @@
 <template>
     <div class="panel panel-default panel-body">
 
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-5 box-shadow">
-            <div style="width: 500px;  margin-left: auto;  margin-right: auto;  left: 50%;
-  top: 50%;">
+        <div v-if="item!=null" class="col-lg-6 col-md-6 col-sm-6 col-xs-5 box-shadow">
+            <div>
+                <div style="width: 500px;  margin-left: auto;  margin-right: auto;  left: 50%;top: 50%;">
 
-                <a :href="/anket/+item.id">
-                    <img :src="item.profile_url" height="500px" width="350px">
-                </a>
+                    <a :href="/anket/+item.id">
+                        <img :src="item.profile_url" height="500px" width="350px">
+                    </a>
 
+                </div>
+                <button class="btn" v-on:click="like()"
+                        style="position: absolute; margin-top: -50px; margin-left: 5px">
+                    Нравиться
+                </button>
+                <button class="btn" v-on:click="skip()"
+                        style="position: absolute; margin-top: -50px; margin-left: 105px">
+                    Пропустить
+                </button>
+                <button class="btn" v-on:click="dislike()"
+                        style="position: absolute; margin-top: -50px;  margin-left: 212px">Не
+                    нравиться
+                </button>
             </div>
-            <button class="btn btn-primary" v-on:click="like()"
-                    style="position: absolute; margin-top: -50px; margin-left: 5px">
-                Нравиться
-            </button>
-            <button class="btn btn-default" v-on:click="skip()"
-                    style="position: absolute; margin-top: -50px; margin-left: 105px">
-                Пропустить
-            </button>
-            <button class="btn btn-danger" v-on:click="dislike()"
-                    style="position: absolute; margin-top: -50px;  margin-left: 212px">Не
-                нравиться
-            </button>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow">
-            <div class="cell">
-                <div class="cell-overflow">
-                    <b> {{item.name}},1 {{item.age}}</b>
-                    <p v-if="city!=null">
-                        <small>{{city.name}}</small>
-                    </p>
-                    <p v-if="online=='null'"> {{item.last_login}}
-                    <p v-else>
-                        {{lastLogin}}
-                    </p>
-                    <div v-if="targets.length">
-                        <b>Цель знакомства</b>
-                        <div v-for="item in targets">
-                            {{item.name}},
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow">
+                <div class="cell">
+                    <div class="cell-overflow">
+                        <b> {{item.name}},1 {{item.age}}</b>
+                        <p v-if="city!=null">
+                            <small>{{city.name}}</small>
+                        </p>
+                        <p v-if="online=='null'"> {{item.last_login}}
+                        <p v-else>
+                            {{lastLogin}}
+                        </p>
+                        <div v-if="targets.length">
+                            <b>Цель знакомства</b>
+                            <div v-for="item in targets">
+                                {{item.name}},
+                            </div>
                         </div>
-                    </div>
-                    <div v-if="interets.length">
-                        <b>Интересы</b>
-                        <div v-for="item in interets">
-                            {{item.name}},
+                        <div v-if="interets.length">
+                            <b>Интересы</b>
+                            <div v-for="item in interets">
+                                {{item.name}},
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div v-else>
+            Нет анкет. Вы поставили лайки всем подходящим  пользователям в городе. Попробуйте изменить настройки поиска
         </div>
     </div>
 </template>

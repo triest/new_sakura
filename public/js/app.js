@@ -2251,6 +2251,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2261,7 +2269,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      showPresentModal: false
+      showPresentModal: false,
+      likeExist: false
     };
   },
   components: {
@@ -2269,10 +2278,35 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log("anket component");
+    this.checkLike();
   },
   methods: {
     clousePresentModal: function clousePresentModal() {
       this.showPresentModal = false;
+    },
+    like: function like() {
+      var _this = this;
+
+      axios.get('/like-carusel/newLike', {
+        params: {
+          user_id: this.user.id,
+          action: "like"
+        }
+      }).then(function (response) {
+        _this.checkLike();
+      });
+    },
+    checkLike: function checkLike() {
+      var _this2 = this;
+
+      axios.get('/like-carusel/checkLike', {
+        params: {
+          user_id: this.user.id,
+          action: "checkLike"
+        }
+      }).then(function (response) {
+        _this2.likeExist = response.data();
+      });
     }
   }
 });
@@ -3220,6 +3254,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "kikeCarusel",
   mounted: function mounted() {
@@ -3268,7 +3305,7 @@ __webpack_require__.r(__webpack_exports__);
     dislike: function dislike() {
       var _this3 = this;
 
-      axios.get('like-carusel/newlike', {
+      axios.get('like-carusel/newLike', {
         params: {
           user_id: this.item.id,
           action: "dislike"
@@ -46544,18 +46581,37 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary",
-          on: {
-            click: function($event) {
-              _vm.showPresentModal = true
+      _vm.likeExist == "false"
+        ? _c("p", [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                on: {
+                  click: function($event) {
+                    return _vm.like()
+                  }
+                }
+              },
+              [_vm._v("Нравиться")]
+            )
+          ])
+        : _c("p", [_vm._v("\n        Вам нравиться эта анкета\n    ")]),
+      _vm._v(" "),
+      _c("p", [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-primary",
+            on: {
+              click: function($event) {
+                _vm.showPresentModal = true
+              }
             }
-          }
-        },
-        [_vm._v("Подарить подарок")]
-      ),
+          },
+          [_vm._v("Подарить подарок")]
+        )
+      ]),
       _vm._v(" "),
       _vm.showPresentModal
         ? _c("present", {
@@ -47936,161 +47992,176 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "panel panel-default panel-body" }, [
-    _c(
-      "div",
-      { staticClass: "col-lg-6 col-md-6 col-sm-6 col-xs-5 box-shadow" },
-      [
-        _c(
+    _vm.item != null
+      ? _c(
           "div",
-          {
-            staticStyle: {
-              width: "500px",
-              "margin-left": "auto",
-              "margin-right": "auto",
-              left: "50%",
-              top: "50%"
-            }
-          },
+          { staticClass: "col-lg-6 col-md-6 col-sm-6 col-xs-5 box-shadow" },
           [
-            _c("a", { attrs: { href: /anket/ + _vm.item.id } }, [
-              _c("img", {
-                attrs: {
-                  src: _vm.item.profile_url,
-                  height: "500px",
-                  width: "350px"
-                }
-              })
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            staticStyle: {
-              position: "absolute",
-              "margin-top": "-50px",
-              "margin-left": "5px"
-            },
-            on: {
-              click: function($event) {
-                return _vm.like()
-              }
-            }
-          },
-          [_vm._v("\n              Нравиться\n          ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-default",
-            staticStyle: {
-              position: "absolute",
-              "margin-top": "-50px",
-              "margin-left": "105px"
-            },
-            on: {
-              click: function($event) {
-                return _vm.skip()
-              }
-            }
-          },
-          [_vm._v("\n              Пропустить\n          ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-danger",
-            staticStyle: {
-              position: "absolute",
-              "margin-top": "-50px",
-              "margin-left": "212px"
-            },
-            on: {
-              click: function($event) {
-                return _vm.dislike()
-              }
-            }
-          },
-          [_vm._v("Не\n              нравиться\n          ")]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow" },
-      [
-        _c("div", { staticClass: "cell" }, [
-          _c("div", { staticClass: "cell-overflow" }, [
-            _c("b", [
-              _vm._v(" " + _vm._s(_vm.item.name) + ",1 " + _vm._s(_vm.item.age))
+            _c("div", [
+              _c(
+                "div",
+                {
+                  staticStyle: {
+                    width: "500px",
+                    "margin-left": "auto",
+                    "margin-right": "auto",
+                    left: "50%",
+                    top: "50%"
+                  }
+                },
+                [
+                  _c("a", { attrs: { href: /anket/ + _vm.item.id } }, [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.item.profile_url,
+                        height: "500px",
+                        width: "350px"
+                      }
+                    })
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn",
+                  staticStyle: {
+                    position: "absolute",
+                    "margin-top": "-50px",
+                    "margin-left": "5px"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.like()
+                    }
+                  }
+                },
+                [_vm._v("\n                Нравиться\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn",
+                  staticStyle: {
+                    position: "absolute",
+                    "margin-top": "-50px",
+                    "margin-left": "105px"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.skip()
+                    }
+                  }
+                },
+                [_vm._v("\n                Пропустить\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn",
+                  staticStyle: {
+                    position: "absolute",
+                    "margin-top": "-50px",
+                    "margin-left": "212px"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.dislike()
+                    }
+                  }
+                },
+                [_vm._v("Не\n                нравиться\n            ")]
+              )
             ]),
             _vm._v(" "),
-            _vm.city != null
-              ? _c("p", [_c("small", [_vm._v(_vm._s(_vm.city.name))])])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.online == "null"
-              ? _c("p", [
-                  _vm._v(
-                    " " + _vm._s(_vm.item.last_login) + "\n                  "
-                  )
+            _c(
+              "div",
+              { staticClass: "col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow" },
+              [
+                _c("div", { staticClass: "cell" }, [
+                  _c("div", { staticClass: "cell-overflow" }, [
+                    _c("b", [
+                      _vm._v(
+                        " " +
+                          _vm._s(_vm.item.name) +
+                          ",1 " +
+                          _vm._s(_vm.item.age)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm.city != null
+                      ? _c("p", [_c("small", [_vm._v(_vm._s(_vm.city.name))])])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.online == "null"
+                      ? _c("p", [
+                          _vm._v(
+                            " " +
+                              _vm._s(_vm.item.last_login) +
+                              "\n                    "
+                          )
+                        ])
+                      : _c("p", [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.lastLogin) +
+                              "\n                    "
+                          )
+                        ]),
+                    _vm._v(" "),
+                    _vm.targets.length
+                      ? _c(
+                          "div",
+                          [
+                            _c("b", [_vm._v("Цель знакомства")]),
+                            _vm._v(" "),
+                            _vm._l(_vm.targets, function(item) {
+                              return _c("div", [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(item.name) +
+                                    ",\n                        "
+                                )
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.interets.length
+                      ? _c(
+                          "div",
+                          [
+                            _c("b", [_vm._v("Интересы")]),
+                            _vm._v(" "),
+                            _vm._l(_vm.interets, function(item) {
+                              return _c("div", [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(item.name) +
+                                    ",\n                        "
+                                )
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      : _vm._e()
+                  ])
                 ])
-              : _c("p", [
-                  _vm._v(
-                    "\n                      " +
-                      _vm._s(_vm.lastLogin) +
-                      "\n                  "
-                  )
-                ]),
-            _vm._v(" "),
-            _vm.targets.length
-              ? _c(
-                  "div",
-                  [
-                    _c("b", [_vm._v("Цель знакомства")]),
-                    _vm._v(" "),
-                    _vm._l(_vm.targets, function(item) {
-                      return _c("div", [
-                        _vm._v(
-                          "\n                          " +
-                            _vm._s(item.name) +
-                            ",\n                      "
-                        )
-                      ])
-                    })
-                  ],
-                  2
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.interets.length
-              ? _c(
-                  "div",
-                  [
-                    _c("b", [_vm._v("Интересы")]),
-                    _vm._v(" "),
-                    _vm._l(_vm.interets, function(item) {
-                      return _c("div", [
-                        _vm._v(
-                          "\n                          " +
-                            _vm._s(item.name) +
-                            ",\n                      "
-                        )
-                      ])
-                    })
-                  ],
-                  2
-                )
-              : _vm._e()
-          ])
+              ]
+            )
+          ]
+        )
+      : _c("div", [
+          _vm._v(
+            "\n        Нет анкет. Вы поставили лайки всем подходящим  пользователям в городе. Попробуйте изменить настройки поиска\n    "
+          )
         ])
-      ]
-    )
   ])
 }
 var staticRenderFns = []

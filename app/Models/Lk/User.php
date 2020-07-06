@@ -2,7 +2,10 @@
 
     namespace App\Models\Lk;
 
+    use App\Dialog;
+    use App\Events\NewMessage;
     use App\Like;
+    use App\Message;
     use App\Notifications\ResetPassword;
     use App\Notifications\VerifyEmail;
     use Carbon\Carbon;
@@ -222,15 +225,15 @@
             if ($this->date_birth == null) {
                 return null;
             }
-            $data=Carbon::createFromDate($this->date_birth);
-            $year = (date_diff($now,$data));
+            $data = Carbon::createFromDate($this->date_birth);
+            $year = (date_diff($now, $data));
             return $year->y;
         }
 
 
         public function isOnline()
         {
-            return \Cache::has('user-is-online-'.$this->id);
+            return \Cache::has('user-is-online-' . $this->id);
         }
 
         public function lastLoginFormat()
@@ -285,12 +288,15 @@
                 $user = Auth::user();
             }
 
+
             if ($user == null) {
                 return false;
             }
 
-
-
+            $user = User::get($user->getAuthIdentifier());
+            if ($user == null) {
+                return false;
+            }
 
 
             $like = new Like();
@@ -298,18 +304,72 @@
             $like->who_id = $user->id;
             $like->save();
 
+
             /*
              * ищим поставил ли он вам дфйк
              * */
-/*
+
             $first = Like::select(['id'])->where('who_id', $this->id)
-                    ->where('target_id', $whoGirl->id)->first();
+                    ->where('target_id', $user->id)->first();
 
             if ($first != null) {
-                $whoGirl->sendMessage("Мы понравились друг другу ");
+                $user->sendMessage("Мы понравились друг другу ");
                 $this->sendMessage("Мы понравились друг другу ");
             }
-*/
+
+            return true;
+        }
+
+        public
+        function sendMessage(
+                $text,
+                $who_girl = null
+        ) {
+            $TargetUser = $this;
+
+
+            if ($who_girl == null) {
+                $user = Auth::user();
+            } else {
+                $user = $who_girl;
+            }
+
+            if ($user == null || $TargetUser == null) {
+                return false;
+            }
+            /*
+                        $message = Message::create([
+                                'from' => $user->id,
+                                'to' => $TargetUser->id,
+                                'text' => $text,
+                        ]);*/
+            $message = new Message();
+            $message->from = $user->id;
+            $message->to = $TargetUser->id;
+            $message->text = $text;
+            $message->save();
+
+            $id2 = $TargetUser->id;
+            $dialog = Dialog::select(['id', 'my_id', 'other_id'])
+                    ->where('my_id', $user->id)->where('other_id',
+                            $id2)->first();
+            if ($dialog == null) {
+                $dialog3 = new Dialog();
+                $dialog3->my_id = $user->id;
+                $dialog3->other_id = $id2;
+                $dialog3->save();
+            }
+            $dialog2 = Dialog::select(['id', 'my_id', 'other_id'])
+                    ->where('other_id', $user->id)->where('my_id',
+                            $id2)->first();
+            if ($dialog2 == null) {
+                $dialog4 = new Dialog();
+                $dialog4->other_id = $user->id;
+                $dialog4->my_id = $id2;
+                $dialog4->save();
+            }
+            broadcast(new NewMessage($message));
+
             return true;
         }
     }

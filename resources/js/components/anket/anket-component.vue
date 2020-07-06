@@ -1,7 +1,15 @@
 <template>
     <div>
-        <a class="btn btn-primary" v-on:click="showPresentModal=true">Подарить подарок</a>
-        <present v-if="showPresentModal"  @closeRequest='clousePresentModal()'></present>
+        <p v-if="likeExist=='false'">
+            <a class="btn btn-primary" v-on:click="like()">Нравиться</a>
+        </p>
+        <p v-else>
+            Вам нравиться эта анкета
+        </p>
+        <p>
+            <a class="btn btn-primary" v-on:click="showPresentModal=true">Подарить подарок</a>
+        </p>
+        <present v-if="showPresentModal" @closeRequest='clousePresentModal()'></present>
     </div>
 </template>
 
@@ -19,19 +27,42 @@
         data() {
             return {
                 showPresentModal: false,
+                likeExist: false,
             };
         },
         components: {
             present
         },
         mounted() {
-            console.log("anket component")
+            console.log("anket component");
+            this.checkLike();
         },
         methods: {
-            clousePresentModal(){
-                this.showPresentModal=false;
+            clousePresentModal() {
+                this.showPresentModal = false;
             },
-
+            like() {
+                axios.get('/like-carusel/newLike', {
+                    params: {
+                        user_id: this.user.id,
+                        action: "like",
+                    }
+                })
+                    .then((response) => {
+                        this.checkLike();
+                    });
+            },
+            checkLike() {
+                axios.get('/like-carusel/checkLike', {
+                    params: {
+                        user_id: this.user.id,
+                        action: "checkLike",
+                    }
+                })
+                    .then((response) => {
+                        this.likeExist = response.data();
+                    });
+            }
         }
     }
 </script>

@@ -9,6 +9,7 @@
     use App\Target;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Cookie;
 
     class AnketController extends Controller
     {
@@ -35,6 +36,13 @@
 
         public function index(Request $request)
         {
+
+            if (!isset($_COOKIE["causel"])) {
+                Cookie::queue("causel", AnketController::randomString(), 60);
+
+                return redirect('/like-carusel');
+            }
+
             return view("anket.index");
         }
 

@@ -13,7 +13,7 @@
         Route::post('{id}/albums/upload/image', 'AnketController@uploadPhoto');
     });
 
-    Route::prefix('contact')->name('anket.')->group(function () {
+    Route::prefix('contact')->name('contact.')->group(function () {
         Route::get('/', 'ContactController@index')->name('main')->middleware('auth');
         Route::get('/contacts', 'ContactController@get');
         Route::get('/conversation/{id}', 'ContactController@getMessagesFor');
@@ -66,6 +66,7 @@
         Route::get('/', 'LikeCaruselConroller@index')->name('index');
         Route::get('/getAnket', 'LikeCaruselConroller@getAnket')->name('getAnket');
         Route::get('/newLike', 'LikeCaruselConroller@newLike');
+        Route::get('/checkLike', 'LikeCaruselConroller@checkLike');
     });
 
     //поиск

@@ -10,6 +10,8 @@
         //
         protected $table = "messages";
 
+        protected $fillable = ['from', 'to'];
+
         public function fromContact()
         {
             return $this->hasOne(User::class, 'id', 'from');
