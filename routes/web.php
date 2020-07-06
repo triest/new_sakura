@@ -18,7 +18,7 @@
         Route::get('/contacts', 'ContactController@get');
         Route::get('/conversation/{id}', 'ContactController@getMessagesFor');
         Route::post('/conversation/send', 'ContactController@send');
-        Route::post('/conversation/sendModal', 'ContactController@sendModal');
+        Route::post('/conversation/sendModal', 'ContactController@send');
     });
 
     Route::prefix('events')->name('events.')->group(function () {

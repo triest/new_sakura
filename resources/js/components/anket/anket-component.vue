@@ -9,12 +9,18 @@
         <p>
             <a class="btn btn-primary" v-on:click="showPresentModal=true">Подарить подарок</a>
         </p>
+        <p>
+            <a class="btn btn-primary" v-on:click="showMessageModal=true">Написать сообщение</a>
+        </p>
         <present v-if="showPresentModal" @closeRequest='clousePresentModal()'></present>
+        <newMessageModal :user="user" v-if="showMessageModal"
+                         @closeNewMessageAlert='clouseNewMessageModal()'></newMessageModal>
     </div>
 </template>
 
 <script>
     import present from './PresentModal.vue'
+    import newMessageModal from './newMessageModal'
 
     export default {
 
@@ -27,11 +33,13 @@
         data() {
             return {
                 showPresentModal: false,
+                showMessageModal: false,
                 likeExist: false,
             };
         },
         components: {
-            present
+            present,
+            newMessageModal
         },
         mounted() {
             console.log("anket component");
@@ -40,6 +48,9 @@
         methods: {
             clousePresentModal() {
                 this.showPresentModal = false;
+            },
+            clouseNewMessageModal() {
+                this.showMessageModal = false;
             },
             like() {
                 axios.get('/like-carusel/newLike', {
@@ -60,7 +71,7 @@
                     }
                 })
                     .then((response) => {
-                        this.likeExist = response.data();
+                        this.likeExist = response.data;
                     });
             }
         }
