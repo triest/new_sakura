@@ -96,7 +96,7 @@
                 this.seachModal = false;
                 this.seach();
             },
-            openSeachModal() {
+            openPresentModal() {
                 this.seachModal = true;
             },
         }

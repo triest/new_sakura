@@ -5,6 +5,7 @@
 /public/uploads/*
 /public/img/*
 /public/upload/lk_profile
+/public/upload/presents
 /storage/*.key
 
 .env

@@ -22,7 +22,12 @@
                     <div class="group-photo_upload">
 
                         <div class="group-upload_profile">
-                         <anket-component :user="{{$user}}"></anket-component>
+                            @if (Auth::check())
+                                <anket-component :user="{{$user}}"></anket-component>
+
+                            @else
+                                Войдите что-бы отправиль сообщение или поставить лайк
+                            @endif
                         </div>
 
                         <div class="photo_profile" id="photo_profile" data-remodal-target="upload_img">

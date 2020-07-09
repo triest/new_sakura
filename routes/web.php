@@ -84,37 +84,21 @@
     });
 
 // Закрытая часть для сотрудников
-    Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->middleware('admin')->namespace('Admin')->group(function () {
         Route::auth(['verify' => true]);
-        Route::redirect('/', '/admin/home');
+        Route::redirect('/', 'home')->name('home');
+        Route::get('/', 'AdminUsersController@index');
+        Route::prefix('presents')->name('presents.')->middleware('admin')->group(function () {
+            Route::get('/', 'AdminUsersController@presentsMain')->name('main');
+            Route::get('/list', 'AdminUsersController@presentsList')->name('main');
+            Route::post('/list/store-present', 'AdminUsersController@storePresent')->name('storePresent');
+        });
+        Route::prefix('anket')->name('anket.')->middleware('admin')->group(function () {
+            Route::get('/', 'AdminUsersController@presentsMain')->name('main');
+        });
 
-        // Только пользователь из зоны "admin"
-        Route::middleware(['auth:admin', 'permission'])->group(function () {
-
-            // Рабочий стол
-            Route::get('home', 'HomeController@index')->name('home');
-
-            // Настройки системы
-            Route::prefix('settings')->name('settings.')->group(function () {
-                Route::resource('admin_users', 'AdminUsersController')->only(['index', 'edit', 'update', 'destroy']);
-                Route::resource('roles', 'RoleController')->only([
-                        'index',
-                        'create',
-                        'store',
-                        'edit',
-                        'update',
-                        'destroy'
-                ]);
-
-                Route::get('menu', 'MenuController@index')->name('menu');
-            });
-
-            // Справочники
-            Route::prefix('enum')->name('enum.')->group(function () {
-
-            });
-
-
+        Route::prefix('price')->name('price.')->middleware('admin')->group(function () {
+            Route::get('/', 'AdminUsersController@presentsMain')->name('main');
         });
     });
 

@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Сохранить</button>
-                            <a href="{{ route('admin.settings.admin_users.index') }}" class="btn btn-light">Отмена</a>
+
                         @endcomponent
                     </div>
                 </div>

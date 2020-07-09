@@ -27,6 +27,7 @@ Vue.component('event-requwest', require('./components/events/event-requwest').de
 Vue.component('requwest-check', require('./components/events/requwest-check').default);
 Vue.component('anket-component', require('./components/anket/anket-component').default);
 Vue.component('like-carusel', require('./components/like-carusel/like-carusel').default);
+Vue.component('presents-admin-list', require('./components/admin/presents/presents-list').default);
 
 
 /**

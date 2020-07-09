@@ -15,7 +15,7 @@
                     <h6 class="font-weight-medium text-dark mb-0">{{ $admins->total() }}</h6>
                 </div>
                 <div class="mb-xl-0">
-                    <form class="form-inline float-left" action="{{ route('admin.settings.admin_users.index') }}">
+                    <form class="form-inline float-left" >
                         <div class="input-group">
                             <label class="col-sm-3 col-form-label" for="">Поиск: </label>
                             <input type="text" name="query" class="form-control" placeholder="Имя или Фамилия" value="{{ $query ?? '' }}">
