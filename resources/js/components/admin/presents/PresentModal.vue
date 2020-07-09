@@ -18,9 +18,7 @@
                                                                 style="width: 50px">
                                 </p>
                                 <p>
-                                    <label>Включен:</label> от <input type="checkbox" name="enable" id="enable" min="1"
-
-                                                                      v-model="ebable">
+                                    <label>Включен:</label> <input type="checkbox" name="enable" id="enable" value="" v-model="enable">
                                 </p>
                                 <p>
                                 <div v-if="present!=null">
@@ -62,10 +60,13 @@
         },
         name: 'modal',
         mounted() {
-            this.getSettings();
             if (this.present != null) {
+                console.log(this.present);
                 this.name = this.present.name;
                 this.price = this.present.price;
+                this.enable=this.present.enabled;
+            //    this.emit(this.present.enabled)
+
             }
         },
         /* считаем выделенные*/
@@ -113,10 +114,10 @@
                 interes_show: false,
                 children_show: false,
                 relation_show: false,
-                ebable: true,
                 galerayFile: '',
                 name: "name",
                 price: 100,
+                enable:false,
             }
         },
         methods: {
@@ -133,6 +134,7 @@
                 formData.append('name', this.name);
                 formData.append('price', this.price);
                 formData.append('file', this.galerayFile);
+                formData.append('enable', this.enable);
                 if (this.present != null) {
                     formData.append('present', this.present.id);
                 }
@@ -143,48 +145,12 @@
                         }
                     }).then((response) => {
                     //this.getSettings();
-                     this.$emit('closePresentModal')
+            //         this.$emit('closePresentModal')
+                    this.$emit('closePresentModal')
                 });
 
             },
-            getSettings() {
-                axios.get('seach/getsettings')
-                    .then((response) => {
-                        let res = response.data;
-                        this.targets = res.targets;
-                        this.select2targets = res.selectedTargets;
-                        this.select2inters = res.selectedInterest;
-                        this.interest = res.interests;
-                        this.children = res.chidren;
-                        this.seachSettings = res.sechSettings;
-                        this.from = this.seachSettings.age_from;
-                        this.to = this.seachSettings.age_to;
-                        this.select2children = this.seachSettings.children;
-                        this.meet = this.seachSettings.meet;
-                        this.relation = res.relations;
-                    }).then(console.log(this.relation))
 
-
-            },
-            show(input) {
-                console.log(input);
-                switch (input) {
-                    case "target":
-                        this.targets_show = !this.targets_show;
-                        break;
-                    case "interes":
-                        this.interes_show = !this.interes_show;
-                        break;
-                    case "children":
-                        this.children_show = !this.children_show;
-                        break;
-
-                    case "relations":
-                        console.log("res");
-                        this.relation_show = !this.relation_show;
-                        break;
-                }
-            },
             handleFileUploadGaleay() {
                 this.galerayFile = this.$refs.galerayFileInput.files[0];
             },

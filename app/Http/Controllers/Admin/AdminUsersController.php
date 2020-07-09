@@ -64,6 +64,15 @@
             $present->name = $request->name;
             $present->price = intval($request->price);
 
+            //  dump($request);
+            if ($request->enable == "true") {
+                $present->enabled = 1;
+            } else {
+
+                $present->enabled = 0;
+            }
+            $present->save();
+
             if ($request->hasFile('file')) {
 
 

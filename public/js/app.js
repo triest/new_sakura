@@ -1992,8 +1992,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     present: {
@@ -2004,11 +2002,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   name: 'modal',
   mounted: function mounted() {
-    this.getSettings();
-
     if (this.present != null) {
+      console.log(this.present);
       this.name = this.present.name;
       this.price = this.present.price;
+      this.enable = this.present.enabled; //    this.emit(this.present.enabled)
     }
   },
 
@@ -2055,10 +2053,10 @@ __webpack_require__.r(__webpack_exports__);
       interes_show: false,
       children_show: false,
       relation_show: false,
-      ebable: true,
       galerayFile: '',
       name: "name",
-      price: 100
+      price: 100,
+      enable: false
     };
   },
   methods: {
@@ -2074,6 +2072,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('name', this.name);
       formData.append('price', this.price);
       formData.append('file', this.galerayFile);
+      formData.append('enable', this.enable);
 
       if (this.present != null) {
         formData.append('present', this.present.id);
@@ -2085,48 +2084,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         //this.getSettings();
+        //         this.$emit('closePresentModal')
         _this.$emit('closePresentModal');
       });
-    },
-    getSettings: function getSettings() {
-      var _this2 = this;
-
-      axios.get('seach/getsettings').then(function (response) {
-        var res = response.data;
-        _this2.targets = res.targets;
-        _this2.select2targets = res.selectedTargets;
-        _this2.select2inters = res.selectedInterest;
-        _this2.interest = res.interests;
-        _this2.children = res.chidren;
-        _this2.seachSettings = res.sechSettings;
-        _this2.from = _this2.seachSettings.age_from;
-        _this2.to = _this2.seachSettings.age_to;
-        _this2.select2children = _this2.seachSettings.children;
-        _this2.meet = _this2.seachSettings.meet;
-        _this2.relation = res.relations;
-      }).then(console.log(this.relation));
-    },
-    show: function show(input) {
-      console.log(input);
-
-      switch (input) {
-        case "target":
-          this.targets_show = !this.targets_show;
-          break;
-
-        case "interes":
-          this.interes_show = !this.interes_show;
-          break;
-
-        case "children":
-          this.children_show = !this.children_show;
-          break;
-
-        case "relations":
-          console.log("res");
-          this.relation_show = !this.relation_show;
-          break;
-      }
     },
     handleFileUploadGaleay: function handleFileUploadGaleay() {
       this.galerayFile = this.$refs.galerayFileInput.files[0];
@@ -2146,6 +2106,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PresentModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PresentModal */ "./resources/js/components/admin/presents/PresentModal.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -46488,45 +46452,45 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", [
                           _c("label", [_vm._v("Включен:")]),
-                          _vm._v(" от "),
+                          _vm._v(" "),
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.ebable,
-                                expression: "ebable"
+                                value: _vm.enable,
+                                expression: "enable"
                               }
                             ],
                             attrs: {
                               type: "checkbox",
                               name: "enable",
                               id: "enable",
-                              min: "1"
+                              value: ""
                             },
                             domProps: {
-                              checked: Array.isArray(_vm.ebable)
-                                ? _vm._i(_vm.ebable, null) > -1
-                                : _vm.ebable
+                              checked: Array.isArray(_vm.enable)
+                                ? _vm._i(_vm.enable, "") > -1
+                                : _vm.enable
                             },
                             on: {
                               change: function($event) {
-                                var $$a = _vm.ebable,
+                                var $$a = _vm.enable,
                                   $$el = $event.target,
                                   $$c = $$el.checked ? true : false
                                 if (Array.isArray($$a)) {
-                                  var $$v = null,
+                                  var $$v = "",
                                     $$i = _vm._i($$a, $$v)
                                   if ($$el.checked) {
-                                    $$i < 0 && (_vm.ebable = $$a.concat([$$v]))
+                                    $$i < 0 && (_vm.enable = $$a.concat([$$v]))
                                   } else {
                                     $$i > -1 &&
-                                      (_vm.ebable = $$a
+                                      (_vm.enable = $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1)))
                                   }
                                 } else {
-                                  _vm.ebable = $$c
+                                  _vm.enable = $$c
                                 }
                               }
                             }
@@ -46674,8 +46638,16 @@ var render = function() {
                         _vm._s(item.name) +
                         ", " +
                         _vm._s(item.price) +
-                        "\n                        "
+                        "\n\n                        "
                     ),
+                    item.enabled === 1
+                      ? _c("div", [
+                          _c("p", { staticStyle: { color: "#FF0000" } }, [
+                            _vm._v("   Включён ")
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c(
                       "button",
                       {

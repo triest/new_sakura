@@ -10,6 +10,10 @@
                     <div class="cell">
                         <div class="cell-overflow">
                             {{item.name}}, {{item.price}}
+
+                            <div v-if="item.enabled===1">
+                                <p style="color:#FF0000">   Включён </p>
+                            </div>
                             <button v-on:click="openEpitPresentModal(item)">Редактировать</button>
                         </div>
 
