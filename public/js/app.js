@@ -1990,11 +1990,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
+  props: {
+    present: {
+      type: Object,
+      required: false,
+      "default": null
+    }
+  },
   name: 'modal',
   mounted: function mounted() {
     this.getSettings();
+
+    if (this.present != null) {
+      this.name = this.present.name;
+      this.price = this.present.price;
+    }
   },
 
   /* считаем выделенные*/
@@ -2059,6 +2074,11 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('name', this.name);
       formData.append('price', this.price);
       formData.append('file', this.galerayFile);
+
+      if (this.present != null) {
+        formData.append('present', this.present.id);
+      }
+
       axios.post('/admin/presents/list/store-present', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -2154,7 +2174,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2163,7 +2182,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       presents_list: [],
-      showPresentModal: false
+      showPresentModal: false,
+      present: null
     };
   },
   components: {
@@ -2173,6 +2193,7 @@ __webpack_require__.r(__webpack_exports__);
     getPresentsList: function getPresentsList() {
       var _this = this;
 
+      this.presents_list = [];
       axios.get('/admin/presents/list', {
         params: {
           page: this.page
@@ -2192,6 +2213,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     closePresentModal: function closePresentModal() {
       this.showPresentModal = false;
+      this.getPresentsList();
+    },
+    openEpitPresentModal: function openEpitPresentModal(item) {
+      this.present = item;
+      this.showPresentModal = true;
     }
   }
 });
@@ -8194,7 +8220,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ntextarea {\n    width: 90%; /* Ширина поля в процентах */\n    height: 200px; /* Высота поля в пикселах */\n    resize: none; /* Запрещаем изменять размер */\n}\n.file{\n    display: block !important;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 600px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n.newMessageModal {\n    position: fixed;\n    bottom: 0;\n    right: 0;\n    z-index: 999;\n}\ninput.apple-switch {\n    position: relative;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    outline: none;\n    width: 50px;\n    height: 30px;\n    background-color: #ffffff;\n    border: 1px solid #D9DADC;\n    border-radius: 50px;\n    box-shadow: inset -20px 0 0 0 #ffffff;\n    transition-duration: 200ms;\n}\ninput.apple-switch:after {\n    content: \"\";\n    position: absolute;\n    top: 1px;\n    left: 1px;\n    width: 26px;\n    height: 13px;\n    background-color: transparent;\n    border-radius: 50%;\n    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\n    border-color: #4ED164;\n    box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\n    left: 20px;\n    box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\n    -webkit-animation: bounce-in .5s;\n            animation: bounce-in .5s;\n}\n.bounce-leave-active {\n    animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n.v-fade {\n    transition: all 4s ease-out;\n}\n\n\n", ""]);
+exports.push([module.i, "\ntextarea {\n    width: 90%; /* Ширина поля в процентах */\n    height: 200px; /* Высота поля в пикселах */\n    resize: none; /* Запрещаем изменять размер */\n}\n.file {\n    display: block !important;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 600px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n.newMessageModal {\n    position: fixed;\n    bottom: 0;\n    right: 0;\n    z-index: 999;\n}\ninput.apple-switch {\n    position: relative;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    outline: none;\n    width: 50px;\n    height: 30px;\n    background-color: #ffffff;\n    border: 1px solid #D9DADC;\n    border-radius: 50px;\n    box-shadow: inset -20px 0 0 0 #ffffff;\n    transition-duration: 200ms;\n}\ninput.apple-switch:after {\n    content: \"\";\n    position: absolute;\n    top: 1px;\n    left: 1px;\n    width: 26px;\n    height: 13px;\n    background-color: transparent;\n    border-radius: 50%;\n    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\n    border-color: #4ED164;\n    box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\n    left: 20px;\n    box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\n    -webkit-animation: bounce-in .5s;\n            animation: bounce-in .5s;\n}\n.bounce-leave-active {\n    animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n.v-fade {\n    transition: all 4s ease-out;\n}\n\n\n", ""]);
 
 // exports
 
@@ -46507,19 +46533,32 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
-                        _c("p", [
-                          _c("label", [_vm._v("Изображение:")]),
-                          _c("input", {
-                            ref: "galerayFileInput",
-                            staticClass: "file",
-                            attrs: { type: "file", name: "image" },
-                            on: {
-                              change: function($event) {
-                                return _vm.handleFileUploadGaleay()
-                              }
+                        _c("p"),
+                        _vm.present != null
+                          ? _c("div", [
+                              _c("img", {
+                                attrs: {
+                                  width: "200",
+                                  height: "200",
+                                  src: "/upload/presents/" + _vm.present.image
+                                }
+                              })
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("label", [_vm._v("Изображение:")]),
+                        _c("input", {
+                          ref: "galerayFileInput",
+                          staticClass: "file",
+                          attrs: { type: "file", name: "image" },
+                          on: {
+                            change: function($event) {
+                              return _vm.handleFileUploadGaleay()
                             }
-                          })
-                        ]),
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("p"),
                         _vm._v(" "),
                         _c("br")
                       ])
@@ -46620,29 +46659,35 @@ var render = function() {
               "div",
               { staticClass: "col-lg-3 col-md-4 col-sm-6 col-xs-9 box-shadow" },
               [
-                _c("a", { attrs: { href: /anket/ + item.id } }, [
-                  _c("img", {
-                    attrs: {
-                      width: "200",
-                      height: "200",
-                      src: "/upload/presents/" + item.image
-                    }
-                  })
-                ]),
+                _c("img", {
+                  attrs: {
+                    width: "200",
+                    height: "200",
+                    src: "/upload/presents/" + item.image
+                  }
+                }),
                 _vm._v(" "),
                 _c("div", { staticClass: "cell" }, [
                   _c("div", { staticClass: "cell-overflow" }, [
                     _vm._v(
                       "\n                        " +
                         _vm._s(item.name) +
-                        ",\n                    "
+                        ", " +
+                        _vm._s(item.price) +
+                        "\n                        "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.openEpitPresentModal(item)
+                          }
+                        }
+                      },
+                      [_vm._v("Редактировать")]
                     )
-                  ]),
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(item.age) +
-                      "\n                "
-                  )
+                  ])
                 ])
               ]
             )
@@ -46659,6 +46704,7 @@ var render = function() {
         _vm._v(" "),
         _vm.showPresentModal
           ? _c("present-modal", {
+              attrs: { present: _vm.present },
               on: {
                 closePresentModal: function($event) {
                   return _vm.closePresentModal()

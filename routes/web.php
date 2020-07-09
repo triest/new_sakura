@@ -90,7 +90,7 @@
         Route::get('/', 'AdminUsersController@index');
         Route::prefix('presents')->name('presents.')->middleware('admin')->group(function () {
             Route::get('/', 'AdminUsersController@presentsMain')->name('main');
-            Route::get('/list', 'AdminUsersController@presentsList')->name('main');
+            Route::get('/list', 'AdminUsersController@presentsList')->name('list');
             Route::post('/list/store-present', 'AdminUsersController@storePresent')->name('storePresent');
         });
         Route::prefix('anket')->name('anket.')->middleware('admin')->group(function () {

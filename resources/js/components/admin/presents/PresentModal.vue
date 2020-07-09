@@ -23,9 +23,13 @@
                                                                       v-model="ebable">
                                 </p>
                                 <p>
-                                    <label>Изображение:</label><input type="file" name="image" class="file"
-                                                                          ref="galerayFileInput"
-                                                                          v-on:change="handleFileUploadGaleay()">
+                                <div v-if="present!=null">
+                                    <img width="200" height="200" :src="'/upload/presents/'+present.image">
+                                </div>
+
+                                <label>Изображение:</label><input type="file" name="image" class="file"
+                                                                  ref="galerayFileInput"
+                                                                  v-on:change="handleFileUploadGaleay()">
                                 </p>
                                 <br>
 
@@ -49,10 +53,20 @@
 
 <script>
     export default {
-        props: {},
+        props: {
+            present: {
+                type: Object,
+                required: false,
+                default: null,
+            }
+        },
         name: 'modal',
         mounted() {
             this.getSettings();
+            if (this.present != null) {
+                this.name = this.present.name;
+                this.price = this.present.price;
+            }
         },
         /* считаем выделенные*/
         computed: {
@@ -119,7 +133,9 @@
                 formData.append('name', this.name);
                 formData.append('price', this.price);
                 formData.append('file', this.galerayFile);
-
+                if (this.present != null) {
+                    formData.append('present', this.present.id);
+                }
                 axios.post('/admin/presents/list/store-present', formData,
                     {
                         headers: {
@@ -127,7 +143,7 @@
                         }
                     }).then((response) => {
                     //this.getSettings();
-                    this.$emit('closePresentModal')
+                     this.$emit('closePresentModal')
                 });
 
             },
@@ -183,10 +199,10 @@
         height: 200px; /* Высота поля в пикселах */
         resize: none; /* Запрещаем изменять размер */
     }
-    .file{
+
+    .file {
         display: block !important;
     }
-
 
     .modal-mask {
         position: fixed;

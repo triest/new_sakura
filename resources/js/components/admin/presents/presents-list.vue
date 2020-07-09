@@ -6,14 +6,13 @@
             <div v-for="item in presents_list">
                 <!--ipad в горизонтальном виде md  -->
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-9 box-shadow">
-                    <a :href="/anket/+item.id">
-                        <img width="200" height="200" :src="'/upload/presents/'+item.image">
-                    </a>
+                    <img width="200" height="200" :src="'/upload/presents/'+item.image">
                     <div class="cell">
                         <div class="cell-overflow">
-                            {{item.name}},
+                            {{item.name}}, {{item.price}}
+                            <button v-on:click="openEpitPresentModal(item)">Редактировать</button>
                         </div>
-                        {{item.age}}
+
                     </div>
                 </div>
             </div>
@@ -22,7 +21,7 @@
             </div>
             <br>
             <present-modal v-if="showPresentModal" @closePresentModal="closePresentModal()"
-                           @closeNewMessageAlert="closeNewMessageAlert()"></present-modal>
+                           @closeNewMessageAlert="closeNewMessageAlert()" :present="present"></present-modal>
         </div>
     </div>
 </template>
@@ -39,12 +38,14 @@
             return {
                 presents_list: [],
                 showPresentModal: false,
+                present: null,
             }
         },
         components: {PresentModal},
 
         methods: {
             getPresentsList() {
+                this.presents_list = [];
                 axios.get('/admin/presents/list',
                     {
                         params:
@@ -66,7 +67,14 @@
             },
             closePresentModal() {
                 this.showPresentModal = false;
-            }
+
+                this.getPresentsList();
+            },
+
+            openEpitPresentModal(item) {
+                this.present = item;
+                this.showPresentModal = true;
+            },
 
         }
     }

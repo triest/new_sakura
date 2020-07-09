@@ -54,12 +54,19 @@
         public function storePresent(Request $request)
         {
 
-            //  dump($request);
-            $present = new Present();
+            if ($request->has('present')) {
+                $present = Present::select(['*'])->where('id', intval($request->present))->first();
+            } else {
+                $present = new Present();
+            }
+
+
             $present->name = $request->name;
             $present->price = intval($request->price);
 
             if ($request->hasFile('file')) {
+
+
                 $image_new_name = md5(microtime(true));
 
                 $midle_path = 'public/upload/presents/';
