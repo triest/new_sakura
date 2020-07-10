@@ -12,7 +12,7 @@
         <p>
             <a class="btn btn-primary" v-on:click="showMessageModal=true">Написать сообщение</a>
         </p>
-        <present v-if="showPresentModal" @closeRequest='clousePresentModal()'></present>
+        <present v-if="showPresentModal" :user="user" @closeRequest='clousePresentModal()'></present>
         <newMessageModal :user="user" v-if="showMessageModal"
                          @closeNewMessageAlert='clouseNewMessageModal()'></newMessageModal>
     </div>

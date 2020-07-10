@@ -6,17 +6,38 @@
 
                     <div class="modal-header">
                         <slot name="header">
-                            <b>Подарки</b>
+                            <b>1Подарки</b>
                         </slot>
                     </div>
 
                     <div class="modal-body">
                         <slot name="body">
-
+                            <div v-for="present in presents">
+                                <table>
+                                    <tr>
+                                        <td style="vertical-align:middle;"><img width="200" height="200"
+                                                                                :src="'/upload/presents/'+present.image">
+                                        </td>
+                                        <td style="vertical-align:middle;" width="100">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        {{present.name}} {{present.price}}
+                                                    </td>
+                                                    <td>
+                                                        <img src="/images/coin.png" height="20">
+                                                        <a class="btn btn-danger" v-on:click="makePresent(present.id)">Подарить</a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </slot>
                     </div>
                     <slot name="footer">
-                        <a  v-on:click="close()">
+                        <a v-on:click="close()">
                             Закрыть
                         </a>
                     </slot>
@@ -33,25 +54,51 @@
             id: {
                 type: '',
                 required: false
+            },
+            user: {
+                type: Object,
+                required: false,
+                default: null
             }
         },
         mounted() {
-           // this.getPresentsList();
-           // this.getUserMoney();
+            // this.getPresentsList();
+            this.getPresents();
         },
         data() {
             return {
                 presents: [],
                 currentAnket: '',
                 userMoney: '',
-                showModal:true
+                showModal: true
             }
         },
         methods: {
             close() {
                 this.$emit('closeRequest')
             },
-
+            getPresents() {
+                axios.get('/presents/',
+                ).then((response) => {
+                    //  this.anketList.push(response.data);
+                    let data = response.data;
+                    let temp = data.presents;
+                    for (let i = 0; i < temp.length; i++) {
+                        this.presents.push(temp[i]);
+                    }
+                })
+            },
+            makePresent(present_id) {
+                let formData = new FormData();
+                formData.append('present_id', present_id);
+                formData.append('user_id', this.user.id);
+                axios.post('/presents/make', formData
+                ).then(function () {
+                         this.close();
+                }).catch(function () {
+                    Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации")
+                })
+            }
         }
     }
 </script>

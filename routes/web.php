@@ -77,10 +77,11 @@
     });
 
     //подарки
-    Route::prefix('presents')->name('seach.')->group(function () {
-        Route::get('/', 'SeachController@seach')->name('main');
+    Route::prefix('presents')->name('present.')->group(function () {
+        Route::get('/', 'PresentController@list')->name('list');
         Route::post('/savesettings', 'SeachController@saveSettings')->name('main');
         Route::get('/getsettings', 'SeachController@getSettings')->name('main');
+        Route::post('/make', 'PresentController@make')->name('make');
     });
 
 // Закрытая часть для сотрудников

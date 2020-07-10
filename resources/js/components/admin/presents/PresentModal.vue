@@ -41,7 +41,7 @@
                             <button class="btn btn-secondary" v-on:click="close()">
                                 Закрыть
                             </button>
-                        </slot>
+                        </slot>7
                     </div>
                 </div>
             </div>

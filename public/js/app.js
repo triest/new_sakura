@@ -2226,15 +2226,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     id: {
       type: '',
       required: false
+    },
+    user: {
+      type: Object,
+      required: false,
+      "default": null
     }
   },
-  mounted: function mounted() {// this.getPresentsList();
-    // this.getUserMoney();
+  mounted: function mounted() {
+    // this.getPresentsList();
+    this.getPresents();
   },
   data: function data() {
     return {
@@ -2247,6 +2274,28 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     close: function close() {
       this.$emit('closeRequest');
+    },
+    getPresents: function getPresents() {
+      var _this = this;
+
+      axios.get('/presents/').then(function (response) {
+        //  this.anketList.push(response.data);
+        var data = response.data;
+        var temp = data.presents;
+
+        for (var i = 0; i < temp.length; i++) {
+          _this.presents.push(temp[i]);
+        }
+      });
+    },
+    makePresent: function makePresent(present_id) {
+      var formData = new FormData();
+      formData.append('present_id', present_id);
+      formData.append('user_id', this.user.id);
+      axios.post('/presents/make', formData).then(function () {//     this.close();
+      })["catch"](function () {
+        Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации");
+      });
     }
   }
 });
@@ -46564,7 +46613,8 @@ var render = function() {
                         )
                       ]
                     )
-                  ])
+                  ]),
+                  _vm._v("7\n                ")
                 ],
                 2
               )
@@ -46734,11 +46784,86 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "modal-header" },
-                [_vm._t("header", [_c("b", [_vm._v("Подарки")])])],
+                [_vm._t("header", [_c("b", [_vm._v("1Подарки")])])],
                 2
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [_vm._t("body")], 2),
+              _c(
+                "div",
+                { staticClass: "modal-body" },
+                [
+                  _vm._t(
+                    "body",
+                    _vm._l(_vm.presents, function(present) {
+                      return _c("div", [
+                        _c("table", [
+                          _c("tr", [
+                            _c(
+                              "td",
+                              { staticStyle: { "vertical-align": "middle" } },
+                              [
+                                _c("img", {
+                                  attrs: {
+                                    width: "200",
+                                    height: "200",
+                                    src: "/upload/presents/" + present.image
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticStyle: { "vertical-align": "middle" },
+                                attrs: { width: "100" }
+                              },
+                              [
+                                _c("table", [
+                                  _c("tr", [
+                                    _c("td", [
+                                      _vm._v(
+                                        "\n                                                    " +
+                                          _vm._s(present.name) +
+                                          " " +
+                                          _vm._s(present.price) +
+                                          "\n                                                "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c("img", {
+                                        attrs: {
+                                          src: "/images/coin.png",
+                                          height: "20"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-danger",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.makePresent(present.id)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Подарить")]
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              ]
+                            )
+                          ])
+                        ])
+                      ])
+                    })
+                  )
+                ],
+                2
+              ),
               _vm._v(" "),
               _vm._t("footer", [
                 _c(
@@ -47411,6 +47536,7 @@ var render = function() {
       _vm._v(" "),
       _vm.showPresentModal
         ? _c("present", {
+            attrs: { user: _vm.user },
             on: {
               closeRequest: function($event) {
                 return _vm.clousePresentModal()

@@ -4,10 +4,12 @@
 
     use App\Dialog;
     use App\Events\NewMessage;
+    use App\GiftAct;
     use App\Like;
     use App\Message;
     use App\Notifications\ResetPassword;
     use App\Notifications\VerifyEmail;
+    use App\Present;
     use Carbon\Carbon;
     use Illuminate\Contracts\Auth\MustVerifyEmail;
     use Illuminate\Database\Eloquent\SoftDeletes;
@@ -370,6 +372,25 @@
             }
             broadcast(new NewMessage($message));
 
+            return true;
+        }
+
+        public function makeGift($present_id)
+        {
+            $giftAct = new GiftAct();
+            $auth_user = Auth::user();
+            if ($auth_user == null) {
+                return false;
+            }
+            $present = Present::get(intval($present_id));
+            if ($present == null) {
+                return false;
+            }
+
+            $giftAct->target_id = $this->id;
+            $giftAct->who_id = $auth_user->id;
+            $giftAct->present_id = $present->id;
+            $giftAct->save();
             return true;
         }
     }
