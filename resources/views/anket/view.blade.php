@@ -35,7 +35,25 @@
                             <img src="{{ ($user->profile_url!="") ? $user->profile_url : "/home/img/image-placeholder.png"}}"
                                  alt="" id="profile_image">
                             <input id="file-upload-photo-profile" name="file-upload-photo-profile" type="file"/>
+
                         </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-12">
+                            <div class="group">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach($gifts as $gift)
+                            <div class="col-sm-2">
+                                <img id="present_image" class="present_image"
+                                     src="{{ ($gift->image!="") ? "/upload/presents/".$gift->image : "/home/img/image-placeholder.png"}}"
+                                     height="40px" style="border-radius: 50%" title="{{$gift->name}}">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="group">
@@ -49,6 +67,7 @@
                                 @foreach($targets as $item)
                                     <p>
                                         {{$item->name}}
+
                                     </p>
                                 @endforeach
                             </div>

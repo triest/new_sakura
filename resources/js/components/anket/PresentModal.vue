@@ -75,6 +75,7 @@
         },
         methods: {
             close() {
+                console.log("close");
                 this.$emit('closeRequest')
             },
             getPresents() {
@@ -94,10 +95,12 @@
                 formData.append('user_id', this.user.id);
                 axios.post('/presents/make', formData
                 ).then(function () {
-                         this.close();
+
                 }).catch(function () {
-                    Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации")
+                   // Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации")
+                    console.log("error");
                 })
+                this.close();
             }
         }
     }

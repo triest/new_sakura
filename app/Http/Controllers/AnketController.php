@@ -74,11 +74,12 @@
                 array_push($anketInterest, $item->id);
             }
 
-
+            $gifts = $user->getGifts();
             return view('anket.view')->with([
                     'user' => $user,
                     'targets' => $target,
-                    'interests' => $interst
+                    'interests' => $interst,
+                    'gifts' => $gifts
             ]);
         }
 

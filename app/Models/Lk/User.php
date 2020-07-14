@@ -11,6 +11,7 @@
     use App\Notifications\VerifyEmail;
     use App\Present;
     use Carbon\Carbon;
+    use Composer\Util\Git;
     use Illuminate\Contracts\Auth\MustVerifyEmail;
     use Illuminate\Database\Eloquent\SoftDeletes;
     use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -221,6 +222,7 @@
             return $this->hasOne('App\SearchSettings');
         }
 
+
         public function age()
         {
             $now = Carbon::now();
@@ -392,5 +394,22 @@
             $giftAct->present_id = $present->id;
             $giftAct->save();
             return true;
+        }
+
+        public function getGifts()
+        {
+            $giftAct = GiftAct::select(['*'])->leftJoin('presents', 'presents.id', '=',
+                    'present_id')->where('target_id', $this->id)->orderBy('gift_act.created_at',
+                    'DESC')->limit(5)->get();
+
+            /*
+            $giftCollection = array();
+            foreach ($giftAct as $item) {
+                $gift = Present::get($item->present_id);
+                if ($gift != null) {
+                    array_push($giftCollection, $gift);
+                }
+            }*/
+            return $giftAct;
         }
     }

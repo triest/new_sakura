@@ -2273,6 +2273,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     close: function close() {
+      console.log("close");
       this.$emit('closeRequest');
     },
     getPresents: function getPresents() {
@@ -2292,10 +2293,11 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append('present_id', present_id);
       formData.append('user_id', this.user.id);
-      axios.post('/presents/make', formData).then(function () {//     this.close();
-      })["catch"](function () {
-        Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации");
+      axios.post('/presents/make', formData).then(function () {})["catch"](function () {
+        // Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации")
+        console.log("error");
       });
+      this.close();
     }
   }
 });
@@ -2596,6 +2598,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     clousePresentModal: function clousePresentModal() {
+      console.log("close present modal");
       this.showPresentModal = false;
     },
     clouseNewMessageModal: function clouseNewMessageModal() {

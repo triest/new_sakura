@@ -47,6 +47,7 @@
         },
         methods: {
             clousePresentModal() {
+                console.log("close present modal")
                 this.showPresentModal = false;
             },
             clouseNewMessageModal() {
