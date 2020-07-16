@@ -396,11 +396,11 @@
             return true;
         }
 
-        public function getGifts()
+        public function getGifts($limit=5)
         {
-            $giftAct = GiftAct::select(['*'])->leftJoin('presents', 'presents.id', '=',
-                    'present_id')->where('target_id', $this->id)->orderBy('gift_act.created_at',
-                    'DESC')->limit(5)->get();
+            $giftAct = GiftAct::select(['presents.name','presents.image','users.name as user_name'])->leftJoin('presents', 'presents.id', '=',
+                    'present_id')->leftJoin('users','gift_act.who_id','=','users.id')->where('target_id', $this->id)->orderBy('gift_act.created_at',
+                    'DESC')->limit($limit)->get();
 
             /*
             $giftCollection = array();

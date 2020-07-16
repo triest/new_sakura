@@ -47,13 +47,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        @foreach($gifts as $gift)
-                            <div class="col-sm-2">
-                                <img id="present_image" class="present_image"
-                                     src="{{ ($gift->image!="") ? "/upload/presents/".$gift->image : "/home/img/image-placeholder.png"}}"
-                                     height="40px" style="border-radius: 50%" title="{{$gift->name}}">
-                            </div>
-                        @endforeach
+
+                        <anket-component2 :user="{{$user}}" :gifts="{{$gifts}}"></anket-component2>
                     </div>
                 </div>
                 <div class="group">

@@ -150,7 +150,7 @@
             ])->where('id', $id)->first();
             //моё ли это событие
             $auth_user = Auth::user();
-            $girl_id = $auth_user->get_girl_id();
+            $girl_id = $auth_user->id;
 
             if ($girl_id == $events->organizer_id) {
                 return redirect("/myevent/" . $id);
@@ -187,7 +187,7 @@
             $day = $d["day"];
 
 
-            $organizer = Girl::select(['id', 'name', 'main_image'])
+            $organizer = User::select(['id', 'name', 'main_image'])
                     ->where('id', $events->organizer_id)->first();
             $photo = $events->photo()->get();
 

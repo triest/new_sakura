@@ -26,8 +26,10 @@ Vue.component('event-in-my-city-side', require('./components/events/EventInMyCit
 Vue.component('event-requwest', require('./components/events/event-requwest').default);
 Vue.component('requwest-check', require('./components/events/requwest-check').default);
 Vue.component('anket-component', require('./components/anket/anket-component').default);
+Vue.component('anket-component2', require('./components/anket/anket-component2').default);
 Vue.component('like-carusel', require('./components/like-carusel/like-carusel').default);
 Vue.component('presents-admin-list', require('./components/admin/presents/presents-list').default);
+Vue.component('my-presents-modal', require('./components/anket/myPresentsModal').default);
 
 
 /**

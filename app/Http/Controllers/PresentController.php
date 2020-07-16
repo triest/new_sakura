@@ -7,6 +7,7 @@
     use App\Present;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use Symfony\Component\Console\Input\Input;
 
     class PresentController extends Controller
     {
@@ -31,7 +32,18 @@
             } else {
                 return response()->json(false);
             }
+        }
+
+        public function getAnketPresents(Request $request)
+        {
 
 
+            if (!isset($request->user_id)) {
+                return null;
+            }
+
+            $user = User::get(intval($request->get("user_id")));
+            $gifs = $user->getGifts(30);
+            return response()->json(["gifs" => $gifs]);
         }
     }
