@@ -396,10 +396,17 @@
             return true;
         }
 
-        public function getGifts($limit=5)
+        public function getGifts($limit = 5)
         {
-            $giftAct = GiftAct::select(['presents.name','presents.image','users.name as user_name'])->leftJoin('presents', 'presents.id', '=',
-                    'present_id')->leftJoin('users','gift_act.who_id','=','users.id')->where('target_id', $this->id)->orderBy('gift_act.created_at',
+            $giftAct = GiftAct::select([
+                    'presents.name',
+                    'presents.image',
+                    'users.name as user_name',
+                    'users.id as user_id',
+                    'users.profile_url as  user_avatar_url'
+            ])->leftJoin('presents', 'presents.id', '=',
+                    'present_id')->leftJoin('users', 'gift_act.who_id', '=', 'users.id')->where('target_id',
+                    $this->id)->orderBy('gift_act.created_at',
                     'DESC')->limit($limit)->get();
 
             /*

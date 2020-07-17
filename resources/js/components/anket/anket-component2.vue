@@ -1,7 +1,6 @@
 <template>
     <div>
         <div v-for="gift in gifts">
-            {{gift.name}}
             <img id="present_image" v-on:click="openMyPresentsPodal()" class="present_image" height="40px"
                  :src="'/upload/presents/'+gift.image">
         </div>
@@ -26,6 +25,7 @@
                 required: false
             }
         },
+
         data() {
             return {
                 showPresentModal: false,
@@ -40,6 +40,8 @@
         mounted() {
             console.log("anket component");
             this.checkLike();
+            console.log("gifts");
+            console.log(this.gifts)
         },
         methods: {
             openMyPresentsPodal() {

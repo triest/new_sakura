@@ -16,13 +16,12 @@
                                 <table>
                                     <tr>
                                         <td style="vertical-align:middle;"><img width="200" height="200"
-                                                                                :src="'/upload/presents/'+present.image">
+                                                                                :src="'/upload/presents/'+present.image" :title="present.name">
                                         </td>
                                         <td style="vertical-align:middle;" width="100">
                                             <table>
                                                 <tr>
-                                                    <td>
-                                                        {{present.name}} {{present.price}}
+                                                    <td> {{present.user_name}} <a :href="present.id"><img class="avatar_image" :src="present.user_avatar_url"/></a>
                                                     </td>
                                                     <td>
 
@@ -37,7 +36,7 @@
                     </div>
                     <slot name="footer">
                         <a v-on:click="close()">
-                            Закрыть
+                            Закрыть1
                         </a>
                     </slot>
                 </div>
@@ -65,8 +64,9 @@
         },
         mounted() {
             // this.getPresentsList();
-            console.log(this.user);
-            this.getPresents();
+            //  console.log(this.user);
+        //    console.log(this.gifts);
+           // this.getPresents();
         },
         data() {
             return {
@@ -183,4 +183,26 @@
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
+
+    .avatar_image {
+        display: flex;
+        width: 60px;
+        height: 60px;
+        overflow: hidden;
+        align-items: center;
+        border-radius: 50%;
+        border: 1px solid #329BF0;
+        position: relative;
+
+    }
+
+    .avatar_image {
+        border-radius: 50% !important;
+    }
+
+    .avatar_image:hover {
+        cursor: pointer;
+    }
+
+
 </style>

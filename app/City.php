@@ -17,14 +17,18 @@
         public static function GetCurrentCity()
         {
             $ip = User::getIpStatic();
-            $response = file_get_contents("http://api.sypexgeo.net/json/" . $ip);
-            $response = json_decode($response);
-            $okato = $response->city->okato;
-            $city = City::select([
-                    'id',
-                    'name',
-                    'OKATO',
-            ])->where('OKATO', '=', intval($okato))->first();
+            try {
+                $response = file_get_contents("http://api.sypexgeo.net/json/" . $ip);
+                $response = json_decode($response);
+                $okato = $response->city->okato;
+                $city = City::select([
+                        'id',
+                        'name',
+                        'OKATO',
+                ])->where('OKATO', '=', intval($okato))->first();
+            } catch (IOException $exception) {
+                $city = null;
+            }
 
 
             if ($city == null) {
@@ -83,7 +87,6 @@
             }
 
         }
-
 
 
         public function changeCity()

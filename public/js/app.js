@@ -2655,7 +2655,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2683,6 +2682,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log("anket component");
     this.checkLike();
+    console.log("gifts");
+    console.log(this.gifts);
   },
   methods: {
     openMyPresentsPodal: function openMyPresentsPodal() {
@@ -2897,7 +2898,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     gifts: {
@@ -2911,10 +2911,10 @@ __webpack_require__.r(__webpack_exports__);
       "default": null
     }
   },
-  mounted: function mounted() {
-    // this.getPresentsList();
-    console.log(this.user);
-    this.getPresents();
+  mounted: function mounted() {// this.getPresentsList();
+    //  console.log(this.user);
+    //    console.log(this.gifts);
+    // this.getPresents();
   },
   data: function data() {
     return {
@@ -8544,7 +8544,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntextarea[data-v-7758d06c] {\n    width: 90%; /* Ширина поля в процентах */\n    height: 200px; /* Высота поля в пикселах */\n    resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask[data-v-7758d06c] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-7758d06c] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-7758d06c] {\n    width: 600px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-7758d06c] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-7758d06c] {\n    margin: 20px 0;\n}\n.modal-default-button[data-v-7758d06c] {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter[data-v-7758d06c] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-7758d06c] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-7758d06c],\n.modal-leave-active .modal-container[data-v-7758d06c] {\n    transform: scale(1.1);\n}\n", ""]);
+exports.push([module.i, "\ntextarea[data-v-7758d06c] {\n    width: 90%; /* Ширина поля в процентах */\n    height: 200px; /* Высота поля в пикселах */\n    resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask[data-v-7758d06c] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-7758d06c] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-7758d06c] {\n    width: 600px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-7758d06c] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-7758d06c] {\n    margin: 20px 0;\n}\n.modal-default-button[data-v-7758d06c] {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter[data-v-7758d06c] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-7758d06c] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-7758d06c],\n.modal-leave-active .modal-container[data-v-7758d06c] {\n    transform: scale(1.1);\n}\n.avatar_image[data-v-7758d06c] {\n    display: flex;\n    width: 60px;\n    height: 60px;\n    overflow: hidden;\n    align-items: center;\n    border-radius: 50%;\n    border: 1px solid #329BF0;\n    position: relative;\n}\n.avatar_image[data-v-7758d06c] {\n    border-radius: 50% !important;\n}\n.avatar_image[data-v-7758d06c]:hover {\n    cursor: pointer;\n}\n\n\n", ""]);
 
 // exports
 
@@ -47900,7 +47900,6 @@ var render = function() {
     [
       _vm._l(_vm.gifts, function(gift) {
         return _c("div", [
-          _vm._v("\n        " + _vm._s(gift.name) + "\n        "),
           _c("img", {
             staticClass: "present_image",
             attrs: {
@@ -48114,7 +48113,8 @@ var render = function() {
                                   attrs: {
                                     width: "200",
                                     height: "200",
-                                    src: "/upload/presents/" + present.image
+                                    src: "/upload/presents/" + present.image,
+                                    title: present.name
                                   }
                                 })
                               ]
@@ -48131,12 +48131,16 @@ var render = function() {
                                   _c("tr", [
                                     _c("td", [
                                       _vm._v(
-                                        "\n                                                    " +
-                                          _vm._s(present.name) +
-                                          " " +
-                                          _vm._s(present.price) +
-                                          "\n                                                "
-                                      )
+                                        " " + _vm._s(present.user_name) + " "
+                                      ),
+                                      _c("a", { attrs: { href: present.id } }, [
+                                        _c("img", {
+                                          staticClass: "avatar_image",
+                                          attrs: {
+                                            src: present.user_avatar_url
+                                          }
+                                        })
+                                      ])
                                     ]),
                                     _vm._v(" "),
                                     _c("td")
@@ -48165,7 +48169,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                        Закрыть\n                    "
+                      "\n                        Закрыть1\n                    "
                     )
                   ]
                 )
