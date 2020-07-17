@@ -10,17 +10,16 @@
                     </a>
 
                 </div>
-                <button class="btn" v-on:click="like()"
-                        style="position: absolute; margin-top: -50px; margin-left: 5px">
-                    Нравиться
+                <button class="btn-primary" v-on:click="like()"
+                        style="position: absolute; margin-top: -130px; margin-left: 50px" title="Нравитья">
+                    ✓
                 </button>
-                <button class="btn" v-on:click="skip()"
-                        style="position: absolute; margin-top: -50px; margin-left: 105px">
-                    Пропустить
+                <button class="btn-secondary" v-on:click="skip()"
+                        style="position: absolute; margin-top: -130px; margin-left: 150px" title="Нейтрально">
+                    N
                 </button>
-                <button class="btn" v-on:click="dislike()"
-                        style="position: absolute; margin-top: -50px;  margin-left: 212px">Не
-                    нравиться
+                <button class="btn-danger" v-on:click="dislike()"
+                        style="position: absolute; margin-top: -130px;  margin-left: 250px" title="Не нравиться">×
                 </button>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow">
@@ -51,7 +50,7 @@
             </div>
         </div>
         <div v-else>
-            Нет анкет. Вы поставили лайки всем подходящим  пользователям в городе. Попробуйте изменить настройки поиска
+            Нет анкет. Вы поставили лайки всем подходящим пользователям в городе. Попробуйте изменить настройки поиска
         </div>
     </div>
 </template>
@@ -131,4 +130,74 @@
 </script>
 
 <style scoped>
+    .btn-primary {
+        background-color: #44c767;
+        border-radius: 50%;
+        border: 1px solid #18ab29;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 22px;
+        padding: 16px 18px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #2f6627;
+
+    }
+
+    .btn-primary:hover {
+        background-color: #5cbf2a;
+    }
+
+    .btn-primary:active {
+        position: relative;
+        top: 1px;
+    }
+
+    .btn-secondary {
+        background-color: #2a38c7;
+        border-radius: 50%;
+        border: 1px solid #0300af;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 22px;
+        padding: 16px 18px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #2a38c7;
+    }
+
+    .btn-secondary:hover {
+        background-color: #110aaf;
+    }
+
+    .btn-secondary:active {
+        position: relative;
+        top: 1px;
+    }
+
+    .btn-danger {
+        background-color: #ee001e;
+        border-radius: 50%;
+        border: 1px solid #ee001e;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 22px;
+        padding: 16px 18px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #2f6627;
+    }
+
+    .btn-danger:hover {
+        background-color: #b30011;
+    }
+
+    .btn-danger:active {
+        position: relative;
+        top: 1px;
+    }
+
 </style>
