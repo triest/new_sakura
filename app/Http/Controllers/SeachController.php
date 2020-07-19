@@ -2,16 +2,12 @@
 
     namespace App\Http\Controllers;
 
-    use App\Aperance;
-    use App\Children;
-    use App\City;
-    use App\Girl;
-    use App\Interest;
-    use App\Relationh;
-    use App\SearchSettings;
-    use App\Smoking;
-    use App\Target;
-    use App\User;
+
+    use App\Models\City;
+    use App\Models\Interest;
+    use App\Models\SearchSettings;
+    use App\Models\Target;
+    use App\Models\lk\User;
     use Carbon\Carbon;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
@@ -121,7 +117,6 @@
             }
 
 
-
             $city = City::GetCurrentCity();
 
             if ($city != null) {
@@ -149,7 +144,6 @@
             if (isset($seachSettings) && $seachSettings->relation != 0) {
                 $users->where('relation_id', '=', $seachSettings->relation);
             }
-
 
 
             if (Auth::user() != null) {

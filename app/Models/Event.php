@@ -1,7 +1,8 @@
 <?php
 
-    namespace App;
+    namespace App\Models;
 
+    use App\Models\Lk\User;
     use Carbon\Carbon;
     use Doctrine\DBAL\Events;
     use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@
         //
         public function user()
         {
-            return $this->belongsTo("user");
+            return $this->belongsTo(User::class);
         }
 
         public static function inMyCity($city = null, $date = null)

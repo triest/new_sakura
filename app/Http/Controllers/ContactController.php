@@ -2,9 +2,9 @@
 
     namespace App\Http\Controllers;
 
-    use App\Dialog;
+    use App\Models\Dialog;
     use App\Events\NewMessage;
-    use App\Message;
+    use App\Models\Message;
     use App\Models\Lk\User;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
@@ -87,12 +87,12 @@
                 $dialog4->my_id = $id2;
                 $dialog4->save();
             }
-              broadcast(new NewMessage($message));
-           /*   $user2 = User::findById($id2);
-             if ($user2 != null && !$user2->isOnline()) {
-                 $this->sendNotification($request->text, $user2, $user);
-             }
-*/
+            broadcast(new NewMessage($message));
+            /*   $user2 = User::findById($id2);
+              if ($user2 != null && !$user2->isOnline()) {
+                  $this->sendNotification($request->text, $user2, $user);
+              }
+ */
             return response()->json($message);
         }
 

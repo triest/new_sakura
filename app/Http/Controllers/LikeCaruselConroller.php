@@ -2,7 +2,7 @@
 
     namespace App\Http\Controllers;
 
-    use App\City;
+    use App\Models\City;
     use App\Models\Lk\User;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;

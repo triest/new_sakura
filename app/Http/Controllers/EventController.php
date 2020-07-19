@@ -2,9 +2,9 @@
 
     namespace App\Http\Controllers;
 
-    use App\City;
-    use App\Event;
-    use App\EventRequwest;
+    use App\Models\City;
+    use App\Models\Event;
+    use App\Models\EventRequwest;
     use App\Models\Lk\User;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;

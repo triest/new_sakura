@@ -2,11 +2,11 @@
 
     namespace App\Http\Controllers;
 
-    use App\Album;
-    use App\AlbumPhoto;
-    use App\Interest;
+    use App\Models\Album;
+    use App\Models\AlbumPhoto;
+    use App\Models\Interest;
     use App\Models\Lk\User;
-    use App\Target;
+    use App\Models\Target;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Cookie;

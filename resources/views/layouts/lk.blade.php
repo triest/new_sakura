@@ -33,7 +33,9 @@
         }</script>
 </head>
 <body>
-<? $city = \App\City::GetCurrentCity(); ?>
+
+<?
+$city =  App\Models\City::GetCurrentCity(); ?>
 <!-- end .content-->
 <header class="header">
     <div class="container-h2">

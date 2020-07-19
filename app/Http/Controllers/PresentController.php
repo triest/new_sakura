@@ -2,9 +2,9 @@
 
     namespace App\Http\Controllers;
 
-    use App\GiftAct;
+    use App\Models\GiftAct;
     use App\Models\Lk\User;
-    use App\Present;
+    use App\Models\Present;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Symfony\Component\Console\Input\Input;
