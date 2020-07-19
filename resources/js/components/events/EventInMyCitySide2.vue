@@ -10,13 +10,13 @@
                 {{event.status_name}}
                 <div v-if="checkRequsest(event.id)!==false">
                     <div v-if="checkRequsest(event.id)=='accept'">
-                        <a class="btn " v-bind:href="'event/'+event.id"> Заявка принята</a>
+                        <a class="btn " v-bind:href="'events/'+event.id"> Заявка принята</a>
                     </div>
                     <div v-if="checkRequsest(event.id)=='denide'">
-                        <a class="btn " v-bind:href="'event/'+event.id">Заявка отклонена</a>
+                        <a class="btn " v-bind:href="'events/'+event.id">Заявка отклонена</a>
                     </div>
                     <div v-if="checkRequsest(event.id)=='unreaded'">
-                        <a class="btn " v-bind:href="'event/'+event.id">Заявка не прочитана</a>
+                        <a class="btn " v-bind:href="'events/'+event.id">Заявка не прочитана</a>
                     </div>
                 </div>
                 <div v-else>

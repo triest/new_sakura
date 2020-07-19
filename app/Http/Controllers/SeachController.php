@@ -362,15 +362,9 @@
             if ($user == null) {
                 return false;
             }
-            $anket = Girl::select(['id', 'name', 'filter_enable'])
-                    ->where('user_id', $user->id)
-                    ->first();
-            if ($anket == null) {
-                return false;
-            }
 
 
-            if ($anket->filter_enable == 0) {
+            if ($user->filter_enable == 0) {
                 User::where('id', $user->id)
                         ->update(['filter_enable' => 1]);
 

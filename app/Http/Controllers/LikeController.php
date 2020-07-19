@@ -15,7 +15,6 @@ class LikeController extends Controller
         $target->newLike();
 
 
-//        $target->sendMesage("Вы кому-то понравились");
 
         return response()->json(['ok']);
     }

@@ -48664,7 +48664,7 @@ var render = function() {
                             "a",
                             {
                               staticClass: "btn ",
-                              attrs: { href: "event/" + event.id }
+                              attrs: { href: "events/" + event.id }
                             },
                             [_vm._v(" Заявка принята")]
                           )
@@ -48677,7 +48677,7 @@ var render = function() {
                             "a",
                             {
                               staticClass: "btn ",
-                              attrs: { href: "event/" + event.id }
+                              attrs: { href: "events/" + event.id }
                             },
                             [_vm._v("Заявка отклонена")]
                           )
@@ -48690,7 +48690,7 @@ var render = function() {
                             "a",
                             {
                               staticClass: "btn ",
-                              attrs: { href: "event/" + event.id }
+                              attrs: { href: "events/" + event.id }
                             },
                             [_vm._v("Заявка не прочитана")]
                           )

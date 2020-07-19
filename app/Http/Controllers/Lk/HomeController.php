@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Lk;
 
     use App\Http\Controllers\Controller;
+    use App\Http\Requests\StoreUserProfile;
     use App\Models\Interest;
     use App\Models\Lk\Purchase;
     use App\Models\Target;
@@ -94,15 +95,8 @@
             ]);
         }
 
-        public function store_profile(Request $request)
+        public function store_profile(StoreUserProfile $request)
         {
-
-            $validatedData = $request->validate([
-                    'name' => 'required',
-                    'date_birth' => 'date',
-                    'description' => 'required'
-            ]);
-
 
             $user = Auth::user();
             $data = $request->all();

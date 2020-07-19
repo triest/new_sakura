@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Http\Requests\SendMessageToUser;
     use App\Models\Dialog;
     use App\Events\NewMessage;
     use App\Models\Message;
@@ -51,15 +52,8 @@
             return response()->json($messages);
         }
 
-        public function send(Request $request)
+        public function send(SendMessageToUser $request)
         {
-            /*
-              $message = Message::create([
-                      'from' => auth()->id(),
-                      'to'   => $request->contact_id,
-                      'text' => $request->text,
-              ]);
-*/
             $message = new Message();
             $message->from = auth()->id();
             $message->to = $request->contact_id;

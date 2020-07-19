@@ -2,6 +2,8 @@
 
     namespace App\Http\Controllers;
 
+    use App\Http\Requests\GetAnketPresents;
+    use App\Http\Requests\MakePresentRequwest;
     use App\Models\GiftAct;
     use App\Models\Lk\User;
     use App\Models\Present;
@@ -18,13 +20,8 @@
             return response()->json(["presents" => $presents]);
         }
 
-        public function make(Request $request)
+        public function make(MakePresentRequwest $request)
         {
-            $validatedData = $request->validate([
-                    'user_id' => 'required',
-                    'present_id' => 'required',
-            ]);
-
             $user = User::get(intval($request->user_id));
 
             if ($user->makeGift($request->present_id)) {
@@ -34,10 +31,8 @@
             }
         }
 
-        public function getAnketPresents(Request $request)
+        public function getAnketPresents(GetAnketPresents $request)
         {
-
-
             if (!isset($request->user_id)) {
                 return null;
             }

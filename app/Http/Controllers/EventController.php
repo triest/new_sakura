@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Http\Requests\StoreEvent;
     use App\Models\City;
     use App\Models\Event;
     use App\Models\EventRequwest;
@@ -32,18 +33,8 @@
             return view("event.create")->with(["city" => $city]);
         }
 
-        public function store(Request $request)
+        public function store(StoreEvent $request)
         {
-            $validatedData = $request->validate([
-                    'name' => 'required',
-                    'date' => 'date',
-                    'time' => 'date_format:H:i',
-                    'end_date' => 'date',
-                    'end_time' => 'date_format:H:i',
-                    'description' => 'required'
-            ]);
-
-            dump($request);
 
             $event = new Event();
             $event->name = $request->name;
@@ -230,8 +221,6 @@
         }
 
         public function accept(Request $request){
-         //   dump($request);
-       //     die("sads");
             $eventReq = EventRequwest::select(["*"])->where('id',$request->req_id)->first();
 
             if($eventReq==null){
