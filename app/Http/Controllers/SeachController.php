@@ -123,18 +123,6 @@
                 $users->where('city_id', $city->id);
             }
 
-
-            if ($seachSettings->age_from != null) {
-                //  $users->where(date_diff('age',NOW()) AS YEAR, '>=', $seachSettings->age_from);
-                $users->whereRaw('datediff(NOW(),date_birth ) >=?', [$seachSettings->age_from]);
-            }
-
-
-            if ($seachSettings->age_to != null) {
-                //  $users->where('age', '<=', $seachSettings->age_to);
-                $users->whereRaw('datediff(date_birth,NOW() ) <=?', [$seachSettings->age_to]);
-            }
-
             if ($seachSettings->meet != null
                     && $seachSettings->meet != "nomatter"
             ) {
@@ -145,6 +133,13 @@
                 $users->where('relation_id', '=', $seachSettings->relation);
             }
 
+            if (isset($seachSettings) && $seachSettings->age_from != null) {
+                $users->where(   DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"),">=", $seachSettings->age_from);
+            }
+
+            if (isset($seachSettings) && $seachSettings->age_to != null) {
+                $users->where(   DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"),"<=", $seachSettings->age_to);
+            }
 
             if (Auth::user() != null) {
                 $users->where('users.id', '!=', Auth::user()->id);

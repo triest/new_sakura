@@ -177,6 +177,16 @@
             return $datediff->y;
         }
 
+        public function __age()
+        {
+            $dateBith = $this->date_birth;
+
+            $mytime = Carbon::now();
+            $last_login = Carbon::createFromFormat('Y-m-d', $dateBith);
+            $datediff = date_diff($last_login, $mytime);
+            return $datediff->y;
+        }
+
         public static function get($id)
         {
             return User::select(['*'])->where('id', $id)->first();
@@ -424,4 +434,6 @@
             }*/
             return $giftAct;
         }
+
+
     }
