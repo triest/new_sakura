@@ -16,18 +16,18 @@
 
         public function girl()
         {
-            return $this->belongsTo('App\User');
+            return $this->belongsTo(User::class);
         }
 
         public function target()
         {
-            return $this->belongsToMany('App\Target', 'search_target',
+            return $this->belongsToMany(Target::class, 'search_target',
                     'search_id', 'target_id');
         }
 
         public function interest()
         {
-            return $this->belongsToMany('App\Interest', 'search_interest',
+            return $this->belongsToMany(Interest::class, 'search_interest',
                     'search_id',
                     'interest_id');
         }

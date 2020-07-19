@@ -228,7 +228,7 @@
                 //;jcnftv j,obt yfcnhjqrb
                 $sechSettings = SearchSettings::select([
                         '*',
-                ])->where('girl_id', $user->id)->first();
+                ])->where('user_id', $user->id)->first();
             } else {
                 if (isset($_COOKIE["seachSettings"])) {
                     $cookie = $_COOKIE["seachSettings"];
@@ -376,13 +376,13 @@
 
 
             if ($anket->filter_enable == 0) {
-                Girl::where('user_id', $user->id)
+                User::where('id', $user->id)
                         ->update(['filter_enable' => 1]);
 
-                DB::table('girls')->where('user_id', $user->id)
+                DB::table('users')->where('user_id', $user->id)
                         ->update(['filter_enable' => 1]);
             } else {
-                DB::table('girls')->where('user_id', $user->id)
+                DB::table('users')->where('user_id', $user->id)
                         ->update(['filter_enable' => 0]);
             }
 

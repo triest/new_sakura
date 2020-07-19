@@ -55,6 +55,7 @@
         methods: {
 
             seach() {
+                this.anketList=[];
                 axios.get('/seach').then((response) => {
                     let data = response.data;
                     this.anketList = data.ankets;
@@ -96,7 +97,7 @@
                 this.seachModal = false;
                 this.seach();
             },
-            openPresentModal() {
+            openSeachModal() {
                 this.seachModal = true;
             },
         }

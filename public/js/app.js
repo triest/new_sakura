@@ -2792,6 +2792,7 @@ __webpack_require__.r(__webpack_exports__);
     seach: function seach() {
       var _this = this;
 
+      this.anketList = [];
       axios.get('/seach').then(function (response) {
         var data = response.data;
         _this.anketList = data.ankets;
@@ -2833,7 +2834,7 @@ __webpack_require__.r(__webpack_exports__);
       this.seachModal = false;
       this.seach();
     },
-    openPresentModal: function openPresentModal() {
+    openSeachModal: function openSeachModal() {
       this.seachModal = true;
     }
   }

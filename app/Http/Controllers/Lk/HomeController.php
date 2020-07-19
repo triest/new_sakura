@@ -3,9 +3,9 @@
     namespace App\Http\Controllers\Lk;
 
     use App\Http\Controllers\Controller;
-    use App\Interest;
+    use App\Models\Interest;
     use App\Models\Lk\Purchase;
-    use App\Target;
+    use App\Models\Target;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Input;

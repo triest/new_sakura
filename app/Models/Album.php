@@ -3,7 +3,7 @@
     namespace App\Models;
 
     use Illuminate\Database\Eloquent\Model;
-    use App\AlbumPhoto as AlbumPhoto;
+    use App\Models\AlbumPhoto as AlbumPhoto;
 
     class Album extends Model
     {

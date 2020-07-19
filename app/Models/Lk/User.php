@@ -2,14 +2,19 @@
 
     namespace App\Models\Lk;
 
-    use App\Dialog;
+    use App\Models\Album;
+    use App\Models\Dialog;
     use App\Events\NewMessage;
-    use App\GiftAct;
-    use App\Like;
-    use App\Message;
+    use App\Models\Event;
+    use App\Models\GiftAct;
+    use App\Models\Interest;
+    use App\Models\Like;
+    use App\Models\Message;
+    use App\Models\SearchSettings;
+    use App\Models\Target;
     use App\Notifications\ResetPassword;
     use App\Notifications\VerifyEmail;
-    use App\Present;
+    use App\Models\Present;
     use Carbon\Carbon;
     use Composer\Util\Git;
     use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -151,13 +156,13 @@
 
         public function target()
         {
-            return $this->belongsToMany('App\Target', 'user_target', 'user_id',
+            return $this->belongsToMany(Target::class, 'user_target', 'user_id',
                     'target_id');
         }
 
         public function interest()
         {
-            return $this->belongsToMany('App\Interest', 'user_interest', 'user_id',
+            return $this->belongsToMany(Interest::class, 'user_interest', 'user_id',
                     'interest_id');
         }
 
@@ -179,12 +184,12 @@
 
         public function albums()
         {
-            return $this->hasMany('App\Album');
+            return $this->hasMany(Album::class);
         }
 
         public function events()
         {
-            return $this->hasMany('App\Event');
+            return $this->hasMany(Event::class);
         }
 
         public static function getIpstatic()
@@ -219,7 +224,7 @@
 
         public function seachsettings()
         {
-            return $this->hasOne('App\SearchSettings');
+            return $this->hasOne(SearchSettings::class);
         }
 
 

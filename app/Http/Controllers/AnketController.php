@@ -58,10 +58,12 @@
             }
 
             $target = Target::select(['*'])->get();
+
             $interst = Interest::select(['*'])->get();
 
 
             $targets = $user->target()->get();
+
             $anketTarget = [];
             foreach ($targets as $tag) {
                 array_push($anketTarget, $tag->id);
