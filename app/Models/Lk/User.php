@@ -106,7 +106,9 @@
                 'middle_name',
                 'education',
                 'inn',
-                'date_birth'
+                'date_birth',
+                'description',
+                'sex'
         ];
 
         /**

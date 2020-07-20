@@ -84,7 +84,7 @@
             }
 
 
-        //    $user->getAge();
+            //    $user->getAge();
             return view('lk.profile.index')->with([
                     'user' => $user,
                     'targets' => $target,
@@ -101,9 +101,7 @@
             $user = Auth::user();
             $data = $request->all();
             $user->fill($data);
-            $user->description = $request->description;
             $user->save();
-
             $user->target()->detach();
             if ($request->has('target')) {
                 foreach ($request->target as $item) {

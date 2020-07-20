@@ -10,23 +10,23 @@
                 {{event.status_name}}
                 <div v-if="checkRequsest(event.id)!==false">
                     <div v-if="checkRequsest(event.id)=='accept'">
-                        <a class="btn " v-bind:href="'events/'+event.id"> Заявка принята</a>
+                        <a class="btn " v-bind:href="'/events/'+event.id"> Заявка принята</a>
                     </div>
                     <div v-if="checkRequsest(event.id)=='denide'">
-                        <a class="btn " v-bind:href="'events/'+event.id">Заявка отклонена</a>
+                        <a class="btn " v-bind:href="'/events/'+event.id">Заявка отклонена</a>
                     </div>
                     <div v-if="checkRequsest(event.id)=='unreaded'">
-                        <a class="btn " v-bind:href="'events/'+event.id">Заявка не прочитана</a>
+                        <a class="btn " v-bind:href="'/events/'+event.id">Заявка не прочитана</a>
                     </div>
                 </div>
                 <div v-else>
-                    <a class="btn " v-bind:href="'events/'+event.id">Записаться!</a>
+                    <a class="btn " v-bind:href="'/events/'+event.id">Записаться!</a>
                 </div>
             </div>
         </div>
         <div v-else>
             Событий в вашем городе нет.
-            <a class="btn btn-primary" v-bind:href="'myevent/store'">Создать событие!</a>
+            <a class="btn btn-primary" v-bind:href="'/myevent/store'">Создать событие!</a>
         </div>
     </div>
 </template>

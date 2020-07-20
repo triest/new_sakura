@@ -48664,7 +48664,7 @@ var render = function() {
                             "a",
                             {
                               staticClass: "btn ",
-                              attrs: { href: "events/" + event.id }
+                              attrs: { href: "/events/" + event.id }
                             },
                             [_vm._v(" Заявка принята")]
                           )
@@ -48677,7 +48677,7 @@ var render = function() {
                             "a",
                             {
                               staticClass: "btn ",
-                              attrs: { href: "events/" + event.id }
+                              attrs: { href: "/events/" + event.id }
                             },
                             [_vm._v("Заявка отклонена")]
                           )
@@ -48690,7 +48690,7 @@ var render = function() {
                             "a",
                             {
                               staticClass: "btn ",
-                              attrs: { href: "events/" + event.id }
+                              attrs: { href: "/events/" + event.id }
                             },
                             [_vm._v("Заявка не прочитана")]
                           )
@@ -48702,7 +48702,7 @@ var render = function() {
                       "a",
                       {
                         staticClass: "btn ",
-                        attrs: { href: "events/" + event.id }
+                        attrs: { href: "/events/" + event.id }
                       },
                       [_vm._v("Записаться!")]
                     )
@@ -48717,7 +48717,7 @@ var render = function() {
             "a",
             {
               staticClass: "btn btn-primary",
-              attrs: { href: "myevent/store" }
+              attrs: { href: "/myevent/store" }
             },
             [_vm._v("Создать событие!")]
           )

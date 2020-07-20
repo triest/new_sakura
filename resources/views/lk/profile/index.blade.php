@@ -12,21 +12,11 @@
 
             <form class="form-lk" action="{{ route('lk.profileStore') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                @if ($errors->has('name'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </div>
-                @endif
 
-                @if ($errors->has('date_birth'))
-                    <div class="announcement_p">
-                        <strong>{{ $errors->first('date_birth') }}</strong>
-                    </div>
-                @endif
 
-                @if ($errors->has('description'))
+                @if($errors->any())
                     <div class="announcement_p">
-                        <strong>{{ $errors->first('description') }}</strong>
+                    {!! implode('', $errors->all('<div>:message</div>')) !!}
                     </div>
                 @endif
 
@@ -74,74 +64,84 @@
                         <input type="text" class="input" id="name" name="name"
                                value="{{old('first_name') ?? $user->name }}">
                     </div>
-                </div>
 
 
-                <div class="row">
-                    <div class="col-sm-6 col-12">
-                        <div class="group">
-                            <label class="label_txt"><span></span>Дата рождения</label>
-                            <div class="group_input">
-                                <input type="date" class="input" id="date_birth" name="date_birth"
-                                       value="{{old('date_birth') ?? $user->date_birth }}">
+                    <div class="group">
+                        <label class="label_txt"><span></span>Кто вы</label>
+                        <div class="group_input">
+                            <select name="sex" id="sex">
+                                <option value="famele" @if($user->sex=='famele') selected @endif>Женщина</option>
+                                <option value="male" @if($user->sex=='male') selected @endif>Мужчина</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6 col-12">
+                            <div class="group">
+                                <label class="label_txt"><span></span>Дата рождения</label>
+                                <div class="group_input">
+                                    <input type="date" class="input" id="date_birth" name="date_birth"
+                                           value="{{old('date_birth') ?? $user->date_birth }}">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    @if($targets->isNotEmpty())
-                        <div class="col-sm-6 col-12">
-                            <div class="group">
-                                <label class="label_txt"><span></span>Цель знакомства</label>
-                                @foreach($targets as $item)
-                                    <p>
-                                        <input class="form-check-input" type="checkbox" value="{{$item->id}}"
-                                               name="target[]"
-                                               @if(in_array($item->id,$anketTarget)) checked="1" @endif >
-                                        {{$item->name}}
-                                    </p>
-                                @endforeach
+                    <div class="row">
+                        @if($targets->isNotEmpty())
+                            <div class="col-sm-6 col-12">
+                                <div class="group">
+                                    <label class="label_txt"><span></span>Цель знакомства</label>
+                                    @foreach($targets as $item)
+                                        <p>
+                                            <input class="form-check-input" type="checkbox" value="{{$item->id}}"
+                                                   name="target[]"
+                                                   @if(in_array($item->id,$anketTarget)) checked="1" @endif >
+                                            {{$item->name}}
+                                        </p>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
 
-                    @if($interests->isNotEmpty())
-                        <div class="col-sm-6 col-12">
-                            <div class="group">
-                                <label class="label_txt"><span></span>Интересы</label>
-                                @foreach($interests as $item)
-                                    <p>
-                                        <input class="form-check-input" type="checkbox" value="{{$item->id}}"
-                                               name="interest[]"
-                                               @if(in_array($item->id,$anketInterests)) checked="1" @endif >
-                                        {{$item->name}}
-                                    </p>
-                                @endforeach
+                        @if($interests->isNotEmpty())
+                            <div class="col-sm-6 col-12">
+                                <div class="group">
+                                    <label class="label_txt"><span></span>Интересы</label>
+                                    @foreach($interests as $item)
+                                        <p>
+                                            <input class="form-check-input" type="checkbox" value="{{$item->id}}"
+                                                   name="interest[]"
+                                                   @if(in_array($item->id,$anketInterests)) checked="1" @endif >
+                                            {{$item->name}}
+                                        </p>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                    @endif
-                </div>
+                        @endif
+                    </div>
 
-                <div class="row">
-                    <div class="col-sm-6 col-12">
-                        <div class="group">
-                            <label class="label_txt"><span></span>Обо мне</label>
-                            <textarea name="description" cols="55" required> {{$user->description}}</textarea>
+                    <div class="row">
+                        <div class="col-sm-12 col-12">
+                            <div class="group">
+                                <label class="label_txt"><span></span>Обо мне</label>
+                                <textarea name="description" cols="100" required> {{old('description') ?? $user->description}}</textarea>
 
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
-                <p class="politics">
-                    Нажимая на кнопку &laquo;Продолжить&raquo; Вы даете согласие на обработку данных согласно <a
-                            href="#">Правилам</a>
-                </p>
+                    <p class="politics">
+                        Нажимая на кнопку &laquo;Продолжить&raquo; Вы даете согласие на обработку данных согласно <a
+                                href="#">Правилам</a>
+                    </p>
 
-                <button class="mt-24 btn-light btn_100 btn-small btn-animate" type="button"
-                        data-remodal-target="upload_img" id="buttonTarget" hidden>Продолжить
-                </button>
-                <button class="mt-24 btn-light btn_100 btn-small btn-animate" type="submit">Продолжить</button>
+                    <button class="mt-24 btn-light btn_100 btn-small btn-animate" type="button"
+                            data-remodal-target="upload_img" id="buttonTarget" hidden>Продолжить
+                    </button>
+                    <button class="mt-24 btn-light btn_100 btn-small btn-animate" type="submit">Продолжить</button>
             </form>
 
         </div>
@@ -415,6 +415,9 @@
 
             })
         });
+
+
+
     </script>
 
 

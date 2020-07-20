@@ -24,9 +24,19 @@
         public function rules()
         {
             return [
-                    'name' => 'required',
-                    'date_birth' => 'date',
-                    'description' => 'required'
+                    'name' => 'required|string|min:2',
+                    'date_birth' => 'required|date|before:-18 years',
+                    'description' => 'min:30',
+                    'sex' => 'required|'
+            ];
+        }
+
+        public function messages()
+        {
+            return [
+                    'date_birth.before' => 'Вам должно быть больше 18 лет',
+                    'name.required'=>'Имя должно быть не менее 2 символов.',
+                    'description.min'=>'Укажите дольше информации о себе. Минимум 30 символов.'
             ];
         }
     }

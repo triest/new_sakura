@@ -104,11 +104,11 @@
                     </p>
                 </div>
                 <label for="max">Максимальное число участников (если нет ограничения, оставьте пустым):
-                    <input type="number" name="max" id="min" min="1" checked>
+                    <input type="number" name="max" id="min" min="1" value="{{ old('min') }}" checked>
                 </label><br>
 
                 <label for="min">Минимальное число участников (если нет ограничения, оставьте пустым):
-                    <input type="number" name="min" id="min" min="1" checked>
+                    <input type="number" name="min" id="min" min="1" value="{{ old('max') }}"  checked>
                 </label><br>
 
 

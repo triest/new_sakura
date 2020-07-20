@@ -26,11 +26,13 @@ class StoreEvent extends FormRequest
         return [
             //
                 'name' => 'required',
-                'date' => 'date',
+                'date' => 'required|date',
                 'time' => 'date_format:H:i',
                 'end_date' => 'date',
                 'end_time' => 'date_format:H:i',
-                'description' => 'required'
+                'description' => 'required',
+                'min'=>'integer|min:0',
+                'max'=>'integer|min:0'
         ];
     }
 }
