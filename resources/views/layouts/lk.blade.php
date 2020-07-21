@@ -49,7 +49,7 @@ $city = App\Models\City::GetCurrentCity(); ?>
             @yield('content')
         </div>
         <div class="col-sm-1">
-            dssdsdds
+            @include('lk.sidebar')
         </div>
     </div>
 </div>

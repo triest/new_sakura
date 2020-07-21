@@ -30,6 +30,7 @@ Vue.component('anket-component2', require('./components/anket/anket-component2')
 Vue.component('like-carusel', require('./components/like-carusel/like-carusel').default);
 Vue.component('presents-admin-list', require('./components/admin/presents/presents-list').default);
 Vue.component('my-presents-modal', require('./components/anket/myPresentsModal').default);
+Vue.component('sidebar', require('./components/layouts/sidebar').default);
 
 
 /**

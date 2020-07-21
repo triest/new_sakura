@@ -122,16 +122,7 @@
         padding: 10px;
     }
 
-    body {
-        font-family: Arial;
-        font-size: 17px;
-    }
 
-    .container {
-        position: relative;
-        max-width: 800px;
-        margin: 0 auto;
-    }
 
     .container img {
         vertical-align: middle;

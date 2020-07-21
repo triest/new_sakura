@@ -357,7 +357,7 @@ a[href^=tel] {
 }
 
 .btn {
-    width: 262px;
+    width: 131px;
     border-radius: 8px;
     background-color: #329BF0;
     text-align: center;
@@ -367,7 +367,7 @@ a[href^=tel] {
     line-height: 1.4;
     letter-spacing: -0.5px;
     color: #ffffff;
-    padding: 19px 10px;
+    padding: 15px 10px;
     cursor: pointer;
   /*  margin: 0 auto 20px;*/
     -webkit-transition: all 0.2s linear;
