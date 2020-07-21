@@ -27,7 +27,7 @@ class StoreEvent extends FormRequest
             //
                 'name' => 'required',
                 'date' => 'required|date',
-                'time' => 'date_format:H:i',
+                'time' => 'required|date_format:H:i',
                 'end_date' => 'date',
                 'end_time' => 'date_format:H:i',
                 'description' => 'required',

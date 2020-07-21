@@ -35,30 +35,23 @@
 <body>
 
 <?
-$city =  App\Models\City::GetCurrentCity(); ?>
+$city = App\Models\City::GetCurrentCity(); ?>
 <!-- end .content-->
-<header class="header">
-    <div class="container-h2">
-        <a href="/" class="logo"><img src="/home/img/logo.svg" alt="Corp Solutions"/></a>
-        <!-- end .logo-->
 
-        @auth
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form-head').submit();"
-               style="margin-right: 30px;"> {{\Illuminate\Support\Facades\Auth::user()->email}} Выйти</a>
-            <form id="logout-form-head" action="{{ route('lk.logout') }}" method="POST"
-                  style="display: none;">@csrf</form>
-        @endauth
-
-        <a href="/" class="personal-back">На главную &RightArrow;</a>
-        <!-- end .Personal-Area-->
-    </div>
-    <!-- end .container-->
-
-</header>
 <!-- end .header-->
-<div id="app">
-    <event-in-my-city-side :city="{{$city}}"></event-in-my-city-side>
-    @yield('content')
+<div id="app" class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <event-in-my-city-side :city="{{$city}}"></event-in-my-city-side>
+        </div>
+
+        <div class="col-sm-8">
+            @yield('content')
+        </div>
+        <div class="col-sm-1">
+            dssdsdds
+        </div>
+    </div>
 </div>
 <footer class="footer_lk">
     <div class="container">
