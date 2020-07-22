@@ -37,9 +37,12 @@
 <?
 $city = App\Models\City::GetCurrentCity(); ?>
 <!-- end .content-->
-
+<div id="headerApp">
+    @include('lk.header')
+</div>
 <!-- end .header-->
 <div id="app" class="container">
+
     <div class="row">
         <div class="col-sm-2">
             <event-in-my-city-side :city="{{$city}}"></event-in-my-city-side>

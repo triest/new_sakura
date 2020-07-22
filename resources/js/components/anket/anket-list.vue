@@ -40,6 +40,7 @@
         mounted() {
             this.seach();
             this.scroll();
+            this.page = 1;
         },
         data() {
             return {
@@ -55,7 +56,7 @@
         methods: {
 
             seach() {
-                this.anketList=[];
+                this.anketList = [];
                 axios.get('/seach').then((response) => {
                     let data = response.data;
                     this.anketList = data.ankets;
@@ -121,8 +122,6 @@
         width: 100%;
         padding: 10px;
     }
-
-
 
     .container img {
         vertical-align: middle;

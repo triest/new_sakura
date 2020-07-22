@@ -31,6 +31,7 @@ Vue.component('like-carusel', require('./components/like-carusel/like-carusel').
 Vue.component('presents-admin-list', require('./components/admin/presents/presents-list').default);
 Vue.component('my-presents-modal', require('./components/anket/myPresentsModal').default);
 Vue.component('sidebar', require('./components/layouts/sidebar').default);
+Vue.component('header-bock', require('./components/layouts/header-bock').default);
 
 
 /**
@@ -46,4 +47,8 @@ window.addEventListener('load', function () {
     const app = new Vue({
         el: '#app',
     });
+    const headerApp = new Vue({
+        el: '#headerApp',
+    });
 })
+
