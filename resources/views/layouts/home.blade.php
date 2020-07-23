@@ -37,20 +37,24 @@
             <a href="#">Plaseholder</a>
 
 
-            <a href="{{ route('admin.register') }}" class="mob personal-a">Вход</a>
+            <a href="{{ route('admin.register') }}" class="mob personal-a">Вход1</a>
 
-            <a href="{{ route('lk.login') }}" class="mob personal-a">Вход</a>
+            <a href="{{ route('lk.login') }}" class="mob personal-a">Вход2</a>
 
-            <a href="{{ route('lk.register') }}" class="mob personal-area">Регистрация</a>
+            <a href="{{ route('lk.register') }}" class="mob personal-area">Регистрация3</a>
 
         </nav>
         <!-- end .menu-->
         <div class="toggle-menu"><span class="pos1"></span> <span class="pos2"></span> <span class="pos3"></span>
         </div>
         <!-- end .toggle-menu-->
-        <a href="{{ route('lk.login') }}" class="personal-a">Вход</a>
-        <a href="{{ route('lk.register') }}" class="personal-area">Регистрация</a>
-        <!-- end .Personal-Area-->
+        @if (Auth::guest())
+            <a href="{{ route('lk.login') }}" class="personal-a">Вход1</a>
+            <a href="{{ route('lk.register') }}" class="personal-area">Регистрация2</a>
+    @else
+      Дщпшт
+    @endif
+    <!-- end .Personal-Area-->
     </div>
 
 </header>

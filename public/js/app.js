@@ -3827,6 +3827,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -3834,9 +3835,21 @@ __webpack_require__.r(__webpack_exports__);
       required: false
     }
   },
+  data: function data() {
+    return {};
+  },
   mounted: function mounted() {
     console.log("headder2");
     console.log(this.user);
+  },
+  methods: {
+    logout: function logout() {
+      axios.post('lk/logout').then(function () {
+        Alert("logout");
+      })["catch"](function () {
+        Alert("fail");
+      });
+    }
   }
 });
 
@@ -49666,7 +49679,27 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(2)
+                _c("ul", { staticClass: "multi-language-sub" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            return _vm.logout()
+                          }
+                        }
+                      },
+                      [
+                        _c("img", { attrs: { src: "/home/img/flags_ru.png" } }),
+                        _vm._v(" Выйти")
+                      ]
+                    )
+                  ])
+                ])
               ])
             ]
           )
@@ -49702,19 +49735,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "multi-language-sub" }, [
-      _c("li", [
-        _c("a", { attrs: { href: "#" } }, [
-          _c("img", { attrs: { src: "/home//img/flags_ru.png" } }),
-          _vm._v("Настроки")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "#" } }, [
-          _c("img", { attrs: { src: "/home//img/flags_ru.png" } }),
-          _vm._v("Выйти")
-        ])
+    return _c("li", [
+      _c("a", { attrs: { href: "lk/profile" } }, [
+        _c("img", { attrs: { src: "/home/img/flags_ru.png" } }),
+        _vm._v("Настройки")
       ])
     ])
   }
