@@ -2030,7 +2030,7 @@ present image
 }
 
 input[type="file"] {
-    display: none;
+    display: block;
 }
 .group-file_upload_yes{
 

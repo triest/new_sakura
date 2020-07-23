@@ -56,7 +56,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="group">
+                    <a href="{{route("anket.albums",['id'=>$user->id])}}" class="personal-area">Фотографии</a>
+                </div>
 
                 <div class="group">
                     <label class="label_txt"><span></span>Имя</label>

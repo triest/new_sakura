@@ -3807,9 +3807,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object,
+      required: false
+    }
+  },
   mounted: function mounted() {
-    console.log("headder");
+    console.log("headder2");
+    console.log(this.user);
   }
 });
 
@@ -49606,9 +49633,92 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  4444\n")])
+  return _c("div", { staticClass: "container" }, [
+    _c("header", { staticClass: "blog-header py-3" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "row flex-nowrap justify-content-between align-items-center"
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "col-4 d-flex justify-content-end align-items-center"
+            },
+            [
+              _c("div", { staticClass: "multi-language" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "multi-language-current",
+                    attrs: { href: "#" }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { height: "60px", src: _vm.user.profile_url }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
+            ]
+          )
+        ]
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-4 pt-1" }, [
+      _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+        _vm._v("Subscribe")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-4 text-center" }, [
+      _c(
+        "a",
+        { staticClass: "blog-header-logo text-dark", attrs: { href: "#" } },
+        [_vm._v("Large")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "multi-language-sub" }, [
+      _c("li", [
+        _c("a", { attrs: { href: "#" } }, [
+          _c("img", { attrs: { src: "/home//img/flags_ru.png" } }),
+          _vm._v("Настроки")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "#" } }, [
+          _c("img", { attrs: { src: "/home//img/flags_ru.png" } }),
+          _vm._v("Выйти")
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

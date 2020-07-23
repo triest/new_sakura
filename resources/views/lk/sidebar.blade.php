@@ -3,5 +3,6 @@
 
     <a href="{{ route('lk.register') }}" class="mob personal-area">Регистрация</a>
 @else
+
     <sidebar></sidebar>
 @endif
