@@ -52,7 +52,8 @@
             <a href="{{ route('lk.login') }}" class="personal-a">Вход1</a>
             <a href="{{ route('lk.register') }}" class="personal-area">Регистрация2</a>
     @else
-      Дщпшт
+            <a href="{{ route('lk.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
+            <form id="logout-form" action="{{ route('lk.logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
     @endif
     <!-- end .Personal-Area-->
     </div>

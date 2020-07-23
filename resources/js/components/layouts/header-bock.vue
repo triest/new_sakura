@@ -13,7 +13,7 @@
                         <a class="multi-language-current" href="#"> <img height="60px"
                                                                          :src="user.profile_url"></a>
                         <ul class="multi-language-sub">
-                            <li><a href="lk/profile"><img src="/home/img/flags_ru.png">Настройки</a></li>
+                            <li><a href="/lk/profile"><img src="/home/img/flags_ru.png">Настройки</a></li>
                             <li><a v-on:click="logout()" href="#"><img src="/home/img/flags_ru.png"> Выйти</a>
                             </li>
 
@@ -21,7 +21,9 @@
                     </div>
                 </div>
             </div>
+
         </header>
+
     </div>
 </template>
 
@@ -34,7 +36,11 @@
             }
         },
         data() {
-            return {};
+            return {
+
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+            };
         },
         mounted() {
             console.log("headder2")
@@ -42,11 +48,20 @@
         },
         methods: {
             logout() {
-                axios.post('lk/logout').then(function () {
-                    Alert("logout")
-                }).catch(function () {
-                    Alert("fail")
-                })
+                axios.post('logout').then(response => {
+                    if (response.status === 302 || 401) {
+                        console.log('logout')
+                        location.reload();
+                        document.location.reload();
+                    }
+                    else {
+                        document.location.reload();
+                        location.reload();
+                    }
+                }).catch(error => {
+                    document.location.reload();
+                    location.reload();
+                });
             }
         }
     }

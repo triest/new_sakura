@@ -19,6 +19,22 @@
     {
         public $user = null;
 
+        /**
+         * @param User|null $user
+         */
+        public function setUser(?User $user): void
+        {
+            $this->user = $user;
+        }
+
+        /**
+         * @param Request|null $request
+         */
+        public function setRequest(?Request $request): void
+        {
+            $this->request = $request;
+        }
+
         public $request = null;
 
         /**

@@ -3828,6 +3828,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -3836,7 +3838,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   data: function data() {
-    return {};
+    return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    };
   },
   mounted: function mounted() {
     console.log("headder2");
@@ -3844,10 +3848,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      axios.post('lk/logout').then(function () {
-        Alert("logout");
-      })["catch"](function () {
-        Alert("fail");
+      axios.post('logout').then(function (response) {
+        if (response.status === 302 || 401) {
+          console.log('logout');
+          location.reload();
+          document.location.reload();
+        } else {
+          document.location.reload();
+          location.reload();
+        }
+      })["catch"](function (error) {
+        document.location.reload();
+        location.reload();
       });
     }
   }
@@ -49736,7 +49748,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "lk/profile" } }, [
+      _c("a", { attrs: { href: "/lk/profile" } }, [
         _c("img", { attrs: { src: "/home/img/flags_ru.png" } }),
         _vm._v("Настройки")
       ])
