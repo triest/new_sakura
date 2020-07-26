@@ -6,10 +6,7 @@
     <title>@yield('title')</title>
     <meta name="description" content="Corp Solutions - центр инновационных образовательных решений">
     <meta name="keywords" content="Corp Solutions - центр инновационных образовательных решений">
-
-    <link rel="shortcut icon" href="/home/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/home/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/home/favicon-16x16.png">
+    <link rel="icon" href="<?php echo asset("images/icons/favicon.png")?>" type="image/x-icon">
     <link href="/home/css/bootstrap-grid.css" rel="stylesheet" type="text/css">
     <link href="/home/css/animate.css" rel="stylesheet" type="text/css">
     <link href="/home/css/style.css" rel="stylesheet" type="text/css">
