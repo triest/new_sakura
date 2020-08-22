@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container" id="app">
+    <div id="app">
 
         <anket-list></anket-list>
 

@@ -2752,23 +2752,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -47432,7 +47415,7 @@ var render = function() {
                               }
                             },
                             [
-                              _c("option", { attrs: { value: "famele" } }, [
+                              _c("option", { attrs: { value: "female" } }, [
                                 _vm._v("Девушку")
                               ]),
                               _vm._v(" "),
@@ -48098,11 +48081,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticStyle: { "margin-left": "auto", "margin-right": "auto" } },
-      [
+  return _c(
+    "div",
+    [
+      _c("p", [
         _c(
           "button",
           {
@@ -48114,86 +48096,28 @@ var render = function() {
             }
           },
           [_vm._v("Настроить поиск")]
-        ),
-        _vm._v(" "),
-        _vm._l(_vm.anketList, function(item) {
-          return _c("div", [
-            _c(
-              "div",
-              { staticClass: "col-lg-3 col-md-4 col-sm-6 col-xs-9 box-shadow" },
-              [
-                _c("a", { attrs: { href: /anket/ + item.id } }, [
-                  _c("img", {
-                    attrs: {
-                      width: "200",
-                      height: "200",
-                      src: item.profile_url
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "cell" }, [
-                  _c("div", { staticClass: "cell-overflow" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(item.name) +
-                        ",\n                    "
-                    )
-                  ]),
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(item.age) +
-                      "\n                "
-                  )
-                ])
-              ]
-            )
-          ])
-        }),
-        _vm._v(" "),
-        !_vm.anketList.length
-          ? _c("div", { staticClass: "notfound" }, [
-              _vm._v("\n            Анкет не найденно\n        ")
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _vm.seachModal
-          ? _c("seachModal", {
-              on: {
-                closeSeachModal: function($event) {
-                  return _vm.closeSeachModal()
-                },
-                closeNewMessageAlert: function($event) {
-                  return _vm.closeNewMessageAlert()
-                }
-              }
-            })
-          : _vm._e()
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-lg-10 col-md-3 col-sm-3 col-xs-9 box-shadow" },
-        [
-          _vm.page < _vm.numPages
-            ? _c(
-                "button",
-                {
-                  staticClass: "previous btn-primary ",
-                  on: { click: _vm.loadNew }
-                },
-                [_vm._v("Загрузить еще")]
+        )
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.anketList, function(item) {
+        return _c("div", { staticClass: "col-md-3" }, [
+          _c("img", {
+            attrs: { width: "250", height: "250", src: item.profile_url }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "cell" }, [
+            _c("div", { staticClass: "cell-overflow" }, [
+              _vm._v(
+                "\n                " + _vm._s(item.name) + ",\n            "
               )
-            : _vm._e()
-        ]
-      )
-    ])
-  ])
+            ]),
+            _vm._v("\n            " + _vm._s(item.age) + "\n        ")
+          ])
+        ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
