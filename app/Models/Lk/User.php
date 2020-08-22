@@ -426,14 +426,6 @@
                     $this->id)->orderBy('gift_act.created_at',
                     'DESC')->limit($limit)->get();
 
-            /*
-            $giftCollection = array();
-            foreach ($giftAct as $item) {
-                $gift = Present::get($item->present_id);
-                if ($gift != null) {
-                    array_push($giftCollection, $gift);
-                }
-            }*/
             return $giftAct;
         }
 

@@ -15,6 +15,10 @@
     {
 
         // создание каталогов
+        /**
+         * @param string $patch
+         * @return bool
+         */
         function _create_dir($patch = '')
         {
             if (empty($patch)) {
@@ -48,6 +52,10 @@
             return redirect('lk/profile')->with(compact($user));
         }
 
+        /**
+         * @param Request $request
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
         public function profile(Request $request)
         {
             $user = $request->user('lk');
@@ -95,8 +103,18 @@
             ]);
         }
 
-        public function store_profile(StoreUserProfile $request)
+        /**
+         * @param Request $request
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+         */
+        public function store_profile(Request $request)
         {
+
+
+            $validatedData = $request->validate([
+                    'name' => 'required|unique:users|max:255',
+            ]);
+
 
             $user = Auth::user();
             $data = $request->all();
@@ -128,6 +146,10 @@
             return redirect('lk/profile');
         }
 
+        /**
+         * @param Request $request
+         * @return \Illuminate\Http\JsonResponse
+         */
         public function store_crop(Request $request)
         {
 

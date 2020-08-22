@@ -105,7 +105,8 @@
         });
     });
 
-    Route::prefix('test')->name('test.')->namespace('Test')->group(function () {
-
+    Route::prefix('test')->name('test.')->group(function () {
+        Route::get('/parse', 'TestController@parse')->name('parse');
+        Route::post('/parse', 'TestController@store')->name('store');
 
     });

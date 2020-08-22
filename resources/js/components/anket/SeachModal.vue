@@ -9,7 +9,7 @@
                                 <p>
                                     <label>Ищу:</label>
                                     <select id="meet" class="meet" name="meet" v-model="meet">
-                                        <option value="famele">Девушку</option>
+                                        <option value="female">Девушку</option>
                                         <option value="male">Парня</option>
                                         <option value="nomatter">неважно</option>
                                     </select>
