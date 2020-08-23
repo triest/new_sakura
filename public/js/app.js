@@ -2752,6 +2752,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2790,7 +2792,7 @@ __webpack_require__.r(__webpack_exports__);
       window.onscroll = function () {
         var bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
-        if (bottomOfWindow && page < numPages) {
+        if (bottomOfWindow && _this2.page < _this2.numPages) {
           _this2.loadNew();
         }
       };
@@ -3959,6 +3961,7 @@ __webpack_require__.r(__webpack_exports__);
     getAnket: function getAnket() {
       var _this = this;
 
+      console.log("get anket");
       axios.get('like-carusel/getAnket').then(function (response) {
         _this.item = response.data.ankets;
         _this.online = response.data.online;
@@ -8605,7 +8608,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n*[data-v-228b89eb] {\n    box-sizing: border-box;\n}\n.circle[data-v-228b89eb]:before {\n    content: ' \\25CF';\n    font-size: 20px;\n    margin: 0 auto;\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(145, 100, 153, 0); /* Black background with 0.5 opacity */\n    color: #20f100;\n    width: 100%;\n    padding: 10px;\n}\n.container img[data-v-228b89eb] {\n    vertical-align: middle;\n}\n.container .content[data-v-228b89eb] {\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(0, 0, 0, 0); /* Black background with 0.5 opacity */\n    color: #f1f1f1;\n    width: 100%;\n    padding: 0px;\n    margin: 115px;\n}\n.cell[data-v-228b89eb] {\n    position: absolute;\n    top: 120px;\n    right: 0;\n    bottom: 30px;\n    left: 0;\n    box-sizing: border-box;\n    display: block;\n    padding: 20px;\n    width: 100%;\n    color: white !important;\n    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n    cursor: pointer;\n}\n.cell-overflow[data-v-228b89eb] {\n    box-sizing: border-box;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    color: white;\n    cursor: pointer;\n}\n.previous[data-v-228b89eb] {\n    cursor: pointer;\n    margin-left: 50%;\n}\n.white[data-v-228b89eb]:link {\n    color: white;\n}\n.notfound[data-v-228b89eb] {\n}\n", ""]);
+exports.push([module.i, "\n*[data-v-228b89eb] {\n    box-sizing: border-box;\n}\n.circle[data-v-228b89eb]:before {\n    content: ' \\25CF';\n    font-size: 20px;\n    margin: 0 auto;\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(145, 100, 153, 0); /* Black background with 0.5 opacity */\n    color: #20f100;\n    width: 100%;\n    padding: 10px;\n}\n.container img[data-v-228b89eb] {\n    vertical-align: middle;\n}\n.container .content[data-v-228b89eb] {\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(0, 0, 0, 0); /* Black background with 0.5 opacity */\n    color: #f1f1f1;\n    width: 100%;\n    padding: 0px;\n    margin: 115px;\n}\n.cell[data-v-228b89eb] {\n    position: absolute;\n    top: 150px;\n    right: 0;\n    bottom: 30px;\n    left: 0;\n    box-sizing: border-box;\n    display: block;\n    padding: 20px;\n    width: 100%;\n    color: white !important;\n    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n    cursor: pointer;\n}\n.cell-overflow[data-v-228b89eb] {\n    box-sizing: border-box;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    color: white;\n    cursor: pointer;\n}\n.previous[data-v-228b89eb] {\n    cursor: pointer;\n    margin-left: 50%;\n}\n.white[data-v-228b89eb]:link {\n    color: white;\n}\n.notfound[data-v-228b89eb] {\n}\n", ""]);
 
 // exports
 
@@ -48101,17 +48104,21 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.anketList, function(item) {
         return _c("div", { staticClass: "col-md-3" }, [
-          _c("img", {
-            attrs: { width: "250", height: "250", src: item.profile_url }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "cell" }, [
-            _c("div", { staticClass: "cell-overflow" }, [
-              _vm._v(
-                "\n                " + _vm._s(item.name) + ",\n            "
-              )
-            ]),
-            _vm._v("\n            " + _vm._s(item.age) + "\n        ")
+          _c("a", { attrs: { href: /anket/ + item.id } }, [
+            _c("img", {
+              attrs: { width: "250", height: "250", src: item.profile_url }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "cell" }, [
+              _c("div", { staticClass: "cell-overflow" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(item.name) +
+                    ",\n                "
+                )
+              ]),
+              _vm._v("\n                " + _vm._s(item.age) + "\n            ")
+            ])
           ])
         ])
       })

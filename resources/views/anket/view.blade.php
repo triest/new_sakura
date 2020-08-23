@@ -8,13 +8,14 @@
     <div class="container" id="app">
         <div class="profile-form">
 
-            <div class="form-lk_name">{{$user->name}}</div> {{$user->age()}}
+            <div class="form-lk_name">{{$user->name}}, {{$user->age()}}</div>
+            <div class="">
+                {{$user->getCity()->name}}
+            </div>
 
             <form class="form-lk" action="{{ route('lk.profileStore') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
-
-                <div class="form-lk_h2">Личные данные</div>
 
                 <div class="group">
 
@@ -34,7 +35,6 @@
 
                             <img src="{{ ($user->profile_url!="") ? $user->profile_url : "/home/img/image-placeholder.png"}}"
                                  alt="" id="profile_image">
-                            <input id="file-upload-photo-profile" name="file-upload-photo-profile" type="file"/>
 
                         </div>
 

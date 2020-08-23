@@ -4,13 +4,15 @@
             <button class="btn btn-primary" v-on:click="openSeachModal()">Настроить поиск</button>
         </p>
         <div class="col-md-3" v-for="item in anketList">
-            <img width="250" height="250" :src="item.profile_url">
-            <div class="cell">
-                <div class="cell-overflow">
-                    {{item.name}},
+            <a :href="/anket/+item.id">
+                <img width="250" height="250" :src="item.profile_url">
+                <div class="cell">
+                    <div class="cell-overflow">
+                        {{item.name}},
+                    </div>
+                    {{item.age}}
                 </div>
-                {{item.age}}
-            </div>
+            </a>
         </div>
     </div>
 </template>
@@ -53,7 +55,7 @@
                 window.onscroll = () => {
                     let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
-                    if (bottomOfWindow && page < numPages) {
+                    if (bottomOfWindow && this.page < this.numPages) {
                         this.loadNew();
                     }
                 }
@@ -123,7 +125,7 @@
 
     .cell {
         position: absolute;
-        top: 120px;
+        top: 150px;
         right: 0;
         bottom: 30px;
         left: 0;

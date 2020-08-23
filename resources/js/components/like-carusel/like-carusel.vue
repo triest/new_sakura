@@ -77,6 +77,7 @@
         methods:
             {
                 getAnket() {
+                    console.log("get anket")
                     axios.get('like-carusel/getAnket')
                         .then((response) => {
                             this.item = response.data.ankets;

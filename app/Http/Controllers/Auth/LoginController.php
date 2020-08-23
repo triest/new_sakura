@@ -2,13 +2,12 @@
 
     namespace App\Http\Controllers\Auth;
 
-    use App\City;
     use App\Http\Controllers\Controller;
+    use App\Models\City;
     use App\Providers\RouteServiceProvider;
     use Carbon\Carbon;
     use Illuminate\Foundation\Auth\AuthenticatesUsers;
     use Illuminate\Support\Facades\Auth;
-    use Illuminate\Support\Facades\DB;
 
     class LoginController extends Controller
     {
@@ -22,7 +21,6 @@
         | to conveniently provide its functionality to your applications.
         |
         */
-7
         use AuthenticatesUsers;
 
         /**
@@ -43,22 +41,17 @@
         }
 
 
-
-        function authenticated(Request $request, $user)
+        function authenticated()
         {
             //тут когда последний раз заходил
             $user = Auth::user();
             if ($user != null) {
-                DB::table('users')
-                        ->where('id', $user->id)
-                        ->update(['last_login' => Carbon::now()->toDateTimeString()]);
-
+                $user->last_login= Carbon::now()->toDateTimeString();
                 $city = City::GetCurrentCity();
-
-                if ($user != null && $city != null) {
+                if ($city != null) {
                     $user->city_id = $city->id;
-                    $user->save();
                 }
+                $user->save();
             }
 
         }

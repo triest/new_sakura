@@ -9,6 +9,12 @@
             <form class="form-lk" action="{{route('events.store')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
+                    @if($errors->any())
+                        <font color="red"><p>
+                            <h4>{{$errors->first()}}</h4>
+                        </font>
+                    @endif
+
                     <div class="col-xs-11">
                         <label for="title">Имя:</label><br>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
@@ -22,7 +28,7 @@
                 <div class="form-group">
                     <div class="col-xs-17">
                         <label for="exampleInputFile">Описание события:</label><br>
-                        <textarea name="description" rows="2" required> </textarea>
+                        <textarea name="description" rows="2" required> {{old('description')}} </textarea>
                     </div>
                 </div>
                 @if($errors->has('description'))
@@ -81,7 +87,7 @@
                         @endif
                     </p>
                     Время:
-                    <input type="time" id="time" name="time" value="{{ old('cityname') }}">
+                    <input type="time" id="time" name="time" value="{{ old('time') }}">
                     @if($errors->has('time'))
                         <font color="red"><p>  {{$errors->first('time')}}</p></font>
                     @endif
@@ -96,7 +102,7 @@
                     </p>
                     <p>
                         Время:
-                        <input type="time" id="time" name="time_end" value="{{ old('cityname') }}">
+                        <input type="time" id="time" name="time_end" value="{{ old('time_end') }}">
                         @if($errors->has('time'))
                             <font color="red">
                                 {{$errors->first('time')}}</font>
@@ -108,7 +114,7 @@
                 </label><br>
 
                 <label for="min">Минимальное число участников (если нет ограничения, оставьте пустым):
-                    <input type="number" name="min" id="min" min="1" value="{{ old('max') }}"  checked>
+                    <input type="number" name="min" id="min" min="1" value="{{ old('max') }}" checked>
                 </label><br>
 
 

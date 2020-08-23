@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Builders\EventBuilder;
     use App\Http\Requests\StoreEvent;
     use App\Models\City;
     use App\Models\Event;
@@ -35,17 +36,19 @@
 
         public function store(StoreEvent $request)
         {
-
-            $event = new Event();
-            $event->name = $request->name;
-            $event->begin = $request->date . " " . $request->time;
-            $event->description = $request->description;
-            $event->user_id = Auth::user()->id;
-            $event->max_people = $request->max;
-            $event->min_people = $request->min;
-            $event->end_applications = $request->end_date . " " . $request->end_time;
-            $event->place = $request->place;
-            $event->city_id = $request->city;
+            $builder = new EventBuilder();
+            $builder->setName($request->name);
+            $builder->setDescription($request->description);
+            $builder->setBegin($request->date . " " . $request->time);
+            $builder->setCityId($request->city);
+            $builder->setPlace($request->place);
+            $builder->setMaxPeople($request->max);
+            $builder->setMinPiople($request->min);
+            $builder->setEndApplications($request->end_date." ".$request->time_end);
+            $event = $builder->getResult();
+            if (!is_object($event)) {
+                return redirect()->back()->withErrors(['msg' => $event])->withInput();
+            }
             $event->save();
 
             return redirect()->route('events.view', ['id' => $event->id]);
@@ -62,6 +65,7 @@
                 $date = explode(" ", $date);
 
                 $end = $event->end_applications;
+            
                 $end = explode(" ", $end);
 
                 $city = City::get($event->city_id);
@@ -116,7 +120,6 @@
                         array_push($partifucationArray, $partificator);
                     }
                 }
-
 
 
                 return response()->json([
@@ -220,25 +223,27 @@
             return response()->json(true);
         }
 
-        public function accept(Request $request){
-            $eventReq = EventRequwest::select(["*"])->where('id',$request->req_id)->first();
+        public function accept(Request $request)
+        {
+            $eventReq = EventRequwest::select(["*"])->where('id', $request->req_id)->first();
 
-            if($eventReq==null){
+            if ($eventReq == null) {
                 return response()->json([false]);
             }
-            $eventReq->status="accept";
+            $eventReq->status = "accept";
             $eventReq->save();
 
             return response()->json([true]);
         }
 
-        public function denided(Request $request){
-            $eventReq = EventRequwest::select(["*"])->where('id',$request->req_id)->first();
+        public function denided(Request $request)
+        {
+            $eventReq = EventRequwest::select(["*"])->where('id', $request->req_id)->first();
 
-            if($eventReq==null){
+            if ($eventReq == null) {
                 return response()->json([false]);
             }
-            $eventReq->status="denide";
+            $eventReq->status = "denide";
             $eventReq->save();
 
             return response()->json([true]);
@@ -246,18 +251,23 @@
 
         public function requwestlist($id, Request $request)
         {
-           // dump($id);
+            // dump($id);
             // dump($request);
             $event = Event::get($id);
-         //   dump($event);
+            //   dump($event);
             if ($event == null) {
                 return response()->json(null);
             }
             $eventReq = EventRequwest::select(["*"])
-                    ->select(['users.id as user_id','users.profile_url' ,'requwest.target_id as event_id','requwest.id as requwest_id','requwest.status as requwest_status'])
+                    ->select([
+                            'users.id as user_id',
+                            'users.profile_url',
+                            'requwest.target_id as event_id',
+                            'requwest.id as requwest_id',
+                            'requwest.status as requwest_status'
+                    ])
                     ->leftJoin('users', 'users.id', '=', 'requwest.who_id')
                     ->where("target_id", $id)->where("requwest.name", "event")
-
                     ->get();
 
             return response()->json(["requwest" => $eventReq]);

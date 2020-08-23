@@ -35,4 +35,12 @@ class StoreEvent extends FormRequest
                 'max'=>'integer|min:0'
         ];
     }
+
+    public function messages()
+    {
+        return ['min.min'=>'неверное число',
+                'max.min'=>'неверное число',
+
+                ];
+    }
 }

@@ -99,24 +99,7 @@
 
                     <b><a href="{{ url('/logout') }}">Выйти</a></b>
                     <br>
-                    @if($girl=Auth::user()->anketisExsis()!=null)
-                    <!-- {{$girl=Auth::user()->anketisExsis()}} -->
-                        <a href="{{route('myAnket')}}">
-                            <img height="150" width="150"
-                                 src="<?php echo asset("images/small/$girl->main_image")?>">
-                        </a>
-                        <div id="sidePanelApp">
-                            <side-panel :user="{{auth()->user()}}"></side-panel>
-                        </div>
 
-
-                        <b><a class="btn btn-primary" href="{{route('myevent')}}">Мои события</a> </b>
-
-                    @else
-                        <br>
-                        <b><a class="btn btn-primary" href="{{route('createGirlPage')}}">Создать анкету</a> </b>
-                        <br>
-                    @endif
                     <br>
                     <!--check is admin -->
                     @if(Auth::user()->is_admin==1)
@@ -127,7 +110,7 @@
                     <?
                     if($_SERVER['REQUEST_URI'] != "/anket"){
                     ?>
-                    <b><a class="btn btn-success" href="{{route('main')}}">Поиск</a> </b>
+
                     <? } ?>
                 @endif
             </div>

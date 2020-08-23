@@ -3,6 +3,7 @@
     namespace App\Models\Lk;
 
     use App\Models\Album;
+    use App\Models\City;
     use App\Models\Dialog;
     use App\Events\NewMessage;
     use App\Models\Event;
@@ -427,6 +428,15 @@
                     'DESC')->limit($limit)->get();
 
             return $giftAct;
+        }
+
+        public function getCity()
+        {
+            if ($this->city_id != null) {
+                return $city = City::get($this->city_id);
+            } else {
+                return null;
+            }
         }
 
 
