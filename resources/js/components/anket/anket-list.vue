@@ -14,11 +14,12 @@
                 </div>
             </a>
         </div>
+        <SearchModal v-if="seachModal" @closeSeachModal="closeSeachModal()"></SearchModal>
     </div>
 </template>
 
 <script>
-    import SeachModal from './SeachModal'
+    import SearchModal from './SearchModal'
 
     export default {
 
@@ -37,7 +38,7 @@
                 event: "",
             }
         },
-        components: {SeachModal},
+        components: {SearchModal},
         methods: {
 
             seach() {
