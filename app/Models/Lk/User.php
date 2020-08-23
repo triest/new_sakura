@@ -345,15 +345,13 @@
         public
         function sendMessage(
                 $text,
-                $who_girl = null
+                $who_user = null
         ) {
             $TargetUser = $this;
 
 
-            if ($who_girl == null) {
+            if ($who_user == null) {
                 $user = Auth::user();
-            } else {
-                $user = $who_girl;
             }
 
             if ($user == null || $TargetUser == null) {
@@ -392,7 +390,7 @@
             }
             broadcast(new NewMessage($message));
 
-            return true;
+            return $message;
         }
 
         public function makeGift($present_id)
