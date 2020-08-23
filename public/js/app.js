@@ -2423,6 +2423,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   name: 'modal',
@@ -2469,20 +2472,17 @@ __webpack_require__.r(__webpack_exports__);
       select2children: null,
       select2relation: [],
       seachSettings: null,
-      targets_show: false,
-      interes_show: false,
+      targets_show: true,
+      interes_show: true,
       children_show: false,
       relation_show: false
     };
   },
   methods: {
-    close: function close() {
-      this.$emit('closeSeachModal');
+    close: function close() {//  this.$emit('closeSeachModal')
     },
     findUserByid: function findUserByid() {},
     saveChange: function saveChange() {
-      var _this = this;
-
       axios.post('/seach/savesettings', {
         meet: this.meet,
         from: this.from,
@@ -2491,27 +2491,26 @@ __webpack_require__.r(__webpack_exports__);
         children: this.select2children,
         targets: this.select2targets,
         relation: this.select2relation
-      }).then(function (response) {
-        //this.getSettings();
-        _this.$emit('closeSeachModal');
+      }).then(function (response) {//this.getSettings();
+        //   this.$emit('closeSeachModal')
       });
     },
     getSettings: function getSettings() {
-      var _this2 = this;
+      var _this = this;
 
       axios.get('seach/getsettings').then(function (response) {
         var res = response.data;
-        _this2.targets = res.targets;
-        _this2.select2targets = res.selectedTargets;
-        _this2.select2inters = res.selectedInterest;
-        _this2.interest = res.interests;
-        _this2.children = res.chidren;
-        _this2.seachSettings = res.sechSettings;
-        _this2.from = _this2.seachSettings.age_from;
-        _this2.to = _this2.seachSettings.age_to;
-        _this2.select2children = _this2.seachSettings.children;
-        _this2.meet = _this2.seachSettings.meet;
-        _this2.relation = res.relations;
+        _this.targets = res.targets;
+        _this.select2targets = res.selectedTargets;
+        _this.select2inters = res.selectedInterest;
+        _this.interest = res.interests;
+        _this.children = res.children;
+        _this.seachSettings = res.sechSettings;
+        _this.from = _this.seachSettings.age_from;
+        _this.to = _this.seachSettings.age_to;
+        _this.select2children = _this.seachSettings.children;
+        _this.meet = _this.seachSettings.meet;
+        _this.relation = res.relations;
       }).then(console.log(this.relation));
     },
     show: function show(input) {
@@ -47376,531 +47375,429 @@ var render = function() {
         [
           _c("div", { staticClass: "modal-mask" }, [
             _c("div", { staticClass: "modal-wrapper" }, [
-              _c(
-                "div",
-                { staticClass: "modal-container" },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "modal-body" },
-                    [
-                      _vm._t("body", [
-                        _c("p", [
-                          _c("label", [_vm._v("Ищу:")]),
-                          _vm._v(" "),
-                          _c(
-                            "select",
+              _c("div", { staticClass: "modal-container" }, [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-sm-2 col-form-label",
+                        attrs: { for: "meet" }
+                      },
+                      [_vm._v("Ищу")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-10" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
                             {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.meet,
+                              expression: "meet"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "meet", name: "meet" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.meet = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "female" } }, [
+                            _vm._v("Девушку")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "male" } }, [
+                            _vm._v("Парня")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "nomatter" } }, [
+                            _vm._v("неважно")
+                          ])
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-sm-2 col-form-label",
+                        attrs: { for: "from" }
+                      },
+                      [_vm._v("Возраст")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-2" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.from,
+                            expression: "from"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        staticStyle: { width: "75px" },
+                        attrs: {
+                          type: "number",
+                          name: "from",
+                          id: "from",
+                          min: "18",
+                          max: _vm.maxAge,
+                          onkeypress: "return isNumber(event)"
+                        },
+                        domProps: { value: _vm.from },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.from = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-1" }, [
+                      _vm._v(
+                        "\n                                    до\n                                "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-1" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.to,
+                            expression: "to"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        staticStyle: { width: "75px" },
+                        attrs: {
+                          type: "number",
+                          name: "to",
+                          id: "to",
+                          min: _vm.minAge,
+                          max: 100,
+                          onkeypress: "return isNumber(event)"
+                        },
+                        domProps: { value: _vm.to },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.to = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("fieldset", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-sm-2 pt-0" }, [
+                        _vm._v("Цели")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10" },
+                        _vm._l(_vm.targets, function(item) {
+                          return _c("div", { staticClass: "form-check" }, [
+                            _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.meet,
-                                  expression: "meet"
+                                  value: _vm.select2targets,
+                                  expression: "select2targets"
                                 }
                               ],
-                              staticClass: "meet",
-                              attrs: { id: "meet", name: "meet" },
+                              staticClass: "form-check-input",
+                              attrs: { type: "checkbox", id: item.id },
+                              domProps: {
+                                value: item.id,
+                                checked: Array.isArray(_vm.select2targets)
+                                  ? _vm._i(_vm.select2targets, item.id) > -1
+                                  : _vm.select2targets
+                              },
                               on: {
                                 change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.meet = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "female" } }, [
-                                _vm._v("Девушку")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "male" } }, [
-                                _vm._v("Парня")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "nomatter" } }, [
-                                _vm._v("неважно")
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _c("label", [_vm._v("Возраст:")]),
-                          _vm._v(" от "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.from,
-                                expression: "from"
-                              }
-                            ],
-                            staticStyle: { width: "50px" },
-                            attrs: {
-                              type: "number",
-                              name: "from",
-                              id: "from",
-                              min: "18",
-                              max: _vm.maxAge,
-                              onkeypress: "return isNumber(event)"
-                            },
-                            domProps: { value: _vm.from },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.from = $event.target.value
-                              }
-                            }
-                          }),
-                          _vm._v("\n                                до "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.to,
-                                expression: "to"
-                              }
-                            ],
-                            staticStyle: { width: "50px" },
-                            attrs: {
-                              type: "number",
-                              name: "to",
-                              id: "to",
-                              min: _vm.minAge,
-                              max: 100,
-                              onkeypress: "return isNumber(event)"
-                            },
-                            domProps: { value: _vm.to },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.to = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Цель:")]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn-default",
-                            on: {
-                              click: function($event) {
-                                return _vm.show("target")
-                              }
-                            }
-                          },
-                          [_vm._v("выбрать")]
-                        ),
-                        _vm._v(" "),
-                        _vm.countSelectedTargets > 0
-                          ? _c("b", [
-                              _vm._v(" " + _vm._s(_vm.countSelectedTargets))
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm._l(_vm.targets, function(item) {
-                          return _vm.targets_show
-                            ? _c("div", { staticClass: "v-fade" }, [
-                                _c("label", { staticClass: "switch" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.select2targets,
-                                        expression: "select2targets"
-                                      }
-                                    ],
-                                    attrs: { type: "checkbox", id: item.id },
-                                    domProps: {
-                                      value: item.id,
-                                      checked: Array.isArray(_vm.select2targets)
-                                        ? _vm._i(_vm.select2targets, item.id) >
-                                          -1
-                                        : _vm.select2targets
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        var $$a = _vm.select2targets,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = item.id,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (_vm.select2targets = $$a.concat([
-                                                $$v
-                                              ]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (_vm.select2targets = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          _vm.select2targets = $$c
-                                        }
-                                      }
+                                  var $$a = _vm.select2targets,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = item.id,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.select2targets = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.select2targets = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
                                     }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass: "onoffswitch-label",
-                                      attrs: { for: "myonoffswitch" }
-                                    },
-                                    [
-                                      _c("span", {
-                                        staticClass: "onoffswitch-inner"
-                                      }),
-                                      _vm._v(" "),
-                                      _c("span", {
-                                        staticClass: "onoffswitch-switch"
-                                      })
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(item.name) +
-                                    "\n                            "
-                                )
-                              ])
-                            : _vm._e()
-                        }),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Интересы:")]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn-default",
-                            on: {
-                              click: function($event) {
-                                return _vm.show("interes")
+                                  } else {
+                                    _vm.select2targets = $$c
+                                  }
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("выбрать")]
-                        ),
-                        _vm._v(" "),
-                        _vm.countSelectedInteres > 0
-                          ? _c("b", [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.countSelectedInteres) +
-                                  "\n                            "
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
+                            }),
+                            _vm._v(
+                              "\n                                            " +
+                                _vm._s(item.name) +
+                                "\n                                        "
+                            )
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("fieldset", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-sm-2 pt-0" }, [
+                        _vm._v("Интересы")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10" },
                         _vm._l(_vm.interest, function(item) {
-                          return _vm.interes_show
-                            ? _c("div", [
-                                _c("label", { staticClass: "switch" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.select2inters,
-                                        expression: "select2inters"
-                                      }
-                                    ],
-                                    attrs: { type: "checkbox", id: item.id },
-                                    domProps: {
-                                      value: item.id,
-                                      checked: Array.isArray(_vm.select2inters)
-                                        ? _vm._i(_vm.select2inters, item.id) >
-                                          -1
-                                        : _vm.select2inters
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        var $$a = _vm.select2inters,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = item.id,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (_vm.select2inters = $$a.concat([
-                                                $$v
-                                              ]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (_vm.select2inters = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          _vm.select2inters = $$c
-                                        }
-                                      }
+                          return _c("div", { staticClass: "form-check" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.select2inters,
+                                  expression: "select2inters"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "gridRadios",
+                                id: item.id
+                              },
+                              domProps: {
+                                value: item.id,
+                                checked: Array.isArray(_vm.select2inters)
+                                  ? _vm._i(_vm.select2inters, item.id) > -1
+                                  : _vm.select2inters
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.select2inters,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = item.id,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.select2inters = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.select2inters = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
                                     }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("span", { staticClass: "slider round" })
-                                ]),
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(item.name) +
-                                    "\n                            "
-                                )
-                              ])
-                            : _vm._e()
+                                  } else {
+                                    _vm.select2inters = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                            " +
+                                _vm._s(item.name) +
+                                "\n                                        "
+                            )
+                          ])
                         }),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Дети:")]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn-default",
-                            on: {
-                              click: function($event) {
-                                return _vm.show("children")
-                              }
-                            }
-                          },
-                          [_vm._v("выбрать")]
-                        ),
-                        _vm._v(" "),
-                        _vm.countSelectedChildren
-                          ? _c("b", [_vm._v("Выбранн")])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.children_show
-                          ? _c(
-                              "div",
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.select2children,
-                                      expression: "select2children"
-                                    }
-                                  ],
-                                  attrs: { type: "radio" },
-                                  domProps: {
-                                    value: 0,
-                                    checked: _vm._q(_vm.select2children, 0)
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.select2children = 0
-                                    }
-                                  }
-                                }),
-                                _vm._v(
-                                  "\n                                Не важно\n                                "
-                                ),
-                                _c("span", { staticClass: "slider round" }),
-                                _vm._v(" "),
-                                _vm._l(_vm.children, function(item) {
-                                  return _c("div", [
-                                    _c("label", { staticClass: "switch" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.select2children,
-                                            expression: "select2children"
-                                          }
-                                        ],
-                                        attrs: { type: "radio" },
-                                        domProps: {
-                                          value: item.id,
-                                          checked: _vm._q(
-                                            _vm.select2children,
-                                            item.id
-                                          )
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            _vm.select2children = item.id
-                                          }
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("span", {
-                                        staticClass: "slider round"
-                                      })
-                                    ]),
-                                    _vm._v(
-                                      "\n                                    " +
-                                        _vm._s(item.name) +
-                                        "\n                                "
-                                    )
-                                  ])
-                                })
+                        0
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("fieldset", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-sm-2 pt-0" }, [
+                        _vm._v("Дети")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10" },
+                        _vm._l(_vm.children, function(item) {
+                          return _c("div", { staticClass: "form-check" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.select2children,
+                                  expression: "select2children"
+                                }
                               ],
-                              2
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Отношения:")]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn-default",
-                            on: {
-                              click: function($event) {
-                                return _vm.show("relations")
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "gridRadios",
+                                id: "gridRadios1",
+                                checked: ""
+                              },
+                              domProps: {
+                                value: item.id,
+                                checked: _vm._q(_vm.select2children, item.id)
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.select2children = item.id
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("выбрать")]
-                        ),
-                        _vm._v(" "),
-                        _vm.relation_show
-                          ? _c(
-                              "div",
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "gridRadios1" }
+                              },
                               [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.select2relation,
-                                      expression: "select2relation"
-                                    }
-                                  ],
-                                  attrs: { type: "radio" },
-                                  domProps: {
-                                    value: 0,
-                                    checked: _vm._q(_vm.select2relation, 0)
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.select2relation = 0
-                                    }
-                                  }
-                                }),
                                 _vm._v(
-                                  "\n                                Не важно\n                                "
-                                ),
-                                _c("span", { staticClass: "slider round" }),
-                                _vm._v(" "),
-                                _vm._l(_vm.relation, function(item) {
-                                  return _c("div", [
-                                    _c("label", { staticClass: "switch" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.select2relation,
-                                            expression: "select2relation"
-                                          }
-                                        ],
-                                        attrs: { type: "radio" },
-                                        domProps: {
-                                          value: item.id,
-                                          checked: _vm._q(
-                                            _vm.select2relation,
-                                            item.id
-                                          )
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            _vm.select2relation = item.id
-                                          }
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("span", {
-                                        staticClass: "slider round"
-                                      })
-                                    ]),
-                                    _vm._v(
-                                      "\n                                    " +
-                                        _vm._s(item.name) +
-                                        "\n                                "
-                                    )
-                                  ])
-                                })
-                              ],
-                              2
+                                  "\n                                                " +
+                                    _vm._s(item.name) +
+                                    "\n                                            "
+                                )
+                              ]
                             )
-                          : _vm._e()
-                      ])
-                    ],
-                    2
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("fieldset", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-sm-2 pt-0" }, [
+                        _vm._v("Отношения")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10" },
+                        _vm._l(_vm.relation, function(item) {
+                          return _c("div", { staticClass: "form-check" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.select2relation,
+                                  expression: "select2relation"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "gridRadios",
+                                id: "gridRadios1",
+                                checked: ""
+                              },
+                              domProps: {
+                                value: item.id,
+                                checked: _vm._q(_vm.select2relation, item.id)
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.select2relation = item.id
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "gridRadios1" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                                " +
+                                    _vm._s(item.name) +
+                                    "\n                                            "
+                                )
+                              ]
+                            )
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: {
+                        click: function($event) {
+                          return _vm.saveChange()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                Сохранить\n                            "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
-                  _vm._t("footer", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        on: {
-                          click: function($event) {
-                            return _vm.saveChange()
-                          }
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
                         }
-                      },
-                      [
-                        _vm._v(
-                          "\n                            Сохранить\n                        "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-secondary",
-                        on: {
-                          click: function($event) {
-                            return _vm.close()
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                            Закрыть\n                        "
-                        )
-                      ]
-                    )
-                  ])
-                ],
-                2
-              )
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                Закрыть\n                            "
+                      )
+                    ]
+                  )
+                ])
+              ])
             ])
           ])
         ]

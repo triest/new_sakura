@@ -5,102 +5,105 @@
                 <div class="modal-wrapper">
                     <div class="modal-container">
                         <div class="modal-body">
-                            <slot name="body">
-                                <p>
-                                    <label>Ищу:</label>
-                                    <select id="meet" class="meet" name="meet" v-model="meet">
-                                        <option value="female">Девушку</option>
-                                        <option value="male">Парня</option>
-                                        <option value="nomatter">неважно</option>
-                                    </select>
-                                </p>
-                                <p>
-                                    <label>Возраст:</label> от <input type="number" name="from" id="from" min="18"
-                                                                      :max="maxAge"
-                                                                      v-model="from"
-                                                                      onkeypress="return isNumber(event)"
-                                                                      style="width: 50px">
-                                    до <input type="number" name="to" id="to" :min="minAge" :max="100"
-                                              v-model="to"
-                                              onkeypress="return isNumber(event)" style="width: 50px">
-                                </p>
-                                <br>
-                                <label>Цель:</label>
-                                <button class="btn-default" v-on:click='show("target")'>выбрать</button>
-                                <b v-if="countSelectedTargets>0"> {{countSelectedTargets}}</b>
 
-                                <div v-if="targets_show" class="v-fade" v-for="item in targets">
-
-                                    <label class="switch">
-                                        <input type="checkbox" :id="item.id" :value="item.id"
-                                               v-model="select2targets">
-                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                            <span class="onoffswitch-inner"></span>
-                                            <span class="onoffswitch-switch"></span>
-                                        </label>
-
-                                    </label>
-                                    {{item.name}}
-                                </div>
-                                <br>
-                                <label>Интересы:</label>
-
-                                <button class="btn-default" v-on:click='show("interes")'>выбрать</button>
-                                <b v-if="countSelectedInteres>0">
-                                    {{countSelectedInteres}}
-                                </b>
-                                <div v-if="interes_show" v-for="item in interest">
-                                    <label class="switch">
-                                        <input type="checkbox" :id="item.id" :value="item.id"
-                                               v-model="select2inters">
-                                        <span class="slider round"></span>
-                                    </label>
-                                    {{item.name}}
-                                </div>
-                                <br>
-                                <label>Дети:</label>
-                                <button class="btn-default" v-on:click='show("children")'>выбрать</button>
-                                <b v-if="countSelectedChildren">Выбранн</b>
-                                <div v-if="children_show">
-                                    <input type="radio" :value="0" v-model="select2children"/>
-                                    Не важно
-                                    <span class="slider round"></span>
-                                    <div v-for="item in children">
-                                        <label class="switch">
-                                            <input type="radio" :value="item.id" v-model="select2children"/>
-                                            <span class="slider round"></span>
-                                        </label>
-                                        {{item.name}}
+                                <div class="form-group row">
+                                    <label for="meet" class="col-sm-2 col-form-label">Ищу</label>
+                                    <div class="col-sm-10">
+                                        <select id="meet" class="form-control" name="meet" v-model="meet">
+                                            <option value="female">Девушку</option>
+                                            <option value="male">Парня</option>
+                                            <option value="nomatter">неважно</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <br>
-                                <label>Отношения:</label>
-
-                                <button class="btn-default" v-on:click='show("relations")'>выбрать</button>
-
-                                <div v-if="relation_show">
-                                    <input type="radio" :value="0" v-model="select2relation"/>
-                                    Не важно
-                                    <span class="slider round"></span>
-                                    <div v-for="item in relation">
-                                        <label class="switch">
-                                            <input type="radio" :value="item.id" v-model="select2relation"/>
-                                            <span class="slider round"></span>
-                                        </label>
-                                        {{item.name}}
+                                <div class="form-group row">
+                                    <label for="from" class="col-sm-2 col-form-label">Возраст</label>
+                                    <div class="col-sm-2">
+                                        <input type="number" class="form-control" name="from" id="from" min="18"
+                                               :max="maxAge"
+                                               v-model="from"
+                                               onkeypress="return isNumber(event)"
+                                               style="width: 75px">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        до
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <input type="number" class="form-control" name="to" id="to" :min="minAge"
+                                               :max="100"
+                                               v-model="to"
+                                               onkeypress="return isNumber(event)" style="width: 75px">
                                     </div>
                                 </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-2 pt-0">Цели</label>
+                                        <div class="col-sm-10">
 
-                            </slot>
+                                            <div class="form-check" v-for="item in targets">
+                                                <input class="form-check-input"  type="checkbox" :id="item.id"
+                                                       :value="item.id"
+                                                       v-model="select2targets">
+                                                {{item.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-2 pt-0">Интересы</label>
+                                        <div class="col-sm-10">
+
+                                            <div class="form-check" v-for="item in interest">
+                                                <input class="form-check-input"  type="checkbox" name="gridRadios"
+                                                       :id="item.id" :value="item.id" v-model="select2inters">
+                                                {{item.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-2 pt-0">Дети</label>
+                                        <div class="col-sm-10">
+
+                                            <div class="form-check" v-for="item in children">
+                                                <input class="form-check-input" type="radio" name="gridRadios"
+                                                       id="gridRadios1" :value="item.id" v-model="select2children"
+                                                       checked>
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    {{item.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-2 pt-0">Отношения</label>
+                                        <div class="col-sm-10">
+
+                                            <div class="form-check" v-for="item in relation">
+                                                <input class="form-check-input" type="radio" name="gridRadios"
+                                                       id="gridRadios1" :value="item.id" v-model="select2relation"
+                                                       checked>
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    {{item.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <button class="btn btn-primary" v-on:click="saveChange()">
+                                    Сохранить
+                                </button>
+                                <button class="btn btn-secondary" v-on:click="close()">
+                                    Закрыть
+                                </button>
+
+
                         </div>
-                        <slot name="footer">
-                            <button class="btn btn-primary" v-on:click="saveChange()">
-                                Сохранить
-                            </button>
-                            <button class="btn btn-secondary" v-on:click="close()">
-                                Закрыть
-                            </button>
-                        </slot>
                     </div>
                 </div>
             </div>
@@ -156,15 +159,15 @@
                 select2children: null,
                 select2relation: [],
                 seachSettings: null,
-                targets_show: false,
-                interes_show: false,
+                targets_show: true,
+                interes_show: true,
                 children_show: false,
                 relation_show: false,
             }
         },
         methods: {
             close() {
-                this.$emit('closeSeachModal')
+              //  this.$emit('closeSeachModal')
             },
             findUserByid() {
 
@@ -180,7 +183,7 @@
                     relation: this.select2relation,
                 }).then((response) => {
                     //this.getSettings();
-                    this.$emit('closeSeachModal')
+                 //   this.$emit('closeSeachModal')
                 });
 
             },
@@ -192,7 +195,7 @@
                         this.select2targets = res.selectedTargets;
                         this.select2inters = res.selectedInterest;
                         this.interest = res.interests;
-                        this.children = res.chidren;
+                        this.children = res.children;
                         this.seachSettings = res.sechSettings;
                         this.from = this.seachSettings.age_from;
                         this.to = this.seachSettings.age_to;
@@ -221,7 +224,8 @@
                         this.relation_show = !this.relation_show;
                         break;
                 }
-            }
+            },
+
 
         },
     };
