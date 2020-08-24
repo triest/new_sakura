@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
 
+    use App\Http\Resources\anketList;
     use App\Models\City;
     use App\Models\Interest;
     use App\Models\SearchSettings;
@@ -81,9 +82,10 @@
 
             }
 
-            $users = DB::table('users');
+            $users = User::select(['*']);
 
             $interest = $seachSettings->interest()->get();
+
 
             if ($interest->isNotEmpty()) {
                 $users->leftJoin('user_interest', 'user_interest.user_id', '=',
@@ -134,15 +136,15 @@
             }
 
             if (isset($seachSettings) && $seachSettings->age_from != null) {
-                $users->where(   DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"),">=", $seachSettings->age_from);
+                $users->where(DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"), ">=", $seachSettings->age_from);
             }
 
             if (isset($seachSettings) && $seachSettings->age_to != null) {
-                $users->where(   DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"),"<=", $seachSettings->age_to);
+                $users->where(DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"), "<=", $seachSettings->age_to);
             }
 
             if (Auth::user() != null) {
-                $users->where('users.id', '!=', Auth::user()->id);
+                $users->where('id', '!=', Auth::user()->id);
             }
 
             $count = $users->count();
@@ -163,19 +165,7 @@
             $users->orderByDesc('created_at');
 
             $users = $users->get();
-            $now = Carbon::now();
-
-            foreach ($users as $key => $value) {
-                $now = Carbon::now();
-                $year = (date_diff($now, new \DateTime($value->date_birth)));
-                $users[$key]->age = $year->y;
-            }
-
-            return response()->json([
-                    'ankets' => $users,
-                    'count' => $count,
-                    'num_pages' => $num_pages,
-            ]);
+            return response()->json(['ankets' => anketList::collection($users)]);
         }
 
 

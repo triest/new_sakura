@@ -61,7 +61,7 @@
                     }
                 }
             },
-            loadNew() {
+            loadNew: function () {
                 this.page++;
                 console.log(this.page);
                 axios.get('/seach',
@@ -72,9 +72,7 @@
                             }
                     }
                 ).then((response) => {
-                    //  this.anketList.push(response.data);
-                    let data = response.data;
-                    let temp = data.ankets;
+                    console.log(response.data);
                     for (let i = 0; i < temp.length; i++) {
                         this.anketList.push(temp[i]);
                     }

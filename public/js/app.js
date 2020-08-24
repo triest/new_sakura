@@ -2479,10 +2479,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    close: function close() {//  this.$emit('closeSeachModal')
+    close: function close() {
+      this.$emit('closeSeachModal');
     },
     findUserByid: function findUserByid() {},
     saveChange: function saveChange() {
+      var _this = this;
+
       axios.post('/seach/savesettings', {
         meet: this.meet,
         from: this.from,
@@ -2491,26 +2494,27 @@ __webpack_require__.r(__webpack_exports__);
         children: this.select2children,
         targets: this.select2targets,
         relation: this.select2relation
-      }).then(function (response) {//this.getSettings();
-        //   this.$emit('closeSeachModal')
+      }).then(function (response) {
+        //this.getSettings();
+        _this.$emit('closeSeachModal');
       });
     },
     getSettings: function getSettings() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('seach/getsettings').then(function (response) {
         var res = response.data;
-        _this.targets = res.targets;
-        _this.select2targets = res.selectedTargets;
-        _this.select2inters = res.selectedInterest;
-        _this.interest = res.interests;
-        _this.children = res.children;
-        _this.seachSettings = res.sechSettings;
-        _this.from = _this.seachSettings.age_from;
-        _this.to = _this.seachSettings.age_to;
-        _this.select2children = _this.seachSettings.children;
-        _this.meet = _this.seachSettings.meet;
-        _this.relation = res.relations;
+        _this2.targets = res.targets;
+        _this2.select2targets = res.selectedTargets;
+        _this2.select2inters = res.selectedInterest;
+        _this2.interest = res.interests;
+        _this2.children = res.children;
+        _this2.seachSettings = res.sechSettings;
+        _this2.from = _this2.seachSettings.age_from;
+        _this2.to = _this2.seachSettings.age_to;
+        _this2.select2children = _this2.seachSettings.children;
+        _this2.meet = _this2.seachSettings.meet;
+        _this2.relation = res.relations;
       }).then(console.log(this.relation));
     },
     show: function show(input) {
@@ -2807,9 +2811,7 @@ __webpack_require__.r(__webpack_exports__);
           page: this.page
         }
       }).then(function (response) {
-        //  this.anketList.push(response.data);
-        var data = response.data;
-        var temp = data.ankets;
+        console.log(response.data);
 
         for (var i = 0; i < temp.length; i++) {
           _this3.anketList.push(temp[i]);
@@ -47478,7 +47480,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-sm-1" }, [
                       _vm._v(
-                        "\n                                    до\n                                "
+                        "\n                                до\n                            "
                       )
                     ]),
                     _vm._v(" "),
@@ -47567,9 +47569,9 @@ var render = function() {
                               }
                             }),
                             _vm._v(
-                              "\n                                            " +
+                              "\n                                        " +
                                 _vm._s(item.name) +
-                                "\n                                        "
+                                "\n                                    "
                             )
                           ])
                         }),
@@ -47634,9 +47636,9 @@ var render = function() {
                               }
                             }),
                             _vm._v(
-                              "\n                                            " +
+                              "\n                                        " +
                                 _vm._s(item.name) +
-                                "\n                                        "
+                                "\n                                    "
                             )
                           ])
                         }),
@@ -47691,9 +47693,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                                " +
+                                  "\n                                            " +
                                     _vm._s(item.name) +
-                                    "\n                                            "
+                                    "\n                                        "
                                 )
                               ]
                             )
@@ -47750,9 +47752,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                                " +
+                                  "\n                                            " +
                                     _vm._s(item.name) +
-                                    "\n                                            "
+                                    "\n                                        "
                                 )
                               ]
                             )
@@ -47775,7 +47777,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                                Сохранить\n                            "
+                        "\n                            Сохранить\n                        "
                       )
                     ]
                   ),
@@ -47792,7 +47794,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                                Закрыть\n                            "
+                        "\n                            Закрыть\n                        "
                       )
                     ]
                   )
