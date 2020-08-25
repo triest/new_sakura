@@ -8,9 +8,10 @@
     <div class="container" id="app">
         <div class="profile-form">
 
-            <div class="form-lk_name">{{$user->name}}, {{$user->age()}}</div>
+            <div class="form-lk_name"><b>{{$user->name}}</b>, {{$user->age()}}
+                <small> ,{{$user->getCity()->name}}</small>
+            </div>
             <div class="">
-                {{$user->getCity()->name}}
             </div>
 
             <form class="form-lk" action="{{ route('lk.profileStore') }}" method="post" enctype="multipart/form-data">
@@ -25,9 +26,10 @@
                         <div class="group-upload_profile">
                             @if (Auth::check())
                                 <anket-component :user="{{$user}}"></anket-component>
-
                             @else
-                                Войдите что-бы отправиль сообщение или поставить лайк
+                                <div class="alert alert-info">
+                                    <a href="/lk/login"><b>Войдите</b></a> или <a href="/lk/register"><b>зарегистрируйтесь</b></a> что-бы отправить сообщение
+                                </div>
                             @endif
                         </div>
 
