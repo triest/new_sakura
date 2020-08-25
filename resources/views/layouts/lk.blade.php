@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>df</title>
+    <title> @yield('title')</title>
     <script src="https://getbootstrap.com/docs/3.3/assets/js/ie-emulation-modes-warning.js"></script>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -108,8 +108,8 @@
                     @endif
                     <br>
                     <?
-                    if($_SERVER['REQUEST_URI'] != "/anket"){
-                    ?>
+                    if ($_SERVER['REQUEST_URI'] != "/anket") {
+                        ?>
 
                     <? } ?>
                 @endif
