@@ -47,7 +47,7 @@
             $user = Auth::user();
             if ($user != null) {
                 $user->last_login= Carbon::now()->toDateTimeString();
-                $city = City::GetCurrentCity();
+                $city = City::getCurrentCity();
                 if ($city != null) {
                     $user->city_id = $city->id;
                 }

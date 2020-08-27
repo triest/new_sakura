@@ -45,7 +45,7 @@
         methods: {
             getRequwest() {
 
-                axios.get('/events/check-requwest', {params: {user: this.user.id, event: this.event.id}}
+                axios.get('/events/check-request', {params: {user: this.user.id, event: this.event.id}}
                 )
                     .then((response) => {
                         this.eventRequwest = response.data.eventRequwest;
@@ -55,7 +55,7 @@
             },
             makeRequwest() {
                 console.log("make req");
-                axios.get('/events/make-requwest', {params: {user: this.user.id, event: this.event.id}}
+                axios.get('/events/make-request', {params: {user: this.user.id, event: this.event.id}}
                 )
                     .then((response) => {
                         this.getRequwest();

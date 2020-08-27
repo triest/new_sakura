@@ -238,10 +238,10 @@
              //   this.getacepted();
             },
             reject( req_id) {
-                console.log("denide");
-                axios.get('/events/denided', {
+
+                axios.get('/events/denied', {
                         params: {
-                            action: 'denided',
+                            action: 'denied',
                             req_id: req_id,
                         }
                     }

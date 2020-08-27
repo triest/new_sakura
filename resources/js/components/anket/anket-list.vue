@@ -3,14 +3,13 @@
         <p>
             <button class="btn btn-primary" v-on:click="openSeachModal()">Настроить поиск</button>
         </p>
-        <div class="col-md-3" v-for="item in anketList">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-9 box-shadow" v-for="item in anketList">
             <a :href="/anket/+item.id">
                 <img width="250" height="250" :src="item.profile_url">
                 <div class="cell">
                     <div class="cell-overflow">
-                        {{item.name}},
+                        {{item.name}},    {{item.age}}
                     </div>
-                    {{item.age}}
                 </div>
             </a>
         </div>

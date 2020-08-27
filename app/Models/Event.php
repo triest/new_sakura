@@ -20,7 +20,7 @@
         public static function inMyCity($city = null, $date = null)
         {
             if ($city == null) {
-                $city = City::GetCurrentCity();
+                $city = City::getCurrentCity();
             }
 
             if ($date == null) {

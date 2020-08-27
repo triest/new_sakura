@@ -52,7 +52,7 @@
                 }
 
 
-                $city = City::GetCurrentCity();
+                $city = City::getCurrentCity();
 
                 if ($city != null) {
                     $users->where('city_id', $city->id);
@@ -119,7 +119,7 @@
             }
 
 
-            $city = City::GetCurrentCity();
+            $city = City::getCurrentCity();
 
             if ($city != null) {
                 $users->where('city_id', $city->id);

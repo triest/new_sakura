@@ -14,7 +14,7 @@
         //
         protected $table = "cities_api";
 
-        public static function GetCurrentCity()
+        public static function getCurrentCity()
         {
             $ip = User::getIpStatic();
             try {

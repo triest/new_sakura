@@ -3,6 +3,8 @@
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/lesson', 'HomeController@lesson')->name('lesson');
 
+    Route::get('/log','LogController@log');
+
 // Общий роутинг
 //Route::redirect('/', '/lk');
     Route::prefix('anket')->name('anket.')->group(function () {
@@ -29,10 +31,10 @@
         Route::get('/create', 'EventController@create')->name('create')->middleware('auth');
         Route::post('/store', 'EventController@store')->name('store')->middleware('auth');
 
-        Route::get('/check-requwest', 'EventController@check_requwest')->name('check-requwest');
-        Route::get('/make-requwest', 'EventController@makeRequwest')->name('make-requwest');
+        Route::get('/check-request', 'EventController@check_requwest')->name('check-requwest');
+        Route::get('/make-request', 'EventController@makeRequest')->name('make-requwest');
         Route::get('/accept', 'EventController@accept')->name('accept');
-        Route::get('/denided', 'EventController@denided')->name('requwestlist');
+        Route::get('/denied', 'EventController@denied');
         Route::get('/{id}', 'EventController@view')->name('view');
         Route::get('/{id}/requwestlist', 'EventController@requwestlist')->name('requwestlist');
 

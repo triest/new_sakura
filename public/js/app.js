@@ -2757,7 +2757,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -3487,7 +3486,7 @@ __webpack_require__.r(__webpack_exports__);
     getRequwest: function getRequwest() {
       var _this = this;
 
-      axios.get('/events/check-requwest', {
+      axios.get('/events/check-request', {
         params: {
           user: this.user.id,
           event: this.event.id
@@ -3502,7 +3501,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       console.log("make req");
-      axios.get('/events/make-requwest', {
+      axios.get('/events/make-request', {
         params: {
           user: this.user.id,
           event: this.event.id
@@ -3757,10 +3756,9 @@ __webpack_require__.r(__webpack_exports__);
       //   this.getacepted();
     },
     reject: function reject(req_id) {
-      console.log("denide");
-      axios.get('/events/denided', {
+      axios.get('/events/denied', {
         params: {
-          action: 'denided',
+          action: 'denied',
           req_id: req_id
         }
       }).then(function (response) {}); //  this.gatall();
@@ -48003,24 +48001,29 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm._l(_vm.anketList, function(item) {
-        return _c("div", { staticClass: "col-md-3" }, [
-          _c("a", { attrs: { href: /anket/ + item.id } }, [
-            _c("img", {
-              attrs: { width: "250", height: "250", src: item.profile_url }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "cell" }, [
-              _c("div", { staticClass: "cell-overflow" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.name) +
-                    ",\n                "
-                )
-              ]),
-              _vm._v("\n                " + _vm._s(item.age) + "\n            ")
+        return _c(
+          "div",
+          { staticClass: "col-lg-3 col-md-4 col-sm-6 col-xs-9 box-shadow" },
+          [
+            _c("a", { attrs: { href: /anket/ + item.id } }, [
+              _c("img", {
+                attrs: { width: "250", height: "250", src: item.profile_url }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "cell" }, [
+                _c("div", { staticClass: "cell-overflow" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(item.name) +
+                      ",    " +
+                      _vm._s(item.age) +
+                      "\n                "
+                  )
+                ])
+              ])
             ])
-          ])
-        ])
+          ]
+        )
       }),
       _vm._v(" "),
       _vm.seachModal

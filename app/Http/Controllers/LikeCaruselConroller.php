@@ -32,7 +32,7 @@ select likes.target_id from likes where likes.who_id=?
 order by rand()
 limit 1', [$userAuth->id]))->first();
             } else {
-                $city = City::GetCurrentCity();
+                $city = City::getCurrentCity();
                 if ($city == null) {
                     return null;
                 }

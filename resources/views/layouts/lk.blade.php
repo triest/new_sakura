@@ -67,7 +67,7 @@
 <div class="col-sm-8">
     <div class="row row-offcanvas row-offcanvas-right">
 
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             <p class="pull-right visible-xs visible-lg">
                 <!--  <button type="button" class="menuButton" data-toggle="offcanvas"><b>Меню</b></button> -->
                 <button type="button" class="navbar-toggle collapsed js-offcanvas-btn">
@@ -88,31 +88,7 @@
                  </p>
                  -->
 
-                @if (Auth::guest())
-                    <b><a class="button blue" href="{{ url('/login') }}">Войти</a></b><br><br>
-                    <b><a class="button green" href="{{ url('/join') }}">Зарегистрироваться</a></b><br>
 
-
-                    <br><br>
-                @else
-                    <b>{{auth()->user()->name}}</b><br>
-
-                    <b><a href="{{ url('/logout') }}">Выйти</a></b>
-                    <br>
-
-                    <br>
-                    <!--check is admin -->
-                    @if(Auth::user()->is_admin==1)
-                        <b><a class="btn btn-success" href="{{route('adminPanel')}}">Панель администратора</a> </b>
-                        <br>
-                    @endif
-                    <br>
-                    <?
-                    if ($_SERVER['REQUEST_URI'] != "/anket") {
-                        ?>
-
-                    <? } ?>
-                @endif
             </div>
         </div>
     </div><!--/span-->

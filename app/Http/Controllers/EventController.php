@@ -6,7 +6,7 @@
     use App\Http\Requests\StoreEvent;
     use App\Models\City;
     use App\Models\Event;
-    use App\Models\EventRequwest;
+    use App\Models\EventRequest;
     use App\Models\Lk\User;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
@@ -16,10 +16,10 @@
         //
         public function index(Request $request)
         {
-
+            
         }
 
-        public function my(Request $request)
+        public function my()
         {
             $user = Auth::user();
 
@@ -27,9 +27,9 @@
 
         }
 
-        public function create(Request $request)
+        public function create()
         {
-            $city = City::GetCurrentCity();
+            $city = City::getCurrentCity();
 
             return view("event.create")->with(["city" => $city]);
         }
@@ -44,7 +44,7 @@
             $builder->setPlace($request->place);
             $builder->setMaxPeople($request->max);
             $builder->setMinPiople($request->min);
-            $builder->setEndApplications($request->end_date." ".$request->time_end);
+            $builder->setEndApplications($request->end_date . " " . $request->time_end);
             $event = $builder->getResult();
             if (!is_object($event)) {
                 return redirect()->back()->withErrors(['msg' => $event])->withInput();
@@ -65,7 +65,7 @@
                 $date = explode(" ", $date);
 
                 $end = $event->end_applications;
-            
+
                 $end = explode(" ", $end);
 
                 $city = City::get($event->city_id);
@@ -88,9 +88,9 @@
 
 
                 // проверяем запросы от этого пользователя
-                $eventRequwest = null;
+                $eventRequest = null;
                 if ($user != null) {
-                    $eventRequwest = EventRequwest::select(["*"])->where("name", "event")->where("who_id",
+                    $eventRequest = EventRequest::select(["*"])->where("name", "event")->where("who_id",
                             $user->id)->where("target_id", $id)->get();
 
                 }
@@ -101,7 +101,7 @@
                         "time_begin" => $date[1],
                         "date_applications" => $end[0],
                         "time_applications" => $end[1],
-                        "event_requwest" => $eventRequwest
+                        "event_request" => $eventRequest
                 ]);
             }
         }
@@ -112,12 +112,12 @@
                 $city = City::get(intval($request->get('city')));
                 $events = Event::inMyCity($city);
 
-                $partificator = null;
+                $participator = null;
                 $partifucationArray = array();
                 foreach ($events as $item) {
-                    $partificator = $item->checkUserPartification();
-                    if ($partificator != false) {
-                        array_push($partifucationArray, $partificator);
+                    $participator = $item->checkUserPartification();
+                    if ($participator != false) {
+                        array_push($partifucationArray, $participator);
                     }
                 }
 
@@ -203,18 +203,18 @@
             //dump($request);
             $user_id = intval($request->user);
             $event = intval($request->event);
-            $eventRequwest = EventRequwest::select(["*"])->where("name", "event")->where("who_id",
+            $eventRequwest = EventRequest::select(["*"])->where("name", "event")->where("who_id",
                     $user_id)->where("target_id", $event)->first();
 
             return response()->json(["eventRequwest" => $eventRequwest]);
         }
 
-        public function makeRequwest(Request $request)
+        public function makeRequest(Request $request)
         {
 
             $user_id = intval($request->user);
             $event = intval($request->event);
-            $eventRequwest = new EventRequwest();
+            $eventRequwest = new EventRequest();
             $eventRequwest->who_id = $user_id;
             $eventRequwest->target_id = $event;
             $eventRequwest->name = "event";
@@ -225,7 +225,7 @@
 
         public function accept(Request $request)
         {
-            $eventReq = EventRequwest::select(["*"])->where('id', $request->req_id)->first();
+            $eventReq = EventRequest::select(["*"])->where('id', $request->req_id)->first();
 
             if ($eventReq == null) {
                 return response()->json([false]);
@@ -236,9 +236,9 @@
             return response()->json([true]);
         }
 
-        public function denided(Request $request)
+        public function denied(Request $request)
         {
-            $eventReq = EventRequwest::select(["*"])->where('id', $request->req_id)->first();
+            $eventReq = EventRequest::select(["*"])->where('id', $request->req_id)->first();
 
             if ($eventReq == null) {
                 return response()->json([false]);
@@ -258,7 +258,7 @@
             if ($event == null) {
                 return response()->json(null);
             }
-            $eventReq = EventRequwest::select(["*"])
+            $eventReq = EventRequest::select(["*"])
                     ->select([
                             'users.id as user_id',
                             'users.profile_url',
