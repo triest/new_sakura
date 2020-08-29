@@ -8,14 +8,14 @@
                 Место:{{event.place}} <br>
                 Дата: {{event.begin}} <br>
                 {{event.status_name}}
-                <div v-if="checkRequsest(event.id)!==false">
-                    <div v-if="checkRequsest(event.id)=='accept'">
+                <div v-if="checkRequest(event.id)!==false">
+                    <div v-if="checkRequest(event.id)=='accept'">
                         <a class="btn " v-bind:href="'/events/'+event.id"> Заявка принята</a>
                     </div>
-                    <div v-if="checkRequsest(event.id)=='denide'">
+                    <div v-if="checkRequest(event.id)=='denide'">
                         <a class="btn " v-bind:href="'/events/'+event.id">Заявка отклонена</a>
                     </div>
-                    <div v-if="checkRequsest(event.id)=='unreaded'">
+                    <div v-if="checkRequest(event.id)=='unreaded'">
                         <a class="btn " v-bind:href="'/events/'+event.id">Заявка не прочитана</a>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         this.partification = response.data.partification;
                     });
             },
-            checkRequsest(event_id) {
+            checkRequest(event_id) {
                 console.log("event_id "+event_id)
                 for (let i = 0; i < this.partification.length; i++) {
                     if (typeof this.partification[i][0] === "undefined") {

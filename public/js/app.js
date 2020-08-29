@@ -3411,7 +3411,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.partification = response.data.partification;
       });
     },
-    checkRequsest: function checkRequsest(event_id) {
+    checkRequest: function checkRequest(event_id) {
       console.log("event_id " + event_id);
 
       for (var i = 0; i < this.partification.length; i++) {
@@ -48597,9 +48597,9 @@ var render = function() {
               _vm._v(
                 "\n            " + _vm._s(event.status_name) + "\n            "
               ),
-              _vm.checkRequsest(event.id) !== false
+              _vm.checkRequest(event.id) !== false
                 ? _c("div", [
-                    _vm.checkRequsest(event.id) == "accept"
+                    _vm.checkRequest(event.id) == "accept"
                       ? _c("div", [
                           _c(
                             "a",
@@ -48612,7 +48612,7 @@ var render = function() {
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.checkRequsest(event.id) == "denide"
+                    _vm.checkRequest(event.id) == "denide"
                       ? _c("div", [
                           _c(
                             "a",
@@ -48625,7 +48625,7 @@ var render = function() {
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.checkRequsest(event.id) == "unreaded"
+                    _vm.checkRequest(event.id) == "unreaded"
                       ? _c("div", [
                           _c(
                             "a",
@@ -62022,6 +62022,7 @@ Vue.component('presents-admin-list', __webpack_require__(/*! ./components/admin/
 Vue.component('my-presents-modal', __webpack_require__(/*! ./components/anket/myPresentsModal */ "./resources/js/components/anket/myPresentsModal.vue")["default"]);
 Vue.component('sidebar', __webpack_require__(/*! ./components/layouts/sidebar */ "./resources/js/components/layouts/sidebar.vue")["default"]);
 Vue.component('header-bock', __webpack_require__(/*! ./components/layouts/header-bock */ "./resources/js/components/layouts/header-bock.vue")["default"]);
+Vue.component('event-in-my-city-side2', __webpack_require__(/*! ./components/events/EventInMyCitySide2 */ "./resources/js/components/events/EventInMyCitySide2.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -62035,6 +62036,9 @@ window.addEventListener('load', function () {
   });
   var headerApp = new Vue({
     el: '#headerApp'
+  });
+  var event_in_my_city_side_app = new Vue({
+    el: '#event_in_my_city_side_app'
   });
 });
 

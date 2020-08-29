@@ -15,6 +15,12 @@
                         </font>
                     @endif
 
+                        @if (session('error'))
+                            <div class="alert alert-danger text-center msg" id="error">
+                                <strong>{{ session('error') }}</strong>
+                            </div>
+                        @endif
+
                     <div class="col-xs-11">
                         <label for="title">Имя:</label><br>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"

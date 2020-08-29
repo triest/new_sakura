@@ -32,7 +32,7 @@ Vue.component('presents-admin-list', require('./components/admin/presents/presen
 Vue.component('my-presents-modal', require('./components/anket/myPresentsModal').default);
 Vue.component('sidebar', require('./components/layouts/sidebar').default);
 Vue.component('header-bock', require('./components/layouts/header-bock').default);
-
+Vue.component('event-in-my-city-side2', require('./components/events/EventInMyCitySide2').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -49,6 +49,10 @@ window.addEventListener('load', function () {
     });
     const headerApp = new Vue({
         el: '#headerApp',
+    });
+
+    const event_in_my_city_side_app = new Vue({
+        el: '#event_in_my_city_side_app',
     });
 })
 

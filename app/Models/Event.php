@@ -40,7 +40,6 @@
 
         public function checkUserPartification($user = null)
         {
-            //   dump($user);
             if ($user == null) {
                 $user = Auth::user();
             }
@@ -49,7 +48,7 @@
                 return false;
             }
 
-            $partificatpr = DB::table('requwest')->select('*')
+            $partificatpr = DB::table('request')->select('*')
                     ->where('name', 'event')
                     ->where('who_id', '=', $user->id)
                     ->where('target_id', '=', $this->id)

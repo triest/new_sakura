@@ -21,7 +21,6 @@
 
         public function getAnket()
         {
-            $girls = null;
             $userAuth = Auth::user();
 
             $likeCarouselService = new LikeCarouselService();

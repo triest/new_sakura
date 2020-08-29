@@ -42,24 +42,26 @@
 
 <body>
 <script src="{{ asset('/js/axios.min.js') }}"></script>
-
-
+<?
+$city = \App\Models\City::getCurrentCity();
+?>
 <!-- тут меню -->
 <nav class="navbar hidden-sm hidden-md hidden-lg visable-xs">
 
 </nav>
 
 
-<div class="card-body" id="app2">
+<div class="card-body" id="event_in_my_city_sire_app">
     <div class="row">
 
     </div>
 </div>
 
 <div class="col-sm-1">
-    <div id="eventinmycityapp" style="width: 25rem; background-color: #eeeeee;
+    <div id="event_in_my_city_side_app" class="visible-xs visible-lg" style="width: 25rem; background-color: #eeeeee;
              border: 1px solid transparent;
              border-color: #666869;">
+        <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
     </div>
 </div>
 <div class="col-sm-1">
@@ -104,3 +106,10 @@
 <script src="{{ asset('offcanvas.js') }}"></script>
 </body>
 </html>
+<script>
+    import EventInMyCitySide2 from "../../js/components/events/EventInMyCitySide2";
+
+    export default {
+        components: {EventInMyCitySide2}
+    }
+</script>

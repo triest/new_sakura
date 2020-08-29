@@ -24,7 +24,7 @@
             $user = Auth::user();
 
             $events = $user->events()->get();
-
+            return response()->json(['events' => $events]);
         }
 
         public function create()
@@ -114,6 +114,7 @@
 
                 $participator = null;
                 $partifucationArray = array();
+
                 foreach ($events as $item) {
                     $participator = $item->checkUserPartification();
                     if ($participator != false) {
@@ -133,15 +134,7 @@
 
         public function singup($id)
         {
-            $events = Myevent::select([
-                    'id',
-                    'name',
-                    'place',
-                    'begin',
-                    'description',
-                    'max_people',
-                    'organizer_id',
-            ])->where('id', $id)->first();
+            $events = Event::get($id);
             //моё ли это событие
             $auth_user = Auth::user();
             $girl_id = $auth_user->id;
@@ -256,14 +249,14 @@
                     ->select([
                             'users.id as user_id',
                             'users.profile_url',
-                            'requwest.target_id as event_id',
-                            'requwest.id as requwest_id',
-                            'requwest.status as requwest_status'
+                            'request.target_id as event_id',
+                            'request.id as requwest_id',
+                            'request.status as requwest_status'
                     ])
-                    ->leftJoin('users', 'users.id', '=', 'requwest.who_id')
-                    ->where("target_id", $id)->where("requwest.name", "event")
+                    ->leftJoin('users', 'users.id', '=', 'request.who_id')
+                    ->where("target_id", $id)->where("request.name", "event")
                     ->get();
 
-            return response()->json(["requwest" => $eventReq]);
+            return response()->json(["request" => $eventReq]);
         }
     }

@@ -190,9 +190,14 @@
             return $datediff->y;
         }
 
-        public static function get($id)
+        public static function get($id,$all=false)
         {
-            return User::select(['*'])->where('id', $id)->first();
+            if($all==false){
+                return User::select(['id','name','description','sex','weight','height','meet','banned','country_id','region_id','city_id','date_birth','last_login'])->first();
+            }else{
+                return User::select(['*'])->where('id', $id)->first();
+            }
+
         }
 
         public function albums()

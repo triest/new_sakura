@@ -10,6 +10,7 @@
 
 
     use App\Models\City;
+    use App\Models\Lk\User;
     use Illuminate\Support\Facades\DB;
 
     class LikeCarouselService
