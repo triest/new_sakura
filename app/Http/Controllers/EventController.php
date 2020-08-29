@@ -16,7 +16,7 @@
         //
         public function index(Request $request)
         {
-            
+
         }
 
         public function my()
@@ -198,9 +198,8 @@
             ]);
         }
 
-        public function check_requwest(Request $request)
+        public function check_request(Request $request)
         {
-            //dump($request);
             $user_id = intval($request->user);
             $event = intval($request->event);
             $eventRequwest = EventRequest::select(["*"])->where("name", "event")->where("who_id",
@@ -225,7 +224,7 @@
 
         public function accept(Request $request)
         {
-            $eventReq = EventRequest::select(["*"])->where('id', $request->req_id)->first();
+            $eventReq = EventRequest::getItem($request->req_id);
 
             if ($eventReq == null) {
                 return response()->json([false]);
@@ -238,23 +237,18 @@
 
         public function denied(Request $request)
         {
-            $eventReq = EventRequest::select(["*"])->where('id', $request->req_id)->first();
-
+            $eventReq = EventRequest::getItem($request->req_id);
             if ($eventReq == null) {
                 return response()->json([false]);
             }
-            $eventReq->status = "denide";
-            $eventReq->save();
+            $eventReq->denied();
 
             return response()->json([true]);
         }
 
-        public function requwestlist($id, Request $request)
+        public function requestList($id, Request $request)
         {
-            // dump($id);
-            // dump($request);
             $event = Event::get($id);
-            //   dump($event);
             if ($event == null) {
                 return response()->json(null);
             }

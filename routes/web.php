@@ -31,12 +31,12 @@
         Route::get('/create', 'EventController@create')->name('create')->middleware('auth');
         Route::post('/store', 'EventController@store')->name('store')->middleware('auth');
 
-        Route::get('/check-request', 'EventController@check_requwest')->name('check-requwest');
-        Route::get('/make-request', 'EventController@makeRequest')->name('make-requwest');
+        Route::get('/check-request', 'EventController@check_request')->name('check_request');
+        Route::get('/make-request', 'EventController@makeRequest')->name('make-request');
         Route::get('/accept', 'EventController@accept')->name('accept');
         Route::get('/denied', 'EventController@denied');
         Route::get('/{id}', 'EventController@view')->name('view');
-        Route::get('/{id}/requwestlist', 'EventController@requwestlist')->name('requwestlist');
+        Route::get('/{id}/requestList', 'EventController@requestList')->name('requestList');
 
         //  Route::get('/singup/{id}', 'MyEventController@singup')->name('viewmyevent')->middleware('auth');
     });

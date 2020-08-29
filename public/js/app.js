@@ -3767,7 +3767,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.requwestlist = null;
-      axios.get('/events/' + this.event.id + '/requwestlist').then(function (response) {
+      axios.get('/events/' + this.event.id + '/requestList').then(function (response) {
         _this.requwestlist = response.data.requwest;
         console.log(_this.requwestlist);
       });

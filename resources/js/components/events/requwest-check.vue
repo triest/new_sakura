@@ -252,7 +252,7 @@
             },
             getrequwests() {
                 this.requwestlist = null;
-                axios.get('/events/' + this.event.id + '/requwestlist')
+                axios.get('/events/' + this.event.id + '/requestList')
                     .then((response) => {
                         this.requwestlist = response.data.requwest;
                         console.log(this.requwestlist)
