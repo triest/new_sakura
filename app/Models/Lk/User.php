@@ -173,7 +173,6 @@
         public function getAge()
         {
             $dateBith = $this->date_birth;
-
             $mytime = Carbon::now();
             $last_login = Carbon::createFromFormat('Y-m-d', $dateBith);
             $datediff = date_diff($last_login, $mytime);
@@ -190,11 +189,25 @@
             return $datediff->y;
         }
 
-        public static function get($id,$all=false)
+        public static function get($id, $all = false)
         {
-            if($all==false){
-                return User::select(['id','name','description','sex','weight','height','meet','banned','country_id','region_id','city_id','date_birth','last_login'])->first();
-            }else{
+            if ($all == false) {
+                return User::select([
+                        'id',
+                        'name',
+                        'description',
+                        'sex',
+                        'weight',
+                        'height',
+                        'meet',
+                        'banned',
+                        'country_id',
+                        'region_id',
+                        'city_id',
+                        'date_birth',
+                        'last_login'
+                ])->where('id', $id)->first();
+            } else {
                 return User::select(['*'])->where('id', $id)->first();
             }
 

@@ -9,6 +9,7 @@
     use App\Models\SearchSettings;
     use App\Models\Target;
     use App\Models\lk\User;
+    use App\Service\SearchService;
     use Carbon\Carbon;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
@@ -18,153 +19,14 @@
     class SeachController extends Controller
     {
 
-        private $limit = 16;
+
 
         //
-        public function seach(Request $request)
+        public function seach(Request $request, SearchService $searchService)
         {
-            $users = null;
-
-            $userAuth = Auth::user();
-            if ($userAuth != null) {
-                if ($userAuth != null) {
-                    $seachSettings = $userAuth->seachsettings()->first();
-                }
-            } else {
-
-                if (isset($_COOKIE["seachSettings"])) {
-                    $cookie = $_COOKIE["seachSettings"];
-                    if ($cookie != null) {
-                        $seachSettings = SearchSettings::select(['*'])
-                                ->where("cookie", "=", $cookie)
-                                ->orderBy('updated_at', 'desc')
-                                ->first();
-                    }
-                }
-
-            }
-
-            if (!isset($seachSettings) || $seachSettings == null) {
-
-                $users = DB::table('users');
-                if (isset($userAuth) && $userAuth != null) {
-                    $users->where('city_id', '=', $userAuth->city_id);
-                }
+            $users = $searchService->search();
 
 
-                $city = City::getCurrentCity();
-
-                if ($city != null) {
-                    $users->where('city_id', $city->id);
-                }
-
-                if (Auth::user() != null) {
-                    $users->where('id', '!=', Auth::user()->id);
-                }
-
-                $count = $users->count();
-                if (isset($_GET['page']) && intval($_GET['page']) > 1) {
-                    $page = intval($_GET['page']);
-                    $offset = $this->limit * ($page);
-                    $users->offset($offset);
-                }
-
-                $num_pages = intval($count / $this->limit);
-                $users->limit($this->limit);
-                $users->orderByDesc('created_at')->get();
-                $users = $users->get();
-
-                return response()->json([
-                        'ankets' => $users,
-                        'count' => $count,
-                        'num_pages' => $num_pages,
-                ]);
-
-            }
-
-            $users = User::select(['*']);
-
-            $interest = $seachSettings->interest()->get();
-
-
-            if ($interest->isNotEmpty()) {
-                $users->leftJoin('user_interest', 'user_interest.user_id', '=',
-                        'users.id');
-                // надо плдучить массив id штеукуыщцж
-                $interest_array = array();
-                foreach ($interest as $item) {
-                    array_push($interest_array, $item->id);
-                }
-
-                $users->whereIn('user_interest.interest_id', $interest_array);
-            }
-
-            $targets = $seachSettings->target()->get();
-
-            if ($targets->isNotEmpty()) {
-
-                $users->leftJoin('user_target', 'user_target.user_id', '=',
-                        'users.id');
-                // надо плдучить массив id штеукуыщцж
-                $interest_array = array();
-                foreach ($targets as $item) {
-                    array_push($interest_array, $item->id);
-                }
-                $users->whereIn('user_target.target_id', $interest_array);
-            }
-
-
-            if ($seachSettings->children != null || $seachSettings->children != 0) {
-                $users->where('children_id', '=', $seachSettings->children);
-            }
-
-
-            $city = City::getCurrentCity();
-
-            if ($city != null) {
-                $users->where('city_id', $city->id);
-            }
-
-            if ($seachSettings->meet != null
-                    && $seachSettings->meet != "nomatter"
-            ) {
-                $users->where('sex', '=', $seachSettings->meet);
-            }
-
-            if (isset($seachSettings) && $seachSettings->relation != 0) {
-                $users->where('relation_id', '=', $seachSettings->relation);
-            }
-
-            if (isset($seachSettings) && $seachSettings->age_from != null) {
-                $users->where(DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"), ">=", $seachSettings->age_from);
-            }
-
-            if (isset($seachSettings) && $seachSettings->age_to != null) {
-                $users->where(DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"), "<=", $seachSettings->age_to);
-            }
-
-            if (Auth::user() != null) {
-                $users->where('id', '!=', Auth::user()->id);
-            }
-
-            $count = $users->count();
-            $num_pages = intval($count / $this->limit);
-
-            $users->select('users.id', 'users.name', 'users.profile_url', 'users.date_birth',
-                    'users.created_at')->limit($this->limit);
-
-
-            if (isset($_GET['page']) && intval($_GET['page']) > 1) {
-
-                $page = intval($_GET['page']);
-                $offset = $this->limit * ($page);
-
-                $users->offset($offset);
-            }
-
-            $users->orderByDesc('created_at');
-
-            $users = $users->get();
             return response()->json(['ankets' => anketList::collection($users)]);
         }
 
