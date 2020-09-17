@@ -19,6 +19,8 @@
     {
         private $limit = 16;
 
+        private $paginate=12;
+
         public function search()
         {
             $userAuth = Auth::user();
@@ -70,7 +72,7 @@
                 $num_pages = intval($count / $this->limit);
                 $users->limit($this->limit);
                 $users->orderByDesc('created_at')->get();
-                $users = $users->get();
+                $users = $users->paginate($this->paginate);
 
                 return $users;
             }
@@ -141,11 +143,10 @@
                 $users->where('id', '!=', Auth::user()->id);
             }
 
-            $count = $users->count();
-            $num_pages = intval($count / $this->limit);
+
 
             $users->select('users.id', 'users.name', 'users.profile_url', 'users.date_birth',
-                    'users.created_at')->limit($this->limit);
+                    'users.created_at');
 
 /*
             if (isset($_GET['page']) && intval($_GET['page']) > 1) {
@@ -158,9 +159,10 @@
 */
             $users->orderByDesc('created_at');
 
-            $users = $users->get();
 
-            return $users;
+            $users = $users->paginate('10');;
+
+            return array("users"=>$users);
 
         }
 

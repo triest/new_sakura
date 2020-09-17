@@ -3,16 +3,27 @@
         <p>
             <button class="btn btn-primary" v-on:click="openSeachModal()">Настроить поиск</button>
         </p>
+
+        <div id="searchCount"  class="col-lg-2"  v-if="total!=null">Найдено {{total}} анкет</div> <br>
+
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-9 box-shadow" v-for="item in anketList">
             <a :href="/anket/+item.id">
                 <img width="250" height="250" :src="item.profile_url">
                 <div class="cell">
                     <div class="cell-overflow">
-                        {{item.name}},    {{item.age}}
+                        {{item.name}}, {{item.age}}
                     </div>
                 </div>
             </a>
         </div>
+
+        <div v-if="prev_page_url!=null">
+            <button class="btn btn-primar" v-on:click="seach(prev_page_url)">Назад</button>
+        </div>
+        <div v-if="next_page_url!=null">
+            <button class="btn btn-primary" v-on:click="seach(next_page_url)">Вперед</button>
+        </div>
+
         <SearchModal v-if="seachModal" @closeSeachModal="closeSeachModal()"></SearchModal>
     </div>
 </template>
@@ -35,19 +46,22 @@
                 count: 0,
                 seachModal: false,
                 event: "",
+                prev_page_url: null,
+                next_page_url: null,
+                total: null
             }
         },
         components: {SearchModal},
         methods: {
 
-            seach() {
+            seach(url = '/seach') {
                 this.anketList = [];
-                axios.get('/seach').then((response) => {
+                axios.get(url).then((response) => {
                     let data = response.data;
-                    this.anketList = data.ankets;
-                    this.numPages = data.num_pages;
-                    this.count = data.count;
-
+                    this.anketList = data.data;
+                    this.prev_page_url = data.links.prev;
+                    this.next_page_url = data.links.next;
+                    this.total = data.meta.total;
                 })
             },
 
@@ -60,8 +74,15 @@
                     }
                 }
             },
+            next(page) {
+                this.page = this.page + 1;
+                this.loadNew();
+            },
+            previous() {
+                this.page = this.page - 1;
+                this.loadNew();
+            },
             loadNew: function () {
-                this.page++;
                 console.log(this.page);
                 axios.get('/seach',
                     {
@@ -71,10 +92,10 @@
                             }
                     }
                 ).then((response) => {
-                    console.log(response.data);
-                    for (let i = 0; i < temp.length; i++) {
-                        this.anketList.push(temp[i]);
-                    }
+                    let data = response.data;
+                    this.anketList = data.ankets;
+                    this.numPages = data.num_pages;
+                    this.count = data.count;
                 })
             },
             closeSeachModal() {
@@ -157,5 +178,10 @@
 
     .notfound {
 
+    }
+
+    #searchCount {
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>

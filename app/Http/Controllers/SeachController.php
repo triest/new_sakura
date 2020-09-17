@@ -20,14 +20,12 @@
     {
 
 
-
         //
         public function seach(Request $request, SearchService $searchService)
         {
             $users = $searchService->search();
 
-
-            return response()->json(['ankets' => anketList::collection($users)]);
+            return anketList::collection($users);
         }
 
 
