@@ -148,21 +148,11 @@
             $users->select('users.id', 'users.name', 'users.profile_url', 'users.date_birth',
                     'users.created_at');
 
-/*
-            if (isset($_GET['page']) && intval($_GET['page']) > 1) {
-
-                $page = intval($_GET['page']);
-                $offset = $this->limit * ($page);
-
-                $users->offset($offset);
-            }
-*/
             $users->orderByDesc('created_at');
 
+            $users = $users->paginate($this->paginate);;
 
-            $users = $users->paginate('10');;
-
-            return array("users"=>$users);
+            return $users;
 
         }
 
