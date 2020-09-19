@@ -2,10 +2,8 @@
     <div>
         <p>
             <button class="btn btn-primary" v-on:click="openSeachModal()">Настроить поиск</button>
+            <b id="searchCount" class="col-lg-2" v-if="total!=null">Найдено анкет: {{total}} </b>
         </p>
-
-        <div id="searchCount"  class="col-lg-2"  v-if="total!=null">Найдено {{total}} анкет</div> <br>
-
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-9 box-shadow" v-for="item in anketList">
             <a :href="/anket/+item.id">
                 <img width="250" height="250" :src="item.profile_url">
@@ -16,14 +14,14 @@
                 </div>
             </a>
         </div>
-
-        <div v-if="prev_page_url!=null">
-            <button class="btn btn-primar" v-on:click="seach(prev_page_url)">Назад</button>
+        <div>
+            <div v-if="prev_page_url!=null">
+                <button class="btn btn-primar" v-on:click="seach(prev_page_url)">Назад</button>
+            </div>
+            <div v-if="next_page_url!=null">
+                <button class="btn btn-primary" v-on:click="seach(next_page_url)">Вперед</button>
+            </div>
         </div>
-        <div v-if="next_page_url!=null">
-            <button class="btn btn-primary" v-on:click="seach(next_page_url)">Вперед</button>
-        </div>
-
         <SearchModal v-if="seachModal" @closeSeachModal="closeSeachModal()"></SearchModal>
     </div>
 </template>
@@ -129,6 +127,12 @@
 
     .container img {
         vertical-align: middle;
+    }
+
+    #searchCount {
+        position: absolute;
+        top: 5px;
+        left: 150px;
     }
 
     .container .content {

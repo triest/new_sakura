@@ -2766,8 +2766,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -8630,7 +8628,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n*[data-v-228b89eb] {\n    box-sizing: border-box;\n}\n.circle[data-v-228b89eb]:before {\n    content: ' \\25CF';\n    font-size: 20px;\n    margin: 0 auto;\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(145, 100, 153, 0); /* Black background with 0.5 opacity */\n    color: #20f100;\n    width: 100%;\n    padding: 10px;\n}\n.container img[data-v-228b89eb] {\n    vertical-align: middle;\n}\n.container .content[data-v-228b89eb] {\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(0, 0, 0, 0); /* Black background with 0.5 opacity */\n    color: #f1f1f1;\n    width: 100%;\n    padding: 0px;\n    margin: 115px;\n}\n.cell[data-v-228b89eb] {\n    position: absolute;\n    top: 150px;\n    right: 0;\n    bottom: 30px;\n    left: 0;\n    box-sizing: border-box;\n    display: block;\n    padding: 20px;\n    width: 100%;\n    color: white !important;\n    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n    cursor: pointer;\n}\n.cell-overflow[data-v-228b89eb] {\n    box-sizing: border-box;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    color: white;\n    cursor: pointer;\n}\n.previous[data-v-228b89eb] {\n    cursor: pointer;\n    margin-left: 50%;\n}\n.white[data-v-228b89eb]:link {\n    color: white;\n}\n.notfound[data-v-228b89eb] {\n}\n#searchCount[data-v-228b89eb] {\n    margin-left: auto;\n    margin-right: auto;\n}\n", ""]);
+exports.push([module.i, "\n*[data-v-228b89eb] {\n    box-sizing: border-box;\n}\n.circle[data-v-228b89eb]:before {\n    content: ' \\25CF';\n    font-size: 20px;\n    margin: 0 auto;\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(145, 100, 153, 0); /* Black background with 0.5 opacity */\n    color: #20f100;\n    width: 100%;\n    padding: 10px;\n}\n.container img[data-v-228b89eb] {\n    vertical-align: middle;\n}\n#searchCount[data-v-228b89eb] {\n    position: absolute;\n    top: 5px;\n    left: 150px;\n}\n.container .content[data-v-228b89eb] {\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(0, 0, 0, 0); /* Black background with 0.5 opacity */\n    color: #f1f1f1;\n    width: 100%;\n    padding: 0px;\n    margin: 115px;\n}\n.cell[data-v-228b89eb] {\n    position: absolute;\n    top: 150px;\n    right: 0;\n    bottom: 30px;\n    left: 0;\n    box-sizing: border-box;\n    display: block;\n    padding: 20px;\n    width: 100%;\n    color: white !important;\n    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n    cursor: pointer;\n}\n.cell-overflow[data-v-228b89eb] {\n    box-sizing: border-box;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    color: white;\n    cursor: pointer;\n}\n.previous[data-v-228b89eb] {\n    cursor: pointer;\n    margin-left: 50%;\n}\n.white[data-v-228b89eb]:link {\n    color: white;\n}\n.notfound[data-v-228b89eb] {\n}\n#searchCount[data-v-228b89eb] {\n    margin-left: auto;\n    margin-right: auto;\n}\n", ""]);
 
 // exports
 
@@ -48019,16 +48017,14 @@ var render = function() {
             }
           },
           [_vm._v("Настроить поиск")]
-        )
+        ),
+        _vm._v(" "),
+        _vm.total != null
+          ? _c("b", { staticClass: "col-lg-2", attrs: { id: "searchCount" } }, [
+              _vm._v("Найдено анкет: " + _vm._s(_vm.total) + " ")
+            ])
+          : _vm._e()
       ]),
-      _vm._v(" "),
-      _vm.total != null
-        ? _c("div", { staticClass: "col-lg-2", attrs: { id: "searchCount" } }, [
-            _vm._v("Найдено " + _vm._s(_vm.total) + " анкет")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("br"),
       _vm._v(" "),
       _vm._l(_vm.anketList, function(item) {
         return _c(
@@ -48056,39 +48052,41 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _vm.prev_page_url != null
-        ? _c("div", [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primar",
-                on: {
-                  click: function($event) {
-                    return _vm.seach(_vm.prev_page_url)
+      _c("div", [
+        _vm.prev_page_url != null
+          ? _c("div", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primar",
+                  on: {
+                    click: function($event) {
+                      return _vm.seach(_vm.prev_page_url)
+                    }
                   }
-                }
-              },
-              [_vm._v("Назад")]
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.next_page_url != null
-        ? _c("div", [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                on: {
-                  click: function($event) {
-                    return _vm.seach(_vm.next_page_url)
+                },
+                [_vm._v("Назад")]
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.next_page_url != null
+          ? _c("div", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      return _vm.seach(_vm.next_page_url)
+                    }
                   }
-                }
-              },
-              [_vm._v("Вперед")]
-            )
-          ])
-        : _vm._e(),
+                },
+                [_vm._v("Вперед")]
+              )
+            ])
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _vm.seachModal
         ? _c("SearchModal", {
