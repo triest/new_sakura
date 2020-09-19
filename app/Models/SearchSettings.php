@@ -54,13 +54,13 @@
                         $user->seachsettings()->save($seachSettings);
 
                         return $seachSettings;
-                        //   $anket->target()->attach($seachSettings);
+                        //   $anket->target()->attach($searchSettings);
                     }
                 } else {
-                    if (!isset($_COOKIE["seachSettings"])) {
-                        $_COOKIE["seachSettings"] = AnketController::randomString(64);
+                    if (!isset($_COOKIE["searchSettings"])) {
+                        $_COOKIE["searchSettings"] = AnketController::randomString(64);
                     }
-                    $cookie = $_COOKIE["seachSettings"];
+                    $cookie = $_COOKIE["searchSettings"];
                     $seachSettings = SearchSettings::select(['*'])
                             ->where("cookie", "=", $cookie)
                             ->orderBy('created_at', 'desc')
@@ -72,19 +72,19 @@
             } else {
 
 
-                if (isset($_COOKIE["seachSettings"])
-                        && $_COOKIE["seachSettings"] != null
+                if (isset($_COOKIE["searchSettings"])
+                        && $_COOKIE["searchSettings"] != null
                 ) {
                     $seachSettings = SearchSettings::select([
                             '*'
                     ])
                             ->orderBy('created_at', 'desc')
-                            ->where("cookie", "=", $_COOKIE["seachSettings"])->first();
+                            ->where("cookie", "=", $_COOKIE["searchSettings"])->first();
 
                     if ($seachSettings == null) {
 
                         $seachSettings = new SearchSettings();
-                        $seachSettings->cookie = $_COOKIE["seachSettings"];
+                        $seachSettings->cookie = $_COOKIE["searchSettings"];
                         $seachSettings->save();
 
                         return $seachSettings;
@@ -97,7 +97,7 @@
                     $seachSettings = new SearchSettings();
                     $seachSettings->cookie = $cookie;
                     $seachSettings->save();
-                    Cookie::queue("seachSettings", $cookie, 6000);
+                    Cookie::queue("searchSettings", $cookie, 6000);
 
                     return $seachSettings;
                 }

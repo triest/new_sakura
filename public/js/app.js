@@ -2048,7 +2048,7 @@ __webpack_require__.r(__webpack_exports__);
       select2inters: [],
       select2children: null,
       select2relation: [],
-      seachSettings: null,
+      searchSettings: null,
       targets_show: false,
       interes_show: false,
       children_show: false,
@@ -2471,7 +2471,7 @@ __webpack_require__.r(__webpack_exports__);
       select2inters: [],
       select2children: null,
       select2relation: [],
-      seachSettings: null,
+      searchSettings: null,
       targets_show: true,
       interes_show: true,
       children_show: false,
@@ -2503,19 +2503,27 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('seach/getsettings').then(function (response) {
-        var res = response.data;
+        var res = response.data.data;
+        console.log(res);
         _this2.targets = res.targets;
         _this2.select2targets = res.selectedTargets;
         _this2.select2inters = res.selectedInterest;
         _this2.interest = res.interests;
         _this2.children = res.children;
-        _this2.seachSettings = res.sechSettings;
-        _this2.from = _this2.seachSettings.age_from;
-        _this2.to = _this2.seachSettings.age_to;
-        _this2.select2children = _this2.seachSettings.children;
-        _this2.meet = _this2.seachSettings.meet;
+        _this2.searchSettings = res.searchSettings;
+        _this2.relation = res.relation;
+        _this2.smoking = res.smoking;
+        console.log(_this2.targets);
+        console.log(_this2.interest);
+        console.log(_this2.children);
+        console.log(_this2.relation);
+        console.log(_this2.smoking);
+        _this2.from = _this2.searchSettings.age_from;
+        _this2.to = _this2.searchSettings.age_to;
+        _this2.select2children = _this2.searchSettings.children;
+        _this2.meet = _this2.searchSettings.meet;
         _this2.relation = res.relations;
-      }).then(console.log(this.relation));
+      }).then(function () {});
     },
     show: function show(input) {
       console.log(input);

@@ -109,7 +109,7 @@
                 select2inters: [],
                 select2children: null,
                 select2relation: [],
-                seachSettings: null,
+                searchSettings: null,
                 targets_show: false,
                 interes_show: false,
                 children_show: false,

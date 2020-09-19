@@ -158,7 +158,7 @@
                 select2inters: [],
                 select2children: null,
                 select2relation: [],
-                seachSettings: null,
+                searchSettings: null,
                 targets_show: true,
                 interes_show: true,
                 children_show: false,
@@ -190,19 +190,30 @@
             getSettings() {
                 axios.get('seach/getsettings')
                     .then((response) => {
-                        let res = response.data;
+                        let res = response.data.data;
+                        console.log(res);
                         this.targets = res.targets;
                         this.select2targets = res.selectedTargets;
                         this.select2inters = res.selectedInterest;
                         this.interest = res.interests;
                         this.children = res.children;
-                        this.seachSettings = res.sechSettings;
-                        this.from = this.seachSettings.age_from;
-                        this.to = this.seachSettings.age_to;
-                        this.select2children = this.seachSettings.children;
-                        this.meet = this.seachSettings.meet;
-                        this.relation = res.relations;
-                    }).then(console.log(this.relation))
+                        this.searchSettings = res.searchSettings;
+                        this.relation = res.relation;
+                        this.smoking = res.smoking;
+                        console.log(this.targets);
+                        console.log(this.interest);
+                        console.log(this.children);
+                        console.log(this.relation);
+                        console.log(this.smoking);
+
+                          this.from = this.searchSettings.age_from;
+                          this.to = this.searchSettings.age_to;
+                          this.select2children = this.searchSettings.children;
+                          this.meet = this.searchSettings.meet;
+                          this.relation = res.relations;
+                    }).then(function () {
+
+                })
 
 
             },
