@@ -2,8 +2,15 @@
     <div>
         <p>
             <button class="btn btn-primary" v-on:click="openSeachModal()">Настроить поиск</button>
-            <b id="searchCount" class="col-lg-2" v-if="total!=null">Найдено анкет: {{total}} </b>
+            <code id="searchCount" class="col-lg-2" v-if="total!=null">Найдено анкет: {{total}} </code>
         </p>
+        <div>
+            <button id="next" v-if="prev_page_url!=null" class="btn btn-primar" v-on:click="seach(prev_page_url)">
+                Назад
+            </button>
+            <button v-if="next_page_url!=null" class="btn btn-primary" v-on:click="seach(next_page_url)">Вперед</button>
+        </div>
+
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-9 box-shadow" v-for="item in anketList">
             <a :href="/anket/+item.id">
                 <img width="250" height="250" :src="item.profile_url">
@@ -13,14 +20,6 @@
                     </div>
                 </div>
             </a>
-        </div>
-        <div>
-            <div v-if="prev_page_url!=null">
-                <button class="btn btn-primar" v-on:click="seach(prev_page_url)">Назад</button>
-            </div>
-            <div v-if="next_page_url!=null">
-                <button class="btn btn-primary" v-on:click="seach(next_page_url)">Вперед</button>
-            </div>
         </div>
         <SearchModal v-if="seachModal" @closeSeachModal="closeSeachModal()"></SearchModal>
     </div>

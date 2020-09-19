@@ -2765,7 +2765,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -48020,9 +48019,44 @@ var render = function() {
         ),
         _vm._v(" "),
         _vm.total != null
-          ? _c("b", { staticClass: "col-lg-2", attrs: { id: "searchCount" } }, [
-              _vm._v("Найдено анкет: " + _vm._s(_vm.total) + " ")
-            ])
+          ? _c(
+              "code",
+              { staticClass: "col-lg-2", attrs: { id: "searchCount" } },
+              [_vm._v("Найдено анкет: " + _vm._s(_vm.total) + " ")]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _vm.prev_page_url != null
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-primar",
+                attrs: { id: "next" },
+                on: {
+                  click: function($event) {
+                    return _vm.seach(_vm.prev_page_url)
+                  }
+                }
+              },
+              [_vm._v("\n            Назад\n        ")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.next_page_url != null
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                on: {
+                  click: function($event) {
+                    return _vm.seach(_vm.next_page_url)
+                  }
+                }
+              },
+              [_vm._v("Вперед")]
+            )
           : _vm._e()
       ]),
       _vm._v(" "),
@@ -48051,42 +48085,6 @@ var render = function() {
           ]
         )
       }),
-      _vm._v(" "),
-      _c("div", [
-        _vm.prev_page_url != null
-          ? _c("div", [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primar",
-                  on: {
-                    click: function($event) {
-                      return _vm.seach(_vm.prev_page_url)
-                    }
-                  }
-                },
-                [_vm._v("Назад")]
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.next_page_url != null
-          ? _c("div", [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  on: {
-                    click: function($event) {
-                      return _vm.seach(_vm.next_page_url)
-                    }
-                  }
-                },
-                [_vm._v("Вперед")]
-              )
-            ])
-          : _vm._e()
-      ]),
       _vm._v(" "),
       _vm.seachModal
         ? _c("SearchModal", {
