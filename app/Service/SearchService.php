@@ -117,6 +117,7 @@
             }
 
 
+
             $city = City::getCurrentCity();
 
             if ($city != null) {
@@ -142,7 +143,7 @@
             }
 
             if (Auth::user() != null) {
-                $users->where('id', '!=', Auth::user()->id);
+                $users->where('users.id', '!=', Auth::user()->id);
             }
 
 
@@ -159,7 +160,6 @@
 
         public function getSettings()
         {
-
 
 
             $targets = Target::select(['id', 'name'])->get();
@@ -247,7 +247,8 @@
                 $seachSettingsArray['children'] = $sechSettings->children;
             }
 
-            $rez_array=[     "anket" => $user,
+            $rez_array = [
+                    "anket" => $user,
                     "targets" => $targets,
                     "selectedTargets" => $targets_array,
                     "interests" => $interests,
@@ -256,7 +257,8 @@
                     "relations" => null,
                     "children" => null,
                     "sechSettings" => $seachSettingsArray,
-                    "smoking" => null];
+                    "smoking" => null
+            ];
 
             return $rez_array;
         }

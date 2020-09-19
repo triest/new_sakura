@@ -29,6 +29,9 @@
         public function getMessagesFor($id, ContactService $contactService)
         {
             $user = User::get($id);
+            if ($user == null) {
+                return null;
+            }
             $messages = $contactService->getMessagesFor($user);
             return response()->json($messages);
         }
@@ -36,6 +39,9 @@
         public function send(SendMessageToUser $request)
         {
             $user = User::get($request->contact_id);
+            if ($user == null) {
+                return null;
+            }
             $message = $user->sendMessage($request->text);
             return response()->json($message);
         }
