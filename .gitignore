@@ -7,8 +7,8 @@
 /public/upload/lk_profile
 /public/upload/presents
 /storage/*.key
+/node_modules
 
-.env
 .idea
 
 .phpunit.result.cache
@@ -20,8 +20,6 @@ _ide_helper_models.php
 /vendor
 composer.phar
 composer.lock  # Remove this one after you create a project
-.env.*.php
-.env.php
 .DS_Store
 Thumbs.db
 wanderer/config.conf

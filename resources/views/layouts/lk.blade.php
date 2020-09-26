@@ -61,7 +61,9 @@ $city = \App\Models\City::getCurrentCity();
     <div id="event_in_my_city_side_app" class="visible-xs visible-lg" style="width: 25rem; background-color: #eeeeee;
              border: 1px solid transparent;
              border-color: #666869;">
-        <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
+        @isset($city)
+            <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
+        @endisset
     </div>
 </div>
 <div class="col-sm-1">
