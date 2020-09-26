@@ -3,6 +3,7 @@
     /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
     use App\Models\Lk\User;
+    use App\Models\Relation;
     use Faker\Generator as Faker;
     use Illuminate\Support\Str;
 
@@ -32,7 +33,10 @@
         } else {
             $meet = "female";
         }
-
+        $relation=null;
+        while ($relation==null) {
+            $relation = Relation::inRandomOrder()->first();
+        }
 
         return [
                 'name' => $name,
@@ -49,5 +53,6 @@
                 'date_birth' => $faker->dateTime('-18 years'),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
+                'relation_id'=>$relation->id
         ];
     });
