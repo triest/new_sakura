@@ -13,15 +13,15 @@ use Illuminate\Database\Seeder;
     public function run()
     {
         //
-        DB::table('interest')->insert([
+        DB::table('relation')->insert([
                 'name' => 'Нет',
 
         ]);
-        DB::table('interest')->insert([
+        DB::table('relation')->insert([
                 'name' => 'Есть',
 
         ]);
-        DB::table('interest')->insert([
+        DB::table('relation')->insert([
                 'name' => 'Все сложно',
 
         ]);

@@ -1,9 +1,11 @@
 <?php
 
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/',  function () {
+        return redirect('/anket');
+    });
     Route::get('/lesson', 'HomeController@lesson')->name('lesson');
 
-    Route::get('/log','LogController@log');
+
 
 // Общий роутинг
 //Route::redirect('/', '/lk');
@@ -90,7 +92,7 @@
 
 // Закрытая часть для сотрудников
     Route::prefix('admin')->name('admin.')->middleware('admin')->namespace('Admin')->group(function () {
-        Route::auth(['verify' => true]);
+      //  Route::auth(['verify' => true]);
         Route::redirect('/', 'home')->name('home');
         Route::get('/', 'AdminUsersController@index');
         Route::prefix('presents')->name('presents.')->middleware('admin')->group(function () {
@@ -105,10 +107,4 @@
         Route::prefix('price')->name('price.')->middleware('admin')->group(function () {
             Route::get('/', 'AdminUsersController@presentsMain')->name('main');
         });
-    });
-
-    Route::prefix('test')->name('test.')->group(function () {
-        Route::get('/parse', 'TestController@parse')->name('parse');
-        Route::post('/parse', 'TestController@store')->name('store');
-
     });
