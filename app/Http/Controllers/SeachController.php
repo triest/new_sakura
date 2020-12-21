@@ -64,7 +64,7 @@
             }
 
             if (isset($request->relation) && !empty($request->relation)) {
-                $seachSettings->relation = $request->relation;
+                $seachSettings->relation_id = $request->relation;
             }
 
             $seachSettings->save();

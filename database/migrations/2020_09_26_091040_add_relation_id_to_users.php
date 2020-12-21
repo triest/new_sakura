@@ -13,10 +13,14 @@ class AddRelationIdToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->foreignId('relation_id')->references('id')->on('relation');
-        });
+        Schema::table(
+                'seach_settings',
+                function (Blueprint $table) {
+                    //
+                    //    $table->foreignId('relation_id')->references('id')->on('relation');
+                    $table->integer('relation_id')->nullable()->default(null);
+                }
+        );
     }
 
     /**
@@ -26,8 +30,13 @@ class AddRelationIdToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::table(
+                'seach_settings',
+                function (Blueprint $table) {
+                    //
+                    $table->dropColumn('relation_id');
+                    //     $table->dropForeign('relation_id');
+                }
+        );
     }
 }
