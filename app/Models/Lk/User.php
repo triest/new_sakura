@@ -16,6 +16,10 @@
     use App\Notifications\ResetPassword;
     use App\Notifications\VerifyEmail;
     use App\Models\Present;
+    use Backpack\CRUD\app\Models\Traits\CrudTrait;
+    use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
+    use Cviebrock\EloquentSluggable\Sluggable;
+    use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\SluggableScopeHelpers;
     use Carbon\Carbon;
     use Composer\Util\Git;
     use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -80,7 +84,14 @@
         use Notifiable;
         use SoftDeletes;
 
+        use CrudTrait;
+        use Sluggable;
+        use SluggableScopeHelpers;
+        use HasTranslations;
+
         protected $table = 'users';
+
+        protected $translatable = ['name', 'slug'];
 
 
         protected $guard = 'lk';
@@ -453,6 +464,15 @@
             } else {
                 return null;
             }
+        }
+
+        public function sluggable(): array
+        {
+            return [
+                    'slug' => [
+                            'source' => 'slug_or_name',
+                    ],
+            ];
         }
 
 

@@ -16,7 +16,8 @@
 http://localhost/
 
 PhpMyAdmin
-http://127.0.0.1:8081/index.php
+composer require backpack/langfilemanager
+
 
 Сервер: mysql Пользователь: default Пароль: secret
 
