@@ -11,6 +11,7 @@
     use App\Models\Interest;
     use App\Models\Like;
     use App\Models\Message;
+    use App\Models\Relation;
     use App\Models\SearchSettings;
     use App\Models\Target;
     use App\Notifications\ResetPassword;
@@ -91,7 +92,7 @@
 
         protected $table = 'users';
 
-        protected $translatable = ['name', 'slug'];
+        protected $translatable = ['slug'];
 
 
         protected $guard = 'lk';
@@ -234,7 +235,13 @@
             return $this->hasMany(Event::class);
         }
 
-        public static function getIpstatic()
+        public function relation()
+        {
+            return $this->belongsTo(Relation::class);
+        }
+
+
+        public static function Ipstatic()
         {
             foreach (
                     array(
