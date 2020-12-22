@@ -158,7 +158,14 @@ class UserCrudController extends CrudController
                 ]
         );
 
-
+        $this->crud->addField(
+                [
+                        'label' => 'age',
+                        'name' => 'numeric',
+                        'type' => 'number',
+                        'attribute' => 'age',
+                ]
+        );
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
