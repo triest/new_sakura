@@ -27,7 +27,7 @@ class ChangeUserSexFildType extends Migration
                 'users',
                 function (Blueprint $table) {
                     //
-                    $table->enum('sex', ['мужчина', 'женщина','не указанно'])->nullable()->default(null);
+                    $table->enum('sex', ['male', 'female'])->nullable()->default(null);
                 }
         );
     }
@@ -49,8 +49,11 @@ class ChangeUserSexFildType extends Migration
         );
 
         //
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('sex',30)->nullable()->default("");
-        });
+        Schema::table(
+                'users',
+                function (Blueprint $table) {
+                    $table->string('sex', 30)->nullable()->default("");
+                }
+        );
     }
 }
