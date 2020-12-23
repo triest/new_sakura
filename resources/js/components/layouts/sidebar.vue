@@ -7,7 +7,13 @@
       <div v-if="numberApplication>0">({{numberApplication}})</div>
     </a>
     <a class="btn btn-info" href="/mypresents">Мои подарки</a>
-    <img :src="user.profile_url" height="50px">
+    <div class="dropdown">
+      <img :src="user.profile_url" height="50px" class="dropbtn">
+      <div class="dropdown-content">
+        <a href="/lk/profile">Профиль</a>
+        <a href="/lk/logout">Выйти</a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -177,5 +183,31 @@ export default {
 </script>
 
 <style scoped>
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
 
 </style>

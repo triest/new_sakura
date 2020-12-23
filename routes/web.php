@@ -65,7 +65,6 @@ Route::prefix('lk')->name('lk.')->namespace('Lk')->group(
                         Route::get('home', 'HomeController@index')->name('home');
                         Route::get('profile', 'HomeController@profile')->name('profile');
                         Route::post('profile', 'HomeController@store_profile')->name('profileStore');
-
                         //post crop image
 
                         Route::post('crop', 'HomeController@store_crop')->name('storeCrop');
