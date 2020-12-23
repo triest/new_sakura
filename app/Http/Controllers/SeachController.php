@@ -43,7 +43,7 @@
             $seachSettings = SearchSettings::getSeachSettings();
 
 
-            if ($seachSettings == null) {
+            if (!$seachSettings) {
                 return null;
             }
 

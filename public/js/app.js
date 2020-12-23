@@ -3409,7 +3409,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getEvents();
+    console.log("events"); //   this.getEvents()
   },
   data: function data() {
     return {
@@ -3889,8 +3889,173 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "sidebar"
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  },
+  components: {},
+  data: function data() {
+    return {
+      numberUnreaded: 0,
+      numberApplication: 0,
+      numberApplicationPresents: 0,
+      inseach: false,
+      likesNunber: 0,
+      showLikeModal: false,
+      unreeadedEventRequwest: 0,
+      showAlertModal: false,
+      event: "",
+      showNemMessageModal: false,
+      filter_enable: false,
+      count_accept_notification: 0
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.inSeach();
+    this.getAllDataForSidePanel();
+    this.getNumberUnreadedEventRequwest();
+    this.remidese();
+    Echo["private"]("messages.".concat(this.user.id)).listen('NewMessage', function (e) {
+      console.log('NewMessage');
+      axios.get('/getCountUnreaded').then(function (response) {
+        _this.numberUnreaded = response.data;
+      });
+
+      _this.getNumberUnreadedMessages();
+
+      _this.showNemMessageModal = true;
+    });
+    Echo["private"]("requwests.".concat(this.user.id)).listen('newApplication', function (e) {
+      console.log('NewRequwest');
+      axios.get('/getCountUnreadedRequwest').then(function (response) {
+        _this.numberApplication = response.data;
+      });
+    });
+    Echo["private"]("gifs.".concat(this.user.id)).listen('eventPreasent', function (e) {
+      _this.getNumberUnreadedPresents();
+
+      console.log("presrn");
+    });
+    Echo["private"]("eventsrequwest.".concat(this.user.id)).listen('Newevent', function (e) {
+      console.log('NewRequwestEvent');
+    });
+    Echo["private"]("App.User.".concat(this.user.id)).listen('Newevent', function (e) {
+      _this.getNumberUnreadedEventRequwest();
+    });
+  },
+  methods: {
+    triger: function triger() {
+      var _this2 = this;
+
+      clearTimeout(this.timer);
+      this.timer = setTimeout(function () {
+        clearTimeout(_this2.timer);
+        _this2.showLikeModal = true;
+      }, 1500);
+    },
+    cleare: function cleare() {
+      clearTimeout(this.timer);
+    },
+    closeLikeModal: function closeLikeModal() {
+      this.showLikeModal = false;
+    },
+    getNumberUnreadedMessages: function getNumberUnreadedMessages() {
+      var _this3 = this;
+
+      axios.get('/getCountUnreaded').then(function (response) {
+        _this3.numberUnreaded = response.data;
+      });
+    },
+    getNumberUnreadedPresents: function getNumberUnreadedPresents() {
+      var _this4 = this;
+
+      axios.get('/getCountUnreadedPresents').then(function (response) {
+        _this4.numberApplicationPresents = response.data;
+      });
+    },
+    inSeach: function inSeach() {
+      var _this5 = this;
+
+      var res;
+      axios.get('/inseach').then(function (response) {
+        res = response.data;
+
+        if (res == true) {
+          _this5.inseach = true;
+        } else {
+          _this5.inseach = false;
+        }
+      });
+    },
+    getLikesNumber: function getLikesNumber() {
+      var _this6 = this;
+
+      axios.get('/getLikesNumberAuch', {
+        params: {
+          girl_id: this.girlid
+        }
+      }).then(function (response) {
+        _this6.likesNunber = response.data['likeNumber'];
+      });
+      console.log("likes number " + this.likesNunber);
+    },
+    getAllDataForSidePanel: function getAllDataForSidePanel() {
+      var _this7 = this;
+
+      axios.get('/getalldataforsidepanel', {
+        params: {
+          girl_id: this.girlid
+        }
+      }).then(function (response) {
+        var data = response.data;
+        _this7.likesNunber = data.likeNumber;
+        _this7.numberApplicationPresents = data.countGift;
+        _this7.numberUnreaded = data.countMessages;
+        _this7.numberApplication = data.countRequwest;
+        _this7.filter_enable = data.filter.filter_enable;
+        _this7.count_accept_notification = data.countAccept_notification;
+      });
+    },
+    clouseLikeModal: function clouseLikeModal() {
+      console.log("clouseLikeModal");
+      this.showLikeModal = false;
+    },
+    //
+    getNumberUnreadedEventRequwest: function getNumberUnreadedEventRequwest() {
+      var _this8 = this;
+
+      axios.get('/event/requwest/myevent', {}).then(function (response) {
+        //    this.unreeadedEventRequwest = response.data["count(*)"];
+        _this8.unreeadedEventRequwest = response.data.organizer;
+      });
+    },
+    remidese: function remidese() {
+      var _this9 = this;
+
+      axios.get('/event/reminders', {}).then(function (response) {
+        //  console.log(response.data)
+        if (response.data.requestMyEvent.length > 0) {
+          _this9.showAlertModal = true;
+          _this9.event = response.data.requestMyEvent;
+        }
+      });
+    },
+    clouseAlertModal: function clouseAlertModal() {
+      this.showAlertModal = false;
+    }
+  }
 });
 
 /***/ }),
@@ -49742,7 +49907,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    sa\n")])
+  return _c("div", [
+    _c("a", { attrs: { href: "/messages" } }, [
+      _vm._v("Сообщения\n    "),
+      _vm.numberUnreaded > 0
+        ? _c("div", [_vm._v("(" + _vm._s(_vm.numberUnreaded) + ")")])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("a", { attrs: { href: "/applications" } }, [
+      _vm._v("Заявки на открытие анкеты\n    "),
+      _vm.numberApplication > 0
+        ? _c("div", [_vm._v("(" + _vm._s(_vm.numberApplication) + ")")])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("a", { staticClass: "btn btn-info", attrs: { href: "/mypresents" } }, [
+      _vm._v("Мои подарки")
+    ]),
+    _vm._v(" "),
+    _c("img", { attrs: { src: _vm.user.profile_url, height: "50px" } })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -63935,8 +64120,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! e:\openServer535\OSPanel\domains\sakura\sakura\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! e:\openServer535\OSPanel\domains\sakura\sakura\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

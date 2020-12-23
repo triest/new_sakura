@@ -49,6 +49,9 @@
         public function newLike(Request $request)
         {
             $girl = User::get($request->user_id);
+            if ($girl == null) {
+                return response()->json(false);
+            }
             $girl->newLike();
 
             return response()->json(['ok']);

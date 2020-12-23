@@ -12,8 +12,11 @@ class LikeController extends Controller
     {
         $target = User::where('id', $request->user_id)->first();
 
-        $target->newLike();
+        if (!$target) {
+            return response()->json(false);
+        }
 
+        $target->newLike();
 
 
         return response()->json(['ok']);

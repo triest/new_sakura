@@ -17,11 +17,11 @@
     <!-- Bootstrap core CSS -->
 
     <!-- custom buttons -->
-    <link href="{{asset('css/buttons.css')}}" rel="stylesheet">
+
 
     <!--for galeray -->
     <link href="{{asset('css/gallery-grid.css')}}">
-    <link rel="stylesheet" href="{{ asset('js/baguetteBox.min.css') }}">
+
     <!--end for faleray -->
 
     <!--My custom style -->
@@ -41,28 +41,23 @@
 </head>
 
 <body>
-<script src="{{ asset('/js/axios.min.js') }}"></script>
+<!-- тут меню -->
+@include('layouts.header')
+<script src="{{ asset('js/axios.min.js') }}"></script>
 <?
 $city = \App\Models\City::getCurrentCity();
 ?>
-<!-- тут меню -->
-<nav class="navbar hidden-sm hidden-md hidden-lg visable-xs">
-
-</nav>
 
 
-<div class="card-body" id="event_in_my_city_sire_app">
-    <div class="row">
-
-    </div>
-</div>
 
 <div class="col-sm-1">
     <div id="event_in_my_city_side_app" class="visible-xs visible-lg" style="width: 25rem; background-color: #eeeeee;
              border: 1px solid transparent;
              border-color: #666869;">
         @isset($city)
+            <? if($city){ ?>
             <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
+            <?}?>
         @endisset
     </div>
 </div>
@@ -104,8 +99,8 @@ $city = \App\Models\City::getCurrentCity();
 
 <!--<script src="http://bootstrap-3.ru/dist/js/bootstrap.min.js"></script>-->
 
-<!--<script src="http://bootstrap-3.ru/examples/offcanvas/offcanvas.js"></script>-->
-<script src="{{ asset('offcanvas.js') }}"></script>
+<script src="http://bootstrap-3.ru/examples/offcanvas/offcanvas.js"></script>
+
 </body>
 </html>
 <script>

@@ -24,6 +24,10 @@
         {
             $user = User::get(intval($request->user_id));
 
+            if (!$user) {
+                return response()->json(false);
+            }
+
             if ($user->makeGift($request->present_id)) {
                 return response()->json(true);
             } else {
@@ -38,6 +42,9 @@
             }
 
             $user = User::get(intval($request->get("user_id")));
+            if (!$user) {
+                return response()->json(false);
+            }
             $gifs = $user->getGifts(30);
             return response()->json(["gifs" => $gifs]);
         }

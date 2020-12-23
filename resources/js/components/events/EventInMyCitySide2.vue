@@ -40,7 +40,9 @@
             }
         },
         mounted() {
-            this.getEvents()
+          console.log("events")
+         //   this.getEvents()
+
         },
         data() {
             return {

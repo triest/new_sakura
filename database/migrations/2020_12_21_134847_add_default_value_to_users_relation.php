@@ -15,7 +15,8 @@ class AddDefaultValueToUsersRelation extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->integer('relation_id')->nullable()->default(null)->change();
+
+            $table->integer('relation_id')->nullable()->default(null);
         });
     }
 
