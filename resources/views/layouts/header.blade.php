@@ -1,5 +1,4 @@
 <nav class="navbar  bg-light" id="headerApp" style="margin-left: auto;margin-right: auto">
-    <a class="navbar-brand">Navbar</a>
     <span style="display:inline">
         @auth
             <sidebar :user="{{auth()->user()}}"></sidebar>
