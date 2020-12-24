@@ -18,8 +18,7 @@ class City extends Model
     {
         $ip = User::getIpStatic();
         if (!$ip) {
-            $ip="185.90.100.154";
-            //return false;
+            $ip="";
         }
         try {
             $response = file_get_contents("http://api.sypexgeo.net/json/" . $ip);
