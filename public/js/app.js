@@ -3902,6 +3902,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -8867,7 +8869,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.dropdown[data-v-7236835b] {\r\n  position: relative;\r\n  display: inline-block;\n}\n.dropdown-content[data-v-7236835b] {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\r\n  z-index: 1;\n}\n.dropdown-content a[data-v-7236835b] {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\n.dropdown-content a[data-v-7236835b]:hover {background-color: #ddd;}\n.dropdown:hover .dropdown-content[data-v-7236835b] {display: block;}\r\n\r\n", ""]);
+exports.push([module.i, "\n.dropdown[data-v-7236835b] {\r\n  position: relative;\r\n  display: inline-block;\n}\n.dropdown-content[data-v-7236835b] {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(231, 199, 199, 0.2);\r\n  z-index: 1;\n}\n.dropdown-content a[data-v-7236835b] {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\n.dropdown-content a[data-v-7236835b]:hover {\r\n  background-color: #ddd;\n}\n.dropdown:hover .dropdown-content[data-v-7236835b] {\r\n  display: block;\n}\n.navbar[data-v-7236835b] {\r\n  position: absolute;\r\n  width: 100%;\r\n  left: 0;\r\n  text-align: center;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -49962,33 +49964,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("a", { attrs: { href: "/messages" } }, [
-      _vm._v("Сообщения\n    "),
-      _vm.numberUnreaded > 0
-        ? _c("div", [_vm._v("(" + _vm._s(_vm.numberUnreaded) + ")")])
-        : _vm._e()
-    ]),
-    _vm._v(" "),
-    _c("a", { attrs: { href: "/applications" } }, [
-      _vm._v("Заявки на открытие анкеты\n    "),
-      _vm.numberApplication > 0
-        ? _c("div", [_vm._v("(" + _vm._s(_vm.numberApplication) + ")")])
-        : _vm._e()
-    ]),
-    _vm._v(" "),
-    _c("a", { staticClass: "btn btn-info", attrs: { href: "/mypresents" } }, [
-      _vm._v("Мои подарки")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "dropdown" }, [
-      _c("img", {
-        staticClass: "dropbtn",
-        attrs: { src: _vm.user.profile_url, height: "50px" }
-      }),
-      _vm._v(" "),
-      _vm._m(0)
-    ])
+  return _c("div", { staticClass: "d-flex justify-content-center" }, [
+    _c(
+      "nav",
+      { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
+      [
+        _c("a", { attrs: { href: "/messages" } }, [
+          _vm._v("Сообщения\n      "),
+          _vm.numberUnreaded > 0
+            ? _c("div", [_vm._v("(" + _vm._s(_vm.numberUnreaded) + ")")])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "/applications" } }, [
+          _vm._v("Заявки на открытие анкеты\n      "),
+          _vm.numberApplication > 0
+            ? _c("div", [_vm._v("(" + _vm._s(_vm.numberApplication) + ")")])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          { staticClass: "btn btn-info", attrs: { href: "/mypresents" } },
+          [_vm._v("Мои подарки")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "dropdown" }, [
+          _c("img", {
+            staticClass: "dropbtn",
+            attrs: { src: _vm.user.profile_url, height: "50px" }
+          }),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [

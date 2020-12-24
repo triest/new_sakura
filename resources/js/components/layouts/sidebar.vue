@@ -1,19 +1,21 @@
 <template>
-  <div>
-   <a href="/messages">Сообщения
-      <div v-if="numberUnreaded>0">({{numberUnreaded}})</div>
-    </a>
-    <a href="/applications">Заявки на открытие анкеты
-      <div v-if="numberApplication>0">({{numberApplication}})</div>
-    </a>
-    <a class="btn btn-info" href="/mypresents">Мои подарки</a>
-    <div class="dropdown">
-      <img :src="user.profile_url" height="50px" class="dropbtn">
-      <div class="dropdown-content">
-        <a href="/lk/profile">Профиль</a>
-        <a href="/lk/logout">Выйти</a>
+  <div class="d-flex justify-content-center">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="/messages">Сообщения
+        <div v-if="numberUnreaded>0">({{ numberUnreaded }})</div>
+      </a>
+      <a href="/applications">Заявки на открытие анкеты
+        <div v-if="numberApplication>0">({{ numberApplication }})</div>
+      </a>
+      <a class="btn btn-info" href="/mypresents">Мои подарки</a>
+      <div class="dropdown">
+        <img :src="user.profile_url" height="50px" class="dropbtn">
+        <div class="dropdown-content">
+          <a href="/lk/profile">Профиль</a>
+          <a href="/lk/logout">Выйти</a>
+        </div>
       </div>
-    </div>
+    </nav>
   </div>
 </template>
 
@@ -26,9 +28,7 @@ export default {
       required: true
     }
   },
-  components: {
-
-  },
+  components: {},
   data() {
     return {
       numberUnreaded: 0,
@@ -195,7 +195,7 @@ export default {
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(231, 199, 199, 0.2);
   z-index: 1;
 }
 
@@ -206,8 +206,20 @@ export default {
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.navbar {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+}
+
 
 </style>

@@ -49,7 +49,6 @@ $city = \App\Models\City::getCurrentCity();
 ?>
 
 
-
 <div class="col-sm-1">
     <div id="event_in_my_city_side_app" class="visible-xs visible-lg" style="width: 25rem; background-color: #eeeeee;
              border: 1px solid transparent;
