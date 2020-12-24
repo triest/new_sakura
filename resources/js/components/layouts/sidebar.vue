@@ -2,10 +2,10 @@
   <div class="d-flex justify-content-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-      <a href="/applications" style="cursor: pointer">Заявки на открытие анкеты
+      <a class="btn btn-primary" href="/applications" style="cursor: pointer">Заявки на открытие анкеты
         <div v-if="numberApplication>0">({{ numberApplication }})</div>
       </a>
-      <a href="/contact" style="cursor: pointer">Сообщения
+      <a class="btn btn-secondary" href="/contact" style="cursor: pointer">Сообщения
         <div v-if="numberUnreaded>0">({{ numberUnreaded }})</div>
       </a>
       <a class="btn btn-info" href="/mypresents">Мои подарки</a>

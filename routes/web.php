@@ -128,3 +128,5 @@ Route::prefix('presents')->name('present.')->group(
         });
     });
 */
+
+Route::get('/city', 'HomeController@city');

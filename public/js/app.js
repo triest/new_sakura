@@ -49977,6 +49977,7 @@ var render = function() {
         _c(
           "a",
           {
+            staticClass: "btn btn-primary",
             staticStyle: { cursor: "pointer" },
             attrs: { href: "/applications" }
           },
@@ -49990,7 +49991,11 @@ var render = function() {
         _vm._v(" "),
         _c(
           "a",
-          { staticStyle: { cursor: "pointer" }, attrs: { href: "/contact" } },
+          {
+            staticClass: "btn btn-secondary",
+            staticStyle: { cursor: "pointer" },
+            attrs: { href: "/contact" }
+          },
           [
             _vm._v("Сообщения\n      "),
             _vm.numberUnreaded > 0

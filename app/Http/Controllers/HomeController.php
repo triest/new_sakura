@@ -28,7 +28,14 @@ class HomeController extends Controller
     }
 
 
-    public function lesson() {
+    public function lesson()
+    {
         return view('home.lesson');
+    }
+
+    public function city()
+    {
+        $city = \App\Models\City::getCurrentCity();
+      //  dump($city);
     }
 }
