@@ -1,14 +1,19 @@
 <template>
   <div class="d-flex justify-content-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a href="/messages">Сообщения
-        <div v-if="numberUnreaded>0">({{ numberUnreaded }})</div>
-      </a>
-      <a href="/applications">Заявки на открытие анкеты
+
+      <a href="/applications" style="cursor: pointer">Заявки на открытие анкеты
         <div v-if="numberApplication>0">({{ numberApplication }})</div>
       </a>
+      <a href="/contact" style="cursor: pointer">Сообщения
+        <div v-if="numberUnreaded>0">({{ numberUnreaded }})</div>
+      </a>
       <a class="btn btn-info" href="/mypresents">Мои подарки</a>
-      <div class="dropdown">
+      <a class="btn btn-info" href="/events/my">Мои события
+        <div v-if="unreeadedEventRequwest>0">{{ unreeadedEventRequwest }}</div>
+      </a>
+      <div v-if="numberApplicationPresents>0"></div>
+      <div class="dropdown" style="cursor: pointer">
         <img :src="user.profile_url" height="50px" class="dropbtn">
         <div class="dropdown-content">
           <a href="/lk/profile">Профиль</a>

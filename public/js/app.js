@@ -3904,6 +3904,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -49969,19 +49974,30 @@ var render = function() {
       "nav",
       { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
       [
-        _c("a", { attrs: { href: "/messages" } }, [
-          _vm._v("Сообщения\n      "),
-          _vm.numberUnreaded > 0
-            ? _c("div", [_vm._v("(" + _vm._s(_vm.numberUnreaded) + ")")])
-            : _vm._e()
-        ]),
+        _c(
+          "a",
+          {
+            staticStyle: { cursor: "pointer" },
+            attrs: { href: "/applications" }
+          },
+          [
+            _vm._v("Заявки на открытие анкеты\n      "),
+            _vm.numberApplication > 0
+              ? _c("div", [_vm._v("(" + _vm._s(_vm.numberApplication) + ")")])
+              : _vm._e()
+          ]
+        ),
         _vm._v(" "),
-        _c("a", { attrs: { href: "/applications" } }, [
-          _vm._v("Заявки на открытие анкеты\n      "),
-          _vm.numberApplication > 0
-            ? _c("div", [_vm._v("(" + _vm._s(_vm.numberApplication) + ")")])
-            : _vm._e()
-        ]),
+        _c(
+          "a",
+          { staticStyle: { cursor: "pointer" }, attrs: { href: "/contact" } },
+          [
+            _vm._v("Сообщения\n      "),
+            _vm.numberUnreaded > 0
+              ? _c("div", [_vm._v("(" + _vm._s(_vm.numberUnreaded) + ")")])
+              : _vm._e()
+          ]
+        ),
         _vm._v(" "),
         _c(
           "a",
@@ -49989,14 +50005,31 @@ var render = function() {
           [_vm._v("Мои подарки")]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "dropdown" }, [
-          _c("img", {
-            staticClass: "dropbtn",
-            attrs: { src: _vm.user.profile_url, height: "50px" }
-          }),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
+        _c(
+          "a",
+          { staticClass: "btn btn-info", attrs: { href: "/events/my" } },
+          [
+            _vm._v("Мои события\n      "),
+            _vm.unreeadedEventRequwest > 0
+              ? _c("div", [_vm._v(_vm._s(_vm.unreeadedEventRequwest))])
+              : _vm._e()
+          ]
+        ),
+        _vm._v(" "),
+        _vm.numberApplicationPresents > 0 ? _c("div") : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "dropdown", staticStyle: { cursor: "pointer" } },
+          [
+            _c("img", {
+              staticClass: "dropbtn",
+              attrs: { src: _vm.user.profile_url, height: "50px" }
+            }),
+            _vm._v(" "),
+            _vm._m(0)
+          ]
+        )
       ]
     )
   ])
