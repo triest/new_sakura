@@ -2768,6 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2785,7 +2786,9 @@ __webpack_require__.r(__webpack_exports__);
       event: "",
       prev_page_url: null,
       next_page_url: null,
-      total: null
+      total: null,
+      page_count: null,
+      current_page: null
     };
   },
   components: {
@@ -2803,6 +2806,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.prev_page_url = data.links.prev;
         _this.next_page_url = data.links.next;
         _this.total = data.meta.total;
+        _this.page_count = data.meta.last_page;
+        _this.current_page = data.meta.current_page;
       });
     },
     scroll: function scroll() {
@@ -8798,7 +8803,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n*[data-v-228b89eb] {\n    box-sizing: border-box;\n}\n.circle[data-v-228b89eb]:before {\n    content: ' \\25CF';\n    font-size: 20px;\n    margin: 0 auto;\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(145, 100, 153, 0); /* Black background with 0.5 opacity */\n    color: #20f100;\n    width: 100%;\n    padding: 10px;\n}\n.container img[data-v-228b89eb] {\n    vertical-align: middle;\n}\n#searchCount[data-v-228b89eb] {\n    position: absolute;\n    top: 5px;\n    left: 150px;\n}\n.container .content[data-v-228b89eb] {\n    position: absolute;\n    bottom: 0;\n    background: rgb(0, 0, 0); /* Fallback color */\n    background: rgba(0, 0, 0, 0); /* Black background with 0.5 opacity */\n    color: #f1f1f1;\n    width: 100%;\n    padding: 0px;\n    margin: 115px;\n}\n.cell[data-v-228b89eb] {\n    position: absolute;\n    top: 150px;\n    right: 0;\n    bottom: 30px;\n    left: 0;\n    box-sizing: border-box;\n    display: block;\n    padding: 20px;\n    width: 100%;\n    color: white !important;\n    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n    cursor: pointer;\n}\n.cell-overflow[data-v-228b89eb] {\n    box-sizing: border-box;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    color: white;\n    cursor: pointer;\n}\n.previous[data-v-228b89eb] {\n    cursor: pointer;\n    margin-left: 50%;\n}\n.white[data-v-228b89eb]:link {\n    color: white;\n}\n.notfound[data-v-228b89eb] {\n}\n#searchCount[data-v-228b89eb] {\n    margin-left: auto;\n    margin-right: auto;\n}\n", ""]);
+exports.push([module.i, "\n*[data-v-228b89eb] {\r\n  box-sizing: border-box;\n}\n.circle[data-v-228b89eb]:before {\r\n  content: ' \\25CF';\r\n  font-size: 20px;\r\n  margin: 0 auto;\r\n  position: absolute;\r\n  bottom: 0;\r\n  background: rgb(0, 0, 0); /* Fallback color */\r\n  background: rgba(145, 100, 153, 0); /* Black background with 0.5 opacity */\r\n  color: #20f100;\r\n  width: 100%;\r\n  padding: 10px;\n}\n.container img[data-v-228b89eb] {\r\n  vertical-align: middle;\n}\n#searchCount[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 5px;\r\n  left: 150px;\n}\n.container .content[data-v-228b89eb] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  background: rgb(0, 0, 0); /* Fallback color */\r\n  background: rgba(0, 0, 0, 0); /* Black background with 0.5 opacity */\r\n  color: #f1f1f1;\r\n  width: 100%;\r\n  padding: 0px;\r\n  margin: 115px;\n}\n.cell[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 150px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white !important;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\r\n  cursor: pointer;\n}\n.cell-overflow[data-v-228b89eb] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\r\n  cursor: pointer;\n}\n.previous[data-v-228b89eb] {\r\n  cursor: pointer;\r\n  margin-left: 50%;\n}\n.white[data-v-228b89eb]:link {\r\n  color: white;\n}\n.notfound[data-v-228b89eb] {\n}\n#searchCount[data-v-228b89eb] {\r\n  margin-left: auto;\r\n  margin-right: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -48329,10 +48334,16 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n            Назад\n        ")]
+              [_vm._v("\n      Назад\n    ")]
             )
           : _vm._e(),
-        _vm._v(" "),
+        _vm._v(
+          "\n     " +
+            _vm._s(_vm.current_page) +
+            " из " +
+            _vm._s(_vm.page_count) +
+            "\n    "
+        ),
         _vm.next_page_url != null
           ? _c(
               "button",
@@ -48362,11 +48373,11 @@ var render = function() {
               _c("div", { staticClass: "cell" }, [
                 _c("div", { staticClass: "cell-overflow" }, [
                   _vm._v(
-                    "\n                    " +
+                    "\n          " +
                       _vm._s(item.name) +
                       ", " +
                       _vm._s(item.age) +
-                      "\n                "
+                      "\n        "
                   )
                 ])
               ])
