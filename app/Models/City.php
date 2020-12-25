@@ -18,7 +18,7 @@ class City extends Model
     {
         $ip = User::getIpStatic();
         if (!$ip) {
-            $ip="";
+            $ip = "";
         }
         try {
             $response = file_get_contents("http://api.sypexgeo.net/json/" . $ip);
@@ -31,6 +31,16 @@ class City extends Model
                             'OKATO',
                     ]
             )->where('OKATO', '=', intval($okato))->first();
+
+            if ($city->id == 2) {    //костыль для петрозаводска, который определяетья как кондопога
+                $city =   City::select(
+                        [
+                                'id',
+                                'name',
+                                'OKATO',
+                        ]
+                )->where('id', '=', 1)->first();
+            }
         } catch (IOException $exception) {
             $city = null;
         }
