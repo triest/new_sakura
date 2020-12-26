@@ -12,7 +12,7 @@
       <button v-if="next_page_url!=null" class="btn btn-primary" v-on:click="seach(next_page_url)">Вперед</button>
     </div>
 
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-9 box-shadow" v-for="item in anketList">
+    <div class="col-lg-3 col-md-4 col-sm-6  justify-content-center col-xs-9 box-shadow" v-for="item in anketList" style="padding-left:60px; padding-right: 20px;">
       <a :href="/anket/+item.id">
         <img width="250" height="250" :src="item.profile_url">
         <div class="cell">
@@ -158,7 +158,7 @@ export default {
   left: 0;
   box-sizing: border-box;
   display: block;
-  padding: 20px;
+  padding: 70px;
   width: 100%;
   color: white !important;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;

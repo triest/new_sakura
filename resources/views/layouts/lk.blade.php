@@ -11,7 +11,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap core CSS -->
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/gallery-grid.css')}}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Bootstrap core CSS -->
@@ -32,9 +33,6 @@
     <link href="{{asset('css/carusel.css')}}" type="text/css">
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
-          rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
 
     <link rel="icon" href="<?php echo asset("images/icons/icons/favicon-16x16.png")?>" type="image/x-icon">
 
@@ -94,11 +92,9 @@ $city = \App\Models\City::getCurrentCity();
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
+<script src="{{ asset('js/jquery-3.5.0.min.js') }}" defer></script>
 <!--<script src="http://bootstrap-3.ru/dist/js/bootstrap.min.js"></script>-->
 
-<script src="http://bootstrap-3.ru/examples/offcanvas/offcanvas.js"></script>
 
 </body>
 </html>
