@@ -217,7 +217,8 @@
                         'region_id',
                         'city_id',
                         'date_birth',
-                        'last_login'
+                        'last_login',
+                        'relation_id'
                 ])->where('id', $id)->first();
             } else {
                 return User::select(['*'])->where('id', $id)->first();

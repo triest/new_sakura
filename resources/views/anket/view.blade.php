@@ -28,7 +28,8 @@
                                 <anket-component :user="{{$user}}"></anket-component>
                             @else
                                 <div class="alert alert-info">
-                                    <a href="/lk/login"><b>Войдите</b></a> или <a href="/lk/register"><b>зарегистрируйтесь</b></a> что-бы отправить сообщение
+                                    <a href="/lk/login"><b>Войдите</b></a> или <a href="/lk/register"><b>зарегистрируйтесь</b></a>
+                                    что-бы отправить сообщение
                                 </div>
                             @endif
                         </div>
@@ -74,10 +75,9 @@
                     @if($interests->isNotEmpty())
                         <div class="col-sm-6 col-12">
                             <div class="group">
-                                <label class="label_txt"><span></span>Интересы</label>
+                                <label class="label_txt">Интересы</label>
                                 @foreach($interests as $item)
                                     <p>
-
                                         {{$item->name}}
                                     </p>
                                 @endforeach
@@ -85,6 +85,14 @@
                         </div>
                     @endif
                 </div>
+
+
+                @isset($user->relation()->first()->name)
+                    <p><label class="label_txt">Отношения:  </label>
+                            {{$user->relation()->first()->name}}
+                    </p>
+                @endisset
+
 
                 <div class="row">
                     <div class="col-sm-6 col-12">
