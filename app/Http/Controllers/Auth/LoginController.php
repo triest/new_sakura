@@ -8,6 +8,7 @@
     use Carbon\Carbon;
     use Illuminate\Foundation\Auth\AuthenticatesUsers;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Redirect;
 
     class LoginController extends Controller
     {
@@ -52,6 +53,7 @@
                     $user->city_id = $city->id;
                 }
                 $user->save();
+                redirect()->intended();
             }
 
         }

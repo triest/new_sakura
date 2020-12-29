@@ -14,7 +14,12 @@
       </a>
       <div v-if="numberApplicationPresents>0"></div>
       <div class="dropdown" style="cursor: pointer">
-        <img :src="user.profile_url" height="50px" class="dropbtn">
+        <div v-if="user.profile_url">
+          <img :src="user.profile_url" height="50px" class="dropbtn">
+        </div>
+        <div v-else>
+          <img src='/home/img/image-placeholder.png' height="35px" class="dropbtn">
+        </div>
         <div class="dropdown-content">
           <a href="/lk/profile">Профиль</a>
           <a href="/lk/logout">Выйти</a>

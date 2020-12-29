@@ -3914,6 +3914,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -43996,10 +44001,22 @@ var render = function() {
           "div",
           { staticClass: "dropdown", staticStyle: { cursor: "pointer" } },
           [
-            _c("img", {
-              staticClass: "dropbtn",
-              attrs: { src: _vm.user.profile_url, height: "50px" }
-            }),
+            _vm.user.profile_url
+              ? _c("div", [
+                  _c("img", {
+                    staticClass: "dropbtn",
+                    attrs: { src: _vm.user.profile_url, height: "50px" }
+                  })
+                ])
+              : _c("div", [
+                  _c("img", {
+                    staticClass: "dropbtn",
+                    attrs: {
+                      src: "/home/img/image-placeholder.png",
+                      height: "35px"
+                    }
+                  })
+                ]),
             _vm._v(" "),
             _vm._m(0)
           ]
