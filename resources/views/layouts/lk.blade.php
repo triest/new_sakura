@@ -14,7 +14,7 @@
 
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/gallery-grid.css')}}">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Bootstrap core CSS -->
 
     <!-- custom buttons -->
@@ -92,7 +92,7 @@ $city = \App\Models\City::getCurrentCity();
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{{ asset('js/jquery-3.5.0.min.js') }}" defer></script>
+<script src="{{ asset('js/jquery-3.5.0.min.js') }}"></script>
 <!--<script src="http://bootstrap-3.ru/dist/js/bootstrap.min.js"></script>-->
 
 
