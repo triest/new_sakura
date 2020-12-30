@@ -9,7 +9,7 @@
     <div class="block-login">
         <div class="block-login_container">
 
-            <div class="name">@lang('auth.enter')</div>
+            <div class="name">Войти</div>
             <form class="form-lk" action="{{ route('lk.login') }}" method="post">
                 {{ csrf_field() }}
                 @if ($errors->has('email'))
@@ -84,19 +84,19 @@
                 </script>
 
 
-                <p class="forgot_password"><a href="#">@lang('auth.fogot_password')</a></p>
+                <p class="forgot_password"><a href="#">Забыли пароль?</a></p>
 
                 <div class="group">
                     <input class="radio" id="radio-1" type="radio" name="radio">
-                    <label for="radio-1"><span>@lang('auth.remember_me')</span></label>
+                    <label for="radio-1"><span>Запомнить меня</span></label>
                 </div>
 
-                <button class="btn_auth">{{ __('auth.enter') }}</button>
+                <button class="btn_auth">Войти</button>
 
             </form>
 
-            <div class="form-lk_txt-bot">{{ __('auth.not_register_yet') }} <a
-                        href="{{route("lk.register")}}">{{ __('auth.register') }}</a>
+            <div class="form-lk_txt-bot"> <a
+                        href="{{route("lk.register")}}">Зарегистрироваться</a>
             </div>
 
         </div>

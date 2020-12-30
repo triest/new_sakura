@@ -57,7 +57,7 @@ Route::prefix('lk')->name('lk.')->namespace('Lk')->group(
         function () {
             Route::auth(['verify' => true]);
             Route::redirect('/', '/lk/home');
-
+            Route::post('join', 'Auth\RegisterController@join')->name('join');
             // Только верифицированный пользователь зоны "lk"
             Route::middleware(['auth:lk' => 'verified'])->group(
                     function () {
@@ -65,6 +65,7 @@ Route::prefix('lk')->name('lk.')->namespace('Lk')->group(
                         Route::get('home', 'HomeController@index')->name('home');
                         Route::get('profile', 'HomeController@profile')->name('profile');
                         Route::post('profile', 'HomeController@store_profile')->name('profileStore');
+
                         //post crop image
 
                         Route::post('crop', 'HomeController@store_crop')->name('storeCrop');

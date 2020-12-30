@@ -26,7 +26,7 @@
         </div>
         <div v-else>
             Событий в вашем городе нет.
-            <a class="btn btn-primary" v-bind:href="'/myevent/store'">Создать событие!</a>
+            <a class="btn btn-primary" href="/events/create">Создать событие!</a>
         </div>
     </div>
 </template>

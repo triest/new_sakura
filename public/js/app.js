@@ -42981,7 +42981,7 @@ var render = function() {
             "a",
             {
               staticClass: "btn btn-primary",
-              attrs: { href: "/myevent/store" }
+              attrs: { href: "/events/create" }
             },
             [_vm._v("Создать событие!")]
           )
