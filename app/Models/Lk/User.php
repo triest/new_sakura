@@ -122,7 +122,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'date_birth',
             'description',
             'sex',
-            'relation_id'
+            'relation_id',
+            'children_id'
     ];
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Lk;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserProfile;
 use App\Http\Requests\UserRequest;
+use App\Models\Children;
 use App\Models\Interest;
 use App\Models\Lk\Purchase;
 use App\Models\Relation;
@@ -102,6 +103,8 @@ class HomeController extends Controller
 
         $relations = Relation::select(['*'])->get();
 
+        $children = Children::select(['*'])->get();
+
 
         //    $user->getAge();
         return view('lk.profile.index')->with([
@@ -111,7 +114,8 @@ class HomeController extends Controller
                 'size' => $size,
                 'anketTarget' => $anketTarget,
                 'anketInterests' => $anketInterest,
-                'relations' => $relations
+                'relations' => $relations,
+                'childrens' => $children
         ]);
     }
 
@@ -152,7 +156,7 @@ class HomeController extends Controller
 
         if ($request->has('file-upload-photo-profile')) {
             $path = $request->file('file-upload-photo-profile')->storePublicly('profile');
-            $user->profile_url =Storage::url($path);
+            $user->profile_url = Storage::url($path);
         }
         $user->save();
         return redirect('lk/profile');

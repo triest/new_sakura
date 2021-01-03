@@ -154,6 +154,22 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-12">
+                            <div class="group">
+                                Дети:
+                                <select name="children_id" id="children">
+                                    @foreach($childrens as $item)
+                                        <p>
+                                            <option value="{{$item->id}}"
+                                                    @if($user->children_id==$item->id) selected @endif>{{$item->name}}</option>
+                                        </p>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-12 col-12">
                             <div class="group">
