@@ -9,6 +9,7 @@
 namespace App\Service;
 
 
+use App\Models\Children;
 use App\Models\City;
 use App\Models\Interest;
 use App\Models\Lk\User;
@@ -176,6 +177,8 @@ class SearchService
     {
         $targets = Target::select(['id', 'name'])->get();
         $interests = Interest::select(['id', 'name'])->get();
+        $children = Children::select(['id', 'name'])->get();
+
         $aperance_array = array();
 
         $userAuth = Auth::user();
@@ -273,7 +276,7 @@ class SearchService
                 "selectedInterest" => $interest_array,
                 "apperance" => null,
                 "relations" => $relations,
-                "children" => null,
+                "children" => $children,
                 "sechSettings" => $seachSettingsArray,
                 "smoking" => null
         ];

@@ -16,7 +16,9 @@
 
                 @if($errors->any())
                     <div class="announcement_p">
-                        {!! implode('', $errors->all('<div>:message</div>')) !!}
+                        <div class="alert alert-danger" role="alert">
+                            {!! implode('', $errors->all('<div>:message</div>')) !!}
+                        </div>
                     </div>
                 @endif
 
@@ -50,9 +52,12 @@
 
                         <div class="photo_profile" id="photo_profile" data-remodal-target="upload_img">
 
-                            <img src="{{ ($user->profile_url!="") ? $user->profile_url : "/home/img/image-placeholder.png"}}"
+                            <img src="/{{ ($user->profile_url!="") ? $user->profile_url : "/home/img/image-placeholder.png"}}"
                                  alt="" id="profile_image">
                             <input id="file-upload-photo-profile" name="file-upload-photo-profile" type="file"/>
+                            {{ $user->profile_url}}
+
+                            <img class="card-img-top" src="{{url('storage/app/'.$user->profile_url)}}" alt="{{$user->profile_url}}">
                         </div>
                     </div>
                 </div>
@@ -72,12 +77,22 @@
                         <label class="label_txt"><span></span>Кто вы</label>
                         <div class="group_input">
                             <select name="sex" id="sex">
-                                <option value="famele" @if($user->sex=='famele') selected @endif>Женщина</option>
+                                <option value="female" @if($user->sex=='female') selected @endif>Женщина</option>
                                 <option value="male" @if($user->sex=='male') selected @endif>Мужчина</option>
                             </select>
                         </div>
                     </div>
 
+                    <div class="group">
+                        <label class="label_txt"><span></span>Кого ищите</label>
+                        <div class="group_input">
+                            <select name="meet" id="meet">
+                                <option value="famele" @if($user->meet=='famale') selected @endif>Женщину</option>
+                                <option value="male" @if($user->meet=='male') selected @endif>Мужчинy</option>
+                                <option value="nomatter" @if($user->meet=='nomatter') selected @endif>Не важно</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-sm-6 col-12">
@@ -127,7 +142,23 @@
                     <div class="row">
                         <div class="col-sm-12 col-12">
                             <div class="group">
+                                Отношения:
+                                <select name="relation_id" id="relation">
+                                    @foreach($relations as $item)
+                                        <p>
+                                            <option value="{{$item->id}}"
+                                                    @if($user->relation_id==$item->id) selected @endif>{{$item->name}}</option>
+                                        </p>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-12">
+                            <div class="group">
                                 <label class="label_txt"><span></span>Обо мне</label>
+                                <br>
                                 <textarea name="description" cols="100"
                                           required> {{old('description') ?? $user->description}}</textarea>
 
@@ -135,16 +166,7 @@
                         </div>
                     </div>
 
-                    Отношения:
 
-                    <select name="relation" id="relarion">
-                    @foreach($relations as $item)
-                        <p>
-                                <option value="{{$item->id}}"
-                                        @if($user->relation_id==$item->id) selected @endif>{{$item->name}}</option>
-                        </p>
-                    @endforeach
-                    </select>
                 </div>
 
 
@@ -156,7 +178,8 @@
                 <button class="mt-24 btn-light btn_100 btn-small btn-animate" type="button"
                         data-remodal-target="upload_img" id="buttonTarget" hidden>Продолжить
                 </button>
-                <button class="btn btn-primary mt-24 btn-light btn_100 btn-small btn-animate" type="submit">Сохранить</button>
+                <button class="btn btn-primary mt-24 btn-light btn_100 btn-small btn-animate" type="submit">Сохранить
+                </button>
                 <a href="/" class="btn btn-secondary">Отменить</a>
             </form>
 

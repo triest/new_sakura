@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\RalationRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\InterestRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\Request;
 
-/**
- * Class RalationCrudController
- * @package App\Http\Controllers\Admin
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
- */
-class RalationCrudController extends CrudController
+class ChildrenCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +23,9 @@ class RalationCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Relation::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/ralation');
-        CRUD::setEntityNameStrings('ralation', 'ralations');
+        CRUD::setModel(\App\Models\Children::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/children');
+        CRUD::setEntityNameStrings('children', 'childrens');
     }
 
     /**
@@ -39,8 +36,7 @@ class RalationCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
+        CRUD::setFromDb();
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -56,10 +52,7 @@ class RalationCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
- //       CRUD::setValidation(RalationRequest::class);
-
-        $this->crud->addField('name'); // fields
-
+        $this->crud->addField('name');
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

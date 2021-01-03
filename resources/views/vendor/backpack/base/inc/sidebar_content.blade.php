@@ -5,3 +5,4 @@
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('ralation') }}'><i class='nav-icon la la-question'></i> Ralations</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('interest') }}'><i class='nav-icon la la-question'></i> Interests</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('children') }}'><i class='nav-icon la la-question'></i> Дети</a></li>

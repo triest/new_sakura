@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Lk;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserProfile;
+use App\Http\Requests\UserRequest;
 use App\Models\Interest;
 use App\Models\Lk\Purchase;
 use App\Models\Relation;
@@ -11,6 +12,8 @@ use App\Models\Target;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
+
 
 class HomeController extends Controller
 {
@@ -96,6 +99,7 @@ class HomeController extends Controller
             array_push($anketInterest, $item->id);
         }
 
+
         $relations = Relation::select(['*'])->get();
 
 
@@ -115,23 +119,21 @@ class HomeController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store_profile(Request $request)
+    public function store_profile(StoreUserProfile $request)
     {
-        $validatedData = $request->validate([
-                'name' => 'required|unique:users|max:255',
-        ]);
-
-
         $user = Auth::user();
         $data = $request->all();
         $user->fill($data);
+
+        $user->age = $user->age();
+
         $user->save();
         $user->target()->detach();
         if ($request->has('target')) {
             foreach ($request->target as $item) {
                 $target = Target::select(['id', 'name'])->where('id', $item)
                         ->first();
-                if ($target != null) {
+                if ($target) {
                     $user->target()->attach($target);
                 }
             }
@@ -141,13 +143,17 @@ class HomeController extends Controller
             foreach ($request->interest as $item) {
                 $interestt = Interest::select(['id', 'name'])->where('id', $item)
                         ->first();
-                if ($interestt != null) {
+                if ($interestt) {
                     $user->interest()->attach($interestt);
                 }
             }
         }
 
 
+        if ($request->has('file-upload-photo-profile')) {
+            $path = $request->file('file-upload-photo-profile')->storePublicly('profile');
+            $user->profile_url =Storage::url($path);
+        }
         $user->save();
         return redirect('lk/profile');
     }

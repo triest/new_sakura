@@ -27,7 +27,9 @@
                     'name' => 'required|string|min:2',
                     'date_birth' => 'required|date|before:-18 years',
                     'description' => 'min:30',
-                    'sex' => 'required|'
+                    'sex' => 'required',
+                    'relation_id'=>'required|exists:relation,id',
+                    'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             ];
         }
 
@@ -37,7 +39,8 @@
                     'date_birth.before' => 'Вам должно быть больше 18 лет',
                     'name.required'=>'Имя должно быть не менее 2 символов.',
                     'name.min'=>'Имя должно быть не менее 2 символов.',
-                    'description.min'=>'Укажите дольше информации о себе. Минимум 30 символов.'
+                    'description.min'=>'Укажите дольше информации о себе. Минимум 30 символов.',
+                    'file'=>'Только фотографии.'
             ];
         }
     }
