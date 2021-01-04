@@ -14,6 +14,7 @@
          //   $this->call(InterestSeeder::class);
        //     $this->call(RelationSeeder::class);
      //       $this->call(TargetsSeeder::class);
-            $this->call(UsersSeeder::class);
+          //  $this->call(UsersSeeder::class);
+            $this->call(AddChildrenSeeder::class);
         }
     }
