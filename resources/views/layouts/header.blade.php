@@ -1,5 +1,6 @@
 <nav class="navbar  bg-light" id="headerApp" style="margin-left: auto;margin-right: auto">
     <span class="d-flex justify-content-center" style="display:inline;text-align: center;">
+        
         @auth
             <sidebar :user="{{auth()->user()}}" style="margin-left: auto;margin-right: auto"></sidebar>
         @endauth

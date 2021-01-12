@@ -1,18 +1,23 @@
 <template>
   <div>
-    <p>
+    <p class="search-container">
       <button class="btn btn-primary" v-on:click="openSeachModal()">Настроить поиск</button>
-      <code id="searchCount" class="col-lg-2" v-if="total!=null">Найдено анкет: {{ total }} </code>
+      <code id="searchCount" class="searchCount" v-if="total!=null">Найдено анкет: {{ total }} </code>
     </p>
-    <div>
+    <div class="buttons-scroll">
+      <span style="width: 70px; display: inline-block">
       <button id="next" v-if="prev_page_url!=null" class="btn btn-primar" v-on:click="seach(prev_page_url)">
         Назад
       </button>
+      </span>
+      <span style="width: 200px; display: inline-block">
        {{current_page}} из {{page_count}}
-      <button v-if="next_page_url!=null" class="btn btn-primary" v-on:click="seach(next_page_url)">Вперед</button>
+         <button v-if="next_page_url!=null" class="btn btn-primary" v-on:click="seach(next_page_url)">Вперед</button>
+      </span>
     </div>
 
-    <div class="col-lg-3 col-md-4 col-sm-6  justify-content-center col-xs-9 box-shadow" v-for="item in anketList" style="padding-left:60px; padding-right: 20px;">
+    <div class="col-lg-3 col-md-4 col-sm-6  justify-content-center col-xs-9 box-shadow" v-for="item in anketList"
+         style="padding-left:60px; padding-right: 20px;">
       <a :href="/anket/+item.id">
         <img width="250" height="250" :src="item.profile_url">
         <div class="cell">
@@ -116,6 +121,18 @@ export default {
   box-sizing: border-box;
 }
 
+.buttons-scroll{
+  margin-left: 50px;
+}
+
+.search-container {
+  margin-left: 55px;
+  left: 200px;
+  top: 5px
+}
+
+
+
 .circle:before {
   content: ' \25CF';
   font-size: 20px;
@@ -133,10 +150,10 @@ export default {
   vertical-align: middle;
 }
 
-#searchCount {
+.searchCount {
   position: absolute;
   top: 5px;
-  left: 150px;
+  left: 200px;
 }
 
 .container .content {
