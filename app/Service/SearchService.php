@@ -73,7 +73,8 @@ class SearchService
                     'users.name',
                     'users.profile_url',
                     'users.date_birth',
-                    'users.created_at'
+                    'users.created_at',
+                    'users.age'
             )->limit($this->limit);
 
             $num_pages = intval($count / $this->limit);
@@ -163,7 +164,8 @@ class SearchService
                 'users.name',
                 'users.profile_url',
                 'users.date_birth',
-                'users.created_at'
+                'users.created_at',
+                 'users.age'
         );
 
         $users->orderByDesc('created_at');

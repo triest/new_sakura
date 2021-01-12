@@ -27,6 +27,8 @@
             $users = $searchService->search();
 
 
+
+
             return anketList::collection($users);
         }
 

@@ -15,13 +15,13 @@
          */
         public function toArray($request)
         {
-            $user = User::get($this->id);
+           // $user = User::get($this->id);
 
             return [
                     'id' => $this->id,
                     'name' => $this->name,
                     'profile_url' => $this->profile_url,
-                    'age' => $user->getAge()
+                    'age' => $this->age
             ];
         }
     }
