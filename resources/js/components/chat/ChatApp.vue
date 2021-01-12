@@ -1,6 +1,6 @@
 <template>
     <div class="chat-app"> <!-- lg комп-->
-        <div class="col-sm-6 col-12">
+        <div class="col-sm-3 col-12">
             <ContactsList :contacts="contacts" @selected="startConversationWith"/>
         </div>
         <div class="col-sm-6 col-12">

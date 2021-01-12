@@ -48676,7 +48676,7 @@ var render = function() {
   return _c("div", { staticClass: "chat-app" }, [
     _c(
       "div",
-      { staticClass: "col-sm-6 col-12" },
+      { staticClass: "col-sm-3 col-12" },
       [
         _c("ContactsList", {
           attrs: { contacts: _vm.contacts },
