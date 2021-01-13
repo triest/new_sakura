@@ -1,113 +1,114 @@
 <template>
-  <div class="newMessageModal">
-    <transition name="modal" @close="showModal = false">
-      <div class="modal-mask">
-        <div class="modal-wrapper">
-          <div class="modal-container">
-            <div class="modal-body">
+  <div class="filterSettingsModal">
+      <div class="col-lg-3 col-md-4 col-sm-6  justify-content-center col-xs-9 box-shadow">
+        <transition name="modal" @close="showModal = false">
+          <div class="modal-mask">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+                <div class="modal-body">
 
-              <div class="form-group row">
-                <label for="meet" class="col-sm-2 col-form-label">Ищу</label>
-                <div class="col-sm-10">
-                  <select id="meet" class="form-control" name="meet" v-model="meet">
-                    <option value="female">Девушку</option>
-                    <option value="male">Парня</option>
-                    <option value="nomatter">неважно</option>
-                  </select>
+                  <div class="form-group row">
+                    <label for="meet" class="col-sm-2 col-form-label">Ищу</label>
+                    <div class="col-sm-10">
+                      <select id="meet" class="form-control" name="meet" v-model="meet">
+                        <option value="female">Девушку</option>
+                        <option value="male">Парня</option>
+                        <option value="nomatter">неважно</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="from" class="col-sm-2 col-form-label">Возраст</label>
+                    <div class="col-sm-2">
+                      <input type="number" class="form-control" name="from" id="from" min="18"
+                             :max="maxAge"
+                             v-model="from"
+                             onkeypress="return isNumber(event)"
+                             style="width: 75px">
+                    </div>
+                    <div class="col-sm-1">
+                      до
+                    </div>
+                    <div class="col-sm-1">
+                      <input type="number" class="form-control" name="to" id="to" :min="minAge"
+                             :max="100"
+                             v-model="to"
+                             onkeypress="return isNumber(event)" style="width: 75px">
+                    </div>
+                  </div>
+                  <fieldset class="form-group">
+                    <div class="row">
+                      <label class="col-sm-2 pt-0">Цели</label>
+                      <div class="col-sm-10">
+
+                        <div class="form-check" v-for="item in targets">
+                          <input class="form-check-input" type="checkbox" :id="item.id"
+                                 :value="item.id"
+                                 v-model="select2targets">
+                          {{ item.name }}
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <div class="row">
+                      <label class="col-sm-2 pt-0">Интересы</label>
+                      <div class="col-sm-10">
+
+                        <div class="form-check" v-for="item in interest">
+                          <input class="form-check-input" type="checkbox" name="gridRadios"
+                                 :id="item.id" :value="item.id" v-model="select2inters">
+                          {{ item.name }}
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <div class="row">
+                      <label class="col-sm-2 pt-0">Дети</label>
+                      <div class="col-sm-10">
+
+                        <div class="form-check" v-for="item in children">
+                          <input class="form-check-input" type="radio" name="gridRadios"
+                                 id="gridRadios1" :value="item.id" v-model="select2children"
+                                 checked>
+                          <label class="form-check-label" for="gridRadios1">
+                            {{ item.name }}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form-group">
+                    <div class="row">
+                      <label class="col-sm-2 pt-0">Отношения</label>
+                      <div class="col-sm-10">
+
+                        <div class="form-check" v-for="item in relation">
+                          <input class="form-check-input" type="radio" name="gridRadios"
+                                 id="gridRadios1" :value="item.id" v-model="select2relation"
+                                 checked>
+                          <label class="form-check-label" for="gridRadios1">
+                            {{ item.name }}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <button class="btn btn-primary" v-on:click="saveChange()">
+                    Сохранить
+                  </button>
+                  <button class="btn btn-secondary" v-on:click="close()">
+                    Закрыть
+                  </button>
+
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="from" class="col-sm-2 col-form-label">Возраст</label>
-                <div class="col-sm-2">
-                  <input type="number" class="form-control" name="from" id="from" min="18"
-                         :max="maxAge"
-                         v-model="from"
-                         onkeypress="return isNumber(event)"
-                         style="width: 75px">
-                </div>
-                <div class="col-sm-1">
-                  до
-                </div>
-                <div class="col-sm-1">
-                  <input type="number" class="form-control" name="to" id="to" :min="minAge"
-                         :max="100"
-                         v-model="to"
-                         onkeypress="return isNumber(event)" style="width: 75px">
-                </div>
-              </div>
-              <fieldset class="form-group">
-                <div class="row">
-                  <label class="col-sm-2 pt-0">Цели</label>
-                  <div class="col-sm-10">
-
-                    <div class="form-check" v-for="item in targets">
-                      <input class="form-check-input" type="checkbox" :id="item.id"
-                             :value="item.id"
-                             v-model="select2targets">
-                      {{ item.name }}
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-              <fieldset class="form-group">
-                <div class="row">
-                  <label class="col-sm-2 pt-0">Интересы</label>
-                  <div class="col-sm-10">
-
-                    <div class="form-check" v-for="item in interest">
-                      <input class="form-check-input" type="checkbox" name="gridRadios"
-                             :id="item.id" :value="item.id" v-model="select2inters">
-                      {{ item.name }}
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-              <fieldset class="form-group">
-                <div class="row">
-                  <label class="col-sm-2 pt-0">Дети</label>
-                  <div class="col-sm-10">
-
-                    <div class="form-check" v-for="item in children">
-                      <input class="form-check-input" type="radio" name="gridRadios"
-                             id="gridRadios1" :value="item.id" v-model="select2children"
-                             checked>
-                      <label class="form-check-label" for="gridRadios1">
-                        {{ item.name }}
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset class="form-group">
-                <div class="row">
-                  <label class="col-sm-2 pt-0">Отношения</label>
-                  <div class="col-sm-10">
-
-                    <div class="form-check" v-for="item in relation">
-                      <input class="form-check-input" type="radio" name="gridRadios"
-                             id="gridRadios1" :value="item.id" v-model="select2relation"
-                             checked>
-                      <label class="form-check-label" for="gridRadios1">
-                        {{ item.name }}
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-              <button class="btn btn-primary" v-on:click="saveChange()">
-                Сохранить
-              </button>
-              <button class="btn btn-secondary" v-on:click="close()">
-                Закрыть
-              </button>
-
-
             </div>
           </div>
-        </div>
+        </transition>
       </div>
-    </transition>
   </div>
 </template>
 
@@ -261,7 +262,8 @@ textarea {
 }
 
 .modal-container {
-  width: 600px;
+  width: calc(100vw - 30px);
+  height: calc(100vh - 100px);
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -269,6 +271,9 @@ textarea {
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
+  max-width: calc(100vh - 50px);
+  max-height: calc(100vh - 20px);
+  overflow: scroll;
 }
 
 .modal-header h3 {
@@ -307,11 +312,12 @@ textarea {
   transform: scale(1.1);
 }
 
-.newMessageModal {
+.filterSettingsModal {
   position: fixed;
   bottom: 0;
   right: 0;
   z-index: 999;
+
 }
 
 input.apple-switch {

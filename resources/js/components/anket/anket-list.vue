@@ -27,7 +27,7 @@
         </div>
       </a>
     </div>
-    <SearchModal v-if="seachModal" @closeSeachModal="closeSeachModal()"></SearchModal>
+    <SearchModal class="search-modal" v-if="seachModal" @closeSeachModal="closeSeachModal()"></SearchModal>
   </div>
 </template>
 
@@ -131,6 +131,10 @@ export default {
   top: 5px
 }
 
+.search-modal{
+  max-width: calc(100vh - 225px);;
+  max-height: calc(100vh - 225px);;
+}
 
 
 .circle:before {

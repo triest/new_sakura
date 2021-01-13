@@ -38,7 +38,7 @@
         {
 
             if (!isset($_COOKIE["causel"])) {
-                Cookie::queue("causel", AnketController::randomString(), 5);
+                Cookie::queue("causel", AnketController::randomString(), 30);
                 return redirect('/like-carusel');
             }
 

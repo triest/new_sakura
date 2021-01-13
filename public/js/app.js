@@ -2426,6 +2426,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   name: 'modal',
@@ -8745,7 +8746,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ntextarea {\n    width: 90%; /* Ширина поля в процентах */\n    height: 200px; /* Высота поля в пикселах */\n    resize: none; /* Запрещаем изменять размер */\n}\n.file {\n    display: block !important;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 600px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n.newMessageModal {\n    position: fixed;\n    bottom: 0;\n    right: 0;\n    z-index: 999;\n}\ninput.apple-switch {\n    position: relative;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    outline: none;\n    width: 50px;\n    height: 30px;\n    background-color: #ffffff;\n    border: 1px solid #D9DADC;\n    border-radius: 50px;\n    box-shadow: inset -20px 0 0 0 #ffffff;\n    transition-duration: 200ms;\n}\ninput.apple-switch:after {\n    content: \"\";\n    position: absolute;\n    top: 1px;\n    left: 1px;\n    width: 26px;\n    height: 13px;\n    background-color: transparent;\n    border-radius: 50%;\n    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\n    border-color: #4ED164;\n    box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\n    left: 20px;\n    box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\n    -webkit-animation: bounce-in .5s;\n            animation: bounce-in .5s;\n}\n.bounce-leave-active {\n    animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n.v-fade {\n    transition: all 4s ease-out;\n}\n\n\n", ""]);
+exports.push([module.i, "\ntextarea {\n    width: 90%; /* Ширина поля в процентах */\n    height: 200px; /* Высота поля в пикселах */\n    resize: none; /* Запрещаем изменять размер */\n}\n.file {\n    display: block !important;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 600px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n.newMessageModal {\n    position: fixed;\n    bottom: 0;\n    right: 0;\n    z-index: 999;\n    max-width: 100px !important;\n}\ninput.apple-switch {\n    position: relative;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    outline: none;\n    width: 50px;\n    height: 30px;\n    background-color: #ffffff;\n    border: 1px solid #D9DADC;\n    border-radius: 50px;\n    box-shadow: inset -20px 0 0 0 #ffffff;\n    transition-duration: 200ms;\n}\ninput.apple-switch:after {\n    content: \"\";\n    position: absolute;\n    top: 1px;\n    left: 1px;\n    width: 26px;\n    height: 13px;\n    background-color: transparent;\n    border-radius: 50%;\n    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\n    border-color: #4ED164;\n    box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\n    left: 20px;\n    box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\n    -webkit-animation: bounce-in .5s;\n            animation: bounce-in .5s;\n}\n.bounce-leave-active {\n    animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\n        transform: scale(0);\n}\n50% {\n        transform: scale(1.5);\n}\n100% {\n        transform: scale(1);\n}\n}\n.v-fade {\n    transition: all 4s ease-out;\n}\n\n\n", ""]);
 
 // exports
 
@@ -8783,7 +8784,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntextarea {\r\n  width: 90%; /* Ширина поля в процентах */\r\n  height: 200px; /* Высота поля в пикселах */\r\n  resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask {\r\n  position: fixed;\r\n  z-index: 9998;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: table;\r\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\r\n  display: table-cell;\r\n  vertical-align: middle;\n}\n.modal-container {\r\n  width: 600px;\r\n  margin: 0px auto;\r\n  padding: 20px 30px;\r\n  background-color: #fff;\r\n  border-radius: 2px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\r\n  transition: all .3s ease;\r\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\r\n  margin-top: 0;\r\n  color: #42b983;\n}\n.modal-body {\r\n  margin: 20px 0;\n}\n.modal-default-button {\r\n  float: right;\n}\r\n\r\n/*\r\n * The following styles are auto-applied to elements with\r\n * transition=\"modal\" when their visibility is toggled\r\n * by Vue.js.\r\n *\r\n * You can easily play with the modal transition by editing\r\n * these styles.\r\n */\n.modal-enter {\r\n  opacity: 0;\n}\n.modal-leave-active {\r\n  opacity: 0;\n}\n.modal-enter .modal-container,\r\n.modal-leave-active .modal-container {\r\n  transform: scale(1.1);\n}\n.newMessageModal {\r\n  position: fixed;\r\n  bottom: 0;\r\n  right: 0;\r\n  z-index: 999;\n}\ninput.apple-switch {\r\n  position: relative;\r\n  -webkit-appearance: none;\r\n     -moz-appearance: none;\r\n          appearance: none;\r\n  outline: none;\r\n  width: 50px;\r\n  height: 30px;\r\n  background-color: #ffffff;\r\n  border: 1px solid #D9DADC;\r\n  border-radius: 50px;\r\n  box-shadow: inset -20px 0 0 0 #ffffff;\r\n  transition-duration: 200ms;\n}\ninput.apple-switch:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 1px;\r\n  left: 1px;\r\n  width: 26px;\r\n  height: 13px;\r\n  background-color: transparent;\r\n  border-radius: 50%;\r\n  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\r\n  border-color: #4ED164;\r\n  box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\r\n  left: 20px;\r\n  box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\r\n  -webkit-animation: bounce-in .5s;\r\n          animation: bounce-in .5s;\n}\n.bounce-leave-active {\r\n  animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\r\n    transform: scale(0);\n}\n50% {\r\n    transform: scale(1.5);\n}\n100% {\r\n    transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\r\n    transform: scale(0);\n}\n50% {\r\n    transform: scale(1.5);\n}\n100% {\r\n    transform: scale(1);\n}\n}\n.v-fade {\r\n  transition: all 4s ease-out;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\ntextarea {\r\n  width: 90%; /* Ширина поля в процентах */\r\n  height: 200px; /* Высота поля в пикселах */\r\n  resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask {\r\n  position: fixed;\r\n  z-index: 9998;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: table;\r\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\r\n  display: table-cell;\r\n  vertical-align: middle;\n}\n.modal-container {\r\n  width: calc(100vw - 30px);\r\n  height: calc(100vh - 100px);\r\n  margin: 0px auto;\r\n  padding: 20px 30px;\r\n  background-color: #fff;\r\n  border-radius: 2px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\r\n  transition: all .3s ease;\r\n  font-family: Helvetica, Arial, sans-serif;\r\n  max-width: calc(100vh - 50px);\r\n  max-height: calc(100vh - 20px);\r\n  overflow: scroll;\n}\n.modal-header h3 {\r\n  margin-top: 0;\r\n  color: #42b983;\n}\n.modal-body {\r\n  margin: 20px 0;\n}\n.modal-default-button {\r\n  float: right;\n}\r\n\r\n/*\r\n * The following styles are auto-applied to elements with\r\n * transition=\"modal\" when their visibility is toggled\r\n * by Vue.js.\r\n *\r\n * You can easily play with the modal transition by editing\r\n * these styles.\r\n */\n.modal-enter {\r\n  opacity: 0;\n}\n.modal-leave-active {\r\n  opacity: 0;\n}\n.modal-enter .modal-container,\r\n.modal-leave-active .modal-container {\r\n  transform: scale(1.1);\n}\n.filterSettingsModal {\r\n  position: fixed;\r\n  bottom: 0;\r\n  right: 0;\r\n  z-index: 999;\n}\ninput.apple-switch {\r\n  position: relative;\r\n  -webkit-appearance: none;\r\n     -moz-appearance: none;\r\n          appearance: none;\r\n  outline: none;\r\n  width: 50px;\r\n  height: 30px;\r\n  background-color: #ffffff;\r\n  border: 1px solid #D9DADC;\r\n  border-radius: 50px;\r\n  box-shadow: inset -20px 0 0 0 #ffffff;\r\n  transition-duration: 200ms;\n}\ninput.apple-switch:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 1px;\r\n  left: 1px;\r\n  width: 26px;\r\n  height: 13px;\r\n  background-color: transparent;\r\n  border-radius: 50%;\r\n  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\r\n  border-color: #4ED164;\r\n  box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\r\n  left: 20px;\r\n  box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\r\n  -webkit-animation: bounce-in .5s;\r\n          animation: bounce-in .5s;\n}\n.bounce-leave-active {\r\n  animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\r\n    transform: scale(0);\n}\n50% {\r\n    transform: scale(1.5);\n}\n100% {\r\n    transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\r\n    transform: scale(0);\n}\n50% {\r\n    transform: scale(1.5);\n}\n100% {\r\n    transform: scale(1);\n}\n}\n.v-fade {\r\n  transition: all 4s ease-out;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -8821,7 +8822,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n*[data-v-228b89eb] {\r\n  box-sizing: border-box;\n}\n.buttons-scroll[data-v-228b89eb]{\r\n  margin-left: 50px;\n}\n.search-container[data-v-228b89eb] {\r\n  margin-left: 55px;\r\n  left: 200px;\r\n  top: 5px\n}\n.circle[data-v-228b89eb]:before {\r\n  content: ' \\25CF';\r\n  font-size: 20px;\r\n  margin: 0 auto;\r\n  position: absolute;\r\n  bottom: 0;\r\n  background: rgb(0, 0, 0); /* Fallback color */\r\n  background: rgba(145, 100, 153, 0); /* Black background with 0.5 opacity */\r\n  color: #20f100;\r\n  width: 100%;\r\n  padding: 10px;\n}\n.container img[data-v-228b89eb] {\r\n  vertical-align: middle;\n}\n.searchCount[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 5px;\r\n  left: 200px;\n}\n.container .content[data-v-228b89eb] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  background: rgb(0, 0, 0); /* Fallback color */\r\n  background: rgba(0, 0, 0, 0); /* Black background with 0.5 opacity */\r\n  color: #f1f1f1;\r\n  width: 100%;\r\n  padding: 0px;\r\n  margin: 115px;\n}\n.cell[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 150px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 70px;\r\n  width: 100%;\r\n  color: white !important;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\r\n  cursor: pointer;\n}\n.cell-overflow[data-v-228b89eb] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\r\n  cursor: pointer;\n}\n.previous[data-v-228b89eb] {\r\n  cursor: pointer;\r\n  margin-left: 50%;\n}\n.white[data-v-228b89eb]:link {\r\n  color: white;\n}\n.notfound[data-v-228b89eb] {\n}\n#searchCount[data-v-228b89eb] {\r\n  margin-left: auto;\r\n  margin-right: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n*[data-v-228b89eb] {\r\n  box-sizing: border-box;\n}\n.buttons-scroll[data-v-228b89eb]{\r\n  margin-left: 50px;\n}\n.search-container[data-v-228b89eb] {\r\n  margin-left: 55px;\r\n  left: 200px;\r\n  top: 5px\n}\n.search-modal[data-v-228b89eb]{\r\n  max-width: calc(100vh - 225px);;\r\n  max-height: calc(100vh - 225px);\n}\n.circle[data-v-228b89eb]:before {\r\n  content: ' \\25CF';\r\n  font-size: 20px;\r\n  margin: 0 auto;\r\n  position: absolute;\r\n  bottom: 0;\r\n  background: rgb(0, 0, 0); /* Fallback color */\r\n  background: rgba(145, 100, 153, 0); /* Black background with 0.5 opacity */\r\n  color: #20f100;\r\n  width: 100%;\r\n  padding: 10px;\n}\n.container img[data-v-228b89eb] {\r\n  vertical-align: middle;\n}\n.searchCount[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 5px;\r\n  left: 200px;\n}\n.container .content[data-v-228b89eb] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  background: rgb(0, 0, 0); /* Fallback color */\r\n  background: rgba(0, 0, 0, 0); /* Black background with 0.5 opacity */\r\n  color: #f1f1f1;\r\n  width: 100%;\r\n  padding: 0px;\r\n  margin: 115px;\n}\n.cell[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 150px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 70px;\r\n  width: 100%;\r\n  color: white !important;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\r\n  cursor: pointer;\n}\n.cell-overflow[data-v-228b89eb] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\r\n  cursor: pointer;\n}\n.previous[data-v-228b89eb] {\r\n  cursor: pointer;\r\n  margin-left: 50%;\n}\n.white[data-v-228b89eb]:link {\r\n  color: white;\n}\n.notfound[data-v-228b89eb] {\n}\n#searchCount[data-v-228b89eb] {\r\n  margin-left: auto;\r\n  margin-right: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -47699,443 +47700,456 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "newMessageModal" },
-    [
-      _c(
-        "transition",
-        {
-          attrs: { name: "modal" },
-          on: {
-            close: function($event) {
-              _vm.showModal = false
+  return _c("div", { staticClass: "filterSettingsModal" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "col-lg-3 col-md-4 col-sm-6  justify-content-center col-xs-9 box-shadow"
+      },
+      [
+        _c(
+          "transition",
+          {
+            attrs: { name: "modal" },
+            on: {
+              close: function($event) {
+                _vm.showModal = false
+              }
             }
-          }
-        },
-        [
-          _c("div", { staticClass: "modal-mask" }, [
-            _c("div", { staticClass: "modal-wrapper" }, [
-              _c("div", { staticClass: "modal-container" }, [
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("div", { staticClass: "form-group row" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-sm-2 col-form-label",
-                        attrs: { for: "meet" }
-                      },
-                      [_vm._v("Ищу")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-10" }, [
+          },
+          [
+            _c("div", { staticClass: "modal-mask" }, [
+              _c("div", { staticClass: "modal-wrapper" }, [
+                _c("div", { staticClass: "modal-container" }, [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "form-group row" }, [
                       _c(
-                        "select",
+                        "label",
                         {
+                          staticClass: "col-sm-2 col-form-label",
+                          attrs: { for: "meet" }
+                        },
+                        [_vm._v("Ищу")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.meet,
+                                expression: "meet"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { id: "meet", name: "meet" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.meet = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "female" } }, [
+                              _vm._v("Девушку")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "male" } }, [
+                              _vm._v("Парня")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "nomatter" } }, [
+                              _vm._v("неважно")
+                            ])
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-2 col-form-label",
+                          attrs: { for: "from" }
+                        },
+                        [_vm._v("Возраст")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-2" }, [
+                        _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.meet,
-                              expression: "meet"
+                              value: _vm.from,
+                              expression: "from"
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { id: "meet", name: "meet" },
+                          staticStyle: { width: "75px" },
+                          attrs: {
+                            type: "number",
+                            name: "from",
+                            id: "from",
+                            min: "18",
+                            max: _vm.maxAge,
+                            onkeypress: "return isNumber(event)"
+                          },
+                          domProps: { value: _vm.from },
                           on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.meet = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.from = $event.target.value
                             }
                           }
-                        },
-                        [
-                          _c("option", { attrs: { value: "female" } }, [
-                            _vm._v("Девушку")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "male" } }, [
-                            _vm._v("Парня")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "nomatter" } }, [
-                            _vm._v("неважно")
-                          ])
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group row" }, [
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-1" }, [
+                        _vm._v("\n                    до\n                  ")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-1" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.to,
+                              expression: "to"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          staticStyle: { width: "75px" },
+                          attrs: {
+                            type: "number",
+                            name: "to",
+                            id: "to",
+                            min: _vm.minAge,
+                            max: 100,
+                            onkeypress: "return isNumber(event)"
+                          },
+                          domProps: { value: _vm.to },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.to = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("fieldset", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-sm-2 pt-0" }, [
+                          _vm._v("Цели")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-10" },
+                          _vm._l(_vm.targets, function(item) {
+                            return _c("div", { staticClass: "form-check" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.select2targets,
+                                    expression: "select2targets"
+                                  }
+                                ],
+                                staticClass: "form-check-input",
+                                attrs: { type: "checkbox", id: item.id },
+                                domProps: {
+                                  value: item.id,
+                                  checked: Array.isArray(_vm.select2targets)
+                                    ? _vm._i(_vm.select2targets, item.id) > -1
+                                    : _vm.select2targets
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.select2targets,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = item.id,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          (_vm.select2targets = $$a.concat([
+                                            $$v
+                                          ]))
+                                      } else {
+                                        $$i > -1 &&
+                                          (_vm.select2targets = $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1)))
+                                      }
+                                    } else {
+                                      _vm.select2targets = $$c
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(item.name) +
+                                  "\n                      "
+                              )
+                            ])
+                          }),
+                          0
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("fieldset", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-sm-2 pt-0" }, [
+                          _vm._v("Интересы")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-10" },
+                          _vm._l(_vm.interest, function(item) {
+                            return _c("div", { staticClass: "form-check" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.select2inters,
+                                    expression: "select2inters"
+                                  }
+                                ],
+                                staticClass: "form-check-input",
+                                attrs: {
+                                  type: "checkbox",
+                                  name: "gridRadios",
+                                  id: item.id
+                                },
+                                domProps: {
+                                  value: item.id,
+                                  checked: Array.isArray(_vm.select2inters)
+                                    ? _vm._i(_vm.select2inters, item.id) > -1
+                                    : _vm.select2inters
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.select2inters,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = item.id,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          (_vm.select2inters = $$a.concat([
+                                            $$v
+                                          ]))
+                                      } else {
+                                        $$i > -1 &&
+                                          (_vm.select2inters = $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1)))
+                                      }
+                                    } else {
+                                      _vm.select2inters = $$c
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(item.name) +
+                                  "\n                      "
+                              )
+                            ])
+                          }),
+                          0
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("fieldset", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-sm-2 pt-0" }, [
+                          _vm._v("Дети")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-10" },
+                          _vm._l(_vm.children, function(item) {
+                            return _c("div", { staticClass: "form-check" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.select2children,
+                                    expression: "select2children"
+                                  }
+                                ],
+                                staticClass: "form-check-input",
+                                attrs: {
+                                  type: "radio",
+                                  name: "gridRadios",
+                                  id: "gridRadios1",
+                                  checked: ""
+                                },
+                                domProps: {
+                                  value: item.id,
+                                  checked: _vm._q(_vm.select2children, item.id)
+                                },
+                                on: {
+                                  change: function($event) {
+                                    _vm.select2children = item.id
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "form-check-label",
+                                  attrs: { for: "gridRadios1" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(item.name) +
+                                      "\n                        "
+                                  )
+                                ]
+                              )
+                            ])
+                          }),
+                          0
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("fieldset", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-sm-2 pt-0" }, [
+                          _vm._v("Отношения")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-10" },
+                          _vm._l(_vm.relation, function(item) {
+                            return _c("div", { staticClass: "form-check" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.select2relation,
+                                    expression: "select2relation"
+                                  }
+                                ],
+                                staticClass: "form-check-input",
+                                attrs: {
+                                  type: "radio",
+                                  name: "gridRadios",
+                                  id: "gridRadios1",
+                                  checked: ""
+                                },
+                                domProps: {
+                                  value: item.id,
+                                  checked: _vm._q(_vm.select2relation, item.id)
+                                },
+                                on: {
+                                  change: function($event) {
+                                    _vm.select2relation = item.id
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "form-check-label",
+                                  attrs: { for: "gridRadios1" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(item.name) +
+                                      "\n                        "
+                                  )
+                                ]
+                              )
+                            ])
+                          }),
+                          0
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
                     _c(
-                      "label",
+                      "button",
                       {
-                        staticClass: "col-sm-2 col-form-label",
-                        attrs: { for: "from" }
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.saveChange()
+                          }
+                        }
                       },
-                      [_vm._v("Возраст")]
+                      [
+                        _vm._v(
+                          "\n                  Сохранить\n                "
+                        )
+                      ]
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-2" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.from,
-                            expression: "from"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        staticStyle: { width: "75px" },
-                        attrs: {
-                          type: "number",
-                          name: "from",
-                          id: "from",
-                          min: "18",
-                          max: _vm.maxAge,
-                          onkeypress: "return isNumber(event)"
-                        },
-                        domProps: { value: _vm.from },
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
                         on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.from = $event.target.value
+                          click: function($event) {
+                            return _vm.close()
                           }
                         }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-1" }, [
-                      _vm._v("\n                до\n              ")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-1" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.to,
-                            expression: "to"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        staticStyle: { width: "75px" },
-                        attrs: {
-                          type: "number",
-                          name: "to",
-                          id: "to",
-                          min: _vm.minAge,
-                          max: 100,
-                          onkeypress: "return isNumber(event)"
-                        },
-                        domProps: { value: _vm.to },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.to = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("fieldset", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("label", { staticClass: "col-sm-2 pt-0" }, [
-                        _vm._v("Цели")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-10" },
-                        _vm._l(_vm.targets, function(item) {
-                          return _c("div", { staticClass: "form-check" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.select2targets,
-                                  expression: "select2targets"
-                                }
-                              ],
-                              staticClass: "form-check-input",
-                              attrs: { type: "checkbox", id: item.id },
-                              domProps: {
-                                value: item.id,
-                                checked: Array.isArray(_vm.select2targets)
-                                  ? _vm._i(_vm.select2targets, item.id) > -1
-                                  : _vm.select2targets
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.select2targets,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = item.id,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        (_vm.select2targets = $$a.concat([$$v]))
-                                    } else {
-                                      $$i > -1 &&
-                                        (_vm.select2targets = $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1)))
-                                    }
-                                  } else {
-                                    _vm.select2targets = $$c
-                                  }
-                                }
-                              }
-                            }),
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(item.name) +
-                                "\n                  "
-                            )
-                          ])
-                        }),
-                        0
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("fieldset", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("label", { staticClass: "col-sm-2 pt-0" }, [
-                        _vm._v("Интересы")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-10" },
-                        _vm._l(_vm.interest, function(item) {
-                          return _c("div", { staticClass: "form-check" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.select2inters,
-                                  expression: "select2inters"
-                                }
-                              ],
-                              staticClass: "form-check-input",
-                              attrs: {
-                                type: "checkbox",
-                                name: "gridRadios",
-                                id: item.id
-                              },
-                              domProps: {
-                                value: item.id,
-                                checked: Array.isArray(_vm.select2inters)
-                                  ? _vm._i(_vm.select2inters, item.id) > -1
-                                  : _vm.select2inters
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.select2inters,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = item.id,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        (_vm.select2inters = $$a.concat([$$v]))
-                                    } else {
-                                      $$i > -1 &&
-                                        (_vm.select2inters = $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1)))
-                                    }
-                                  } else {
-                                    _vm.select2inters = $$c
-                                  }
-                                }
-                              }
-                            }),
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(item.name) +
-                                "\n                  "
-                            )
-                          ])
-                        }),
-                        0
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("fieldset", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("label", { staticClass: "col-sm-2 pt-0" }, [
-                        _vm._v("Дети")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-10" },
-                        _vm._l(_vm.children, function(item) {
-                          return _c("div", { staticClass: "form-check" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.select2children,
-                                  expression: "select2children"
-                                }
-                              ],
-                              staticClass: "form-check-input",
-                              attrs: {
-                                type: "radio",
-                                name: "gridRadios",
-                                id: "gridRadios1",
-                                checked: ""
-                              },
-                              domProps: {
-                                value: item.id,
-                                checked: _vm._q(_vm.select2children, item.id)
-                              },
-                              on: {
-                                change: function($event) {
-                                  _vm.select2children = item.id
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass: "form-check-label",
-                                attrs: { for: "gridRadios1" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(item.name) +
-                                    "\n                    "
-                                )
-                              ]
-                            )
-                          ])
-                        }),
-                        0
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("fieldset", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("label", { staticClass: "col-sm-2 pt-0" }, [
-                        _vm._v("Отношения")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-10" },
-                        _vm._l(_vm.relation, function(item) {
-                          return _c("div", { staticClass: "form-check" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.select2relation,
-                                  expression: "select2relation"
-                                }
-                              ],
-                              staticClass: "form-check-input",
-                              attrs: {
-                                type: "radio",
-                                name: "gridRadios",
-                                id: "gridRadios1",
-                                checked: ""
-                              },
-                              domProps: {
-                                value: item.id,
-                                checked: _vm._q(_vm.select2relation, item.id)
-                              },
-                              on: {
-                                change: function($event) {
-                                  _vm.select2relation = item.id
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass: "form-check-label",
-                                attrs: { for: "gridRadios1" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(item.name) +
-                                    "\n                    "
-                                )
-                              ]
-                            )
-                          ])
-                        }),
-                        0
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      on: {
-                        click: function($event) {
-                          return _vm.saveChange()
-                        }
-                      }
-                    },
-                    [_vm._v("\n              Сохранить\n            ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      on: {
-                        click: function($event) {
-                          return _vm.close()
-                        }
-                      }
-                    },
-                    [_vm._v("\n              Закрыть\n            ")]
-                  )
+                      },
+                      [_vm._v("\n                  Закрыть\n                ")]
+                    )
+                  ])
                 ])
               ])
             ])
-          ])
-        ]
-      )
-    ],
-    1
-  )
+          ]
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -48423,6 +48437,7 @@ var render = function() {
       _vm._v(" "),
       _vm.seachModal
         ? _c("SearchModal", {
+            staticClass: "search-modal",
             on: {
               closeSeachModal: function($event) {
                 return _vm.closeSeachModal()
