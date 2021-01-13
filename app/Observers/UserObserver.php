@@ -40,11 +40,15 @@ class UserObserver
 
             $dateBith = $user->date_birth;
             $mytime = Carbon::now();
+        try {
             $last_login = Carbon::createFromFormat('Y-m-d', $dateBith);
             $datediff = date_diff($last_login, $mytime);
             $user->age = $datediff->y;
             $user->save();
 
+        }catch (IOException $exception) {
+            return;
+        }
     }
 
     /**

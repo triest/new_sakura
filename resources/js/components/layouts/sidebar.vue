@@ -22,7 +22,7 @@
         </div>
         <div class="dropdown-content">
           <a href="/lk/profile">Профиль</a>
-          <a href="/lk/logout">Выйти</a>
+          <a v-on:click="logout()" href="#">Выйти</a>
         </div>
       </div>
     </nav>
@@ -188,6 +188,23 @@ export default {
         clouseAlertModal() {
           this.showAlertModal = false;
         },
+        logout() {
+
+          axios.post('logout').then(response => {
+            if (response.status === 302 || 401) {
+              console.log('logout')
+              location.reload();
+              document.location.reload();
+            }
+            else {
+              document.location.reload();
+              location.reload();
+            }
+          }).catch(error => {
+            document.location.reload();
+            location.reload();
+          });
+        }
       }
 }
 </script>

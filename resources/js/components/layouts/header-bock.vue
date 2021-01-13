@@ -48,6 +48,7 @@
         },
         methods: {
             logout() {
+
                 axios.post('logout').then(response => {
                     if (response.status === 302 || 401) {
                         console.log('logout')

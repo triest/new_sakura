@@ -4083,6 +4083,21 @@ __webpack_require__.r(__webpack_exports__);
     },
     clouseAlertModal: function clouseAlertModal() {
       this.showAlertModal = false;
+    },
+    logout: function logout() {
+      axios.post('logout').then(function (response) {
+        if (response.status === 302 || 401) {
+          console.log('logout');
+          location.reload();
+          document.location.reload();
+        } else {
+          document.location.reload();
+          location.reload();
+        }
+      })["catch"](function (error) {
+        document.location.reload();
+        location.reload();
+      });
     }
   }
 });
@@ -50105,25 +50120,29 @@ var render = function() {
                   })
                 ]),
             _vm._v(" "),
-            _vm._m(0)
+            _c("div", { staticClass: "dropdown-content" }, [
+              _c("a", { attrs: { href: "/lk/profile" } }, [_vm._v("Профиль")]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.logout()
+                    }
+                  }
+                },
+                [_vm._v("Выйти")]
+              )
+            ])
           ]
         )
       ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "dropdown-content" }, [
-      _c("a", { attrs: { href: "/lk/profile" } }, [_vm._v("Профиль")]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "/lk/logout" } }, [_vm._v("Выйти")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
