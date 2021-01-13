@@ -5,7 +5,7 @@ Route::get(
         function () {
             return redirect('/anket');
         }
-);
+)->name('main');
 Route::get('/lesson', 'HomeController@lesson')->name('lesson');
 
 Auth::routes(['verify' => true]);
