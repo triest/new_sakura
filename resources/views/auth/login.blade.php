@@ -1,5 +1,5 @@
 @extends('layouts.lk')
-
+@section('title', "Войти")
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
