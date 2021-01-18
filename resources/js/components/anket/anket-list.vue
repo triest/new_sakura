@@ -16,8 +16,8 @@
       </span>
     </div>
 
-    <div class="col-lg-3 col-md-4 col-sm-6  justify-content-center col-xs-9 box-shadow" v-for="item in anketList"
-         style="padding-left:60px; padding-right: 20px;">
+    <div class="col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow" v-for="item in anketList"
+         style="padding-left:60px; padding-right: 20px;margin: auto;">
       <a :href="/anket/+item.id">
         <img width="250" height="250" :src="item.profile_url">
         <div class="cell">

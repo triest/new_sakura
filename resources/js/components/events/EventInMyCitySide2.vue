@@ -1,7 +1,6 @@
 <template>
     <div>
         <div v-if="eventList.length">
-
             <div v-for="event in eventList" :key="event.id">
                 <div class="col-sm-1"></div>
                 <b>{{event.name}}</b> <br>
@@ -40,9 +39,7 @@
             }
         },
         mounted() {
-          console.log("events")
-         //   this.getEvents()
-
+          this.getEvents()
         },
         data() {
             return {
@@ -53,12 +50,12 @@
         },
         methods: {
             getEvents() {
-                console.log("get events1");
                 axios.get('/events/inmycity', {params: {type: "json", city: this.city.id}}
                 )
                     .then((response) => {
                         this.eventList = response.data.events;
                         this.partification = response.data.partification;
+                        console.log("events")
                     });
             },
             checkRequest(event_id) {
@@ -74,10 +71,7 @@
                         return this.partification[i][0].status;
                     }
                 }
-
                 return false;
-
-
             }
         }
 

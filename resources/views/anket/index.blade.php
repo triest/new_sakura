@@ -5,7 +5,7 @@
 
     <div id="app">
 
-        <anket-list></anket-list>
+        <anket-list style="margin: auto;"></anket-list>
 
     </div>
 

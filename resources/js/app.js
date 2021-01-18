@@ -54,5 +54,9 @@ window.addEventListener('load', function () {
     const event_in_my_city_side_app = new Vue({
         el: '#event_in_my_city_side_app',
     });
+
+    const event_in_my_city_side_app_2 = new Vue({
+        el: '#event_in_my_city_side_app_2',
+    });
 })
 

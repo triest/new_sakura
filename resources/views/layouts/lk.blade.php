@@ -39,26 +39,28 @@
 </head>
 
 <body>
+<? $city = \App\Models\City::getCurrentCity();?>
+<script src="{{ asset('js/axios.min.js') }}"></script>
 <!-- тут меню -->
 @include('layouts.header')
-<script src="{{ asset('js/axios.min.js') }}"></script>
-<?
-$city = \App\Models\City::getCurrentCity();
-?>
 
 
-<div class="col-sm-1">
-    <div id="event_in_my_city_side_app" class="visible-xs visible-lg" style="width: 25rem; background-color: #eeeeee;
+<div id="event_in_my_city_side_app" class="hidden-lg"   style="width: 25rem; background-color: #eeeeee;
              border: 1px solid transparent;
-             border-color: #666869;">
-        @isset($city)
-            <? if($city){ ?>
-            <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
-            <?}?>
-        @endisset
-    </div>
+             border-color: #666869; margin-right: auto;margin-left: auto">
+
+    @if($city)
+        <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
+    @endif
+
 </div>
-<div class="col-sm-1">
+<div id="event_in_my_city_side_app_2"  class="col-sm-1 ">
+    <div style="width: 25rem; background-color: #eeeeee;
+             border: 1px solid transparent;" id="event_in_my_city_side_app-2" class="visible-lg">
+        @if($city)
+            <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
+        @endif
+    </div>
 </div>
 <div class="col-sm-8">
     <div class="row row-offcanvas row-offcanvas-right">
@@ -98,10 +100,3 @@ $city = \App\Models\City::getCurrentCity();
 
 </body>
 </html>
-<script>
-    import EventInMyCitySide2 from "../../js/components/events/EventInMyCitySide2";
-
-    export default {
-        components: {EventInMyCitySide2}
-    }
-</script>

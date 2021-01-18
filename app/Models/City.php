@@ -17,62 +17,47 @@ class City extends Model
     public static function getCurrentCity()
     {
         $ip = User::getIpStatic();
+
         if (!$ip) {
             $ip = "";
         }
-        try {
-            $response = file_get_contents("http://api.sypexgeo.net/json/" . $ip);
-            $response = json_decode($response);
-            $okato = $response->city->okato;
-            $city = City::select(
-                    [
-                            'id',
-                            'name',
-                            'OKATO',
-                    ]
-            )->where('OKATO', '=', intval($okato))->first();
 
-            if ($city->id == 2) {    //костыль для петрозаводска, который определяетья как кондопога
-                $city =   City::select(
-                        [
-                                'id',
-                                'name',
-                                'OKATO',
-                        ]
-                )->where('id', '=', 1)->first();
-            }
-        } catch (IOException $exception) {
-            $city = null;
+        // create curl resource
+        $ch = curl_init();
+        // set url
+        curl_setopt($ch, CURLOPT_URL, "http://api.sypexgeo.net/json/" . $ip);
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            $error_msg = curl_error($ch);
+            return null;
         }
+        curl_close($ch);
 
+        $json = json_decode($output, true);
+
+        $okato = $json['city']['okato'];
+
+        $city = City::select(
+                [
+                        'id',
+                        'name',
+                        'OKATO',
+                ]
+        )->where('OKATO', '=', intval($okato))->first();
 
         if ($city == null) {
-            $name = $response->city->name_ru;
-            $response
-                    = file_get_contents(
-                    "https://kladr-api.ru/api.php?contentType=city&withParent=1&limit=10&query=$name"
-            );
-            $response = json_decode($response);
-            $result = $response->result;
-            $city = City::select(
-                    [
-                            'id',
-                            'name',
-                            'OKATO',
-                    ]
-            )->where('OKATO', $okato)->first();
-            if ($city == null) {
-                $city = new  City();
-                $city->name = $result[1]->name;
-                $city->OKATO = substr($result[1]->okato, 0, 8);
-                $city->PARANTS_OKATO = $result[1]->parents[0]->okato;
-                $city->save();
-            }
-
-            return $city;
-        } else {
-            return $city;
+            $city = new City();
+            $city->name = $json['city']['name_ru'];
+            $city->OKATO = $okato;
+            $city->save();
         }
+        return $city;
     }
 
     public static function get($id)

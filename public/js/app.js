@@ -3411,7 +3411,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     city: {
@@ -3420,7 +3419,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log("events"); //   this.getEvents()
+    this.getEvents();
   },
   data: function data() {
     return {
@@ -3433,7 +3432,6 @@ __webpack_require__.r(__webpack_exports__);
     getEvents: function getEvents() {
       var _this = this;
 
-      console.log("get events1");
       axios.get('/events/inmycity', {
         params: {
           type: "json",
@@ -3442,6 +3440,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.eventList = response.data.events;
         _this.partification = response.data.partification;
+        console.log("events");
       });
     },
     checkRequest: function checkRequest(event_id) {
@@ -48425,8 +48424,12 @@ var render = function() {
           "div",
           {
             staticClass:
-              "col-lg-3 col-md-4 col-sm-6  justify-content-center col-xs-9 box-shadow",
-            staticStyle: { "padding-left": "60px", "padding-right": "20px" }
+              "col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow",
+            staticStyle: {
+              "padding-left": "60px",
+              "padding-right": "20px",
+              margin: "auto"
+            }
           },
           [
             _c("a", { attrs: { href: /anket/ + item.id } }, [
@@ -62564,6 +62567,9 @@ window.addEventListener('load', function () {
   });
   var event_in_my_city_side_app = new Vue({
     el: '#event_in_my_city_side_app'
+  });
+  var event_in_my_city_side_app_2 = new Vue({
+    el: '#event_in_my_city_side_app_2'
   });
 });
 
