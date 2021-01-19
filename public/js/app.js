@@ -50093,7 +50093,7 @@ var render = function() {
                   _c("img", {
                     staticClass: "dropbtn",
                     attrs: {
-                      src: "/home/img/image-placeholder.png",
+                      src: "/public/home/img/image-placeholder.png",
                       height: "35px"
                     }
                   })

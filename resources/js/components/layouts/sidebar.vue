@@ -18,7 +18,7 @@
           <img :src="user.profile_url" height="50px" class="dropbtn">
         </div>
         <div v-else>
-          <img src='/home/img/image-placeholder.png' height="35px" class="dropbtn">
+          <img src='/public/home/img/image-placeholder.png' height="35px" class="dropbtn">
         </div>
         <div class="dropdown-content">
           <a href="/lk/profile">Профиль</a>

@@ -12,25 +12,25 @@
     <!-- Bootstrap core CSS -->
 
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/gallery-grid.css')}}">
-    <script src="{{ asset('js/app.js') }}"></script>
+    <link href="{{asset('public/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/css/gallery-grid.css')}}">
+    <script src="{{ asset('public/js/app.js') }}"></script>
     <!-- Bootstrap core CSS -->
 
     <!-- custom buttons -->
 
 
     <!--for galeray -->
-    <link href="{{asset('css/gallery-grid.css')}}">
+    <link href="{{asset('public/css/gallery-grid.css')}}">
 
     <!--end for faleray -->
 
     <!--My custom style -->
-    <link href="{{asset('css/style.css')}}" type="text/css">
+    <link href="{{asset('public/css/style.css')}}" type="text/css">
     <!-- -->
-    <link href="{{asset('css/app.css')}}" type="text/css">
+    <link href="{{asset('public/css/app.css')}}" type="text/css">
 
-    <link href="{{asset('css/carusel.css')}}" type="text/css">
+    <link href="{{asset('public/css/carusel.css')}}" type="text/css">
 
     <!-- Bootstrap core CSS -->
 
@@ -40,7 +40,7 @@
 
 <body>
 <? $city = \App\Models\City::getCurrentCity();?>
-<script src="{{ asset('js/axios.min.js') }}"></script>
+<script src="{{ asset('public/js/axios.min.js') }}"></script>
 <!-- тут меню -->
 @include('layouts.header')
 
@@ -94,7 +94,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{{ asset('js/jquery-3.5.0.min.js') }}"></script>
+<script src="{{ asset('public/js/jquery-3.5.0.min.js') }}"></script>
 <!--<script src="http://bootstrap-3.ru/dist/js/bootstrap.min.js"></script>-->
 
 

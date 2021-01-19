@@ -127,7 +127,7 @@ class HomeController extends Controller
     public function store_profile(StoreUserProfile $request)
     {
         $user = Auth::user();
-        if(!$user){
+        if (!$user) {
             return redirect('login');
         }
         $data = $request->all();
@@ -136,6 +136,7 @@ class HomeController extends Controller
         $user->age = $user->age();
 
         $user->save();
+        die();
         $user->target()->detach();
         if ($request->has('target')) {
             foreach ($request->target as $item) {
