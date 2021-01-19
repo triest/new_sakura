@@ -48,7 +48,7 @@
                             @else
                                 <div class="txt" id="txt"></div>
                             @endif
-                            <img src="{{asset( "storage/app/$user->photo_profile_url")}}" height="250px" width="250px">
+                            <img src="{{asset( "$user->photo_profile_url")}}" height="250px" width="250px">
                         </div>
 
                         <div class="photo_profile" id="photo_profile" data-remodal-target="upload_img">

@@ -136,7 +136,6 @@ class HomeController extends Controller
         $user->age = $user->age();
 
         $user->save();
-        die();
         $user->target()->detach();
         if ($request->has('target')) {
             foreach ($request->target as $item) {
