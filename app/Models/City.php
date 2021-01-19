@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Lk\User;
 use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\Filesystem\Exception\IOException;
@@ -16,6 +17,10 @@ class City extends Model
 
     public static function getCurrentCity()
     {
+        if (session('city')) {
+            return \session('city');
+        }
+
         $ip = User::getIpStatic();
 
         if (!$ip) {
@@ -57,6 +62,14 @@ class City extends Model
             $city->OKATO = $okato;
             $city->save();
         }
+
+        $user = Auth::user();
+        if ($user != null) {
+            $user->city_id = $city->id;
+            $user->save();
+        }
+
+        session(['city' => $city]);
         return $city;
     }
 
