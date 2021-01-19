@@ -40,7 +40,7 @@ class UserObserver
      * @return void
      */
     public function updated(User $user)
-    {
+    {/*
         try {
             $dateBith = $user->date_birth;
             if(!$dateBith){
@@ -54,6 +54,7 @@ class UserObserver
             $user->save();
         } catch (IOException $exception) {
         }
+        */
     }
 
     /**

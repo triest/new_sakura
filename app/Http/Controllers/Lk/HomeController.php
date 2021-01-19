@@ -107,16 +107,17 @@ class HomeController extends Controller
 
 
         //    $user->getAge();
-        return view('lk.profile.index')->with([
-                'user' => $user,
-                'targets' => $target,
-                'interests' => $interst,
-                'size' => $size,
-                'anketTarget' => $anketTarget,
-                'anketInterests' => $anketInterest,
-                'relations' => $relations,
-                'childrens' => $children
-        ]);
+        return view('lk.profile.index')->with(
+                [
+                        'user' => $user,
+                        'targets' => $target,
+                        'interests' => $interst,
+                        'size' => $size,
+                        'anketTarget' => $anketTarget,
+                        'anketInterests' => $anketInterest,
+                        'relations' => $relations
+                ]
+        );
     }
 
     /**
@@ -126,6 +127,9 @@ class HomeController extends Controller
     public function store_profile(StoreUserProfile $request)
     {
         $user = Auth::user();
+        if(!$user){
+            return redirect('login');
+        }
         $data = $request->all();
         $user->fill($data);
 

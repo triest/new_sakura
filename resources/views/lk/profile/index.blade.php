@@ -69,7 +69,7 @@
                     <label class="label_txt"><span></span>Имя</label>
                     <div class="group_input">
                         <input type="text" class="input" id="name" name="name"
-                               value="{{old('first_name') ?? $user->name }}">
+                               value="{{old('name') ?? $user->name }}">
                     </div>
                     @if($errors->has('name'))
                         <div class="alert alert-danger">
