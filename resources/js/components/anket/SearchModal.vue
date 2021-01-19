@@ -72,9 +72,7 @@
                           <input class="form-check-input" type="radio" name="gridRadios"
                                  id="gridRadios1" :value="item.id" v-model="select2children"
                                  checked>
-                          <label class="form-check-label" for="gridRadios1">
                             {{ item.name }}
-                          </label>
                         </div>
                       </div>
                     </div>
@@ -86,12 +84,10 @@
                       <div class="col-sm-10">
 
                         <div class="form-check" v-for="item in relation">
-                          <input class="form-check-input" type="radio" name="gridRadios"
-                                 id="gridRadios1" :value="item.id" v-model="select2relation"
+                          <input class="form-check-input" type="radio" name="gridRadios2"
+                                 id="gridRadios2" :value="item.id" v-model="select2relation"
                                  checked>
-                          <label class="form-check-label" for="gridRadios1">
                             {{ item.name }}
-                          </label>
                         </div>
                       </div>
                     </div>
