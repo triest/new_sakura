@@ -2423,10 +2423,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   name: 'modal',
@@ -48044,20 +48040,10 @@ var render = function() {
                                   }
                                 }
                               }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "form-check-label",
-                                  attrs: { for: "gridRadios1" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                          " +
-                                      _vm._s(item.name) +
-                                      "\n                        "
-                                  )
-                                ]
+                              _vm._v(
+                                "\n                          " +
+                                  _vm._s(item.name) +
+                                  "\n                      "
                               )
                             ])
                           }),
@@ -48089,8 +48075,8 @@ var render = function() {
                                 staticClass: "form-check-input",
                                 attrs: {
                                   type: "radio",
-                                  name: "gridRadios",
-                                  id: "gridRadios1",
+                                  name: "gridRadios2",
+                                  id: "gridRadios2",
                                   checked: ""
                                 },
                                 domProps: {
@@ -48103,20 +48089,10 @@ var render = function() {
                                   }
                                 }
                               }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "form-check-label",
-                                  attrs: { for: "gridRadios1" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                          " +
-                                      _vm._s(item.name) +
-                                      "\n                        "
-                                  )
-                                ]
+                              _vm._v(
+                                "\n                          " +
+                                  _vm._s(item.name) +
+                                  "\n                      "
                               )
                             ])
                           }),

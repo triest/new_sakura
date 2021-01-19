@@ -195,4 +195,6 @@ class HomeController extends Controller
 
         return response()->json(["url" => $midle_path2 . "/" . $name . ".png", 'size' => $size]);
     }
+
+
 }

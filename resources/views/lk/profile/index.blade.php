@@ -71,7 +71,11 @@
                         <input type="text" class="input" id="name" name="name"
                                value="{{old('first_name') ?? $user->name }}">
                     </div>
-
+                    @if($errors->has('name'))
+                        <div class="alert alert-danger">
+                            <div class="error">{{ $errors->first('name') }}</div>
+                        </div>
+                    @endif
 
                     <div class="group">
                         <label class="label_txt"><span></span>Кто вы</label>
@@ -104,6 +108,11 @@
                                 </div>
                             </div>
                         </div>
+                        @if($errors->has('date_birth'))
+                            <div class="alert alert-danger">
+                                <div class="error">{{ $errors->first('date_birth') }}</div>
+                            </div>
+                        @endif
                     </div>
                     <div class="row">
                         @if($targets->isNotEmpty())

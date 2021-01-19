@@ -54,7 +54,7 @@
     @endif
 
 </div>
-<div id="event_in_my_city_side_app_2"  class="col-sm-1 ">
+<div id="event_in_my_city_side_app_2"  class="col-sm-2 ">
     <div style="width: 25rem; background-color: #eeeeee;
              border: 1px solid transparent;" id="event_in_my_city_side_app-2" class="visible-lg">
         @if($city)

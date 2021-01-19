@@ -44,6 +44,7 @@ $factory->define(
                 }
                 $relation = Relation::inRandomOrder()->first();
             }
+            $date= $faker->date('Y-m-d','-18 years');
 
             $user = User::create(
                     [
@@ -58,7 +59,7 @@ $factory->define(
                             'height' => $faker->numberBetween(150, 190),
                             'meet' => $meet,
                             'city_id' => 1,
-                            'date_birth' => $faker->dateTime('-18 years'),
+                            'date_birth' => $date,
                             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                             'remember_token' => Str::random(10),
                             'relation_id' => $relation->id

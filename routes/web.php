@@ -131,3 +131,5 @@ Route::prefix('presents')->name('present.')->group(
 */
 
 Route::get('/city', 'HomeController@city');
+Route::get('/test', 'HomeController@test');
+Route::get('/age', 'HomeController@calculatAge');
