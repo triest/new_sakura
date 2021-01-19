@@ -53,6 +53,8 @@ class SearchService
 
             $city = City::getCurrentCity();
 
+
+
             if ($city != null) {
                 $users->where('city_id', $city->id);
             }
@@ -125,12 +127,13 @@ class SearchService
         }
 
 
-        if ($seachSettings->children != null || $seachSettings->children != 0) {
+        if ($seachSettings->children != null && $seachSettings->children != 3 ) {
             $users->where('children_id', '=', $seachSettings->children);
         }
 
 
         $city = City::getCurrentCity();
+
 
         if ($city != null) {
             $users->where('city_id', $city->id);
@@ -269,6 +272,7 @@ class SearchService
         }
 
         $relations = Relation::select(['*'])->get();
+        $children = Children::select(['*'])->get();
 
         $rez_array = [
                 "anket" => $user,
