@@ -76,7 +76,8 @@ class SearchService
                     'users.profile_url',
                     'users.date_birth',
                     'users.created_at',
-                    'users.age'
+                    'users.age',
+                    'users.photo_profile_url'
             )->limit($this->limit);
 
             $num_pages = intval($count / $this->limit);

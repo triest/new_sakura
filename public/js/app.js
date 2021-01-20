@@ -48570,7 +48570,11 @@ var render = function() {
           [
             _c("a", { attrs: { href: /anket/ + item.id } }, [
               _c("img", {
-                attrs: { width: "250", height: "250", src: item.profile_url }
+                attrs: {
+                  width: "250",
+                  height: "250",
+                  src: item.photo_profile_url
+                }
               }),
               _vm._v(" "),
               _c("div", { staticClass: "cell" }, [
