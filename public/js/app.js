@@ -2563,11 +2563,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user_id: {
       type: Number,
       required: false
+    },
+    owner: {
+      type: Boolean,
+      required: false,
+      "default": false
     },
     album_id: {
       type: Number,
@@ -2577,7 +2586,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       photos: null,
-      owner: false
+      owner: false,
+      photo: null,
+      galerayFile: null
     };
   },
   mounted: function mounted() {
@@ -2593,6 +2604,24 @@ __webpack_require__.r(__webpack_exports__);
         data = response.data;
         that.photos = data.photos;
       });
+    },
+    handleFileUpload: function handleFileUpload() {
+      this.galerayFile = this.$refs.galerayFileInput.files[0];
+    },
+    submitFile: function submitFile() {
+      var formData = new FormData();
+      formData.append('image', this.galerayFile);
+      var url = '/api/anket/' + this.user_id + '/albums/' + this.album_id + '/upload/image';
+      var that = this;
+      axios.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        var data = null;
+        data = response.data;
+        that.photos.push(data.photo);
+      })["catch"](function () {}); //   this.getPhotos();
     }
   }
 });
@@ -48220,26 +48249,56 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.photos, function(item) {
-      return _c(
-        "div",
-        {
-          staticClass:
-            "col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow",
-          staticStyle: {
-            "padding-left": "60px",
-            "padding-right": "20px",
-            margin: "auto"
-          }
-        },
-        [
-          _c("img", {
-            attrs: { width: "250", height: "250", src: "/" + item.url }
-          })
-        ]
-      )
-    }),
-    0
+    [
+      _vm.owner
+        ? _c("div", [
+            _c("input", {
+              ref: "galerayFileInput",
+              attrs: { type: "file", id: "photo", name: "photo" },
+              on: {
+                change: function($event) {
+                  return _vm.handleFileUpload()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.submitFile()
+                  }
+                }
+              },
+              [_vm._v("Загрузить")]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.photos, function(item) {
+        return _c(
+          "div",
+          {
+            staticClass:
+              "col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow",
+            staticStyle: {
+              "padding-left": "60px",
+              "padding-right": "20px",
+              margin: "auto"
+            }
+          },
+          [
+            _c("img", {
+              attrs: { width: "250", height: "250", src: "/" + item.url }
+            })
+          ]
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []

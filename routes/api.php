@@ -21,5 +21,6 @@ Route::prefix('seach')->name('seach.')->group(
 Route::prefix('anket')->name('anket.')->group(
         function () {
             Route::get('{anketid}/album/{id}/', 'AlbumController@apiAlbumItem')->name('main');
+            Route::post('{id}/albums/{albumid}/upload/image', 'AlbumController@uploadPhoto');
         }
 );
