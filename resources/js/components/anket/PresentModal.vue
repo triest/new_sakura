@@ -75,7 +75,7 @@
         },
         methods: {
             close() {
-                console.log("close");
+
                 this.$emit('closeRequest')
             },
             getPresents() {
@@ -98,7 +98,7 @@
 
                 }).catch(function () {
                    // Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации")
-                    console.log("error");
+
                 })
                 this.close();
             }

@@ -37,7 +37,7 @@
         props: {},
         name: 'modal',
         mounted() {
-            //console.log(this.id);
+
         },
         data() {
             return {
@@ -52,7 +52,7 @@
 
             },
             saveChange() {
-                //   console.log(this.MessageText)
+
                 axios.post('/conversation/sendModal', {
                     contact_id: this.id,
                     text: this.MessageText

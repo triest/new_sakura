@@ -2003,7 +2003,6 @@ __webpack_require__.r(__webpack_exports__);
   name: 'modal',
   mounted: function mounted() {
     if (this.present != null) {
-      console.log(this.present);
       this.name = this.present.name;
       this.price = this.present.price;
       this.enable = this.present.enabled; //    this.emit(this.present.enabled)
@@ -2273,7 +2272,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     close: function close() {
-      console.log("close");
       this.$emit('closeRequest');
     },
     getPresents: function getPresents() {
@@ -2293,9 +2291,7 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append('present_id', present_id);
       formData.append('user_id', this.user.id);
-      axios.post('/presents/make', formData).then(function () {})["catch"](function () {
-        // Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации")
-        console.log("error");
+      axios.post('/presents/make', formData).then(function () {})["catch"](function () {// Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации")
       });
       this.close();
     }
@@ -2501,7 +2497,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('seach/getsettings').then(function (response) {
         var res = response.data.data;
-        console.log(res);
         _this2.targets = res.targets;
         _this2.select2targets = res.selectedTargets;
         _this2.select2inters = res.selectedInterest;
@@ -2518,8 +2513,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function () {});
     },
     show: function show(input) {
-      console.log(input);
-
       switch (input) {
         case "target":
           this.targets_show = !this.targets_show;
@@ -2534,7 +2527,6 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case "relations":
-          console.log("res");
           this.relation_show = !this.relation_show;
           break;
       }
@@ -2553,6 +2545,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -2592,18 +2588,40 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log("album");
     this.getPhotos();
   },
   methods: {
     getPhotos: function getPhotos() {
       var url = '/api/anket/' + this.user_id + '/album/' + this.album_id;
       var that = this;
+      this.photos = [];
       axios.get(url, {}).then(function (response) {
         var data = null;
         data = response.data;
         that.photos = data.photos;
       });
+    },
+    deletePhoto: function deletePhoto(id) {
+      var result = window.confirm("Удалить фотографию?");
+
+      if (!result) {
+        return;
+      }
+
+      var formData = new FormData();
+      formData.append('image_id', id);
+      var url = '/api/anket/' + this.user_id + '/albums/' + this.album_id + '/delete/' + id;
+      var that = this;
+      axios["delete"](url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        var data = null;
+      })["catch"](function () {
+        Alert("Ошибка!");
+      });
+      this.getPhotos();
     },
     handleFileUpload: function handleFileUpload() {
       this.galerayFile = this.$refs.galerayFileInput.files[0];
@@ -2680,12 +2698,10 @@ __webpack_require__.r(__webpack_exports__);
     newMessageModal: _newMessageModal__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    console.log("anket component");
     this.checkLike();
   },
   methods: {
     clousePresentModal: function clousePresentModal() {
-      console.log("close present modal");
       this.showPresentModal = false;
     },
     clouseNewMessageModal: function clouseNewMessageModal() {
@@ -48252,6 +48268,7 @@ var render = function() {
     [
       _vm.owner
         ? _c("div", [
+            _vm._v("\n    вы\n    "),
             _c("input", {
               ref: "galerayFileInput",
               attrs: { type: "file", id: "photo", name: "photo" },
@@ -48293,7 +48310,24 @@ var render = function() {
           [
             _c("img", {
               attrs: { width: "250", height: "250", src: "/" + item.url }
-            })
+            }),
+            _vm._v(" "),
+            _vm.owner
+              ? _c("span", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.deletePhoto(item.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Удалить")]
+                  )
+                ])
+              : _vm._e()
           ]
         )
       })

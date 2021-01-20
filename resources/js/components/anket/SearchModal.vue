@@ -188,7 +188,7 @@ export default {
       axios.get('seach/getsettings')
           .then((response) => {
             let res = response.data.data;
-            console.log(res);
+
             this.targets = res.targets;
             this.select2targets = res.selectedTargets;
             this.select2inters = res.selectedInterest;
@@ -209,7 +209,7 @@ export default {
 
     },
     show(input) {
-      console.log(input);
+
       switch (input) {
         case "target":
           this.targets_show = !this.targets_show;
@@ -222,7 +222,7 @@ export default {
           break;
 
         case "relations":
-          console.log("res");
+
           this.relation_show = !this.relation_show;
           break;
       }

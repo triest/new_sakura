@@ -92,5 +92,20 @@
            return response()->json(['photo' => $alpumPhoto]);
         }
 
+        public function deletePhoto(Request $request,$id,$albumid,$photoid){
+
+
+            $user=Auth::user();
+            $photo=AlbumPhoto::get($photoid);
+
+            if(!$photo){
+                return false;
+            }
+            $album=$photo->album()->first();
+            $albumService=new AlbumService();
+
+            return  $albumService->deletePhoto($photo);
+        }
+
 
     }

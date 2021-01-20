@@ -15,8 +15,15 @@
 
 
         </div>
+
         <div id="album_app">
-            <album :user_id="{{$user->id}}" :album_id="{{$album->id}}" :owner="{{$album->canUpload()}}"></album>
+
+            @if($album->canUpload())
+            <album :user_id="{{$user->id}}" :album_id="{{$album->id}}" :owner=true></album>
+            @else
+
+                <album :user_id="{{$user->id}}" :album_id="{{$album->id}}"></album>
+            @endif
         </div>
 
 @endsection

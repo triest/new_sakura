@@ -42,12 +42,12 @@
             newMessageModal
         },
         mounted() {
-            console.log("anket component");
+
             this.checkLike();
         },
         methods: {
             clousePresentModal() {
-                console.log("close present modal")
+
                 this.showPresentModal = false;
             },
             clouseNewMessageModal() {

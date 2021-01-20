@@ -42,7 +42,6 @@
         public function canUpload()
         {
             if (Auth::user() && Auth::user()->id == $this->user()->first()->id) {
-
                 return true;
             } else {
                 return false;

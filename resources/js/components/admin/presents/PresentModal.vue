@@ -61,7 +61,6 @@
         name: 'modal',
         mounted() {
             if (this.present != null) {
-                console.log(this.present);
                 this.name = this.present.name;
                 this.price = this.present.price;
                 this.enable=this.present.enabled;

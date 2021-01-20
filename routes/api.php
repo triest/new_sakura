@@ -22,5 +22,6 @@ Route::prefix('anket')->name('anket.')->group(
         function () {
             Route::get('{anketid}/album/{id}/', 'AlbumController@apiAlbumItem')->name('main');
             Route::post('{id}/albums/{albumid}/upload/image', 'AlbumController@uploadPhoto');
+            Route::delete('{id}/albums/{albumid}/delete/{photoid}', 'AlbumController@deletePhoto');
         }
 );
