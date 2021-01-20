@@ -13,7 +13,7 @@
             </div>
             <div class="group">
                 @if($album->canUpload())
-                   @include('anket.uploadPhoto')
+                    @include('anket.uploadPhoto')
                 @endif
             </div>
             <div class="row">
@@ -37,33 +37,8 @@
 
 
         </div>
-
-
-        <div class="remodal" data-remodal-id="show_img" id="modal" role="dialog" aria-labelledby="modal1Title"
-             aria-describedby="modal1Desc">
-
-            <div class="web-block_popup">
-                <div class="row">
-                    <div class="web-block_item" onclick="click_profile_image_upload()">
-                        <img id="image" name="image" src="/home/img/flat-color-icons_webcam.svg" alt="..">
-                        <div class="web-block_txt">
-                            Загружено:
-                            <div class="txt" id="txt"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="album_app">
+            <album :user_id="{{$user->id}}" :album_id="{{$album->id}}"></album>
         </div>
-    </div>
 
-
-    <script type="text/javascript">
-        function openPhoto(photo) {
-            console.log(photo)
-            let src = document.getElementById("image");
-            image.src = photo.url;
-            let txt = document.getElementById("txt");
-            txt.innerText = photo.created_at;
-        }
-    </script>
 @endsection

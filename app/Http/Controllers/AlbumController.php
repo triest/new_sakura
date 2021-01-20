@@ -59,6 +59,27 @@
             return view("anket.album")->with(["album" => $album, "photos" => $photos, "user" => $user]);
         }
 
+        public function apiAlbumItem($albumid,$anketid){
+
+            $authUser=Auth::user();
+
+
+            $album=Album::getItem($anketid);
+            if(!$album){
+                abort(404);
+            }
+
+            if($authUser!=null && $album->user_id==$authUser->id){
+                $owner=true;
+            }else{
+                $owner=false;
+            }
+
+            $photos=$album->photos()->get();
+
+            return response()->json(['photos'=>$photos,'owner'=>$owner]);
+        }
+
         public function uploadPhoto($id, $albumid,AlbumRequwest $requwest)
         {
             $user = User::get($id);
