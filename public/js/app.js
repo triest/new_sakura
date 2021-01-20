@@ -2563,6 +2563,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user_id: {
@@ -2582,7 +2586,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       photos: null,
-      owner: false,
       photo: null,
       galerayFile: null
     };
@@ -8895,6 +8898,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, "\ntextarea {\r\n  width: 90%; /* Ширина поля в процентах */\r\n  height: 200px; /* Высота поля в пикселах */\r\n  resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask {\r\n  position: fixed;\r\n  z-index: 9998;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: table;\r\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\r\n  display: table-cell;\r\n  vertical-align: middle;\n}\n.modal-container {\r\n  width: calc(100vw - 30px);\r\n  height: calc(100vh - 100px);\r\n  margin: 0px auto;\r\n  padding: 20px 30px;\r\n  background-color: #fff;\r\n  border-radius: 2px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\r\n  transition: all .3s ease;\r\n  font-family: Helvetica, Arial, sans-serif;\r\n  max-width: calc(100vh - 50px);\r\n  max-height: calc(100vh - 20px);\r\n  overflow: scroll;\n}\n.modal-header h3 {\r\n  margin-top: 0;\r\n  color: #42b983;\n}\n.modal-body {\r\n  margin: 20px 0;\n}\n.modal-default-button {\r\n  float: right;\n}\r\n\r\n/*\r\n * The following styles are auto-applied to elements with\r\n * transition=\"modal\" when their visibility is toggled\r\n * by Vue.js.\r\n *\r\n * You can easily play with the modal transition by editing\r\n * these styles.\r\n */\n.modal-enter {\r\n  opacity: 0;\n}\n.modal-leave-active {\r\n  opacity: 0;\n}\n.modal-enter .modal-container,\r\n.modal-leave-active .modal-container {\r\n  transform: scale(1.1);\n}\n.filterSettingsModal {\r\n  position: fixed;\r\n  bottom: 0;\r\n  right: 0;\r\n  z-index: 999;\n}\ninput.apple-switch {\r\n  position: relative;\r\n  -webkit-appearance: none;\r\n     -moz-appearance: none;\r\n          appearance: none;\r\n  outline: none;\r\n  width: 50px;\r\n  height: 30px;\r\n  background-color: #ffffff;\r\n  border: 1px solid #D9DADC;\r\n  border-radius: 50px;\r\n  box-shadow: inset -20px 0 0 0 #ffffff;\r\n  transition-duration: 200ms;\n}\ninput.apple-switch:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 1px;\r\n  left: 1px;\r\n  width: 26px;\r\n  height: 13px;\r\n  background-color: transparent;\r\n  border-radius: 50%;\r\n  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\r\n  border-color: #4ED164;\r\n  box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\r\n  left: 20px;\r\n  box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\r\n  -webkit-animation: bounce-in .5s;\r\n          animation: bounce-in .5s;\n}\n.bounce-leave-active {\r\n  animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\r\n    transform: scale(0);\n}\n50% {\r\n    transform: scale(1.5);\n}\n100% {\r\n    transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\r\n    transform: scale(0);\n}\n50% {\r\n    transform: scale(1.5);\n}\n100% {\r\n    transform: scale(1);\n}\n}\n.v-fade {\r\n  transition: all 4s ease-out;\n}\r\n\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.not_photo[data-v-594d9172] {\r\n  width: 25rem;\r\n  background-color: #eeeeee;\r\n  border: 1px solid transparent;\r\n  display:inline;\r\n  text-align: center;\r\n  position:absolute;\r\n  margin-left: 40%;\n}\r\n", ""]);
 
 // exports
 
@@ -46457,6 +46479,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/anket-component2.vue?vue&type=style&index=0&id=43338ce2&scoped=true&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/anket-component2.vue?vue&type=style&index=0&id=43338ce2&scoped=true&lang=css& ***!
@@ -48263,77 +48315,81 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.owner
-        ? _c("div", [
-            _vm._v("\n    вы\n    "),
-            _c("input", {
-              ref: "galerayFileInput",
-              attrs: { type: "file", id: "photo", name: "photo" },
+  return _c("div", [
+    _vm.owner
+      ? _c("div", [
+          _vm._v("\n    Загрузить фотографию\n    "),
+          _c("input", {
+            ref: "galerayFileInput",
+            attrs: { type: "file", id: "photo", name: "photo" },
+            on: {
+              change: function($event) {
+                return _vm.handleFileUpload()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "button" },
               on: {
-                change: function($event) {
-                  return _vm.handleFileUpload()
+                click: function($event) {
+                  return _vm.submitFile()
                 }
               }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
+            },
+            [_vm._v("Загрузить")]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.photos.length != 0
+      ? _c(
+          "div",
+          _vm._l(_vm.photos, function(item) {
+            return _c(
+              "div",
               {
-                staticClass: "btn btn-primary",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.submitFile()
-                  }
+                staticClass:
+                  "col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow",
+                staticStyle: {
+                  "padding-left": "60px",
+                  "padding-right": "20px",
+                  margin: "auto"
                 }
               },
-              [_vm._v("Загрузить")]
+              [
+                _c("img", {
+                  attrs: { width: "250", height: "250", src: "/" + item.url }
+                }),
+                _vm._v(" "),
+                _vm.owner
+                  ? _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.deletePhoto(item.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Удалить")]
+                      )
+                    ])
+                  : _vm._e()
+              ]
             )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm._l(_vm.photos, function(item) {
-        return _c(
-          "div",
-          {
-            staticClass:
-              "col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow",
-            staticStyle: {
-              "padding-left": "60px",
-              "padding-right": "20px",
-              margin: "auto"
-            }
-          },
-          [
-            _c("img", {
-              attrs: { width: "250", height: "250", src: "/" + item.url }
-            }),
-            _vm._v(" "),
-            _vm.owner
-              ? _c("span", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      on: {
-                        click: function($event) {
-                          return _vm.deletePhoto(item.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Удалить")]
-                  )
-                ])
-              : _vm._e()
-          ]
+          }),
+          0
         )
-      })
-    ],
-    2
-  )
+      : _c("span", { staticClass: "not_photo" }, [
+          _vm._v("\n     В альбоме нет фотографий\n  ")
+        ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -63210,7 +63266,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _album_vue_vue_type_template_id_594d9172_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./album.vue?vue&type=template&id=594d9172&scoped=true& */ "./resources/js/components/anket/album.vue?vue&type=template&id=594d9172&scoped=true&");
 /* harmony import */ var _album_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./album.vue?vue&type=script&lang=js& */ "./resources/js/components/anket/album.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _album_vue_vue_type_style_index_0_id_594d9172_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css& */ "./resources/js/components/anket/album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -63218,7 +63276,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _album_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _album_vue_vue_type_template_id_594d9172_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _album_vue_vue_type_template_id_594d9172_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -63247,6 +63305,22 @@ component.options.__file = "resources/js/components/anket/album.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_album_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./album.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/album.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_album_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/anket/album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/anket/album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css& ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_album_vue_vue_type_style_index_0_id_594d9172_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/album.vue?vue&type=style&index=0&id=594d9172&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_album_vue_vue_type_style_index_0_id_594d9172_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_album_vue_vue_type_style_index_0_id_594d9172_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_album_vue_vue_type_style_index_0_id_594d9172_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_album_vue_vue_type_style_index_0_id_594d9172_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_album_vue_vue_type_style_index_0_id_594d9172_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
