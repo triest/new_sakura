@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Http\Requests\AlbumRequwest;
     use App\Models\Album;
     use App\Models\AlbumPhoto;
     use App\Models\Lk\User;
@@ -18,32 +19,39 @@
         private $user = null;
 
 
-        /**
-         * AlbumController constructor.
-         */
-        public function __construct(AlbumService $albumService, Request $request)
-        {
-            $this->albumService = $albumService;
-            $this->albumService->user = Auth::user();
-
-            $this->albumService->request=$request;
-        }
-
         public function albums($id, Request $request)
         {
             $user = User::get($id);
-            $this->albumService->setUser($user);
-
-            if ($user == null) {
-                return redirect("/anket");
+            if(!$user){
+                abort(404);
             }
+            $albumsService=new AlbumService();
+            $albumsService->setUser($user);
 
-            return view("anket.albums")->with(["user" => $user, "albums" => $this->albumService->getAlbums()]);
+            $albums=$albumsService->getAlbums();
+
+            return view("anket.albums")->with(["user" => $user, "albums" => $albums]);
         }
 
         public function albumItem($id, $albumid, Request $request)
         {
-            $album = $this->albumService->getAlbum($albumid);
+            $user = User::get($id);
+            $albumsService=new AlbumService();
+
+            $album=Album::getItem($albumid);
+            if(!$album){
+                abort(404);
+            }
+
+            $albums = $user->albums()->get();
+            if ($albums->isEmpty()) {
+                $album = new Album();
+                $album->name = "Основной альбом";
+                $album->save();
+                $this->user->albums()->save($album);
+                $albums->push($album);
+            }
+
             $photos = $album->photos()->get();
             $user = User::get($id);
 
@@ -51,30 +59,17 @@
             return view("anket.album")->with(["album" => $album, "photos" => $photos, "user" => $user]);
         }
 
-        public function uploadPhoto($id, $albumid, Request $request)
+        public function uploadPhoto($id, $albumid,AlbumRequwest $requwest)
         {
-            $album = Album::getItem(intval($albumid));
-            if($album==null){
-                return  response()->json([false]);
-            }
+            $user = User::get($id);
+            $album=Album::getItem($albumid);
+            $albumService=new AlbumService($user);
+            $image=$requwest->file('image');
+            $albumService->image=$image;
+            $alpumPhoto=$albumService->uploadAlbumImage($album);
 
-            $alpumPhoto = $this->albumService->uploadAlbumImage($album);
-
-
-            return response()->json(['photo' => $alpumPhoto]);
+           return response()->json(['photo' => $alpumPhoto]);
         }
 
-        public static function randomString($length = 64)
-        {
-            $chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            $str = "";
 
-            for ($i = 0; $i < $length; $i++) {
-                $str .= $chars[mt_rand(0, strlen($chars) - 1)];
-            }
-
-            $str = substr(base64_encode(sha1(mt_rand())), 0, $length);
-
-            return $str;
-        }
     }

@@ -19,6 +19,8 @@
     {
         public $user = null;
 
+        public $image=null;
+
         /**
          * @param User|null $user
          */
@@ -73,22 +75,11 @@
 
         public function uploadAlbumImage($album)
         {
-
-            $this->user=   Auth::user();;
-            $midle_path = 'public/upload/lk_profile/' . $this->user->id . '/' . 'albums/' . $album->id;
-            $midle_path2 = '/upload/lk_profile/' .$this->user->id . '/' . 'albums/' .  $album->id;
-            $image_new_name = md5(microtime(true)) . ".png";;
-
-            $this->request->file('image')
-                    ->move(base_path() . '/' . $midle_path,
-                            strtolower($image_new_name));
-
-            //save photo
-            $alpumPhoto = new AlbumPhoto();
-            $alpumPhoto->name = $image_new_name;
-            $alpumPhoto->album_id =  $album->id;
-            $alpumPhoto->url = $midle_path2 . "/" . $image_new_name;
+            $path= $this->image->store('public/profile/album');
+            $alpumPhoto=new AlbumPhoto();
+            $alpumPhoto->url= 'storage/app/'.$path;
             $alpumPhoto->save();
+            $album->Photos()->save($alpumPhoto);
 
             return $alpumPhoto;
         }

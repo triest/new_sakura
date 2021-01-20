@@ -8,4 +8,6 @@
     {
         //
         protected $table = "albums_photo";
+
+
     }
