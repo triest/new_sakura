@@ -4,7 +4,7 @@
     <div id="app" class="container">
         <div class="profile-form">
             <a class="btn btn-primary" href="{{route("anket.main")}}">К списку анкет</a>
-            <like-carusel></like-carusel>
+            <like-carousel></like-carousel>
         </div>
     </div>
 

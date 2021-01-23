@@ -25,3 +25,13 @@ Route::prefix('anket')->name('anket.')->group(
             Route::delete('{id}/albums/{albumid}/delete/{photoid}', 'AlbumController@deletePhoto');
         }
 );
+
+
+
+Route::prefix('like-carousel')->name('like-carousel.')->group(
+        function () {
+            Route::get('/getAnket', 'LikeCarouselController@getAnket')->name('getAnket');
+            Route::get('/newLike', 'LikeCarouselController@newLike');
+            Route::get('/checkLike', 'LikeCarouselController@checkLike');
+        }
+);

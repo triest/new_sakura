@@ -2,51 +2,32 @@
     <div class="panel panel-default panel-body">
 
         <div v-if="item!=null" class="col-lg-6 col-md-6 col-sm-6 col-xs-5 box-shadow">
-            <div>
-                <div style="width: 500px;  margin-left: auto;  margin-right: auto;  left: 50%;top: 50%;">
-
-                    <a :href="/anket/+item.id">
-                        <img :src="item.profile_url" height="500px" width="350px">
-                    </a>
-
-                </div>
-                <button class="btn-primary" v-on:click="like()"
-                        style="position: absolute; margin-top: -130px; margin-left: 50px" title="Нравитья">
-                    ✓
-                </button>
-                <button class="btn-secondary" v-on:click="skip()"
-                        style="position: absolute; margin-top: -130px; margin-left: 150px" title="Нейтрально">
-                    N
-                </button>
-                <button class="btn-danger" v-on:click="dislike()"
-                        style="position: absolute; margin-top: -130px;  margin-left: 250px" title="Не нравиться">×
-                </button>
-            </div>
+          <div class="col-lg-8 col-md-4 col-sm-4 col-xs-9 box-shadow">
+            <a :href="/anket/+item.id">
+              <img :src="item.profile_url" height="500px" width="350px">
+            </a>
+          </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow">
-                <div class="cell">
-                    <div class="cell-overflow">
-                        <b> {{item.name}},1 {{item.age}}</b>
-                        <p v-if="city!=null">
-                            <small>{{city.name}}</small>
-                        </p>
-                        <p v-if="online=='null'"> {{item.last_login}}
-                        <p v-else>
-                            {{lastLogin}}
-                        </p>
-                        <div v-if="targets.length">
-                            <b>Цель знакомства</b>
-                            <div v-for="item in targets">
-                                {{item.name}},
-                            </div>
-                        </div>
-                        <div v-if="interets.length">
-                            <b>Интересы</b>
-                            <div v-for="item in interets">
-                                {{item.name}},
-                            </div>
-                        </div>
+                  <b> {{item.name}},1 {{item.age}}</b>
+                  <p v-if="city!=null">
+                    <small>{{city.name}}</small>
+                  </p>
+                  <p v-if="online=='null'"> {{item.last_login}}
+                  <p v-else>
+                    {{lastLogin}}
+                  </p>
+                  <div v-if="targets.length">
+                    <b>Цель знакомства</b>
+                    <div v-for="item in targets">
+                      {{item.name}},
                     </div>
-                </div>
+                  </div>
+                  <div v-if="interets.length">
+                    <b>Интересы</b>
+                    <div v-for="item in interets">
+                      {{item.name}},
+                    </div>
+                  </div>
             </div>
         </div>
         <div v-else>
@@ -57,7 +38,7 @@
 
 <script>
     export default {
-        name: "kikeCarusel",
+        name: "likeCarousel",
         mounted() {
             this.getAnket();
         },
@@ -78,7 +59,7 @@
             {
                 getAnket() {
                     console.log("get anket")
-                    axios.get('like-carusel/getAnket')
+                    axios.get('api/like-carousel/getAnket')
                         .then((response) => {
                             this.item = response.data.ankets;
                             this.online = response.data.online;
@@ -91,7 +72,7 @@
                 },
                 like() {
                     console.log("like");
-                    axios.get('like-carusel/newLike', {
+                    axios.get('api/like-carousel/newLike', {
                         params: {
                             user_id: this.item.id,
                             action: "like",
@@ -102,7 +83,7 @@
                         });
                 },
                 dislike() {
-                    axios.get('like-carusel/newLike', {
+                    axios.get('api/like-carousel/newLike', {
                         params: {
                             user_id: this.item.id,
                             action: "dislike",
@@ -113,7 +94,7 @@
                         });
                 },
                 skip() {
-                    axios.get('like-carusel/newlike', {
+                    axios.get('api/like-carousel/newlike', {
                         params: {
                             user_id: this.item.id,
                             action: "skip",

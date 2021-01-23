@@ -81,12 +81,9 @@ Route::prefix('lk')->name('lk.')->namespace('Lk')->group(
         }
 );
 
-Route::prefix('like-carusel')->name('like-carusel.')->group(
+Route::prefix('like-carousel')->name('like-carousel.')->group(
         function () {
-            Route::get('/', 'LikeCaruselConroller@index')->name('index');
-            Route::get('/getAnket', 'LikeCaruselConroller@getAnket')->name('getAnket');
-            Route::get('/newLike', 'LikeCaruselConroller@newLike');
-            Route::get('/checkLike', 'LikeCaruselConroller@checkLike');
+            Route::get('/', 'LikeCarouselController@index')->name('index');
         }
 );
 

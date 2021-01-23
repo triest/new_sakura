@@ -37,9 +37,9 @@
         public function index(Request $request)
         {
 
-            if (!isset($_COOKIE["causel"])) {
-                Cookie::queue("causel", AnketController::randomString(), 30);
-                return redirect('/like-carusel');
+            if (!isset($_COOKIE["carousel"])) {
+                Cookie::queue("carousel", AnketController::randomString(), 30);
+                return redirect('/like-carousel');
             }
 
             return view("anket.index");

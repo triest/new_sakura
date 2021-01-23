@@ -9,14 +9,14 @@
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\DB;
 
-    class LikeCaruselConroller extends Controller
+    class LikeCarouselController extends Controller
     {
         //
         public function index(Request $request)
         {
 
 
-            return view("like-carusel.index");
+            return view("like-carousel.index");
         }
 
         public function getAnket()
