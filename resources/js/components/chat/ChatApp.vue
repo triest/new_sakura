@@ -40,7 +40,7 @@
                 });
             console.log("contacts");
             console.log(this.user.id)
-            axios.get('contact/contacts')
+            axios.get('api/contact/contacts')
                 .then((response) => {
                     this.contacts = response.data;
                 });
@@ -50,7 +50,7 @@
                 console.log("start conversation");
                 //     this.updateUnreadCount(contact, true);
 
-                axios.get(`contact/conversation/${contact.id}`)
+                axios.get(`api/contact/conversation/${contact.id}`)
                     .then((response) => {
                         this.messages = response.data;
                         this.selectedContact = contact;

@@ -29,7 +29,7 @@
                     return;
                 }
 
-                axios.post('contact/conversation/send', {
+                axios.post('api/contact/conversation/send', {
                     contact_id: this.contact.id,
                     text: text
                 }).then((response) => {

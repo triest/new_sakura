@@ -10,7 +10,8 @@ Route::middleware('api_token')->group(
         }
 );
 
-Route::prefix('seach')->name('seach.')->group(
+
+Route::prefix('anket/search')->name('seach.')->group(
         function () {
             Route::get('/', 'SeachController@seach')->name('main');
             Route::post('/savesettings', 'SeachController@saveSettings')->name('main');
@@ -27,11 +28,20 @@ Route::prefix('anket')->name('anket.')->group(
 );
 
 
-
 Route::prefix('like-carousel')->name('like-carousel.')->group(
         function () {
             Route::get('/getAnket', 'LikeCarouselController@getAnket')->name('getAnket');
             Route::get('/newLike', 'LikeCarouselController@newLike');
             Route::get('/checkLike', 'LikeCarouselController@checkLike');
+        }
+);
+
+Route::prefix('contact')->name('contact.')->group(
+        function () {
+            Route::get('/', 'ContactController@index')->name('main')->middleware('auth');
+            Route::get('/contacts', 'ContactController@get');
+            Route::get('/conversation/{id}', 'ContactController@getMessagesFor');
+            Route::post('/conversation/send', 'ContactController@send');
+            Route::post('/conversation/sendModal', 'ContactController@send');
         }
 );

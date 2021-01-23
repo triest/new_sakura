@@ -24,6 +24,8 @@
                 $user = Auth::user();
             }
 
+
+
             if ($user == null) {
                 return null;
             }

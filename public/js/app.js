@@ -2903,7 +2903,7 @@ __webpack_require__.r(__webpack_exports__);
     seach: function seach() {
       var _this = this;
 
-      var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/seach';
+      var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'api/anket/search';
       this.anketList = [];
       axios.get(url).then(function (response) {
         var data = response.data;
@@ -2938,7 +2938,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       console.log(this.page);
-      axios.get('/seach', {
+      axios.get('api/anket/search', {
         params: {
           page: this.page
         }
@@ -3133,7 +3133,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       console.log("send");
-      axios.post('/contact/conversation/sendModal', {
+      axios.post('/api/contact/conversation/sendModal', {
         contact_id: this.user.id,
         text: this.MessageText
       }).then(function (response) {
@@ -3201,7 +3201,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     console.log("contacts");
     console.log(this.user.id);
-    axios.get('contact/contacts').then(function (response) {
+    axios.get('api/contact/contacts').then(function (response) {
       _this.contacts = response.data;
     });
   },
@@ -3211,7 +3211,7 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log("start conversation"); //     this.updateUnreadCount(contact, true);
 
-      axios.get("contact/conversation/".concat(contact.id)).then(function (response) {
+      axios.get("api/contact/conversation/".concat(contact.id)).then(function (response) {
         _this2.messages = response.data;
         _this2.selectedContact = contact;
       });
@@ -3351,7 +3351,7 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      axios.post('contact/conversation/send', {
+      axios.post('api/contact/conversation/send', {
         contact_id: this.contact.id,
         text: text
       }).then(function (response) {

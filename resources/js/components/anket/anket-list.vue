@@ -59,7 +59,7 @@ export default {
   components: {SearchModal},
   methods: {
 
-    seach(url = '/seach') {
+    seach(url = 'api/anket/search') {
       this.anketList = [];
       axios.get(url).then((response) => {
         let data = response.data;
@@ -91,7 +91,7 @@ export default {
     },
     loadNew: function () {
       console.log(this.page);
-      axios.get('/seach',
+      axios.get('api/anket/search',
           {
             params:
                 {

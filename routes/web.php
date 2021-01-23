@@ -26,10 +26,6 @@ Route::prefix('anket')->name('anket.')->group(
 Route::prefix('contact')->name('contact.')->group(
         function () {
             Route::get('/', 'ContactController@index')->name('main')->middleware('auth');
-            Route::get('/contacts', 'ContactController@get');
-            Route::get('/conversation/{id}', 'ContactController@getMessagesFor');
-            Route::post('/conversation/send', 'ContactController@send');
-            Route::post('/conversation/sendModal', 'ContactController@send');
         }
 );
 
@@ -87,14 +83,6 @@ Route::prefix('like-carousel')->name('like-carousel.')->group(
         }
 );
 
-//поиск
-Route::prefix('seach')->name('seach.')->group(
-        function () {
-            Route::get('/', 'SeachController@seach')->name('main');
-            Route::post('/savesettings', 'SeachController@saveSettings')->name('main');
-            Route::get('/getsettings', 'SeachController@getSettings')->name('main');
-        }
-);
 
 //подарки
 Route::prefix('presents')->name('present.')->group(
