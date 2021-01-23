@@ -170,7 +170,7 @@ export default {
 
     },
     saveChange() {
-      axios.post('/seach/savesettings', {
+      axios.post('api/anket/search/savesettings', {
         meet: this.meet,
         from: this.from,
         to: this.to,
@@ -185,7 +185,7 @@ export default {
 
     },
     getSettings() {
-      axios.get('seach/getsettings')
+      axios.get('api/anket/search/getsettings')
           .then((response) => {
             let res = response.data.data;
 

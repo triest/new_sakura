@@ -11,11 +11,11 @@ Route::middleware('api_token')->group(
 );
 
 
-Route::prefix('anket/search')->name('seach.')->group(
+Route::prefix('anket/search')->name('search.')->group(
         function () {
-            Route::get('/', 'SeachController@seach')->name('main');
-            Route::post('/savesettings', 'SeachController@saveSettings')->name('main');
-            Route::get('/getsettings', 'SeachController@getSettings')->name('main');
+            Route::get('/', 'SearchController@search')->name('main');
+            Route::post('/savesettings', 'SearchController@saveSettings')->name('main');
+            Route::get('/getsettings', 'SearchController@getSettings')->name('main');
         }
 );
 

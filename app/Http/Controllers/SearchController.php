@@ -17,17 +17,14 @@
     use Illuminate\Support\Facades\DB;
     use Illuminate\Support\Facades\Cookie;
 
-    class SeachController extends Controller
+    class SearchController extends Controller
     {
 
 
         //
-        public function seach(Request $request, SearchService $searchService)
+        public function search(Request $request, SearchService $searchService)
         {
             $users = $searchService->search();
-
-
-
 
             return anketList::collection($users);
         }

@@ -83,8 +83,6 @@ Route::prefix('like-carousel')->name('like-carousel.')->group(
 Route::prefix('presents')->name('present.')->group(
         function () {
             Route::get('/', 'PresentController@list')->name('list');
-            Route::post('/savesettings', 'SeachController@saveSettings')->name('main');
-            Route::get('/getsettings', 'SeachController@getSettings')->name('main');
             Route::post('/make', 'PresentController@make')->name('make');
             Route::get('/get-anket-presents', 'PresentController@getAnketPresents')->name('getAnketPresents');
         }

@@ -23,7 +23,7 @@ class SearchService
 {
     private $limit = 16;
 
-    private $paginate = 12;
+    private $paginate = 16;
 
     public function search()
     {
@@ -77,12 +77,12 @@ class SearchService
                     'users.created_at',
                     'users.age',
                     'users.photo_profile_url'
-            )->distinkt('users.id')->limit($this->limit);
+            )->groupBy('users.id')->limit($this->limit);
 
 
 
             $num_pages = intval($count / $this->limit);
-            $users->distinct()->limit($this->limit);
+            $users->limit($this->limit);
             $users->orderByDesc('created_at')->get();
             $users = $users->paginate($this->paginate);
 
@@ -172,11 +172,15 @@ class SearchService
                 'users.created_at',
                 'users.age',
                 'users.photo_profile_url'
-        )->distinct();
+        );
+
+       $users->distinct('users.id');
 
         $users->orderByDesc('created_at');
 
         $users = $users->paginate($this->paginate);;
+
+
 
         return $users;
     }

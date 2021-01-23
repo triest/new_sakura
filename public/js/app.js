@@ -2479,7 +2479,7 @@ __webpack_require__.r(__webpack_exports__);
     saveChange: function saveChange() {
       var _this = this;
 
-      axios.post('/seach/savesettings', {
+      axios.post('api/anket/search/savesettings', {
         meet: this.meet,
         from: this.from,
         to: this.to,
@@ -2495,7 +2495,7 @@ __webpack_require__.r(__webpack_exports__);
     getSettings: function getSettings() {
       var _this2 = this;
 
-      axios.get('seach/getsettings').then(function (response) {
+      axios.get('api/anket/search/getsettings').then(function (response) {
         var res = response.data.data;
         _this2.targets = res.targets;
         _this2.select2targets = res.selectedTargets;
