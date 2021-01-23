@@ -30,7 +30,6 @@
         public function create()
         {
             $city = City::getCurrentCity();
-            die("ds");
 
             return view("event.create")->with(["city" => $city]);
         }

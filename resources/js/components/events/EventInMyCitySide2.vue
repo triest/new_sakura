@@ -50,7 +50,7 @@
         },
         methods: {
             getEvents() {
-                axios.get('/events/inmycity', {params: {type: "json", city: this.city.id}}
+                axios.get('api/events/inmycity', {params: {type: "json", city: this.city.id}}
                 )
                     .then((response) => {
                         this.eventList = response.data.events;

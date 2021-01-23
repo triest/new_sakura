@@ -3531,7 +3531,7 @@ __webpack_require__.r(__webpack_exports__);
     getEvents: function getEvents() {
       var _this = this;
 
-      axios.get('/events/inmycity', {
+      axios.get('api/events/inmycity', {
         params: {
           type: "json",
           city: this.city.id
