@@ -54,7 +54,6 @@ class SearchService
             $city = City::getCurrentCity();
 
 
-
             if ($city != null) {
                 $users->where('city_id', $city->id);
             }
@@ -78,10 +77,12 @@ class SearchService
                     'users.created_at',
                     'users.age',
                     'users.photo_profile_url'
-            )->limit($this->limit);
+            )->distinkt('users.id')->limit($this->limit);
+
+
 
             $num_pages = intval($count / $this->limit);
-            $users->limit($this->limit);
+            $users->distinct()->limit($this->limit);
             $users->orderByDesc('created_at')->get();
             $users = $users->paginate($this->paginate);
 
@@ -128,7 +129,7 @@ class SearchService
         }
 
 
-        if ($seachSettings->children != null && $seachSettings->children != 3 ) {
+        if ($seachSettings->children != null && $seachSettings->children != 3) {
             $users->where('children_id', '=', $seachSettings->children);
         }
 
@@ -169,8 +170,9 @@ class SearchService
                 'users.profile_url',
                 'users.date_birth',
                 'users.created_at',
-                 'users.age'
-        );
+                'users.age',
+                'users.photo_profile_url'
+        )->distinct();
 
         $users->orderByDesc('created_at');
 
