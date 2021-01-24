@@ -77,7 +77,7 @@ class SearchService
                     'users.created_at',
                     'users.age',
                     'users.photo_profile_url'
-            )->groupBy('users.id')->limit($this->limit);
+            )->distinct('users.id')->limit($this->limit);
 
 
 

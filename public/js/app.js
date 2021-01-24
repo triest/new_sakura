@@ -3531,7 +3531,7 @@ __webpack_require__.r(__webpack_exports__);
     getEvents: function getEvents() {
       var _this = this;
 
-      axios.get('api/events/inmycity', {
+      axios.get('/api/events/inmycity', {
         params: {
           type: "json",
           city: this.city.id
@@ -4249,6 +4249,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "likeCarousel",
   mounted: function mounted() {
@@ -4271,7 +4285,6 @@ __webpack_require__.r(__webpack_exports__);
     getAnket: function getAnket() {
       var _this = this;
 
-      console.log("get anket");
       axios.get('api/like-carousel/getAnket').then(function (response) {
         _this.item = response.data.ankets;
         _this.online = response.data.online;
@@ -4282,33 +4295,24 @@ __webpack_require__.r(__webpack_exports__);
         _this.lastLogin = response.data.lastLogin;
       });
     },
-    like: function like() {
-      var _this2 = this;
-
-      console.log("like");
+    like: function like(action) {
+      var that = this;
+      var temp = null;
       axios.get('api/like-carousel/newLike', {
         params: {
           user_id: this.item.id,
-          action: "like"
+          action: action
         }
-      }).then(function (response) {
-        _this2.getAnket();
-      });
-    },
-    dislike: function dislike() {
-      var _this3 = this;
+      }).then(function (data) {
+        temp = data.data;
 
-      axios.get('api/like-carousel/newLike', {
-        params: {
-          user_id: this.item.id,
-          action: "dislike"
+        if (temp.result === false && temp.message === "not auth") {} else if (temp.result === true && temp.match === false) {
+          that.getAnket();
         }
-      }).then(function (response) {
-        _this3.getAnket();
       });
     },
     skip: function skip() {
-      var _this4 = this;
+      var _this2 = this;
 
       axios.get('api/like-carousel/newlike', {
         params: {
@@ -4316,7 +4320,7 @@ __webpack_require__.r(__webpack_exports__);
           action: "skip"
         }
       }).then(function (response) {
-        _this4.getAnket();
+        _this2.getAnket();
       });
     }
   }
@@ -9030,7 +9034,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.btn-primary[data-v-4a82c5e2] {\n    background-color: #44c767;\n    border-radius: 50%;\n    border: 1px solid #18ab29;\n    display: inline-block;\n    cursor: pointer;\n    color: #ffffff;\n    font-family: Arial;\n    font-size: 22px;\n    padding: 16px 18px;\n    text-decoration: none;\n    text-shadow: 0px 1px 0px #2f6627;\n}\n.btn-primary[data-v-4a82c5e2]:hover {\n    background-color: #5cbf2a;\n}\n.btn-primary[data-v-4a82c5e2]:active {\n    position: relative;\n    top: 1px;\n}\n.btn-secondary[data-v-4a82c5e2] {\n    background-color: #2a38c7;\n    border-radius: 50%;\n    border: 1px solid #0300af;\n    display: inline-block;\n    cursor: pointer;\n    color: #ffffff;\n    font-family: Arial;\n    font-size: 22px;\n    padding: 16px 18px;\n    text-decoration: none;\n    text-shadow: 0px 1px 0px #2a38c7;\n}\n.btn-secondary[data-v-4a82c5e2]:hover {\n    background-color: #110aaf;\n}\n.btn-secondary[data-v-4a82c5e2]:active {\n    position: relative;\n    top: 1px;\n}\n.btn-danger[data-v-4a82c5e2] {\n    background-color: #ee001e;\n    border-radius: 50%;\n    border: 1px solid #ee001e;\n    display: inline-block;\n    cursor: pointer;\n    color: #ffffff;\n    font-family: Arial;\n    font-size: 22px;\n    padding: 16px 18px;\n    text-decoration: none;\n    text-shadow: 0px 1px 0px #2f6627;\n}\n.btn-danger[data-v-4a82c5e2]:hover {\n    background-color: #b30011;\n}\n.btn-danger[data-v-4a82c5e2]:active {\n    position: relative;\n    top: 1px;\n}\n\n", ""]);
+exports.push([module.i, "\n.btn-primary[data-v-4a82c5e2] {\r\n  background-color: #44c767;\r\n  border-radius: 50%;\r\n  border: 1px solid #18ab29;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2f6627;\r\n  position: relative;\n}\n.btn-primary[data-v-4a82c5e2]:hover {\r\n  background-color: #5cbf2a;\n}\n.btn-primary[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.btn-secondary[data-v-4a82c5e2] {\r\n  background-color: #2a38c7;\r\n  border-radius: 50%;\r\n  border: 1px solid #0300af;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2a38c7;\n}\n.btn-secondary[data-v-4a82c5e2]:hover {\r\n  background-color: #110aaf;\n}\n.btn-secondary[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.btn-danger[data-v-4a82c5e2] {\r\n  background-color: #ee001e;\r\n  border-radius: 50%;\r\n  border: 1px solid #ee001e;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2f6627;\n}\n.btn-danger[data-v-4a82c5e2]:hover {\r\n  background-color: #b30011;\n}\n.btn-danger[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.cell[data-v-4a82c5e2] {\r\n  position: absolute;\r\n  top: 300px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 70px;\r\n  width: 100%;\r\n  color: white !important;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\r\n  cursor: pointer;\n}\n.cell-overflow[data-v-4a82c5e2] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\r\n  cursor: pointer;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -50380,100 +50384,128 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "panel panel-default panel-body" }, [
     _vm.item != null
-      ? _c(
-          "div",
-          { staticClass: "col-lg-6 col-md-6 col-sm-6 col-xs-5 box-shadow" },
-          [
-            _c(
-              "div",
-              { staticClass: "col-lg-8 col-md-4 col-sm-4 col-xs-9 box-shadow" },
-              [
-                _c("a", { attrs: { href: /anket/ + _vm.item.id } }, [
-                  _c("img", {
-                    attrs: {
-                      src: _vm.item.profile_url,
-                      height: "500px",
-                      width: "350px"
-                    }
-                  })
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow" },
-              [
-                _c("b", [
-                  _vm._v(
-                    " " + _vm._s(_vm.item.name) + ",1 " + _vm._s(_vm.item.age)
+      ? _c("span", [
+          _c(
+            "div",
+            { staticClass: "col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow" },
+            [
+              _c("a", { attrs: { href: /anket/ + _vm.item.id } }, [
+                _c("img", {
+                  attrs: {
+                    src: _vm.item.profile_url,
+                    height: "500px",
+                    width: "300px"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "cell" }, [
+                _c("div", { staticClass: "cell-overflow" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-primary",
+                      attrs: { title: "Нравитья" },
+                      on: {
+                        click: function($event) {
+                          return _vm.like("like")
+                        }
+                      }
+                    },
+                    [_vm._v("\n                  ✓\n              ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-secondary",
+                      attrs: { title: "Нейтрально" },
+                      on: {
+                        click: function($event) {
+                          return _vm.skip()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                  N\n              ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-danger",
+                      attrs: { title: "Не нравиться" },
+                      on: {
+                        click: function($event) {
+                          return _vm.like("dislike")
+                        }
+                      }
+                    },
+                    [_vm._v("×\n              ")]
                   )
-                ]),
-                _vm._v(" "),
-                _vm.city != null
-                  ? _c("p", [_c("small", [_vm._v(_vm._s(_vm.city.name))])])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.online == "null"
-                  ? _c("p", [
-                      _vm._v(
-                        " " + _vm._s(_vm.item.last_login) + "\n              "
-                      )
-                    ])
-                  : _c("p", [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.lastLogin) +
-                          "\n              "
-                      )
-                    ]),
-                _vm._v(" "),
-                _vm.targets.length
-                  ? _c(
-                      "div",
-                      [
-                        _c("b", [_vm._v("Цель знакомства")]),
-                        _vm._v(" "),
-                        _vm._l(_vm.targets, function(item) {
-                          return _c("div", [
-                            _vm._v(
-                              "\n                  " +
-                                _vm._s(item.name) +
-                                ",\n                "
-                            )
-                          ])
-                        })
-                      ],
-                      2
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.interets.length
-                  ? _c(
-                      "div",
-                      [
-                        _c("b", [_vm._v("Интересы")]),
-                        _vm._v(" "),
-                        _vm._l(_vm.interets, function(item) {
-                          return _c("div", [
-                            _vm._v(
-                              "\n                  " +
-                                _vm._s(item.name) +
-                                ",\n                "
-                            )
-                          ])
-                        })
-                      ],
-                      2
-                    )
-                  : _vm._e()
-              ]
-            )
-          ]
-        )
-      : _c("div", [
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow" },
+            [
+              _c("b", [
+                _vm._v(
+                  " " + _vm._s(_vm.item.name) + ",1 " + _vm._s(_vm.item.age)
+                )
+              ]),
+              _vm._v(" "),
+              _vm.city != null
+                ? _c("p", [_c("small", [_vm._v(_vm._s(_vm.city.name))])])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.online == "null"
+                ? _c("p", [
+                    _vm._v(" " + _vm._s(_vm.item.last_login) + "\n    ")
+                  ])
+                : _c("p", [
+                    _vm._v("\n      " + _vm._s(_vm.lastLogin) + "\n    ")
+                  ]),
+              _vm._v(" "),
+              _vm.targets.length
+                ? _c(
+                    "div",
+                    [
+                      _c("b", [_vm._v("Цель знакомства")]),
+                      _vm._v(" "),
+                      _vm._l(_vm.targets, function(item) {
+                        return _c("div", [
+                          _vm._v("\n        " + _vm._s(item.name) + ",\n      ")
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.interets.length
+                ? _c(
+                    "div",
+                    [
+                      _c("b", [_vm._v("Интересы")]),
+                      _vm._v(" "),
+                      _vm._l(_vm.interets, function(item) {
+                        return _c("div", [
+                          _vm._v("\n        " + _vm._s(item.name) + ",\n      ")
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e()
+            ]
+          )
+        ])
+      : _c("span", [
           _vm._v(
-            "\n        Нет анкет. Вы поставили лайки всем подходящим пользователям в городе. Попробуйте изменить настройки поиска\n    "
+            "\n    Нет анкет. Вы поставили лайки всем подходящим пользователям в городе. Попробуйте изменить настройки поиска\n  "
           )
         ])
   ])

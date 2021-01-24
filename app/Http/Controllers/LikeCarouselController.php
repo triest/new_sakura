@@ -49,12 +49,13 @@
         public function newLike(Request $request)
         {
             $girl = User::get($request->user_id);
-            if ($girl == null) {
+            if (!$girl) {
                 return response()->json(false);
             }
-            $girl->newLike();
+            $result=$girl->newLike();
 
-            return response()->json(['ok']);
+
+            return response()->json($result);
         }
 
         public function checkLike(Request $request)
