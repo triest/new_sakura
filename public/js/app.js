@@ -4023,6 +4023,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -4263,6 +4266,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "likeCarousel",
   mounted: function mounted() {
@@ -4278,7 +4284,8 @@ __webpack_require__.r(__webpack_exports__);
       city: null,
       targets: [],
       interets: [],
-      lastLogin: null
+      lastLogin: null,
+      matchVisibly: false
     };
   },
   methods: {
@@ -4308,6 +4315,8 @@ __webpack_require__.r(__webpack_exports__);
 
         if (temp.result === false && temp.message === "not auth") {} else if (temp.result === true && temp.match === false) {
           that.getAnket();
+        } else if (temp.result === true && temp.match === true) {
+          that.matchVisibly = true;
         }
       });
     },
@@ -9034,7 +9043,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.btn-primary[data-v-4a82c5e2] {\r\n  background-color: #44c767;\r\n  border-radius: 50%;\r\n  border: 1px solid #18ab29;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2f6627;\r\n  position: relative;\n}\n.btn-primary[data-v-4a82c5e2]:hover {\r\n  background-color: #5cbf2a;\n}\n.btn-primary[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.btn-secondary[data-v-4a82c5e2] {\r\n  background-color: #2a38c7;\r\n  border-radius: 50%;\r\n  border: 1px solid #0300af;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2a38c7;\n}\n.btn-secondary[data-v-4a82c5e2]:hover {\r\n  background-color: #110aaf;\n}\n.btn-secondary[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.btn-danger[data-v-4a82c5e2] {\r\n  background-color: #ee001e;\r\n  border-radius: 50%;\r\n  border: 1px solid #ee001e;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2f6627;\n}\n.btn-danger[data-v-4a82c5e2]:hover {\r\n  background-color: #b30011;\n}\n.btn-danger[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.cell[data-v-4a82c5e2] {\r\n  position: absolute;\r\n  top: 300px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 70px;\r\n  width: 100%;\r\n  color: white !important;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\r\n  cursor: pointer;\n}\n.cell-overflow[data-v-4a82c5e2] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\r\n  cursor: pointer;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.btn-primary[data-v-4a82c5e2] {\r\n  background-color: #44c767;\r\n  border-radius: 50%;\r\n  border: 1px solid #18ab29;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2f6627;\r\n  position: relative;\n}\n.btn-primary[data-v-4a82c5e2]:hover {\r\n  background-color: #5cbf2a;\n}\n.btn-primary[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.btn-secondary[data-v-4a82c5e2] {\r\n  background-color: #2a38c7;\r\n  border-radius: 50%;\r\n  border: 1px solid #0300af;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2a38c7;\n}\n.btn-secondary[data-v-4a82c5e2]:hover {\r\n  background-color: #110aaf;\n}\n.btn-secondary[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.btn-danger[data-v-4a82c5e2] {\r\n  background-color: #ee001e;\r\n  border-radius: 50%;\r\n  border: 1px solid #ee001e;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2f6627;\n}\n.btn-danger[data-v-4a82c5e2]:hover {\r\n  background-color: #b30011;\n}\n.btn-danger[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.cell[data-v-4a82c5e2] {\r\n  position: absolute;\r\n  top: 300px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 70px;\r\n  width: 100%;\r\n  color: white !important;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\r\n  cursor: pointer;\n}\n.cell-overflow[data-v-4a82c5e2] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\r\n  cursor: pointer;\n}\n.match-font[data-v-4a82c5e2]{\r\n  font-family: Impact, Charcoal, sans-serif;\r\n  font-size: 40px;\r\n  letter-spacing: 5px;\r\n  word-spacing: 6px;\r\n  color: #2EFF2C;\r\n  font-weight: 700;\r\n  -webkit-text-decoration: rgb(68, 68, 68);\r\n          text-decoration: rgb(68, 68, 68);\r\n  font-style: italic;\r\n  font-variant: small-caps;\r\n  text-transform: uppercase;\r\n  margin-left: -45px;\n}\r\n", ""]);
 
 // exports
 
@@ -50318,6 +50327,21 @@ var render = function() {
         _vm.numberApplicationPresents > 0 ? _c("div") : _vm._e(),
         _vm._v(" "),
         _c(
+          "a",
+          {
+            staticClass: "btn btn-primary",
+            staticStyle: { cursor: "pointer" },
+            attrs: { href: "/likes" }
+          },
+          [
+            _vm._v("Лайки\n      "),
+            _vm.numberApplication > 0
+              ? _c("div", [_vm._v("(" + _vm._s(_vm.numberApplication) + ")")])
+              : _vm._e()
+          ]
+        ),
+        _vm._v(" "),
+        _c(
           "div",
           { staticClass: "dropdown", staticStyle: { cursor: "pointer" } },
           [
@@ -50442,7 +50466,15 @@ var render = function() {
                     },
                     [_vm._v("×\n              ")]
                   )
-                ])
+                ]),
+                _vm._v(" "),
+                _vm.matchVisibly === true
+                  ? _c("div", [
+                      _c("div", { staticClass: "match-font" }, [
+                        _vm._v("Совпадение!")
+                      ])
+                    ])
+                  : _vm._e()
               ])
             ]
           ),

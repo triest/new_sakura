@@ -78,6 +78,11 @@ Route::prefix('like-carousel')->name('like-carousel.')->group(
         }
 );
 
+Route::prefix('likes')->name('likes.')->group(
+        function () {
+            Route::get('/', 'LikeController@index')->name('index')->middleware('auth');
+        }
+);
 
 //подарки
 Route::prefix('presents')->name('present.')->group(

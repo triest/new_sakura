@@ -13,6 +13,9 @@
         <div v-if="unreeadedEventRequwest>0">{{ unreeadedEventRequwest }}</div>
       </a>
       <div v-if="numberApplicationPresents>0"></div>
+      <a class="btn btn-primary" href="/likes" style="cursor: pointer">Лайки
+        <div v-if="numberApplication>0">({{ numberApplication }})</div>
+      </a>
       <div class="dropdown" style="cursor: pointer">
         <div v-if="user.profile_url">
           <img :src="user.profile_url" height="50px" class="dropbtn">

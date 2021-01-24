@@ -19,6 +19,9 @@
                         style="" title="Не нравиться">×
                 </button>
           </div>
+          <div v-if="matchVisibly===true">
+            <div class="match-font">Совпадение!</div>
+          </div>
         </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-9 box-shadow">
@@ -67,6 +70,7 @@ export default {
       targets: [],
       interets: [],
       lastLogin: null,
+      matchVisibly:false
     }
   },
   methods:
@@ -97,6 +101,8 @@ export default {
                 if(temp.result===false && temp.message==="not auth"){
                 }else if(temp.result===true && temp.match===false){
                   that.getAnket();
+                }else if(temp.result===true && temp.match===true){
+                   that.matchVisibly=true;
                 }
               });
         },
@@ -215,4 +221,17 @@ export default {
   cursor: pointer;
 }
 
+.match-font{
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 40px;
+  letter-spacing: 5px;
+  word-spacing: 6px;
+  color: #2EFF2C;
+  font-weight: 700;
+  text-decoration: rgb(68, 68, 68);
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  margin-left: -45px;
+}
 </style>

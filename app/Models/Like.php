@@ -1,11 +1,23 @@
 <?php
 
-    namespace App\Models;
+namespace App\Models;
 
-    use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Lk\User;
 
-    class Like extends Model
+class Like extends Model
+{
+    //
+    protected $table = "likes";
+
+
+    public function who()
     {
-        //
-        protected $table = "likes";
+        return $this->belongsTo(User::class, 'who_id', 'id');
     }
+
+    public function target()
+    {
+        return $this->belongsTo(User::class, 'target_id', 'id');
+    }
+}

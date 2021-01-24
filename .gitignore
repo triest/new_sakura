@@ -1,4 +1,4 @@
-
+.env
 /node_modules
 /vendor
 /public/storage
@@ -7,17 +7,12 @@
 /public/upload/lk_profile
 /public/upload/presents
 /storage/*.key
-/node_modules
-
 .idea
-
 .phpunit.result.cache
 .phpstorm.meta.php
 _ide_helper.php
 _ide_helper_models.php
-
 /bootstrap/compiled.php
-/vendor
 composer.phar
 composer.lock  # Remove this one after you create a project
 .DS_Store

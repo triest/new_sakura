@@ -24,7 +24,8 @@
         "rap2hpoutre/laravel-log-viewer": "^1.4",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-translatable": "^4.6",
-         "ext-curl": "*"
+         "ext-curl": "*",
+      "ext-imagick": "*"
     },
     "require-dev": {
         "backpack/generators": "^3.1",
