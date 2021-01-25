@@ -146,23 +146,9 @@ class HomeController extends Controller
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename =time().'.'.$extension;
             $file->move('uploads/logos/', $filename);
-            BlurImageJob::dispatch($filename)->delay(now()->addMinutes(10));;
-/*
-            try {
-                $blurs = 50;
-                $image = imagecreatefromjpeg($request->file('file-upload-photo-profile'));
-                for ($i = 0; $i < $blurs; $i++) {
-                    imagefilter($image, IMG_FILTER_SMOOTH, -500);
-                    imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
-                    imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
-                }
+            BlurImageJob::dispatch($filename,$user)->delay(now()->addMinutes(10));;
 
-                imagepng($image, 'blur10.jpg');
-                imagedestroy($image);
-            } catch (IOException $exception) {
-                echo $exception;
-                die();
-            }*/
+
         }
 
         $user->save();
