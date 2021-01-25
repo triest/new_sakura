@@ -25,7 +25,8 @@
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-translatable": "^4.6",
          "ext-curl": "*",
-      "ext-imagick": "*"
+      "ext-imagick": "3.8.*",
+        "ext-gd": "*"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

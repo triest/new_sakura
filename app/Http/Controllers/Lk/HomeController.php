@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Imagick;
+use Intervention\Image\Facades\Image;
+use InvalidArgumentException;
+use Symfony\Component\Filesystem\Exception\IOException;
 
 
 class HomeController extends Controller
