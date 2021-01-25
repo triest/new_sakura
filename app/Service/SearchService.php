@@ -189,8 +189,6 @@ class SearchService
     {
         $targets = Target::select(['id', 'name'])->get();
         $interests = Interest::select(['id', 'name'])->get();
-        $children = Children::select(['id', 'name'])->get();
-
         $aperance_array = array();
 
         $userAuth = Auth::user();

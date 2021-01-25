@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Lk;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserProfile;
-use App\Http\Requests\UserRequest;
-use App\Models\Children;
+use App\Jobs\BlurImageJob;
 use App\Models\Interest;
 use App\Models\Lk\Purchase;
 use App\Models\Relation;
@@ -18,7 +17,6 @@ use Imagick;
 use Intervention\Image\Facades\Image;
 use InvalidArgumentException;
 use Symfony\Component\Filesystem\Exception\IOException;
-
 
 class HomeController extends Controller
 {
@@ -104,10 +102,7 @@ class HomeController extends Controller
             array_push($anketInterest, $item->id);
         }
 
-
         $relations = Relation::select(['*'])->get();
-
-        $children = Children::select(['*'])->get();
 
 
         //    $user->getAge();
@@ -137,7 +132,38 @@ class HomeController extends Controller
         $data = $request->all();
         $user->fill($data);
 
-        $user->age = $user->age();
+        if ($request->hasFile('file-upload-photo-profile')) {
+            if ($user->photo_profile_url != null) {
+                Storage::delete($user->photo_profile_url);
+            }
+            $path = $request->file('file-upload-photo-profile')->store('public/profile');
+            $user->photo_profile_url = 'storage/app/' . $path;
+            $user->photo_profile = $path;
+            /*
+             * теперь блур
+             * */
+            $file = $request->file('file-upload-photo-profile');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename =time().'.'.$extension;
+            $file->move('uploads/logos/', $filename);
+            BlurImageJob::dispatch($filename)->delay(now()->addMinutes(10));;
+/*
+            try {
+                $blurs = 50;
+                $image = imagecreatefromjpeg($request->file('file-upload-photo-profile'));
+                for ($i = 0; $i < $blurs; $i++) {
+                    imagefilter($image, IMG_FILTER_SMOOTH, -500);
+                    imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
+                    imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
+                }
+
+                imagepng($image, 'blur10.jpg');
+                imagedestroy($image);
+            } catch (IOException $exception) {
+                echo $exception;
+                die();
+            }*/
+        }
 
         $user->save();
         $user->target()->detach();
@@ -145,7 +171,7 @@ class HomeController extends Controller
             foreach ($request->target as $item) {
                 $target = Target::select(['id', 'name'])->where('id', $item)
                         ->first();
-                if ($target) {
+                if ($target != null) {
                     $user->target()->attach($target);
                 }
             }
@@ -155,18 +181,13 @@ class HomeController extends Controller
             foreach ($request->interest as $item) {
                 $interestt = Interest::select(['id', 'name'])->where('id', $item)
                         ->first();
-                if ($interestt) {
+                if ($interestt != null) {
                     $user->interest()->attach($interestt);
                 }
             }
         }
 
 
-        if ($request->has('file-upload-photo-profile')) {
-            $path = $request->file('file-upload-photo-profile')->storePublicly('profile');
-            $user->profile_url = Storage::url($path);
-        }
-        $user->save();
         return redirect('lk/profile');
     }
 

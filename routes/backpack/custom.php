@@ -18,5 +18,4 @@ Route::group([
     Route::crud('target', 'TargetCrudController');
     Route::crud('ralation', 'RalationCrudController');
     Route::crud('interest', 'InterestCrudController');
-    Route::crud('children', 'ChildrenCrudController');
 }); // this should be the absolute last line of this file

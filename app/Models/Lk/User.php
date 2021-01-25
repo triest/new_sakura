@@ -121,9 +121,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'inn',
             'date_birth',
             'description',
-            'sex',
-            'relation_id',
-            'children_id'
+            'sex'
     ];
 
     /**
@@ -173,14 +171,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function target()
     {
-        return $this->belongsToMany(Target::class, 'user_target', 'user_id',
-                'target_id');
+        return $this->belongsToMany(
+                Target::class,
+                'user_target',
+                'user_id',
+                'target_id'
+        );
     }
 
     public function interest()
     {
-        return $this->belongsToMany(Interest::class, 'user_interest', 'user_id',
-                'interest_id');
+        return $this->belongsToMany(
+                Interest::class,
+                'user_interest',
+                'user_id',
+                'interest_id'
+        );
     }
 
 
@@ -193,35 +199,29 @@ class User extends Authenticatable implements MustVerifyEmail
         return $datediff->y;
     }
 
-    public function __age()
-    {
-        $dateBith = $this->date_birth;
-
-        $mytime = Carbon::now();
-        $last_login = Carbon::createFromFormat('Y-m-d', $dateBith);
-        $datediff = date_diff($last_login, $mytime);
-        return $datediff->y;
-    }
 
     public static function get($id, $all = false)
     {
         if ($all == false) {
-            return User::select([
-                    'id',
-                    'name',
-                    'description',
-                    'sex',
-                    'weight',
-                    'height',
-                    'meet',
-                    'banned',
-                    'country_id',
-                    'region_id',
-                    'city_id',
-                    'date_birth',
-                    'last_login',
-                    'relation_id'
-            ])->where('id', $id)->first();
+            return User::select(
+                    [
+                            'id',
+                            'name',
+                            'description',
+                            'sex',
+                            'weight',
+                            'height',
+                            'meet',
+                            'banned',
+                            'country_id',
+                            'region_id',
+                            'city_id',
+                            'date_birth',
+                            'last_login',
+                            'relation_id',
+                            'photo_profile_url'
+                    ]
+            )->where('id', $id)->first();
         } else {
             return User::select(['*'])->where('id', $id)->first();
         }
@@ -235,6 +235,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function events()
     {
         return $this->hasMany(Event::class);
+    }
+
+    public function like()
+    {
+        return $this->hasMany(Like::class,'target_id','id');
     }
 
     public function relation()
@@ -259,9 +264,12 @@ class User extends Authenticatable implements MustVerifyEmail
             if (array_key_exists($key, $_SERVER) === true) {
                 foreach (explode(',', $_SERVER[$key]) as $ip) {
                     $ip = trim($ip); // just to be safe
-                    if (filter_var($ip, FILTER_VALIDATE_IP,
+                    if (filter_var(
+                                    $ip,
+                                    FILTER_VALIDATE_IP,
                                     FILTER_FLAG_NO_PRIV_RANGE
-                                    | FILTER_FLAG_NO_RES_RANGE) !== false
+                                    | FILTER_FLAG_NO_RES_RANGE
+                            ) !== false
                     ) {
                         return $ip;
                     }
@@ -347,15 +355,20 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($user == null) {
             $user = Auth::user();
         }
-
+        $result = [];
 
         if ($user == null) {
-            return false;
+            $result['result'] = false;
+            $result['message'] = "not auth";
+            return $result;
         }
+
 
         $user = User::get($user->getAuthIdentifier());
         if ($user == null) {
-            return false;
+            $result['result'] = false;
+            $result['message'] = "not auth";
+            return $result;
         }
 
 
@@ -375,9 +388,15 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($first != null) {
             $user->sendMessage("Мы понравились друг другу ");
             $this->sendMessage("Мы понравились друг другу ");
+            $result['message'] = "match";
+            $result['result'] = true;
+            $result['match'] = true;
+        } else {
+            $result['message'] = "match";
+            $result['result'] = true;
+            $result['match'] = true;
         }
-
-        return true;
+        return $result;
     }
 
     public
@@ -409,8 +428,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
         $id2 = $TargetUser->id;
         $dialog = Dialog::select(['id', 'my_id', 'other_id'])
-                ->where('my_id', $user->id)->where('other_id',
-                        $id2)->first();
+                ->where('my_id', $user->id)->where(
+                        'other_id',
+                        $id2
+                )->first();
         if ($dialog == null) {
             $dialog3 = new Dialog();
             $dialog3->my_id = $user->id;
@@ -418,8 +439,10 @@ class User extends Authenticatable implements MustVerifyEmail
             $dialog3->save();
         }
         $dialog2 = Dialog::select(['id', 'my_id', 'other_id'])
-                ->where('other_id', $user->id)->where('my_id',
-                        $id2)->first();
+                ->where('other_id', $user->id)->where(
+                        'my_id',
+                        $id2
+                )->first();
         if ($dialog2 == null) {
             $dialog4 = new Dialog();
             $dialog4->other_id = $user->id;
@@ -452,16 +475,26 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getGifts($limit = 5)
     {
-        $giftAct = GiftAct::select([
-                'presents.name',
-                'presents.image',
-                'users.name as user_name',
-                'users.id as user_id',
-                'users.profile_url as  user_avatar_url'
-        ])->leftJoin('presents', 'presents.id', '=',
-                'present_id')->leftJoin('users', 'gift_act.who_id', '=', 'users.id')->where('target_id',
-                $this->id)->orderBy('gift_act.created_at',
-                'DESC')->limit($limit)->get();
+        $giftAct = GiftAct::select(
+                [
+                        'presents.name',
+                        'presents.image',
+                        'users.name as user_name',
+                        'users.id as user_id',
+                        'users.profile_url as  user_avatar_url'
+                ]
+        )->leftJoin(
+                'presents',
+                'presents.id',
+                '=',
+                'present_id'
+        )->leftJoin('users', 'gift_act.who_id', '=', 'users.id')->where(
+                'target_id',
+                $this->id
+        )->orderBy(
+                'gift_act.created_at',
+                'DESC'
+        )->limit($limit)->get();
 
         return $giftAct;
     }
@@ -501,9 +534,12 @@ class User extends Authenticatable implements MustVerifyEmail
             if (array_key_exists($key, $_SERVER) === true) {
                 foreach (explode(',', $_SERVER[$key]) as $ip) {
                     $ip = trim($ip); // just to be safe
-                    if (filter_var($ip, FILTER_VALIDATE_IP,
+                    if (filter_var(
+                                    $ip,
+                                    FILTER_VALIDATE_IP,
                                     FILTER_FLAG_NO_PRIV_RANGE
-                                    | FILTER_FLAG_NO_RES_RANGE) !== false
+                                    | FILTER_FLAG_NO_RES_RANGE
+                            ) !== false
                     ) {
                         return $ip;
                     }

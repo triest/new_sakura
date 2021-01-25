@@ -26,7 +26,7 @@ class RalationCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Relation::class);
+        CRUD::setModel(\App\Models\Ralation::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/ralation');
         CRUD::setEntityNameStrings('ralation', 'ralations');
     }
