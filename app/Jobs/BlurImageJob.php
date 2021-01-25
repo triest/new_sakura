@@ -49,7 +49,7 @@ class BlurImageJob implements ShouldQueue
 
              $rez=Storage::put('public/profile/'.$filename,$image2);
              // сохраняем картинку
-              $this->user->blur_photo_profile_url='storage/app/public/profile/'.$filename.".".$path_parts['extension'];
+              $this->user->blur_photo_profile_url='storage/app/public/profile/'.$filename;
               $this->user->save();
         } catch (IOException $exception) {
         }
