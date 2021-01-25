@@ -13,7 +13,7 @@ class LikeService
         $user = Auth::user();
 
         if (!$user) {
-            return redirect('/login');
+            return false;
         }
 
         $likes = $user->like()->get();

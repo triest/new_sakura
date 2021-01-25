@@ -34,6 +34,7 @@ Vue.component('sidebar', require('./components/layouts/sidebar').default);
 Vue.component('header-bock', require('./components/layouts/header-bock').default);
 Vue.component('event-in-my-city-side2', require('./components/events/EventInMyCitySide2').default);
 Vue.component('album', require('./components/anket/album').default);
+Vue.component('my-like', require('./components/anket/mylike').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -36,6 +36,12 @@ Route::prefix('like-carousel')->name('like-carousel.')->group(
         }
 );
 
+Route::prefix('like')->name('like.')->group(
+        function () {
+            Route::get('/get-my-likes', 'LikeController@getMyLikes')->name('getMyLikes');
+        }
+);
+
 Route::prefix('contact')->name('contact.')->group(
         function () {
             Route::get('/', 'ContactController@index')->name('main')->middleware('auth');

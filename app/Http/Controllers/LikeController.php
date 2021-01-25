@@ -31,8 +31,19 @@ class LikeController extends Controller
             return redirect('/login');
         }
 
+        //   $likeService = new LikeService();
+        //   $likes = $likeService->getMyLikes();
+        return view('like.index');
+    }
+
+    public function getMyLikes(Request $request)
+    {
         $likeService = new LikeService();
         $likes = $likeService->getMyLikes();
-        return view('like.index')->with(['likes' => $likes]);
+        if (!$likes) {
+            return response()->json(['result' => false, ['data' => []]]);
+        } else {
+            return response()->json(['result' => true, 'data' => $likes]);
+        }
     }
 }
