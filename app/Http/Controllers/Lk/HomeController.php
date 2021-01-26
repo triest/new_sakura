@@ -133,8 +133,8 @@ class HomeController extends Controller
         $user->fill($data);
 
         if ($request->hasFile('file-upload-photo-profile')) {
-            if ($user->photo_profile_url != null) {
-                Storage::delete($user->photo_profile_url);
+            if ($user->photo_profile != null) {
+                Storage::delete($user->photo_profile);
             }
             $path = $request->file('file-upload-photo-profile')->store('public/profile');
             $user->photo_profile_url = 'storage/app/' . $path;

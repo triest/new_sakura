@@ -24,10 +24,10 @@ class BlurImageJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($image,$user)
+    public function __construct($image, $user)
     {
         $this->image = $image;
-        $this->user=$user;
+        $this->user = $user;
     }
 
     /**
@@ -39,18 +39,20 @@ class BlurImageJob implements ShouldQueue
     {
         //
         try {
-            $image2 = new Imagick(public_path().'/uploads/logos/'.$this->image);
-
+            $image2 = new Imagick(public_path() . '/uploads/logos/' . $this->image);
             $path_parts = pathinfo($this->image);
+            $image2->blurImage(100, 100);
+            $filename = $path_parts['filename'] . uniqid(rand()) . "." . $path_parts['extension'];
+            file_put_contents(public_path() . '/uploads/logos/' . $filename, $image2);
 
-            $image2->blurImage(100,100);
-            $filename= $path_parts['filename'].uniqid(rand()).".".$path_parts['extension'];
-            file_put_contents (public_path().'/uploads/logos/'.$filename, $image2);
-
-             $rez=Storage::put('public/profile/'.$filename,$image2);
-             // сохраняем картинку
-              $this->user->blur_photo_profile_url='storage/app/public/profile/'.$filename;
-              $this->user->save();
+            if ($this->user->blur_photo_profile_url != null) {
+                Storage::delete($this->user->blur_photo_profile);
+            }
+            $rez = Storage::put('public/profile/' . $filename, $image2);
+            // сохраняем картинку
+            $this->user->blur_photo_profile_url = 'storage/app/public/profile/' . $filename;
+            $this->user->blur_photo_profile = 'public/profile/' . $filename;
+            $this->user->save();
         } catch (IOException $exception) {
         }
     }
