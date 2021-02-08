@@ -31,16 +31,18 @@ class StoreEvent extends FormRequest
                 'end_date' => 'date',
                 'end_time' => 'date_format:H:i',
                 'description' => 'required',
-                'min'=>'integer|min:0',
-                'max'=>'integer|min:0'
+                'min' => 'integer|min:0',
+                'max' => 'integer|min:0'
         ];
     }
 
     public function messages()
     {
-        return ['min.min'=>'неверное число',
-                'max.min'=>'неверное число',
-
-                ];
+        return [
+                'min.min' => 'неверное число',
+                'max.min' => 'неверное число',
+                'min.integer' => 'болжно быть больще 1',
+                'max.integer' => 'болжно быть больще 1'
+        ];
     }
 }

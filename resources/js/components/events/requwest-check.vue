@@ -193,7 +193,6 @@
         },
         components: {},
         mounted() {
-            console.log("requwesteventlist1");
             this.getrequwests();
             //  this.getunreaded();
             //this.getacepted();
@@ -224,7 +223,7 @@
                 this.accepted = null;
                 this.rejected = null;
                 this.unredded = null;
-                axios.get('/events/accept', {
+                axios.get('/api/events/accept', {
                         params: {
                             action: 'accept',
                             req_id: req_id,
@@ -234,12 +233,10 @@
                     .then((response) => {
 
                     });
-            //    this.gatall();
-             //   this.getacepted();
             },
             reject( req_id) {
 
-                axios.get('/events/denied', {
+                axios.get('/api/events/denied', {
                         params: {
                             action: 'denied',
                             req_id: req_id,
@@ -252,7 +249,7 @@
             },
             getrequwests() {
                 this.requwestlist = null;
-                axios.get('/events/' + this.event.id + '/requestList')
+                axios.get('/api/events/' + this.event.id + '/request-list')
                     .then((response) => {
                         this.requwestlist = response.data.requwest;
                         console.log(this.requwestlist)

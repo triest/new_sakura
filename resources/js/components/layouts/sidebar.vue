@@ -147,7 +147,7 @@ export default {
           console.log("likes number " + this.likesNunber)
         },
         getAllDataForSidePanel() {
-          axios.get('/getalldataforsidepanel', {
+          axios.get('api/getalldataforsidepanel', {
             params: {
               girl_id: this.girlid
             }
@@ -168,7 +168,7 @@ export default {
         },
         //
         getNumberUnreadedEventRequwest() {
-          axios.get('/event/requwest/myevent', {})
+          axios.get('/api/events/request/unread', {})
               .then((response) => {
                     //    this.unreeadedEventRequwest = response.data["count(*)"];
                     this.unreeadedEventRequwest = response.data.organizer;
@@ -177,7 +177,7 @@ export default {
           ;
         },
         remidese() {
-          axios.get('/event/reminders', {})
+          axios.get('/api/events/reminders', {})
               .then((response) => {
                     //  console.log(response.data)
                     if (response.data.requestMyEvent.length > 0) {

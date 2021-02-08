@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Dialog;
 use App\Events\NewMessage;
 use App\Models\Event;
+use App\Models\EventRequest;
 use App\Models\GiftAct;
 use App\Models\Interest;
 use App\Models\Like;
@@ -548,6 +549,29 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return null;
+    }
+
+    public function getEventRequests($OnlyUnreaded=false){
+        $eventReq = EventRequest::select(["*"])
+                ->select(
+                        [
+                                'users.id as user_id',
+                                'users.profile_url',
+                                'request.target_id as event_id',
+                                'request.id as requwest_id',
+                                'request.status as requwest_status'
+                        ]
+                )
+                ->leftJoin('users', 'users.id', '=', 'request.who_id')
+                ->leftJoin('events', 'events.id', '=', 'request.who_id')
+                ->where('events.user_id','=',$this->id);
+
+        if($OnlyUnreaded){
+            $eventReq->where(['status'=>'not_read']);
+        }
+
+
+        return $eventReq->get();
     }
 
 

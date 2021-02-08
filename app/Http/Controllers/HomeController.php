@@ -76,4 +76,15 @@ class HomeController extends Controller
 
         return \response(200)->json(['response' => 'ok']);
     }
+
+    protected function _error($code, $message, $msgShouldBeShow = false)
+    {
+
+        return response()->json([
+                                        'success' => false,
+                                        'message' => $message,
+                                        'msgShouldBeShown' => $msgShouldBeShow
+                                ], $code);
+
+    }
 }

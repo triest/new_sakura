@@ -60,7 +60,7 @@ Route::prefix('events')->name('events.')->group(
             Route::get('/accept', 'EventController@accept')->name('accept');
             Route::get('/denied', 'EventController@denied');
             Route::get('/{id}', 'EventController@view')->name('view');
-            Route::get('/{id}/requestList', 'EventController@requestList')->name('requestList');
-            //  Route::get('/singup/{id}', 'MyEventController@singup')->name('viewmyevent')->middleware('auth');
+            Route::get('/request-list', 'EventController@requestList');
+            Route::get('/request/unread', 'EventController@numberUnreadRequested')->name('number');
         }
 );

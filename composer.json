@@ -9,6 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "~7.2",
+        "ext-curl": "*",
+        "ext-gd": "*",
+        "ext-imagick": "3.8.*",
         "ext-json": "*",
         "backpack/crud": "4.1.*",
         "backpack/langfilemanager": "^2.0",
@@ -22,11 +25,9 @@
         "laravel/ui": "^2.0",
         "pusher/pusher-php-server": "~4.0",
         "rap2hpoutre/laravel-log-viewer": "^1.4",
+        "rennokki/laravel-eloquent-query-cache": "^2.6",
         "spatie/laravel-medialibrary": "^7.0.0",
-        "spatie/laravel-translatable": "^4.6",
-         "ext-curl": "*",
-      "ext-imagick": "3.8.*",
-        "ext-gd": "*"
+        "spatie/laravel-translatable": "^4.6"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

@@ -3900,7 +3900,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {},
   mounted: function mounted() {
-    console.log("requwesteventlist1");
     this.getrequwests(); //  this.getunreaded();
     //this.getacepted();
     // this.getdenided();
@@ -3929,16 +3928,15 @@ __webpack_require__.r(__webpack_exports__);
       this.accepted = null;
       this.rejected = null;
       this.unredded = null;
-      axios.get('/events/accept', {
+      axios.get('/api/events/accept', {
         params: {
           action: 'accept',
           req_id: req_id
         }
-      }).then(function (response) {}); //    this.gatall();
-      //   this.getacepted();
+      }).then(function (response) {});
     },
     reject: function reject(req_id) {
-      axios.get('/events/denied', {
+      axios.get('/api/events/denied', {
         params: {
           action: 'denied',
           req_id: req_id
@@ -3949,7 +3947,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.requwestlist = null;
-      axios.get('/events/' + this.event.id + '/requestList').then(function (response) {
+      axios.get('/api/events/' + this.event.id + '/request-list').then(function (response) {
         _this.requwestlist = response.data.requwest;
         console.log(_this.requwestlist);
       });
@@ -4195,7 +4193,7 @@ __webpack_require__.r(__webpack_exports__);
     getAllDataForSidePanel: function getAllDataForSidePanel() {
       var _this7 = this;
 
-      axios.get('/getalldataforsidepanel', {
+      axios.get('api/getalldataforsidepanel', {
         params: {
           girl_id: this.girlid
         }
@@ -4217,7 +4215,7 @@ __webpack_require__.r(__webpack_exports__);
     getNumberUnreadedEventRequwest: function getNumberUnreadedEventRequwest() {
       var _this8 = this;
 
-      axios.get('/event/requwest/myevent', {}).then(function (response) {
+      axios.get('/api/events/request/unread', {}).then(function (response) {
         //    this.unreeadedEventRequwest = response.data["count(*)"];
         _this8.unreeadedEventRequwest = response.data.organizer;
       });
@@ -4225,7 +4223,7 @@ __webpack_require__.r(__webpack_exports__);
     remidese: function remidese() {
       var _this9 = this;
 
-      axios.get('/event/reminders', {}).then(function (response) {
+      axios.get('/api/events/reminders', {}).then(function (response) {
         //  console.log(response.data)
         if (response.data.requestMyEvent.length > 0) {
           _this9.showAlertModal = true;

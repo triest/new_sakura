@@ -69,4 +69,13 @@
             return response()->json($girl->checkLike());
         }
 
+
+        protected function _error($code, $message, $msgShouldBeShow = false)
+        {
+            return response()->json([
+                                            'success' => false,
+                                            'message' => $message,
+                                            'msgShouldBeShown' => $msgShouldBeShow
+                                    ], $code);
+        }
     }

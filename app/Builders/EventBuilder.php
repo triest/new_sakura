@@ -13,6 +13,7 @@
     use App\Models\Event;
     use Carbon\Carbon;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Log;
 
     class EventBuilder
     {
@@ -113,14 +114,23 @@
             $event->max_people = $this->max_people;
             $event->min_people = $this->min_people;
             $event->description = $this->description;
-            if (!Carbon::createFromTimeString($this->begin)->isFuture()) {
-                return "Дата начала в прошлом";
+            try {
+                if (!Carbon::createFromTimeString($this->begin)->isFuture()) {
+                    return "Дата начала в прошлом";
+                }
+            }catch (\ Exception $exception){
+                Log::error($exception);
             }
             $event->begin = $this->begin;
 
+            try {
             if ($this->end_applications != null && !Carbon::createFromTimeString($this->end_applications)->isFuture()) {
                 return "Дата окончания в прошлом";
+                }
             }
+            catch (\ Exception $exception){
+                    Log::error($exception);
+                }
             $event-> end_applications = $this->end_applications;
 
             if ($this->user == null) {
@@ -130,5 +140,17 @@
             $event->save();
 
             return $event;
+        }
+
+
+        protected function _error($code, $message, $msgShouldBeShow = false)
+        {
+
+            return response()->json([
+                                            'success' => false,
+                                            'message' => $message,
+                                            'msgShouldBeShown' => $msgShouldBeShow
+                                    ], $code);
+
         }
     }
