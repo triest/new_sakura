@@ -36,7 +36,7 @@
 
                         <div class="photo_profile" id="photo_profile" data-remodal-target="upload_img">
 
-                            <img src="{{asset( "$user->photo_profile_url")}}"
+                            <img  src="{{asset( "$user->photo_profile_url")}}"
                                  alt="" id="profile_image" height="250px">
 
                         </div>

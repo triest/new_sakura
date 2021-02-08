@@ -40,8 +40,11 @@ class BlurImageJob implements ShouldQueue
         //
         try {
             $image2 = new Imagick(public_path() . '/uploads/logos/' . $this->image);
+            $image_copy_for_resize = $image2;
+            //создаём уменьшенное изображение
             $path_parts = pathinfo($this->image);
             $image2->blurImage(100, 100);
+
             $filename = $path_parts['filename'] . uniqid(rand()) . "." . $path_parts['extension'];
             file_put_contents(public_path() . '/uploads/logos/' . $filename, $image2);
 
@@ -52,6 +55,26 @@ class BlurImageJob implements ShouldQueue
             // сохраняем картинку
             $this->user->blur_photo_profile_url = 'storage/app/public/profile/' . $filename;
             $this->user->blur_photo_profile = 'public/profile/' . $filename;
+
+
+            $rez = Storage::put('public/profile/' . $filename, $image_copy_for_resize);
+
+            $image2 = new Imagick(public_path() . '/uploads/logos/' . $this->image);
+
+            $image2->resizeImage(250, 250,\Imagick::FILTER_CATROM, 1, true);
+            $filename.="_small". "." . $path_parts['extension'];
+
+            if ($this->user->small_photo_profile_url != null) {
+                Storage::delete($this->user->small_photo_profile_url);
+            }
+
+            $rez = Storage::put('public/profile/' . $filename, $image2);
+
+            $this->user->small_photo_profile_url = 'storage/app/public/profile/' . $filename;
+            $this->user->small_photo_profile = 'public/profile/' . $filename;
+
+
+
             $this->user->save();
         } catch (IOException $exception) {
         }

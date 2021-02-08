@@ -44,3 +44,5 @@ php artisan db:seed
 
     npm run watch
     
+Запуск очередей: 
+php artisan queue:work 
