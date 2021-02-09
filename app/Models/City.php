@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Lk\User;
-use http\Env\Request;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

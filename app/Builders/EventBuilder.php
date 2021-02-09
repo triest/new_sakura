@@ -137,6 +137,7 @@
                 $this->user = Auth::user();
             }
             $event->user()->associate($this->user);
+            $event->status_id=2;
             $event->save();
 
             return $event;

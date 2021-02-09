@@ -50476,7 +50476,10 @@ var render = function() {
         _vm._v(" "),
         _c(
           "a",
-          { staticClass: "btn btn-info", attrs: { href: "/events/my" } },
+          {
+            staticClass: "btn btn-info",
+            attrs: { href: "/events/my-events-list" }
+          },
           [
             _vm._v("Мои события\n      "),
             _vm.unreeadedEventRequwest > 0

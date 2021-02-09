@@ -33,7 +33,8 @@ Route::prefix('events')->name('events.')->group(
         function () {
 
             Route::get('/', 'EventController@index')->name('index'); //сщбытия в моём горроде
-            Route::get('/my', 'EventController@my')->name('my'); //мои события
+            Route::get('/my', 'EventController@myEventsList')->name('index'); //мои события
+            Route::get('/my-events-list', 'EventController@myEventsList')->name('my'); //мои события
             Route::get('/create', 'EventController@create')->name('create')->middleware('auth');
             Route::post('/store', 'EventController@store')->name('store')->middleware('auth');
             Route::get('/{id}', 'EventController@view')->name('view');

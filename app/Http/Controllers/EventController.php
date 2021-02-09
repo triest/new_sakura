@@ -19,12 +19,16 @@ class EventController extends Controller
     {
     }
 
-    public function my()
+    public function myEventsList(Request $request)
     {
         $user = Auth::user();
-
         $events = $user->events()->get();
-        return response()->json(['events' => $events]);
+
+        if ($request->ajax()) {
+            return response()->json(['events' => $events]);
+        }
+
+        return  view('event.eventList')->with(['events'=>$events]);
     }
 
     public function create()
@@ -252,13 +256,12 @@ class EventController extends Controller
 
     public function requestList($id, Request $request)
     {
-
-        $user=Auth::user();
-        if(!$user){
-            return  response()->json(["request" => "not fount"]);
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json(["request" => "not fount"]);
         }
-        $user=User::select(['*'])->where(['id'=>$user->id])->first();
-        $event_request_count=$user->getEventRequests(true)->count();
+        $user = User::select(['*'])->where(['id' => $user->id])->first();
+        $event_request_count = $user->getEventRequests(true)->count();
 
 
         return response()->json(["request_count" => $event_request_count]);
@@ -268,18 +271,16 @@ class EventController extends Controller
     //позвращает число непрочитанных запросов на события, как моих так и на мои
     public function numberUnreadRequested(Request $request)
     {
-
         $user = Auth::user();
 
 
-        if(!$user){
-            return  response()->json(["request" => "not fount"]);
+        if (!$user) {
+            return response()->json(["request" => "not fount"]);
         }
-        $user=User::select(['*'])->where(['id'=>$user->id])->first();
-        $event_request_count=$user->getEventRequests(true)->count();
+        $user = User::select(['*'])->where(['id' => $user->id])->first();
+        $event_request_count = $user->getEventRequests(true)->count();
 
 
         return response()->json(["request_count" => $event_request_count]);
-
     }
 }

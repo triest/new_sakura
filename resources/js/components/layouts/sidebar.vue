@@ -9,7 +9,7 @@
         <div v-if="numberUnreaded>0">({{ numberUnreaded }})</div>
       </a>
       <a class="btn btn-info" href="/mypresents">Мои подарки</a>
-      <a class="btn btn-info" href="/events/my">Мои события
+      <a class="btn btn-info" href="/events/my-events-list">Мои события
         <div v-if="unreeadedEventRequwest>0">{{ unreeadedEventRequwest }}</div>
       </a>
       <div v-if="numberApplicationPresents>0"></div>
