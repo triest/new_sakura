@@ -62,5 +62,6 @@ Route::prefix('events')->name('events.')->group(
             Route::get('/{id}', 'EventController@view')->name('view');
             Route::get('/request-list', 'EventController@requestList');
             Route::get('/request/unread', 'EventController@numberUnreadRequested')->name('number');
+            Route::get('/{id}/request-list', 'EventController@requestList')->name('requestList');
         }
 );

@@ -22,7 +22,8 @@ class EventController extends Controller
     public function myEventsList(Request $request)
     {
         $user = Auth::user();
-        $events = $user->events()->get();
+
+       $events = $user->events()->with(['status'])->orderBy('begin','desc')->get();
 
         if ($request->ajax()) {
             return response()->json(['events' => $events]);
@@ -75,6 +76,7 @@ class EventController extends Controller
             $end = explode(" ", $end);
 
             $city = City::get($event->city_id);
+
 
             return view("event.viewmy")->with(
                     [
@@ -237,8 +239,7 @@ class EventController extends Controller
         if ($eventReq == null) {
             return response()->json([false]);
         }
-        $eventReq->status = "accept";
-        $eventReq->save();
+        $eventReq->accept();
 
         return response()->json([true]);
     }
@@ -254,17 +255,28 @@ class EventController extends Controller
         return response()->json([true]);
     }
 
-    public function requestList($id, Request $request)
+    public function requestList($id=null, Request $request)
     {
         $user = Auth::user();
         if (!$user) {
             return response()->json(["request" => "not fount"]);
         }
+
         $user = User::select(['*'])->where(['id' => $user->id])->first();
-        $event_request_count = $user->getEventRequests(true)->count();
+        if($id==null) {
+            $req = $user->getEventRequests(true);
+        }else{
+            $event=Event::get($id);
+            if(!$event){
+                return response()->json(["request" => "not fount"]);
+            }
+            $req=$event->request()->with(['status','event','user'])->get();
+        }
+        $event_request_count = $req->count();
+        $event_request = $req;
 
 
-        return response()->json(["request_count" => $event_request_count]);
+        return response()->json(["request_count" => $event_request_count,'request_list'=>$event_request]);
     }
 
 

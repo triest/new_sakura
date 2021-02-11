@@ -7,6 +7,7 @@ use App\Models\Lk\User;
 use Carbon\Carbon;
 use Doctrine\DBAL\Events;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -69,6 +70,10 @@ class Event extends Model
 
     public function status()
     {
-        return $this->belongsTo(EventStatus::class);
+        return $this->hasOne(EventStatus::class,'id','status_id');
+    }
+
+    public function request(){
+            return $this->hasMany(EventRequest::class);
     }
 }

@@ -133,10 +133,14 @@
                 }
             $event-> end_applications = $this->end_applications;
 
-            if ($this->user == null) {
+            if (!$this->user) {
                 $this->user = Auth::user();
             }
+            if (!$this->user) {
+                return "нет пользователя";
+            }
             $event->user()->associate($this->user);
+
             $event->status_id=2;
             $event->save();
 

@@ -9,7 +9,7 @@
                 <tbody  id="myTable">
                 @foreach($events as $event)
                     <tr>
-                        <td>{{$event->name}}</td>
+                        <td><a href="{{route('events.view',['id'=>$event->id])}}">{{$event->name}}</a></td>
                         <td>{{$event->place}}</td>
                         <td>{{$event->begin}}</td>
                         <td>@isset($event->status->name){{$event->status->name}}@endisset</td>

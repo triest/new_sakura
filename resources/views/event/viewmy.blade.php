@@ -4,15 +4,19 @@
 
     <div class="container" id="app">
         <div class="profile-form">
-            <b>Моё события</b>
+            <b>Моё события111</b>
 
             <div class="form-group">
                 <div class="col-xs-11">
                     {{$event->name}}
                 </div>
             </div>
-
-
+            <div class="form-group">
+                Организатор:
+                @isset($event->user()->first()->id)
+                    <a href="{{route('anket.view',['id'=>$event->user()->first()->id])}}">{{$event->user()->first()->name}}</a>
+                @endif
+            </div>
             <div class="form-group">
                 <div class="col-xs-17">
                     {{$event->description}}
@@ -21,13 +25,14 @@
 
             <div class="col-xs-11">
                 @if(isset($city) && $city!=null)
+                    <label for="title">Город:</label>
                     {{$city->name}}
                     <br>
                 @endif
                 <label for="title">Место:</label>
                 {{$event->place }}
             </div>
-            <requwest-check :event="{{$event}}" :user="{{\Illuminate\Support\Facades\Auth::user()}}"></requwest-check>
+
             <div class="col-xs-11">
                 <p>
                     Дата:{{$date_begin}}
@@ -44,6 +49,9 @@
                 </p>
             </div>
         </div>
+        <requwest-check :event="{{$event}}" :user="{{\Illuminate\Support\Facades\Auth::user()}}"></requwest-check>
     </div>
+
+
 
 @endsection

@@ -133,6 +133,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
             'password',
             'remember_token',
+            'email',
+            'phone'
     ];
 
     /**
@@ -240,7 +242,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function like()
     {
-        return $this->hasMany(Like::class,'target_id','id');
+        return $this->hasMany(Like::class, 'target_id', 'id');
     }
 
     public function relation()
@@ -551,7 +553,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return null;
     }
 
-    public function getEventRequests($OnlyUnreaded=false){
+    public function getEventRequests($OnlyUnreaded = false)
+    {
         $eventReq = EventRequest::select(["*"])
                 ->select(
                         [
@@ -559,15 +562,15 @@ class User extends Authenticatable implements MustVerifyEmail
                                 'users.profile_url',
                                 'request.target_id as event_id',
                                 'request.id as requwest_id',
-                                'request.status as requwest_status'
+                                'request.status as request_status'
                         ]
                 )
                 ->leftJoin('users', 'users.id', '=', 'request.who_id')
                 ->leftJoin('events', 'events.id', '=', 'request.who_id')
-                ->where('events.user_id','=',$this->id);
+                ->where('events.user_id', '=', $this->id);
 
-        if($OnlyUnreaded){
-            $eventReq->where(['status'=>'not_read']);
+        if ($OnlyUnreaded) {
+            $eventReq->where(['status' => 'not_read']);
         }
 
 

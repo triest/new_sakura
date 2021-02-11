@@ -125,7 +125,7 @@ export default {
         },
         inSeach() {
           let res;
-          axios.get('/inseach')
+          axios.get('/api/inseach')
               .then((response) => {
                 res = response.data;
                 if (res == true) {
@@ -147,7 +147,7 @@ export default {
           console.log("likes number " + this.likesNunber)
         },
         getAllDataForSidePanel() {
-          axios.get('api/getalldataforsidepanel', {
+          axios.get('/api/getalldataforsidepanel', {
             params: {
               girl_id: this.girlid
             }

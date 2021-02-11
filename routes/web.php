@@ -38,7 +38,7 @@ Route::prefix('events')->name('events.')->group(
             Route::get('/create', 'EventController@create')->name('create')->middleware('auth');
             Route::post('/store', 'EventController@store')->name('store')->middleware('auth');
             Route::get('/{id}', 'EventController@view')->name('view');
-            Route::get('/{id}/requestList', 'EventController@requestList')->name('requestList');
+            Route::get('/{id}/request-list', 'EventController@requestList')->name('requestList');
             //  Route::get('/singup/{id}', 'MyEventController@singup')->name('viewmyevent')->middleware('auth');
         }
 );

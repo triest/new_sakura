@@ -34,7 +34,7 @@
 
     <!-- Bootstrap core CSS -->
 
-    <link rel="icon" href="<?php echo asset("images/icons/icons/favicon-16x16.png")?>" type="image/x-icon">
+    <link rel="icon" href="<?php echo asset("public/images/icons/favicon-16x16.png")?>" type="image/x-icon">
 
 </head>
 
