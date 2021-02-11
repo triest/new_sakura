@@ -61,7 +61,7 @@ class EventController extends Controller
 
     public function view($id, Request $request)
     {
-        $event = Event::select(['*'])->where('id', $id)->first();
+        $event = Event::select(['*'])->with('status','user')->where('id', $id)->first();
         if (!$event) {
             abort(404);
         }
@@ -264,7 +264,7 @@ class EventController extends Controller
 
         $user = User::select(['*'])->where(['id' => $user->id])->first();
         if($id==null) {
-            $req = $user->getEventRequests(true);
+            $req = $user->getEventRequests(true)->get();
         }else{
             $event=Event::get($id);
             if(!$event){

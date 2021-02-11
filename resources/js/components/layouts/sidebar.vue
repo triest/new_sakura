@@ -12,13 +12,13 @@
       <a class="btn btn-info" href="/events/my-events-list">Мои события
         <div v-if="unreeadedEventRequwest>0">{{ unreeadedEventRequwest }}</div>
       </a>
-      <div v-if="numberApplicationPresents>0"></div>
-      <a class="btn btn-primary" href="/likes" style="cursor: pointer">Лайки
-        <div v-if="numberApplication>0">({{ numberApplication }})</div>
-      </a>
+      <span class="span-like" v-if="likesNumber>0">
+        <i class="fas fa-heart fa-2x indigo-text pr-3" aria-hidden="true"></i>
+        <span class="like-number"> {{likesNumber}} </span>
+      </span>
       <div class="dropdown" style="cursor: pointer">
-        <div v-if="user.profile_url">
-          <img :src="user.profile_url" height="50px" class="dropbtn">
+        <div v-if="user.photo_profile_url">
+          <img :src="'/'+user.small_photo_profile_url" height="35px" class="dropbtn">
         </div>
         <div v-else>
           <img src='/public/home/img/image-placeholder.png' height="35px" class="dropbtn">
@@ -48,7 +48,7 @@ export default {
       numberApplication: 0,
       numberApplicationPresents: 0,
       inseach: false,
-      likesNunber: 0,
+      likesNumber: 0,
       showLikeModal: false,
       unreeadedEventRequwest: 0,
       showAlertModal: false,
@@ -142,9 +142,9 @@ export default {
             }
           })
               .then((response) => {
-                this.likesNunber = response.data['likeNumber']
+                this.likesNumber = response.data['likeNumber']
               });
-          console.log("likes number " + this.likesNunber)
+          console.log("likes number " + this.likesNumber)
         },
         getAllDataForSidePanel() {
           axios.get('/api/getalldataforsidepanel', {
@@ -154,16 +154,15 @@ export default {
           })
               .then((response) => {
                 var data = response.data;
-                this.likesNunber = data.likeNumber;
-                this.numberApplicationPresents = data.countGift;
-                this.numberUnreaded = data.countMessages;
+                this.likesNumber = data.like;
+                this.numberApplicationPresents = data.gift;
+                this.numberUnreaded = data.messages;
                 this.numberApplication = data.countRequwest;
                 this.filter_enable = data.filter.filter_enable;
                 this.count_accept_notification = data.countAccept_notification;
               });
         },
         clouseLikeModal() {
-          console.log("clouseLikeModal");
           this.showLikeModal = false;
         },
         //
@@ -198,8 +197,7 @@ export default {
               console.log('logout')
               location.reload();
               document.location.reload();
-            }
-            else {
+            } else {
               document.location.reload();
               location.reload();
             }
@@ -245,11 +243,26 @@ export default {
 }
 
 .navbar {
-  position: absolute;
+  position: relative;
   width: 100%;
   left: 0;
   text-align: center;
 }
 
+.indigo-text{
+  color:red;
+  height: 50px;
+  cursor: pointer;
+}
+
+.like-number{
+  color: red;
+  top:3px
+}
+
+.span-like{
+  position: relative;
+    top: 5px;
+}
 
 </style>

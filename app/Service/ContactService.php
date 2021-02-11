@@ -56,9 +56,6 @@
 
             Message::where('from', $user->id)->where('to', $user->id)
                     ->update(['readed' => true]);
-            // mark all messages with the selected contact as read
-            Message::where('from', $user->id)->where('to', auth()->id());
-            // get all messages between the authenticated user and the selected user
             $messages = Message::where('from', $user->id)->orWhere('to', $user->id)->get();
             return $messages;
         }

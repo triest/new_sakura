@@ -6,9 +6,9 @@
                     <div class="modal-container">
                         <textarea v-model="MessageText" placeholder="Введите сообщение!"></textarea>
                         <br>
-                        <a class="btn btn-primary" v-on:click="send()">Отправит1ь</a>
+                        <a class="btn btn-primary" v-on:click="send()">Отправить</a>
+                        <a class="btn btn-secondary" v-on:click="close()">Закрыть</a>
                     </div>
-
                 </div>
             </div>
         </transition>
@@ -55,7 +55,7 @@
     };
 </script>
 
-<style>
+<style scoped>
     textarea {
         width: 90%; /* ������ ���� � ��������� */
         height: 200px; /* ������ ���� � �������� */
@@ -81,6 +81,7 @@
 
     .modal-container {
         width: 600px;
+        height:300px;
         margin: 0px auto;
         padding: 20px 30px;
         background-color: #fff;
@@ -88,6 +89,7 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
         transition: all .3s ease;
         font-family: Helvetica, Arial, sans-serif;
+        overflow: hidden
     }
 
     .modal-header h3 {
@@ -125,6 +127,7 @@
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
+
 
     .newMessageModal {
         position: fixed;

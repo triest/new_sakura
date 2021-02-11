@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use app\models\lk\User;
+use App\Service\PanelService;
 use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -86,5 +87,11 @@ class HomeController extends Controller
                                         'msgShouldBeShown' => $msgShouldBeShow
                                 ], $code);
 
+    }
+
+    public function getAllDataForSidePanel(){
+        $panelService=new PanelService();
+        $data=$panelService->getAllData();
+        return response()->json($data);
     }
 }

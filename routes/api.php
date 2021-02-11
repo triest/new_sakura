@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 
 Route::middleware('api_token')->group(
@@ -9,6 +10,8 @@ Route::middleware('api_token')->group(
             //   Route::POST('emit', 'Api\UpdateAction@emit');
         }
 );
+
+Route::get('getalldataforsidepanel','HomeController@getAllDataForSidePanel');
 
 
 Route::prefix('anket/search')->name('search.')->group(

@@ -402,11 +402,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $result;
     }
 
-    public
-    function sendMessage(
-            $text,
-            $who_user = null
-    ) {
+    public function sendMessage($text, $who_user = null) {
         $TargetUser = $this;
 
 
@@ -502,6 +498,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $giftAct;
     }
 
+    public function getGiftForMe(){
+        return $this->hasMany(GiftAct::class,'target_id','id');
+    }
+
+
     public function getCity()
     {
         if ($this->city_id != null) {
@@ -553,29 +554,41 @@ class User extends Authenticatable implements MustVerifyEmail
         return null;
     }
 
-    public function getEventRequests($OnlyUnreaded = false)
+    public function getEventRequests($OnlyUnread = false)
     {
         $eventReq = EventRequest::select(["*"])
                 ->select(
                         [
-                                'users.id as user_id',
-                                'users.profile_url',
-                                'request.target_id as event_id',
-                                'request.id as requwest_id',
-                                'request.status as request_status'
+                             '*'
                         ]
                 )
-                ->leftJoin('users', 'users.id', '=', 'request.who_id')
-                ->leftJoin('events', 'events.id', '=', 'request.who_id')
-                ->where('events.user_id', '=', $this->id);
+                ->where('user_id', '=', $this->id)
+                ->with(['user','event'])
+        ;
 
-        if ($OnlyUnreaded) {
-            $eventReq->where(['status' => 'not_read']);
+        if ($OnlyUnread) {
+            $eventReq->where(['event_request.status_id' => 1]);
         }
 
 
-        return $eventReq->get();
+        return $eventReq;
     }
 
+    public function getMyEventRequest($OnlyUnread=false){
+        $eventReq = EventRequest::select(["*"])
+                ->select(['*']
+                )->where(['user_id'=>$this->id]);
+
+        if($OnlyUnread){
+            $eventReq->where(['readed',0])->where(['status','!=','unreaded']);
+        }
+
+        return $eventReq;
+    }
+
+
+    public function messagesForMe(){
+        return $this->hasMany(Message::class,'to','id');
+    }
 
 }

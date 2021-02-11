@@ -17,7 +17,6 @@ class NewMessage  implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $message;
 
-    use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
@@ -26,7 +25,6 @@ class NewMessage  implements ShouldBroadcastNow
      */
     public function __construct(Message $message)
     {
-        //
         $this->message = $message;
     }
 

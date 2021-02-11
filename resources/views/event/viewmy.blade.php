@@ -4,8 +4,6 @@
 
     <div class="container" id="app">
         <div class="profile-form">
-            <b>Моё события111</b>
-
             <div class="form-group">
                 <div class="col-xs-11">
                     {{$event->name}}
@@ -13,14 +11,20 @@
             </div>
             <div class="form-group">
                 Организатор:
-                @isset($event->user()->first()->id)
-                    <a href="{{route('anket.view',['id'=>$event->user()->first()->id])}}">{{$event->user()->first()->name}}</a>
+                @isset($event->user->id)
+                    <a href="{{route('anket.view',['id'=>$event->user->id])}}">{{$event->user->name}}</a>
                 @endif
             </div>
             <div class="form-group">
                 <div class="col-xs-17">
                     {{$event->description}}
                 </div>
+            </div>
+            <div class="form-group">
+                Статус:
+                @isset($event->status->name)
+                    <a href="{{route('anket.view',['id'=>$event->user()->first()->id])}}">{{$event->status->name}}</a>
+                @endif
             </div>
 
             <div class="col-xs-11">
