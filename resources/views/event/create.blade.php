@@ -43,7 +43,7 @@
 
                 <div class="col-xs-11">
 
-                    <input type="hidden" name="city" value="{{$city->id}}"> {{$city->name}}
+                    <input type="hidden" name="city_id" value="{{$city->id}}"> {{$city->name}}
 
                 <!--
             <label>Выбирите из списка:

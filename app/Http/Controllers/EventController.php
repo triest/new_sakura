@@ -23,13 +23,13 @@ class EventController extends Controller
     {
         $user = Auth::user();
 
-       $events = $user->events()->with(['status'])->orderBy('begin','desc')->get();
+        $events = $user->events()->with(['status'])->orderBy('begin', 'desc')->get();
 
         if ($request->ajax()) {
             return response()->json(['events' => $events]);
         }
 
-        return  view('event.eventList')->with(['events'=>$events]);
+        return view('event.eventList')->with(['events' => $events]);
     }
 
     public function create()
@@ -45,7 +45,7 @@ class EventController extends Controller
         $builder->setName($request->name);
         $builder->setDescription($request->description);
         $builder->setBegin($request->date . " " . $request->time);
-        $builder->setCityId($request->city);
+        $builder->setCityId($request->city_id);
         $builder->setPlace($request->place);
         $builder->setMaxPeople($request->max);
         $builder->setMinPiople($request->min);
@@ -61,7 +61,7 @@ class EventController extends Controller
 
     public function view($id, Request $request)
     {
-        $event = Event::select(['*'])->with('status','user')->where('id', $id)->first();
+        $event = Event::select(['*'])->with('status', 'user')->where('id', $id)->first();
         if (!$event) {
             abort(404);
         }
@@ -99,11 +99,12 @@ class EventController extends Controller
             // проверяем запросы от этого пользователя
             $eventRequest = null;
             if ($user != null) {
-                $eventRequest = EventRequest::select(["*"])->where("name", "event")->where(
-                        "who_id",
+                $eventRequest = EventRequest::select(["*"])->with("event")->where(
+                        "user_id",
                         $user->id
-                )->where("target_id", $id)->get();
+                )->where("event_id", $id)->get();
             }
+
 
             return view("event.view")->with(
                     [
@@ -211,10 +212,9 @@ class EventController extends Controller
     {
         $user_id = intval($request->user);
         $event = intval($request->event);
-        $eventRequwest = EventRequest::select(["*"])->where("name", "event")->where(
-                "who_id",
-                $user_id
-        )->where("target_id", $event)->first();
+        $eventRequwest = EventRequest::select(["*"])->with("event","user","status")->where(
+                "user_id", $user_id
+        )->where("event_id", $event)->first();
 
         return response()->json(["eventRequwest" => $eventRequwest]);
     }
@@ -222,14 +222,13 @@ class EventController extends Controller
     public function makeRequest(Request $request)
     {
         $user_id = intval($request->user);
-        $event = intval($request->event);
-        $eventRequwest = new EventRequest();
-        $eventRequwest->who_id = $user_id;
-        $eventRequwest->target_id = $event;
-        $eventRequwest->name = "event";
-        $eventRequwest->save();
+        $event = Event::get(intval($request->event));
+        if(!$event){
+            return response()->json(['result'=>false]);
+        }
+        $event->makeRequest();
 
-        return response()->json(true);
+        return response()->json(['result'=>true]);
     }
 
     public function accept(Request $request)
@@ -255,7 +254,7 @@ class EventController extends Controller
         return response()->json([true]);
     }
 
-    public function requestList($id=null, Request $request)
+    public function requestList($id = null, Request $request)
     {
         $user = Auth::user();
         if (!$user) {
@@ -263,20 +262,20 @@ class EventController extends Controller
         }
 
         $user = User::select(['*'])->where(['id' => $user->id])->first();
-        if($id==null) {
+        if ($id == null) {
             $req = $user->getEventRequests(true)->get();
-        }else{
-            $event=Event::get($id);
-            if(!$event){
+        } else {
+            $event = Event::get($id);
+            if (!$event) {
                 return response()->json(["request" => "not fount"]);
             }
-            $req=$event->request()->with(['status','event','user'])->get();
+            $req = $event->request()->with(['status', 'event', 'user'])->get();
         }
         $event_request_count = $req->count();
         $event_request = $req;
 
 
-        return response()->json(["request_count" => $event_request_count,'request_list'=>$event_request]);
+        return response()->json(["request_count" => $event_request_count, 'request_list' => $event_request]);
     }
 
 

@@ -3634,17 +3634,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     event: {
@@ -3668,7 +3657,7 @@ __webpack_require__.r(__webpack_exports__);
     getRequwest: function getRequwest() {
       var _this = this;
 
-      axios.get('/events/check-request', {
+      axios.get('/api/events/check-request', {
         params: {
           user: this.user.id,
           event: this.event.id
@@ -3682,8 +3671,7 @@ __webpack_require__.r(__webpack_exports__);
     makeRequwest: function makeRequwest() {
       var _this2 = this;
 
-      console.log("make req");
-      axios.get('/events/make-request', {
+      axios.get('/api/events/make-request', {
         params: {
           user: this.user.id,
           event: this.event.id
@@ -4113,7 +4101,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.inSeach();
+    // this.inSeach();
     this.getAllDataForSidePanel();
     this.getNumberUnreadedEventRequwest();
     this.remidese();
@@ -49523,60 +49511,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "card  border-dark",
-      staticStyle: {
-        width: "18rem",
-        "background-color": "#eeeeee",
-        border: "1px solid transparent",
-        "border-color": "#666869"
-      }
-    },
-    [
-      _vm.eventRequwest == null
-        ? _c("div", [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary",
-                on: {
-                  click: function($event) {
-                    return _vm.makeRequwest()
-                  }
+  return _c("div", { staticClass: "card  border-dark" }, [
+    _vm.eventRequwest == null
+      ? _c("div", [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary",
+              on: {
+                click: function($event) {
+                  return _vm.makeRequwest()
                 }
-              },
-              [_vm._v("Оставить заявку на участие")]
-            )
-          ])
-        : _vm.eventRequwest != null
-        ? _c("div", [
-            _vm.eventRequwest.status === "not_read"
-              ? _c("div", [
-                  _vm._v(
-                    "\n                Ваша заявка не прочитанна!\n            "
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.eventRequwest.status === "accept"
-              ? _c("div", [
-                  _vm._v("\n                Ваша заявка принята\n            ")
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.eventRequwest.status === "denide"
-              ? _c("div", [
-                  _vm._v(
-                    "\n                Ваша заявка отклонена!\n            "
-                  )
-                ])
-              : _vm._e()
-          ])
-        : _vm._e()
-    ]
-  )
+              }
+            },
+            [_vm._v("Оставить заявку на участие")]
+          )
+        ])
+      : _c("div", [
+          _vm._v(
+            "\n           " + _vm._s(_vm.eventRequwest.status.name) + "\n    "
+          )
+        ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

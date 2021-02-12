@@ -76,4 +76,21 @@ class Event extends Model
     public function request(){
             return $this->hasMany(EventRequest::class);
     }
+
+    public function makeRequest($user=null){
+        if(!$user){
+            $user=Auth::user();
+        }
+
+        if(!$user){
+           return false;
+        }
+
+        $eventRequwest = new EventRequest();
+        $eventRequwest->user_id = $user->id;
+        $eventRequwest->event_id = $this->id;
+        $eventRequwest->status_id=1;
+        $eventRequwest->save();
+
+    }
 }

@@ -60,7 +60,7 @@ export default {
         ;
   },
   mounted() {
-    this.inSeach();
+   // this.inSeach();
     this.getAllDataForSidePanel();
     this.getNumberUnreadedEventRequwest();
     this.remidese();
