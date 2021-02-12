@@ -129,7 +129,7 @@ class EventController extends Controller
             $partifucationArray = array();
 
             foreach ($events as $item) {
-                $participator = $item->checkUserPartification();
+                $participator = $item->checkUserParticipation();
                 if ($participator != false) {
                     array_push($partifucationArray, $participator);
                 }
@@ -139,7 +139,7 @@ class EventController extends Controller
             return response()->json(
                     [
                             "events" => $events,
-                            "partification" => $partifucationArray,
+                            "partificators" => $partifucationArray,
                     ]
             );
         } else {
@@ -212,11 +212,16 @@ class EventController extends Controller
     {
         $user_id = intval($request->user);
         $event = intval($request->event);
-        $eventRequwest = EventRequest::select(["*"])->with("event","user","status")->where(
-                "user_id", $user_id
-        )->where("event_id", $event)->first();
+        $event=Event::get($event);
+        if(!$event){
+            return false;
+        }
 
-        return response()->json(["eventRequwest" => $eventRequwest]);
+        $partificator=$event->checkUserParticipation();
+
+
+
+        return response()->json(["eventRequest" => $partificator]);
     }
 
     public function makeRequest(Request $request)
@@ -226,9 +231,11 @@ class EventController extends Controller
         if(!$event){
             return response()->json(['result'=>false]);
         }
-        $event->makeRequest();
-
-        return response()->json(['result'=>true]);
+         if($result=$event->makeRequest()){
+             return response()->json(['result'=>$result]);
+         }else{
+            return  response()->json(['result'=>false,'message'=>$result]);
+         }
     }
 
     public function accept(Request $request)

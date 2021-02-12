@@ -19,7 +19,7 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function inMyCity($city = null, $date = null)
+    public static function inMyCity(City $city = null, $date = null)
     {
         if ($city == null) {
             $city = City::getCurrentCity();
@@ -38,13 +38,14 @@ class Event extends Model
                                 ->orWhere('status_id',3)
                                 ->orWhere('status_id',4);
                     })
+                    ->with('status')
                     ->get();
         } else {
             return null;
         }
     }
 
-    public function checkUserPartification($user = null)
+    public function checkUserParticipation($user = null)
     {
         if ($user == null) {
             $user = Auth::user();
@@ -54,13 +55,7 @@ class Event extends Model
             return false;
         }
 
-        $partificatpr = DB::table('request')->select('*')
-                ->where('name', 'event')
-                ->where('who_id', '=', $user->id)
-                ->where('target_id', '=', $this->id)
-                ->get();
-
-        return $partificatpr;
+        return $this->request()->where('user_id', $user->id)->with('status')->first();
     }
 
     public static function get($id)
@@ -77,13 +72,13 @@ class Event extends Model
             return $this->hasMany(EventRequest::class);
     }
 
-    public function makeRequest($user=null){
+    public function makeRequest(User $user=null){
         if(!$user){
             $user=Auth::user();
         }
 
         if(!$user){
-           return false;
+           return "not user";
         }
 
         $eventRequwest = new EventRequest();
@@ -91,6 +86,7 @@ class Event extends Model
         $eventRequwest->event_id = $this->id;
         $eventRequwest->status_id=1;
         $eventRequwest->save();
+        return EventRequest::select(['*'])->with('status')->where('id',$eventRequwest->id)->first();
 
     }
 }

@@ -17,21 +17,21 @@ class InsertInEventReuwestStatus extends Migration
         DB::table('event_request_status')->insert(
                 array(
                         'id' => '1',
-                        'name'=>'Не прочитанное'
+                        'name'=>'Не прочитан'
                 )
         );
 
         DB::table('event_request_status')->insert(
                 array(
                         'id' => '2',
-                        'name'=>'Принятый'
+                        'name'=>'Принят'
                 )
         );
 
         DB::table('event_request_status')->insert(
                 array(
                         'id' => '3',
-                        'name'=>'Отклоненый'
+                        'name'=>'Отклонен'
                 )
         );
     }

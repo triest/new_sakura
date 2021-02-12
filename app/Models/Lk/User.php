@@ -574,13 +574,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $eventReq;
     }
 
-    public function getMyEventRequest($OnlyUnread=false){
+    public function getMyEventRequest($OnlyUnread = false)
+    {
         $eventReq = EventRequest::select(["*"])
-                ->select(['*']
-                )->where(['user_id'=>$this->id]);
+                ->select(
+                        ['*']
+                )->where(['user_id' => $this->id]);
 
-        if($OnlyUnread){
-            $eventReq->where(['readed',0])->where(['status','!=','unreaded']);
+        if ($OnlyUnread) {
+            $eventReq->where(['readed', 0])->where(['status', '!=', 'unreaded']);
         }
 
         return $eventReq;

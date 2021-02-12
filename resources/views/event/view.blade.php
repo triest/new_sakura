@@ -5,7 +5,6 @@
     <div class="container" id="app">
         <div class="profile-form">
 
-
             <div class="form-group">
                 <div class="col-xs-11">
                     {{$event->name}}
@@ -15,6 +14,7 @@
             @if(Auth::user())
 
                 <span class="border border-dark">
+                    sasassa
                 <event-requwest :user="{{Auth::user()}}" :event="{{$event}}"></event-requwest>
                 </span>
             @endif

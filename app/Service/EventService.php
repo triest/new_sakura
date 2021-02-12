@@ -29,7 +29,7 @@
             $partificator = null;
             $partifucationArray = array();
             foreach ($events as $item) {
-                $partificator = $item->checkUserPartification();
+                $partificator = $item->checkUserParticipation();
                 if ($partificator != false) {
                     array_push($partifucationArray, $partificator);
                 }

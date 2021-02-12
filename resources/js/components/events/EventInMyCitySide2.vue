@@ -6,21 +6,13 @@
                 <b>{{event.name}}</b> <br>
                 Место:{{event.place}} <br>
                 Дата: {{event.begin}} <br>
-                {{event.status_name}}
-                <div v-if="checkRequest(event.id)!==false">
-                    <div v-if="checkRequest(event.id)=='accept'">
-                        <a class="btn " v-bind:href="'/events/'+event.id"> Заявка принята</a>
-                    </div>
-                    <div v-if="checkRequest(event.id)=='denide'">
-                        <a class="btn " v-bind:href="'/events/'+event.id">Заявка отклонена</a>
-                    </div>
-                    <div v-if="checkRequest(event.id)=='unreaded'">
-                        <a class="btn " v-bind:href="'/events/'+event.id">Заявка не прочитана</a>
-                    </div>
-                </div>
-                <div v-else>
-                    <a class="btn " v-bind:href="'/events/'+event.id">Записаться!</a>
-                </div>
+              {{ event.status.name }}
+              <div v-if="checkRequest(event.id)!==false">
+                <a class="btn btn-primary" v-bind:href="'/events/'+event.id"> {{ checkRequest(event.id).name }} </a>
+              </div>
+              <div v-else>
+                <a class="btn btn-primary" v-bind:href="'/events/'+event.id">Записаться!</a>
+              </div>
             </div>
         </div>
         <div v-else>
@@ -54,21 +46,20 @@
                 )
                     .then((response) => {
                         this.eventList = response.data.events;
-                        this.partification = response.data.partification;
+                        this.partification = response.data.partificators;
                         console.log("events")
                     });
             },
             checkRequest(event_id) {
-                console.log("event_id "+event_id)
+
                 for (let i = 0; i < this.partification.length; i++) {
-                    if (typeof this.partification[i][0] === "undefined") {
+                    if (typeof this.partification[i] === "undefined") {
                         return false;
                     }
 
+                    if (this.partification[i].event_id === event_id) {
 
-                    if (this.partification[i][0].target_id === event_id) {
-                        console.log("statys"+this.partification[i][0].status);
-                        return this.partification[i][0].status;
+                        return this.partification[i].status;
                     }
                 }
                 return false;
