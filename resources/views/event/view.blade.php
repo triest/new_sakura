@@ -4,7 +4,7 @@
 
     <div class="container" id="app">
         <div class="profile-form">
-            <form class="form-lk" action="{{route('events.update')}}" method="post" enctype="multipart/form-data">
+
                 <img src="{{asset( "$event->photo_url")}}" alt="" id="profile_image" height="250px">
 
                 @if(Auth::user())
@@ -53,7 +53,6 @@
                 Фотографии события:
 
                 <a class="btn btn-primary" href="{{route("anket.main")}}">К списку анкет</a>
-            </form>
         </div>
     </div>
 @endsection

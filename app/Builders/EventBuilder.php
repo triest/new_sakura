@@ -27,6 +27,7 @@
         private $end_applications = null;
         private $place;
         private $city_id;
+        private $status_id=null;
 
         private $event=null;
 
@@ -37,6 +38,14 @@
         public function __construct(Event $event=null)
         {
             $this->event = $event;
+        }
+
+        /**
+         * @param null $status_id
+         */
+        public function setStatusId($status_id): void
+        {
+            $this->status_id = $status_id;
         }
 
 
@@ -157,8 +166,9 @@
                 return "нет пользователя";
             }
             $event->user()->associate($this->user);
-
-            $event->status_id=2;
+            if(!$this->status_id) {
+                $event->status_id = 3;
+            }
             $event->save();
 
             return $event;
