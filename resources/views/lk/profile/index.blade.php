@@ -23,15 +23,6 @@
 
                         <div class="group-upload_profile">
                             <label class="label_txt"><span></span>Изображение профиля</label>
-                            <div class="group-upload_txt_profile_photo">
-                                Загрузите изображение профиля в формате .jpg .png (не более 3Мб)
-                            </div>
-                            <!--                        <div class="group-file_upload">-->
-                            <!--                            <label for="file-upload-photo-profile" class="custom-file-upload">-->
-                            <!--                                Прикрепить документ-->
-                            <!--                            </label>-->
-                            <!--                            <input id="file-upload-photo-profile" type="file"/>-->
-                            <!--                        </div>-->
                             @if($size!="")
                                 <div class="group-file_upload_yes">
                                     <div class="txt" id="txt">/avatarka.jpg ({{$size}}Кб)</div>
