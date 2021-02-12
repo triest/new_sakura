@@ -3,7 +3,8 @@
 @section('content')
 
     <div class="container" id="app">
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <a class="btn btn-primary" href="{{route('events.create')}}">Создать событие</a>
+        <input class="form-control" id="myInput" type="text" placeholder="Найти">
         <div class="profile-form">
             <table class="table">
                 <tbody  id="myTable">

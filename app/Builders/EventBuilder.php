@@ -28,6 +28,18 @@
         private $place;
         private $city_id;
 
+        private $event=null;
+
+        /**
+         * EventBuilder constructor.
+         * @param null $event
+         */
+        public function __construct(Event $event=null)
+        {
+            $this->event = $event;
+        }
+
+
         /**
          * @param mixed $name
          */
@@ -71,9 +83,9 @@
         /**
          * @param mixed $min_piople
          */
-        public function setMinPiople($min_piople): void
+        public function setMinPeople($min_people): void
         {
-            $this->min_piople = $min_piople;
+            $this->min_people = $min_people;
         }
 
         /**
@@ -107,7 +119,12 @@
 
         public function getResult()
         {
-            $event = new Event();
+            if(!$this->event) {
+                $event = new Event();
+            }else{
+                $event=$this->event;
+            }
+
             $event->place = $this->place;
             $event->name = $this->name;
             $event->city_id = $this->city_id;

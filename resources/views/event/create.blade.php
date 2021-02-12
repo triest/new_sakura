@@ -31,6 +31,12 @@
                         <font color="red"><p>  {{$errors->first('name')}}</p></font>
                     @endif
                 </div>
+                Фотография события:
+                <input type="file" id="images" accept="image/*" name="file" value="{{ old('file')}}">
+                @if($errors->has('file'))
+                    <font color="red"><p>  {{$errors->first('file')}}</p></font>
+                @endif
+
                 <div class="form-group">
                     <div class="col-xs-17">
                         <label for="exampleInputFile">Описание события:</label><br>
@@ -49,31 +55,12 @@
             <label>Выбирите из списка:
                 <select id="city" class="city" style="width: 200px" name="city" required>
                 </select>
-            </label>
+            </label> -->
             @if($errors->has('city'))
                     <font color="red"><p>  {{$errors->first('city')}}</p></font>
             @endif
 
-                        <script>
-                            function findCity() {
-                                var inputcity = document.getElementById('cityname').value;
-                                console.log(inputcity);
-                                var x = document.getElementById("city");
-                                var option = document.createElement("option");
-                                axios.get('/findcity/' + inputcity, {
-                                    params: {}
-                                })
-                                    .then((response) => {
-                                        var data = response.data;
-                                        $('#city').empty();
-                                        for (var i = 0; i <= data[0].length; i++) {
-                                $('#city').append('<option value="' + data[0][i].id_city + '">' + data[0][i].name + '</option>');
-                            }
-                        });
-                }
 
-            </script>
--->
                     <br>
                     <label for="title">Место:</label>
                     <input type="text" class="form-control" id="place" name="place" value="{{ old('place') }}"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Builders\EventBuilder;
+use App\EventStatus;
 use App\Exceptions\ExceptionWithMessageForUser;
 use App\Http\Requests\StoreEvent;
 use App\Models\City;
@@ -11,6 +12,7 @@ use App\Models\EventRequest;
 use App\Models\Lk\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -50,14 +52,91 @@ class EventController extends Controller
         $builder->setMaxPeople($request->max);
         $builder->setMinPiople($request->min);
         $builder->setEndApplications($request->end_date . " " . $request->time_end);
+
         $event = $builder->getResult();
+
         if (!is_object($event)) {
             return redirect()->back()->withErrors(['msg' => $event])->withInput();
         }
+        if ($request->hasFile('file')) {
+            if ($event->photo != null) {
+                Storage::delete($event->photo);
+            }
+            $path = $request->file('file')->store('public/event');
+            $event->photo_url = 'storage/app/' . $path;
+            $event->photo = $path;
+        }
+
+
         $event->save();
 
         return redirect()->route('events.view', ['id' => $event->id]);
     }
+
+    public function edit($id){
+           $event=Event::get($id);
+           if(!$event){
+               abort(404);
+           }
+
+        $arr = explode(' ', $event->begin);
+        $date = $arr[0];
+        $time = $arr[1];
+
+
+        $end_application=  $arr = explode(' ', $event->end_applications);
+
+        $statuses=EventStatus::select(['*'])->get();
+        $city = City::getCurrentCity();
+
+        return view('event.edit')->with(
+                [
+                        'event' => $event,
+                        'date_begin' => $date,
+                        'time_begin' => $time,
+                        'date_applications' => $end_application[0],
+                        'time_applications' => $end_application[1],
+                        'statuses' => $statuses,
+                         'city' => $city
+                ]
+        );
+    }
+
+
+    public function update($id,StoreEvent $request){
+        dump($request);
+
+        $event=Event::get($id);
+        if(!$event){
+          return back()->withErrors(['msg'=>'Ошибка! Обратитесь к администратору']);
+        }
+        $builder = new EventBuilder($event);
+        $builder->setName($request->name);
+        $builder->setDescription($request->description);
+        $builder->setBegin($request->date . " " . $request->time);
+        $builder->setCityId($request->city_id);
+        $builder->setPlace($request->place);
+        $builder->setMaxPeople($request->max);
+        $builder->setMinPeople($request->min);
+        $builder->setEndApplications($request->end_date . " " . $request->time_end);
+
+        $event = $builder->getResult();
+
+        if ($request->hasFile('file')) {
+            if ($event->photo != null) {
+                Storage::delete($event->photo);
+            }
+            $path = $request->file('file')->store('public/event');
+            $event->photo_url = 'storage/app/' . $path;
+            $event->photo = $path;
+        }
+
+
+        $event->save();
+
+        return redirect()->route('events.view', ['id' => $event->id]);
+    }
+
 
     public function view($id, Request $request)
     {

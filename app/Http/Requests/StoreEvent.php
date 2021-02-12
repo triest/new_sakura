@@ -27,9 +27,9 @@ class StoreEvent extends FormRequest
             //
                 'name' => 'required',
                 'date' => 'required|date',
-                'time' => 'required|date_format:H:i',
+                'time' => 'required|date_format:H:i:s',
                 'end_date' => 'date',
-                'end_time' => 'date_format:H:i',
+                'end_time' => 'date_format:H:i:s',
                 'description' => 'required',
                 'min' => 'integer|min:0',
                 'max' => 'integer|min:0',
@@ -46,7 +46,6 @@ class StoreEvent extends FormRequest
                 'max.integer' => 'болжно быть больще 1',
                 'city_id.required'=>'не указан город.',
                 'city_id.exists'=>'несуществующий город. Обратитесь к администратору.',
-
         ];
     }
 }

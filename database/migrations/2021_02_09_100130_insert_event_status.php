@@ -25,7 +25,7 @@ class InsertEventStatus extends Migration
         DB::table('event_status')->insert(
                 array(
                         'id' => '2',
-                        'name'=>'Ожидает учстников'
+                        'name'=>'Ожидает участников'
                 )
         );
 

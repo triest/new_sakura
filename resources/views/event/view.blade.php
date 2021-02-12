@@ -4,63 +4,56 @@
 
     <div class="container" id="app">
         <div class="profile-form">
+            <form class="form-lk" action="{{route('events.update')}}" method="post" enctype="multipart/form-data">
+                <img src="{{asset( "$event->photo_url")}}" alt="" id="profile_image" height="250px">
 
-            <div class="form-group">
-                <div class="col-xs-11">
-                    {{$event->name}}
-                </div>
-            </div>
-
-            @if(Auth::user())
-
+                @if(Auth::user())
+                    <div class="form-group">
                 <span class="border border-dark">
-                    sasassa
                 <event-requwest :user="{{Auth::user()}}" :event="{{$event}}"></event-requwest>
                 </span>
-            @endif
-            <div class="form-group">
-                <div class="col-xs-17">
-                    {{$event->description}}
-                </div>
-            </div>
-
-            <div class="col-xs-11">
-                @if(isset($city) && $city!=null)
-                    {{$city}}
-                    <br>
+                    </div>
                 @endif
-                <label for="title">Место:</label>
-                {{$event->place }}
-            </div>
-            <div class="col-xs-11">
-                <p>
-                    Дата:{{$date_begin}}
-                </p>
-                Время:
-                {{$time_begin}}
-                <p>
-                    Заявки принимаються до:
-                    {{$date_applications }}
-                </p>
-                <p>
+                <div class="form-group">
+                    <div class="col-xs-17">
+                        {{$event->description}}
+                    </div>
+                </div>
+
+                <div class="col-xs-11">
+                    @if(isset($city) && $city!=null)
+                        {{$city}}
+                        <br>
+                    @endif
+                    <label for="title">Место:</label>
+                    {{$event->place }}
+                </div>
+                <div class="col-xs-11">
+                    <p>
+                        Дата:{{$date_begin}}
+                    </p>
                     Время:
-                    {{$time_applications}}
-                </p>
-            </div>
-            @if($event->max_people!=null)
-                <label for="max">Максимальное число участников (если нет ограничения, оставьте пустым):
-                    {{$event->max_people}}
-                </label><br>
-            @endif
-            @if($event->min_people!=null)
-                <label for="min">Минимальное число участников (если нет ограничения, оставьте пустым):
-                    {{$event->max_people}}
-                </label><br>
-            @endif
+                    {{$time_begin}}
+                    <p>
+                        Заявки принимаються до:
+                        {{$date_applications }}      {{$time_applications}}
+                    </p>
+                </div>
+                @if($event->max_people!=null)
+                    <label for="max">Максимальное число участников (если нет ограничения, оставьте пустым):
+                        {{$event->max_people}}
+                    </label><br>
+                @endif
+                @if($event->min_people!=null)
+                    <label for="min">Минимальное число участников (если нет ограничения, оставьте пустым):
+                        {{$event->max_people}}
+                    </label><br>
+                @endif
 
-            Фотографии события:
+                Фотографии события:
 
-            <a class="btn btn-primary" href="{{route("anket.main")}}">К списку анкет</a>
+                <a class="btn btn-primary" href="{{route("anket.main")}}">К списку анкет</a>
+            </form>
         </div>
     </div>
 @endsection
