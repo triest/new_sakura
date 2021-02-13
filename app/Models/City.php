@@ -45,46 +45,77 @@ class City extends Model
         curl_close($ch);
 
         $json = json_decode($output, true);
-        /*
+
         if (isset( $json['city']['okato'])) {
             $okato = $json['city']['okato'];
         }else{
             $okato=null;
         }
-*/
-        $okato= isset($json['city']['okato']) ??  $json['city']['okato'] :: null;
-        $name= isset($json['city']['name_ru']) ??  $json['city']['name_ru'] :: null;
-/*
+
+  //      $okato= isset($json['city']['okato']) ??  $json['city']['okato'] :: null;
+   //     $name= isset($json['city']['name_ru']) ??  $json['city']['name_ru'] :: null;
+
         if (isset( $json['city']['name_ru'])) {
             $name = $json['city']['name_ru'];
         }else{
             $name=null;
         }
-*/
+
+        if (isset( $json['region']['name_ru'])) {
+            $region_name = $json['region']['name_ru'];
+        }else{
+            $region_name=null;
+        }
+        dump($region_name);
+
+        $region=Region::select(['*'])->where('name', '=', $region_name)->first();
+
+        if(!$region && $region_name){
+            $region=new Region();
+            $region->name=$region_name;
+            $region->save();
+        }
+
+
         $city = City::select(
                 [
                         'id',
                         'name',
                         'OKATO',
                 ]
-        )->where('OKATO', '=', intval($okato))->first();
+        )->with('region')->where('OKATO', '=', intval($okato))->first();
 
         if (!$city) {
             $city = new City();
             $city->name = $name;
             $city->OKATO = $okato;
+            $city->region_id = $region->id;
             $city->save();
+
+            $city = City::select(
+                    [
+                            'id',
+                            'name',
+                            'OKATO',
+                    ]
+            )->with('region')->where('id', '=', $city->id)->first();
         }
 
         $user = Auth::user();
-        if ($user != null && isset($city->id)) {
-            $user->city_id = $city->id;
+        if ($user != null) {
+            if (isset($city->id)) {
+                $user->city_id = $city->id;
+            }
+            if (isset($region->id)) {
+                $user->region_id = $region->id;
+            }
             $user->save();
         }
 
         if ($city) {
-           session(['city' => $city]);
+            session(['city' => $city]);
         }
+
         return $city;
     }
 
@@ -97,9 +128,13 @@ class City extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'city_id');
+        return $this->belongsTo(User::class, 'city_id');
     }
 
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'region_id');
+    }
 
     public function newCity(
             Request $request
@@ -137,5 +172,7 @@ class City extends Model
 
         return response()->json([$cities]);
     }
+
+
 
 }
