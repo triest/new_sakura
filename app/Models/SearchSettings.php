@@ -32,7 +32,7 @@
                     'interest_id');
         }
 
-        public static function getSeachSettings()
+        public static function getSearchSettings()
         {
             $cookie = null;
             $userAuth = Auth::user();

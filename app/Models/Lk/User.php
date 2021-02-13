@@ -134,7 +134,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'password',
             'remember_token',
             'email',
-            'phone'
+            'phone',
+            'private'
     ];
 
     /**
@@ -388,7 +389,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $first = Like::select(['id'])->where('who_id', $this->id)
                 ->where('target_id', $user->id)->first();
 
-        if ($first != null) {
+        if ($first) {
             $user->sendMessage("Мы понравились друг другу ");
             $this->sendMessage("Мы понравились друг другу ");
             $result['message'] = "match";
@@ -397,7 +398,7 @@ class User extends Authenticatable implements MustVerifyEmail
         } else {
             $result['message'] = "match";
             $result['result'] = true;
-            $result['match'] = true;
+            $result['match'] = false;
         }
         return $result;
     }
@@ -510,6 +511,10 @@ class User extends Authenticatable implements MustVerifyEmail
         } else {
             return null;
         }
+    }
+
+    public function city(){
+        return $this->hasOne(City::class,'id','city_id');
     }
 
     public function sluggable(): array

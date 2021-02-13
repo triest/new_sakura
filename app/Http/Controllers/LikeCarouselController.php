@@ -25,26 +25,25 @@
             $likeCarouselService = new LikeCarouselService();
             $anket = $likeCarouselService->getAnket($userAuth);
 
-            $city = null;
-            if ($anket->city_id != null) {
-                $city = City::get($anket->city_id);
+            if ($anket) {
+                $online = $anket->isOnline();
+                $last_login = $anket->lastLoginFormat();
+            }else{
+                $online=false;
+                $last_login=null;
             }
-
-            $online = $anket->isOnline();
-            $last_login = $anket->lastLoginFormat();
-
-            return response()->json([
-                    'ankets' => $anket,
-                    'online' => $online,
-                    'city' => $city,
-                    'last_login' => $last_login,
-            ]);
+            return response()->json(
+                    [
+                            'ankets' => $anket,
+                            'online' => $online,
+                            'last_login' => $last_login,
+                    ]
+            );
         }
 
         public function newLike(Request $request)
         {
 
-           // dump($request);
             if($request->action=="like" && !Auth::user()){
                 return  response('',401);
             }

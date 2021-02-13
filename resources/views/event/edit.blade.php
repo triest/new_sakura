@@ -55,25 +55,7 @@
                 <div class="col-xs-11">
 
 
-                    <script>
-                        function findCity() {
-                            var inputcity = document.getElementById('cityname').value;
-                            console.log(inputcity);
-                            var x = document.getElementById("city");
-                            var option = document.createElement("option");
-                            axios.get('/findcity/' + inputcity, {
-                                params: {}
-                            })
-                                .then((response) => {
-                                    var data = response.data;
-                                    $('#city').empty();
-                                    for (var i = 0; i <= data[0].length; i++) {
-                                        $('#city').append('<option value="' + data[0][i].id_city + '">' + data[0][i].name + '</option>');
-                                    }
-                                });
-                        }
 
-                    </script>
                     <br>
                     <label for="title">Место:</label>
                     <input type="text" class="form-control" id="place" name="place" value="{{$event->place }}"

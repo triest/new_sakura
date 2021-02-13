@@ -39,7 +39,7 @@
 
         public function saveSettings(Request $request)
         {
-            $seachSettings = SearchSettings::getSeachSettings();
+            $seachSettings = SearchSettings::getSearchSettings();
 
 
             if (!$seachSettings) {

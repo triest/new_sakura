@@ -157,21 +157,8 @@ class City extends Model
     }
 
 
-    public function changeCity()
-    {
-        $city = Session::get('city');
-        $city = DB::table('cities')->where('id_city', $city)->first();
 
-        return view('changeCity')->with(['city' => $city]);
-    }
 
-    public static function findcity($name)
-    {
-        //echo $name;
-        $cities = DB::table('cities')->where('name', 'like', $name . '%')->get();
-
-        return response()->json([$cities]);
-    }
 
 
 

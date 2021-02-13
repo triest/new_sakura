@@ -28,23 +28,9 @@ class SearchService
     public function search()
     {
         $userAuth = Auth::user();
-        if ($userAuth != null) {
-            if ($userAuth != null) {
-                $seachSettings = $userAuth->seachsettings()->first();
-            }
-        } else {
-            if (isset($_COOKIE["searchSettings"])) {
-                $cookie = $_COOKIE["searchSettings"];
-                if ($cookie != null) {
-                    $seachSettings = SearchSettings::select(['*'])
-                            ->where("cookie", "=", $cookie)
-                            ->orderBy('updated_at', 'desc')
-                            ->first();
-                }
-            }
-        }
+        $searchSettings = SearchSettings::getSearchSettings();
 
-        if (!isset($seachSettings) || $seachSettings == null) {
+        if (!isset($searchSettings) || $searchSettings == null) {
             $users = DB::table('users');
             if (isset($userAuth) && $userAuth != null) {
                 $users->where('city_id', '=', $userAuth->city_id);
@@ -80,7 +66,6 @@ class SearchService
             )->distinct('users.id')->limit($this->limit);
 
 
-
             $num_pages = intval($count / $this->limit);
             $users->limit($this->limit);
             $users->orderByDesc('created_at')->get();
@@ -92,7 +77,7 @@ class SearchService
 
         $users = User::select(['*']);
 
-        $interest = $seachSettings->interest()->get();
+        $interest = $searchSettings->interest()->get();
 
 
         if ($interest->isNotEmpty()) {
@@ -111,7 +96,7 @@ class SearchService
             $users->whereIn('user_interest.interest_id', $interest_array);
         }
 
-        $targets = $seachSettings->target()->get();
+        $targets = $searchSettings->target()->get();
 
         if ($targets->isNotEmpty()) {
             $users->leftJoin(
@@ -129,8 +114,8 @@ class SearchService
         }
 
 
-        if ($seachSettings->children != null && $seachSettings->children != 3) {
-            $users->where('children_id', '=', $seachSettings->children);
+        if ($searchSettings->children != null && $searchSettings->children != 3) {
+            $users->where('children_id', '=', $searchSettings->children);
         }
 
 
@@ -141,22 +126,22 @@ class SearchService
             $users->where('city_id', $city->id);
         }
 
-        if ($seachSettings->meet != null
-                && $seachSettings->meet != "nomatter"
+        if ($searchSettings->meet != null
+                && $searchSettings->meet != "nomatter"
         ) {
-            $users->where('sex', '=', $seachSettings->meet);
+            $users->where('sex', '=', $searchSettings->meet);
         }
 
-        if (isset($seachSettings) && $seachSettings->relation != 0) {
-            $users->where('relation_id', '=', $seachSettings->relation);
+        if (isset($searchSettings) && $searchSettings->relation != 0) {
+            $users->where('relation_id', '=', $searchSettings->relation);
         }
 
-        if (isset($seachSettings) && $seachSettings->age_from != null) {
-            $users->where(DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"), ">=", $seachSettings->age_from);
+        if (isset($searchSettings) && $searchSettings->age_from != null) {
+            $users->where(DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"), ">=", $searchSettings->age_from);
         }
 
-        if (isset($seachSettings) && $seachSettings->age_to != null) {
-            $users->where(DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"), "<=", $seachSettings->age_to);
+        if (isset($searchSettings) && $searchSettings->age_to != null) {
+            $users->where(DB::raw(" TIMESTAMPDIFF(YEAR, date_birth,NOW())"), "<=", $searchSettings->age_to);
         }
 
         if (Auth::user() != null) {
@@ -174,12 +159,11 @@ class SearchService
                 'users.photo_profile_url'
         );
 
-       $users->distinct('users.id');
+        $users->distinct('users.id');
 
         $users->orderByDesc('created_at');
 
         $users = $users->paginate($this->paginate);;
-
 
 
         return $users;
