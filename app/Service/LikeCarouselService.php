@@ -19,28 +19,20 @@
         public function getAnket($userAuth = null)
         {
 
-            if (isset($userAuth) && $userAuth != null) {
-                $girls = collect(DB::select('select users.id  from users users
-where users.id not in (
-select likes.target_id from likes where likes.who_id=?
-)
-order by rand()
-limit 1', [$userAuth->id]))->first();
-            } else {
-                $city = City::getCurrentCity();
-                if ($city == null) {
-                    return null;
-                }
-                $girls = collect(DB::select('select users.id  from users users
-where users.id not in (
-select likes.target_id from likes 
-)
-order by rand()
-limit 1'))->first();
+            $user=User::select(['*']);
+
+            $city=City::getCurrentCity();
+
+            if ($city == null) {
+                return null;
             }
 
-            $user = User::get($girls->id);
+            $user->where('city_id','=',$city->id);
 
-            return $user;
+            $user->with(['target','relation','interest']);
+
+            $user=$user->inRandomOrder();
+
+            return $user->first();
         }
     }

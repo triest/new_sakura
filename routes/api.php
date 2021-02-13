@@ -34,7 +34,7 @@ Route::prefix('anket')->name('anket.')->group(
 Route::prefix('like-carousel')->name('like-carousel.')->group(
         function () {
             Route::get('/getAnket', 'LikeCarouselController@getAnket')->name('getAnket');
-            Route::get('/newLike', 'LikeCarouselController@newLike');
+            Route::post('/like', 'LikeCarouselController@newLike');
             Route::get('/checkLike', 'LikeCarouselController@checkLike');
         }
 );

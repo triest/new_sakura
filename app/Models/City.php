@@ -45,9 +45,22 @@ class City extends Model
         curl_close($ch);
 
         $json = json_decode($output, true);
-
-        $okato = $json['city']['okato'];
-
+        /*
+        if (isset( $json['city']['okato'])) {
+            $okato = $json['city']['okato'];
+        }else{
+            $okato=null;
+        }
+*/
+        $okato= isset($json['city']['okato']) ??  $json['city']['okato'] :: null;
+        $name= isset($json['city']['name_ru']) ??  $json['city']['name_ru'] :: null;
+/*
+        if (isset( $json['city']['name_ru'])) {
+            $name = $json['city']['name_ru'];
+        }else{
+            $name=null;
+        }
+*/
         $city = City::select(
                 [
                         'id',
@@ -56,26 +69,28 @@ class City extends Model
                 ]
         )->where('OKATO', '=', intval($okato))->first();
 
-        if ($city == null) {
+        if (!$city) {
             $city = new City();
-            $city->name = $json['city']['name_ru'];
+            $city->name = $name;
             $city->OKATO = $okato;
             $city->save();
         }
 
         $user = Auth::user();
-        if ($user != null) {
+        if ($user != null && isset($city->id)) {
             $user->city_id = $city->id;
             $user->save();
         }
 
-        session(['city' => $city]);
+        if ($city) {
+           session(['city' => $city]);
+        }
         return $city;
     }
 
     public static function get($id)
     {
-        $city = City::select(['*'])->where('id', $id)->first();
+        $city = City::find($id);
 
         return $city;
     }
@@ -121,48 +136,6 @@ class City extends Model
         $cities = DB::table('cities')->where('name', 'like', $name . '%')->get();
 
         return response()->json([$cities]);
-    }
-
-    public static function findcity2($name)
-    {
-        /*
-         * 1) Ищим по имени в таблице
-         *
-         * 2) Если нет, то шлем запрос на api
-         *
-         * 3) Добавляем в таблицу
-        */
-        $cities = DB::table('cities_api')->where('name', 'like', '%' . $name . '%')
-                ->get();
-
-
-        if ($cities->isEmpty()) {
-            $response
-                    = file_get_contents(
-                    "https://kladr-api.ru/api.php?contentType=city&withParent=1&limit=10&query=$name"
-            );
-            $response = json_decode($response);
-            $result = $response->result;
-
-            $cities = DB::table('cities_api')
-                    ->where('OKATO', 'like', '%' . $result[1]->oktmo . '%')
-                    ->get();
-
-            if ($cities->isEmpty()) {
-                DB::table('cities_api')->insert(
-                        [
-                                'name' => $result[1]->name,
-                                'OKATO' => $result[1]->oktmo,
-                                'PARANTS_OKATO' => $result[1]->parents[0]->okato,
-                        ]
-                );
-                $cities = DB::table('cities_api')
-                        ->where('name', 'like', $name . '%')
-                        ->get();
-            }
-        }
-
-        return response()->json($cities);
     }
 
 }

@@ -24,6 +24,9 @@ class EventController extends Controller
     public function myEventsList(Request $request)
     {
         $user = Auth::user();
+        if(!$user){
+            abort(404);
+        }
 
         $events = $user->events()->with(['status'])->orderBy('begin', 'desc')->get();
 
@@ -104,7 +107,6 @@ class EventController extends Controller
 
 
     public function update($id,StoreEvent $request){
-        dump($request);
 
         $event=Event::get($id);
         if(!$event){
@@ -201,7 +203,8 @@ class EventController extends Controller
     public function inmycity(Request $request)
     {
         if ($request->city) {
-            $city = City::get(intval($request->get('city')));
+            $city = City::findOrFail($request->get('city'));
+
             $events = Event::inMyCity($city);
 
             $participator = null;

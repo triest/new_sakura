@@ -33,15 +33,15 @@
       <p v-else>
         {{ lastLogin }}
       </p>
-      <div v-if="targets.length">
+      <div v-if="item.target.length">
         <b>Цель знакомства</b>
-        <div v-for="item in targets">
+        <div v-for="item in item.target">
           {{ item.name }},
         </div>
       </div>
-      <div v-if="interets.length">
+      <div v-if="item.interest.length">
         <b>Интересы</b>
-        <div v-for="item in interets">
+        <div v-for="item in item.interest">
           {{ item.name }},
         </div>
       </div>
@@ -81,37 +81,41 @@ export default {
                 this.item = response.data.ankets;
                 this.online = response.data.online;
                 this.city = response.data.city;
-                this.targets = response.data.targets;
-                this.interets = response.data.interets;
-                this.interets = response.data.interets;
                 this.lastLogin = response.data.lastLogin
               });
         },
         like(action) {
           let that = this;
           let temp = null;
-          axios.get('api/like-carousel/newLike', {
-            params: {
+          axios.post('api/like-carousel/like', {
               user_id: this.item.id,
               action: action,
-            }
           })
-              .then(function (data){
+              .then(function (data,status){
                 temp = data.data;
                 if(temp.result===false && temp.message==="not auth"){
+                  that.getAnket();
                 }else if(temp.result===true && temp.match===false){
                   that.getAnket();
                 }else if(temp.result===true && temp.match===true){
                    that.matchVisibly=true;
                 }
-              });
+              }).catch(err => {
+                  if (err.response.status === 401) {
+                       this.$confirm("Вы не вошли. Хотите войти?").then(() => {
+                         window.location.href = "/login";
+                    }).catch(()=>{
+                        that.getAnket();
+                    });
+                  } else if(err.response.status === 40){
+
+                  }
+          });
         },
         skip() {
-          axios.get('api/like-carousel/newlike', {
-            params: {
+          axios.post('api/like-carousel/like', {
               user_id: this.item.id,
               action: "skip",
-            }
           })
               .then((response) => {
                 this.getAnket();

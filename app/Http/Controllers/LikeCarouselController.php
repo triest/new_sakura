@@ -5,6 +5,7 @@
     use App\Models\City;
     use App\Models\Lk\User;
     use App\Service\LikeCarouselService;
+    use http\Env\Response;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\DB;
@@ -14,8 +15,6 @@
         //
         public function index(Request $request)
         {
-
-
             return view("like-carousel.index");
         }
 
@@ -30,8 +29,6 @@
             if ($anket->city_id != null) {
                 $city = City::get($anket->city_id);
             }
-            $targets = $anket->target()->get();
-            $interets = $anket->interest()->get();
 
             $online = $anket->isOnline();
             $last_login = $anket->lastLoginFormat();
@@ -40,19 +37,22 @@
                     'ankets' => $anket,
                     'online' => $online,
                     'city' => $city,
-                    'targets' => $targets,
-                    'interets' => $interets,
                     'last_login' => $last_login,
             ]);
         }
 
         public function newLike(Request $request)
         {
-            $girl = User::get($request->user_id);
-            if (!$girl) {
+
+           // dump($request);
+            if($request->action=="like" && !Auth::user()){
+                return  response('',401);
+            }
+            $user = User::get($request->user_id);
+            if (!$user) {
                 return response()->json(false);
             }
-            $result=$girl->newLike();
+            $result=$user->newLike();
 
 
             return response()->json($result);
@@ -60,13 +60,13 @@
 
         public function checkLike(Request $request)
         {
-            $girl = User::get($request->anket_id);
+            $user = User::get($request->anket_id);
 
-            if ($girl == null) {
+            if ($user == null) {
                 return response()->json(false);
             }
 
-            return response()->json($girl->checkLike());
+            return response()->json($user->checkLike());
         }
 
 
