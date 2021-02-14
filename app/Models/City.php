@@ -21,99 +21,131 @@ class City extends Model
             return \session('city');
         }
 
-        $ip = User::getIpStatic();
 
-        if (!$ip) {
-            $ip = "";
-        }
+        $ip = \Request::ip();
 
-        // create curl resource
-        $ch = curl_init();
-        // set url
-        curl_setopt($ch, CURLOPT_URL, "http://api.sypexgeo.net/json/" . $ip);
-
-        //return the transfer as a string
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        // $output contains the output string
-        $output = curl_exec($ch);
-
-        if (curl_errno($ch)) {
-            $error_msg = curl_error($ch);
-            return null;
-        }
-        curl_close($ch);
-
-        $json = json_decode($output, true);
-
-        if (isset( $json['city']['okato'])) {
-            $okato = $json['city']['okato'];
-        }else{
-            $okato=null;
-        }
-
-  //      $okato= isset($json['city']['okato']) ??  $json['city']['okato'] :: null;
-   //     $name= isset($json['city']['name_ru']) ??  $json['city']['name_ru'] :: null;
-
-        if (isset( $json['city']['name_ru'])) {
-            $name = $json['city']['name_ru'];
-        }else{
-            $name=null;
-        }
-
-        if (isset( $json['region']['name_ru'])) {
-            $region_name = $json['region']['name_ru'];
-        }else{
-            $region_name=null;
-        }
-        dump($region_name);
-
-        $region=Region::select(['*'])->where('name', '=', $region_name)->first();
-
-        if(!$region && $region_name){
-            $region=new Region();
-            $region->name=$region_name;
-            $region->save();
+        if($ip=="127.0.0.1"){
+            $ip="";
         }
 
 
-        $city = City::select(
-                [
-                        'id',
-                        'name',
-                        'OKATO',
-                ]
-        )->with('region')->where('OKATO', '=', intval($okato))->first();
+        $ipCity=IpCity::select(['id','ip','city_id'])->with('city')->where('ip',$ip)->first();
 
-        if (!$city) {
-            $city = new City();
-            $city->name = $name;
-            $city->OKATO = $okato;
-            $city->region_id = $region->id;
-            $city->save();
+        if(!$ipCity) {
+            // create curl resource
+            $ch = curl_init();
+            // set url
+            curl_setopt($ch, CURLOPT_URL, "http://api.sypexgeo.net/json/" . $ip);
+
+            //return the transfer as a string
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+            // $output contains the output string
+            $output = curl_exec($ch);
+
+            if (curl_errno($ch)) {
+                $error_msg = curl_error($ch);
+                return null;
+            }
+            curl_close($ch);
+
+            $json = json_decode($output, true);
+
+            if (isset($json['city']['okato'])) {
+                $okato = $json['city']['okato'];
+            } else {
+                $okato = null;
+            }
+
+
+            if (isset($json['city']['name_ru'])) {
+                $name = $json['city']['name_ru'];
+            } else {
+                $name = null;
+            }
+
+            if (isset($json['region']['name_ru'])) {
+                $region_name = $json['region']['name_ru'];
+            } else {
+                $region_name = null;
+            }
+
+
+            $region = Region::select(['*'])->where('name', '=', $region_name)->first();
+
+            if (!$region && $region_name) {
+                $region = new Region();
+                $region->name = $region_name;
+                $region->save();
+            }
+
 
             $city = City::select(
                     [
                             'id',
                             'name',
                             'OKATO',
+                            'region_id'
                     ]
-            )->with('region')->where('id', '=', $city->id)->first();
-        }
+            )->with('region')->where('OKATO', '=', intval($okato))->first();
 
-        $user = Auth::user();
-        if ($user != null) {
-            if (isset($city->id)) {
-                $user->city_id = $city->id;
+            if (!$city) {
+                $city = new City();
+                $city->name = $name;
+                $city->OKATO = $okato;
+                $city->region_id = $region->id;
+                $city->save();
+
+                $city = City::select(
+                        [
+                                'id',
+                                'name',
+                                'OKATO',
+                                'region_id'
+                        ]
+                )->with('region')->where('id', '=', $city->id)->first();
             }
-            if (isset($region->id)) {
-                $user->region_id = $region->id;
+
+            $user = Auth::user();
+            if ($user != null) {
+                if (isset($city->id)) {
+                    $user->city_id = $city->id;
+                }
+                if (isset($region->id)) {
+                    $user->region_id = $region->id;
+                }
+                $user->save();
             }
-            $user->save();
+
+
+            if (isset($json['ip'])) {
+                $ipCity = IpCity::select(['id', 'ip', 'city_id'])->with('city')->where('ip', $json['ip'])->first();
+
+                if (!$ipCity) {
+                    $ipCity = new IpCity();
+                }
+                $ipCity->ip = $json['ip'];
+            } else {
+                $ipCity = new IpCity();
+                $ipCity->ip = $ip;
+            }
+
+         //   $ipCity->city()->associate($city);
+            $ipCity->city_id=$city->id;
+            $ipCity->save();
+        }else{
+            $city=$ipCity->city()->first();
+            if($city){
+                $region=$city->region()->first();
+            }else{
+                $city=null;
+                $region=null;
+            }
         }
 
         if ($city) {
             session(['city' => $city]);
+            session(['region' => $region]);
         }
 
         return $city;
@@ -134,6 +166,11 @@ class City extends Model
     public function region()
     {
         return $this->belongsTo(Region::class, 'region_id');
+    }
+
+    public function ip()
+    {
+            return $this->hasMany(IpCity::class,'id','city_id');
     }
 
     public function newCity(
