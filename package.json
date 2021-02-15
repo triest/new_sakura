@@ -29,6 +29,7 @@
         "croppie": "^2.6.4",
         "laravel-echo": "^1.8.0",
         "pusher-js": "^6.0.3",
+        "vue-js-modal": "^2.0.0-rc.6",
         "vue-simple-alert": "^1.1.1"
     }
 }

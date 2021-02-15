@@ -45,11 +45,14 @@ export default {
       photo: null,
       galerayFile: null,
       showPhotoModal:false,
-
+      resizable: true,
+      adaptive: true,
+      draggable: true
     };
   },
   mounted() {
     this.getPhotos();
+    this.$modal.show('example-modal')
   },
   components:{
     photoModal

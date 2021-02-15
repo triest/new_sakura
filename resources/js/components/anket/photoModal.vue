@@ -3,9 +3,17 @@
         <transition name="modal" @close="showModal = false">
             <div class="modal-mask">
                 <div class="modal-wrapper">
-                    <div class="modal-container">
-                      <img :src="'/'+photo.url" class="album-image" alt="image">
+                  <section class="container">
+                    <img :src="'/'+photo.url" class="album-image" alt="image">
+                    <div class="copy">
+                      <a href="mailto:Email@domain.com" target="_top">Email</a>
+                      <p>
+                        <span class="phone-number">Phone Number</span><br />
+                        <span class="tagline">Tagline</span>
+                      </p>
                     </div>
+                  </section>
+
                 </div>
             </div>
         </transition>
@@ -77,7 +85,8 @@
     }
 */
     .modal-container {
-       /* width: 50vh !important;*/
+        width: auto;
+        height: auto;
         overflow-x: hidden;
         /*height:300px;*/
   /*      margin: 0px auto;
@@ -93,6 +102,11 @@
     .modal-header h3 {
         margin-top: 0;
         color: #42b983;
+    }
+
+    .album-image{
+      width:auto;
+      height: auto;
     }
 
     .modal-body {
@@ -137,5 +151,20 @@
       right: 0;
     }
 
+.container {
+  bottom: 0;
+  left: 0;
+  height: 300px;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+.container img {
+  max-width: 100%;
+}
 
 </style>
