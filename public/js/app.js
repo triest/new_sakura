@@ -2688,7 +2688,20 @@ __webpack_require__.r(__webpack_exports__);
         var data = null;
         data = response.data;
         that.photos.push(data.photo);
-      })["catch"](function () {}); //   this.getPhotos();
+        $("#photo")[0].value = "";
+      })["catch"](function (err) {
+        var message = "";
+
+        if (err.response.status === 422) {
+          message = Object.values(err.response.data.errors).join('<br>');
+        }
+
+        if (err.response.status === 500) {
+          message += "Ошибка. Обратитесь к администратору";
+        }
+
+        alert(message);
+      }); //   this.getPhotos();
     }
   }
 });
@@ -4126,10 +4139,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    // this.inSeach();
+    // this.inSearch();
     this.getAllDataForSidePanel();
     this.getNumberUnreadedEventRequwest();
-    this.remidese();
     Echo["private"]("messages.".concat(this.user.id)).listen('NewMessage', function (e) {
       console.log('NewMessage');
       axios.get('/getCountUnreaded').then(function (response) {
@@ -4188,7 +4200,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.numberApplicationPresents = response.data;
       });
     },
-    inSeach: function inSeach() {
+    inSearch: function inSearch() {
       var _this5 = this;
 
       var res;
@@ -4230,9 +4242,6 @@ __webpack_require__.r(__webpack_exports__);
         _this7.filter_enable = data.filter.filter_enable;
         _this7.count_accept_notification = data.countAccept_notification;
       });
-    },
-    clouseLikeModal: function clouseLikeModal() {
-      this.showLikeModal = false;
     },
     //
     getNumberUnreadedEventRequwest: function getNumberUnreadedEventRequwest() {

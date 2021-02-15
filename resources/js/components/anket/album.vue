@@ -102,9 +102,19 @@ export default {
         let data = null;
         data = response.data;
         that.photos.push(data.photo)
+        $("#photo")[0].value = "";
       })
-          .catch(function () {
-          });
+          .catch(err => {
+            let message = "";
+            if (err.response.status === 422) {
+              message = Object.values(err.response.data.errors).join('<br>')
+            }
+            if (err.response.status === 500) {
+              message += "Ошибка. Обратитесь к администратору";
+            }
+
+            alert(message)
+          })
       //   this.getPhotos();
     },
   }

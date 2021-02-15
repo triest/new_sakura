@@ -60,10 +60,9 @@ export default {
         ;
   },
   mounted() {
-   // this.inSeach();
+   // this.inSearch();
     this.getAllDataForSidePanel();
     this.getNumberUnreadedEventRequwest();
-    this.remidese();
     Echo.private(`messages.${this.user.id}`)
         .listen('NewMessage', (e) => {
           console.log('NewMessage');
@@ -123,7 +122,7 @@ export default {
                 this.numberApplicationPresents = response.data;
               })
         },
-        inSeach() {
+        inSearch() {
           let res;
           axios.get('/api/inseach')
               .then((response) => {
@@ -161,9 +160,6 @@ export default {
                 this.filter_enable = data.filter.filter_enable;
                 this.count_accept_notification = data.countAccept_notification;
               });
-        },
-        clouseLikeModal() {
-          this.showLikeModal = false;
         },
         //
         getNumberUnreadedEventRequwest() {
