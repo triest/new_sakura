@@ -8,7 +8,7 @@
     <div v-if="photos.length!=0">
     <div class="col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow" v-for="item in photos"
          style="padding-left:60px; padding-right: 20px;margin: auto;">
-      <img width="250" height="250" :src="'/'+item.url">
+      <img width="250" height="250" :src="'/'+item.url"  class="photo" v-on:click="showPhoto(item)">
       <span v-if="owner">
         <button class="btn btn-danger" v-on:click="deletePhoto(item.id)">Удалить</button>
       </span>
@@ -17,10 +17,12 @@
     <span class="not_photo" v-else>
        В альбоме нет фотографий
     </span>
+    <photo-modal :photo="photo" v-if="showPhotoModal" @closePhotoModal="closeModal()" class="photoModal-component"></photo-modal>
   </div>
 </template>
 
 <script>
+import photoModal from './photoModal';
 export default {
   props: {
     user_id: {
@@ -42,10 +44,15 @@ export default {
       photos: null,
       photo: null,
       galerayFile: null,
+      showPhotoModal:false,
+
     };
   },
   mounted() {
     this.getPhotos();
+  },
+  components:{
+    photoModal
   },
   methods: {
     getPhotos() {
@@ -117,6 +124,14 @@ export default {
           })
       //   this.getPhotos();
     },
+    showPhoto(photo){
+        this.photo=photo;
+        this.showPhotoModal=true;
+    },
+    closeModal(){
+        this.showPhotoModal=false;
+    }
+
   }
 }
 </script>
@@ -130,6 +145,16 @@ export default {
   text-align: center;
   position:absolute;
   margin-left: 40%;
-
 }
+
+.photo{
+   cursor: pointer;
+}
+
+.photoModal-component{
+  position: absolute;
+  margin-top: auto;
+  margin-left: auto;
+}
+
 </style>
