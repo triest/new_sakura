@@ -38,44 +38,17 @@
             myPresentModal
         },
         mounted() {
-           // console.log("anket component");
-          //  this.checkLike();
-          //  console.log("gifts");
-          //  console.log(this.gifts)
         },
         methods: {
             openMyPresentsPodal() {
                 this.showPresentModal = true;
             },
-            clousePresentModal() {
-                console.log("close present modal")
+            closePresentModal() {
                 this.showPresentModal = false;
             },
-            clouseNewMessageModal() {
+            closeNewMessageModal() {
                 this.showMessageModal = false;
-            },/*
-            like() {
-                axios.get('/api/like-carousel/newLike', {
-                    params: {
-                        user_id: this.user.id,
-                        action: "like",
-                    }
-                })
-                    .then((response) => {
-                        this.checkLike();
-                    });
             },
-            checkLike() {
-                axios.get('/api/like-carousel/checkLike', {
-                    params: {
-                        user_id: this.user.id,
-                        action: "checkLike",
-                    }
-                })
-                    .then((response) => {
-                        this.likeExist = response.data;
-                    });
-            }*/
         }
     }
 </script>

@@ -1,10 +1,10 @@
 <template>
     <div>
         <p v-if="likeExist===false">
-            <a class="btn btn-primary" v-on:click="like()"><i class="fas fa-heart fa-2x indigo-text pr-3" aria-hidden="true"></i>Нравиться</a>
+            <a v-on:click="like()"><i id="color" class="fas fa-heart fa-2x indigo-text pr-3" aria-hidden="true" title="Поставить лайк"></i></a>
         </p>
         <span v-if="likeExist===true">
-              <i class="fas fa-heart fa-2x indigo-text pr-3 human-heart" aria-hidden="true"></i>
+              <i class="fas fa-heart fa-2x indigo-text pr-3 human-heart" aria-hidden="true" title="Вам нравиться эта анкета"></i>
 
            <img class="present-icon"  height="40" src="/public/images/icons/gift.jpg" v-on:click="showPresentModal=true">
         </span>
@@ -146,5 +146,10 @@
     font-variant: small-caps;
     text-transform: uppercase;
     margin-left: -45px;
+  }
+
+  #color{
+    color:red;
+    cursor: pointer;
   }
 </style>

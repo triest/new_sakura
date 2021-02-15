@@ -4,6 +4,9 @@
             <div class="modal-mask">
                 <div class="modal-wrapper">
                     <div class="modal-container">
+                      <img :src="user.profile_url" height="10px" width="10px">
+                         {{user.name}},{{user.age}}
+                         <br>
                         <textarea v-model="MessageText" placeholder="Введите сообщение!"></textarea>
                         <br>
                         <a class="btn btn-primary" v-on:click="send()">Отправить</a>

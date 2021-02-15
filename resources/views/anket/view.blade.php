@@ -8,7 +8,7 @@
     <div class="container" id="app">
         <div class="profile-form">
 
-            <div class="form-lk_name"><b>{{$user->name}}</b>, {{$user->age()}}
+            <div class="form-lk_name"><b>{{$user->name}}</b>, {{$user->age}}
                 <small> ,{{$user->getCity()->name}}</small>
             </div>
             <div class="">
@@ -36,7 +36,7 @@
 
                         <div class="photo_profile" id="photo_profile" data-remodal-target="upload_img">
 
-                            <img  src="{{asset( "$user->photo_profile_url")}}"
+                            <img src="{{asset( "$user->photo_profile_url")}}"
                                  alt="" id="profile_image" height="250px">
 
                         </div>
@@ -88,8 +88,8 @@
 
 
                 @isset($user->relation()->first()->name)
-                    <p><label class="label_txt">Отношения:  </label>
-                            {{$user->relation()->first()->name}}
+                    <p><label class="label_txt">Отношения: </label>
+                        {{$user->relation()->first()->name}}
                     </p>
                 @endisset
 

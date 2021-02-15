@@ -2842,46 +2842,17 @@ __webpack_require__.r(__webpack_exports__);
     present: _PresentModal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     myPresentModal: _myPresentsModal__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  mounted: function mounted() {// console.log("anket component");
-    //  this.checkLike();
-    //  console.log("gifts");
-    //  console.log(this.gifts)
-  },
+  mounted: function mounted() {},
   methods: {
     openMyPresentsPodal: function openMyPresentsPodal() {
       this.showPresentModal = true;
     },
-    clousePresentModal: function clousePresentModal() {
-      console.log("close present modal");
+    closePresentModal: function closePresentModal() {
       this.showPresentModal = false;
     },
-    clouseNewMessageModal: function clouseNewMessageModal() {
+    closeNewMessageModal: function closeNewMessageModal() {
       this.showMessageModal = false;
     }
-    /*
-    like() {
-      axios.get('/api/like-carousel/newLike', {
-          params: {
-              user_id: this.user.id,
-              action: "like",
-          }
-      })
-          .then((response) => {
-              this.checkLike();
-          });
-    },
-    checkLike() {
-      axios.get('/api/like-carousel/checkLike', {
-          params: {
-              user_id: this.user.id,
-              action: "checkLike",
-          }
-      })
-          .then((response) => {
-              this.likeExist = response.data;
-          });
-    }*/
-
   }
 });
 
@@ -3198,6 +3169,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -9032,7 +9006,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.present-icon[data-v-7fcca700]{\n   cursor: pointer;\n}\n@-webkit-keyframes heartbeat-data-v-7fcca700 {\n0% {\n    transform: scale(1) rotate(-45deg);\n}\n20% {\n    transform: scale(1.25) rotate(-45deg);\n}\n40% {\n    transform: scale(1.5) rotate(-45deg);\n}\n}\n@keyframes heartbeat-data-v-7fcca700 {\n0% {\n    transform: scale(1) rotate(-45deg);\n}\n20% {\n    transform: scale(1.25) rotate(-45deg);\n}\n40% {\n    transform: scale(1.5) rotate(-45deg);\n}\n}\n.human-heart[data-v-7fcca700] {\n /* margin: 5em;*/\n  -webkit-animation: .8s infinite beatHeart-data-v-7fcca700;\n          animation: .8s infinite beatHeart-data-v-7fcca700;\n  color: red;\n}\n@-webkit-keyframes beatHeart-data-v-7fcca700 {\n0% {\n    transform: scale(1);\n}\n25% {\n    transform: scale(1.1);\n}\n40% {\n    transform: scale(1);\n}\n60% {\n    transform: scale(1.1);\n}\n100% {\n    transform: scale(1);\n}\n}\n@keyframes beatHeart-data-v-7fcca700 {\n0% {\n    transform: scale(1);\n}\n25% {\n    transform: scale(1.1);\n}\n40% {\n    transform: scale(1);\n}\n60% {\n    transform: scale(1.1);\n}\n100% {\n    transform: scale(1);\n}\n}\n.match-font[data-v-7fcca700]{\n  font-family: Impact, Charcoal, sans-serif;\n  font-size: 40px;\n  letter-spacing: 5px;\n  word-spacing: 6px;\n  color: #2EFF2C;\n  font-weight: 700;\n  -webkit-text-decoration: rgb(68, 68, 68);\n          text-decoration: rgb(68, 68, 68);\n  font-style: italic;\n  font-variant: small-caps;\n  text-transform: uppercase;\n  margin-left: -45px;\n}\n", ""]);
+exports.push([module.i, "\n.present-icon[data-v-7fcca700]{\n   cursor: pointer;\n}\n@-webkit-keyframes heartbeat-data-v-7fcca700 {\n0% {\n    transform: scale(1) rotate(-45deg);\n}\n20% {\n    transform: scale(1.25) rotate(-45deg);\n}\n40% {\n    transform: scale(1.5) rotate(-45deg);\n}\n}\n@keyframes heartbeat-data-v-7fcca700 {\n0% {\n    transform: scale(1) rotate(-45deg);\n}\n20% {\n    transform: scale(1.25) rotate(-45deg);\n}\n40% {\n    transform: scale(1.5) rotate(-45deg);\n}\n}\n.human-heart[data-v-7fcca700] {\n /* margin: 5em;*/\n  -webkit-animation: .8s infinite beatHeart-data-v-7fcca700;\n          animation: .8s infinite beatHeart-data-v-7fcca700;\n  color: red;\n}\n@-webkit-keyframes beatHeart-data-v-7fcca700 {\n0% {\n    transform: scale(1);\n}\n25% {\n    transform: scale(1.1);\n}\n40% {\n    transform: scale(1);\n}\n60% {\n    transform: scale(1.1);\n}\n100% {\n    transform: scale(1);\n}\n}\n@keyframes beatHeart-data-v-7fcca700 {\n0% {\n    transform: scale(1);\n}\n25% {\n    transform: scale(1.1);\n}\n40% {\n    transform: scale(1);\n}\n60% {\n    transform: scale(1.1);\n}\n100% {\n    transform: scale(1);\n}\n}\n.match-font[data-v-7fcca700]{\n  font-family: Impact, Charcoal, sans-serif;\n  font-size: 40px;\n  letter-spacing: 5px;\n  word-spacing: 6px;\n  color: #2EFF2C;\n  font-weight: 700;\n  -webkit-text-decoration: rgb(68, 68, 68);\n          text-decoration: rgb(68, 68, 68);\n  font-style: italic;\n  font-variant: small-caps;\n  text-transform: uppercase;\n  margin-left: -45px;\n}\n#color[data-v-7fcca700]{\n  color:red;\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -51591,7 +51565,6 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "btn btn-primary",
                 on: {
                   click: function($event) {
                     return _vm.like()
@@ -51601,9 +51574,12 @@ var render = function() {
               [
                 _c("i", {
                   staticClass: "fas fa-heart fa-2x indigo-text pr-3",
-                  attrs: { "aria-hidden": "true" }
-                }),
-                _vm._v("Нравиться")
+                  attrs: {
+                    id: "color",
+                    "aria-hidden": "true",
+                    title: "Поставить лайк"
+                  }
+                })
               ]
             )
           ])
@@ -51613,7 +51589,10 @@ var render = function() {
         ? _c("span", [
             _c("i", {
               staticClass: "fas fa-heart fa-2x indigo-text pr-3 human-heart",
-              attrs: { "aria-hidden": "true" }
+              attrs: {
+                "aria-hidden": "true",
+                title: "Вам нравиться эта анкета"
+              }
             }),
             _vm._v(" "),
             _c("img", {
@@ -52119,6 +52098,22 @@ var render = function() {
           _c("div", { staticClass: "modal-mask" }, [
             _c("div", { staticClass: "modal-wrapper" }, [
               _c("div", { staticClass: "modal-container" }, [
+                _c("img", {
+                  attrs: {
+                    src: _vm.user.profile_url,
+                    height: "10px",
+                    width: "10px"
+                  }
+                }),
+                _vm._v(
+                  "\n                     " +
+                    _vm._s(_vm.user.name) +
+                    "," +
+                    _vm._s(_vm.user.age) +
+                    "\n                     "
+                ),
+                _c("br"),
+                _vm._v(" "),
                 _c("textarea", {
                   directives: [
                     {
