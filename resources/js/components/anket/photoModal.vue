@@ -6,11 +6,7 @@
                   <div class="modal-container">
                     <img :src="'/'+photo.url" class="album-image" alt="image">
                     <div class="copy">
-                      <a href="mailto:Email@domain.com" target="_top">Email</a>
-                      <p>
-                        <span class="phone-number">Phone Number</span><br />
-                        <span class="tagline">Tagline</span>
-                      </p>
+                    Загружено {{photo.created}}
                     </div>
                   </div>
 

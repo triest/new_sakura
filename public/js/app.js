@@ -3289,10 +3289,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     photo: {
@@ -9223,7 +9219,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\r\n    .modal-mask {\r\n        position: fixed;\r\n        z-index: 9998;\r\n        top: 0;\r\n        left: 0;\r\n        width: 80ch;\r\n        height: 100%;\r\n        background-color: rgba(0, 0, 0, .5);\r\n        display: table;\r\n        transition: opacity .3s ease;\r\n    }\r\n\r\n    .modal-wrapper {\r\n        display: table-cell;\r\n        vertical-align: middle;\r\n    }\r\n*/\n.modal-container[data-v-72c053a8] {\r\n        width: auto;\r\n        height: auto;\r\n        overflow-x: hidden;\r\n        /*height:300px;*/\r\n  /*      margin: 0px auto;\r\n        padding: 20px 30px;\r\n        background-color: #fff;\r\n        border-radius: 2px;\r\n        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\r\n        transition: all .3s ease;\r\n        font-family: Helvetica, Arial, sans-serif;\r\n        overflow: hidden*/\n}\n.modal-header h3[data-v-72c053a8] {\r\n        margin-top: 0;\r\n        color: #42b983;\n}\n.album-image[data-v-72c053a8]{\r\n      width:auto;\r\n      height: auto;\n}\r\n\r\n    /*\r\n     * The following styles are auto-applied to elements with\r\n     * transition=\"modal\" when their visibility is toggled\r\n     * by Vue.js.\r\n     *\r\n     * You can easily play with the modal transition by editing\r\n     * these styles.\r\n     */\n.modal-enter[data-v-72c053a8] {\r\n        opacity: 0;\n}\n.modal-leave-active[data-v-72c053a8] {\r\n        opacity: 0;\n}\n.album-image[data-v-72c053a8]{\r\n        width: 80ch;\n}\r\n/*\r\n    .modal-enter .modal-container,\r\n    .modal-leave-active .modal-container {\r\n        -webkit-transform: scale(1.1);\r\n        transform: scale(1.1);\r\n    }\r\n*/\n.newMessageModal[data-v-72c053a8] {\r\n      position: fixed;\r\n      bottom: 0;\r\n      right: 0;\n}\n.modal-container[data-v-72c053a8] {\r\n  bottom: 0;\r\n  left: 0;\r\n  height: 300px;\r\n  margin: auto;\r\n  position: absolute;\r\n  right: 0;\r\n  text-align: center;\r\n  top: 0;\r\n  width: 100%;\n}\n.container img[data-v-72c053a8] {\r\n  max-width: 100%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\r\n    .modal-mask {\r\n        position: fixed;\r\n        z-index: 9998;\r\n        top: 0;\r\n        left: 0;\r\n        width: 80ch;\r\n        height: 100%;\r\n        background-color: rgba(0, 0, 0, .5);\r\n        display: table;\r\n        transition: opacity .3s ease;\r\n    }\r\n\r\n    .modal-wrapper {\r\n        display: table-cell;\r\n        vertical-align: middle;\r\n    }\r\n*/\n.modal-container[data-v-72c053a8] {\r\n        width: auto;\r\n        height: auto;\r\n        overflow-x: hidden;\r\n        /*height:300px;*/\r\n  /*      margin: 0px auto;\r\n        padding: 20px 30px;\r\n        background-color: #fff;\r\n        border-radius: 2px;\r\n        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\r\n        transition: all .3s ease;\r\n        font-family: Helvetica, Arial, sans-serif;\r\n        overflow: hidden*/\n}\n.modal-header h3[data-v-72c053a8] {\r\n        margin-top: 0;\r\n        color: #42b983;\n}\n.album-image[data-v-72c053a8]{\r\n      width:auto;\r\n      height: auto;\n}\r\n\r\n    /*\r\n     * The following styles are auto-applied to elements with\r\n     * transition=\"modal\" when their visibility is toggled\r\n     * by Vue.js.\r\n     *\r\n     * You can easily play with the modal transition by editing\r\n     * these styles.\r\n     */\n.modal-enter[data-v-72c053a8] {\r\n        opacity: 0;\n}\n.modal-leave-active[data-v-72c053a8] {\r\n        opacity: 0;\n}\n.album-image[data-v-72c053a8]{\r\n        width: 80ch;\n}\r\n/*\r\n    .modal-enter .modal-container,\r\n    .modal-leave-active .modal-container {\r\n        -webkit-transform: scale(1.1);\r\n        transform: scale(1.1);\r\n    }\r\n*/\n.newMessageModal[data-v-72c053a8] {\r\n      position: fixed;\r\n      bottom: 0;\r\n      right: 0;\n}\n.modal-container[data-v-72c053a8] {\r\n  bottom: 0;\r\n  left: 0;\r\n  height: 300px;\r\n  margin: auto;\r\n  position: absolute;\r\n  right: 0;\r\n  text-align: center;\r\n  top: 0;\r\n  width: 100%;\n}\n.container img[data-v-72c053a8] {\r\n  max-width: 100%;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -52403,22 +52399,11 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "copy" }, [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "mailto:Email@domain.com", target: "_top" }
-                    },
-                    [_vm._v("Email")]
-                  ),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c("span", { staticClass: "phone-number" }, [
-                      _vm._v("Phone Number")
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tagline" }, [_vm._v("Tagline")])
-                  ])
+                  _vm._v(
+                    "\n                Загружено " +
+                      _vm._s(_vm.photo.created) +
+                      "\n                "
+                  )
                 ])
               ])
             ])
