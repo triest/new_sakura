@@ -38,10 +38,10 @@
             myPresentModal
         },
         mounted() {
-            console.log("anket component");
-            this.checkLike();
-            console.log("gifts");
-            console.log(this.gifts)
+           // console.log("anket component");
+          //  this.checkLike();
+          //  console.log("gifts");
+          //  console.log(this.gifts)
         },
         methods: {
             openMyPresentsPodal() {
@@ -53,9 +53,9 @@
             },
             clouseNewMessageModal() {
                 this.showMessageModal = false;
-            },
+            },/*
             like() {
-                axios.get('/like-carusel/newLike', {
+                axios.get('/api/like-carousel/newLike', {
                     params: {
                         user_id: this.user.id,
                         action: "like",
@@ -66,7 +66,7 @@
                     });
             },
             checkLike() {
-                axios.get('/like-carusel/checkLike', {
+                axios.get('/api/like-carousel/checkLike', {
                     params: {
                         user_id: this.user.id,
                         action: "checkLike",
@@ -75,7 +75,7 @@
                     .then((response) => {
                         this.likeExist = response.data;
                     });
-            }
+            }*/
         }
     }
 </script>

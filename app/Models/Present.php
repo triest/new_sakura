@@ -18,4 +18,9 @@
         {
             return Present::select(['*'])->where('id', $id)->first();
         }
+
+        public function giftAct(){
+            return $this->belongsTo(Present::class);
+        }
+
     }

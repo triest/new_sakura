@@ -87,14 +87,6 @@ Route::prefix('likes')->name('likes.')->group(
         }
 );
 
-//подарки
-Route::prefix('presents')->name('present.')->group(
-        function () {
-            Route::get('/', 'PresentController@list')->name('list');
-            Route::post('/make', 'PresentController@make')->name('make');
-            Route::get('/get-anket-presents', 'PresentController@getAnketPresents')->name('getAnketPresents');
-        }
-);
 
 // Закрытая часть для сотрудников
 /*

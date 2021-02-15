@@ -30,6 +30,16 @@ Route::prefix('anket')->name('anket.')->group(
         }
 );
 
+//подарки
+Route::prefix('presents')->name('present.')->group(
+        function () {
+            Route::get('/', 'PresentController@list')->name('list');
+            Route::post('/make', 'PresentController@make')->name('make');
+            Route::get('/get-anket-presents', 'PresentController@getAnketPresents')->name('getAnketPresents');
+        }
+);
+
+
 
 Route::prefix('like-carousel')->name('like-carousel.')->group(
         function () {

@@ -133,6 +133,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
             'password',
             'remember_token',
+            'inn',
+            'work_email',
+            'contact_email',
             'email',
             'phone',
             'private'
@@ -392,18 +395,30 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($first) {
             $user->sendMessage("Мы понравились друг другу ");
             $this->sendMessage("Мы понравились друг другу ");
-            $result['message'] = "match";
+            $result['message'] = "Мы понравились друг другу";
             $result['result'] = true;
             $result['match'] = true;
         } else {
-            $result['message'] = "match";
+            $result['message'] = "";
             $result['result'] = true;
             $result['match'] = false;
         }
         return $result;
     }
 
-    public function sendMessage($text, $who_user = null) {
+    /*проверяет, что пользователь переданный ф функцию, поставил лайк пользователю, чей метод вызываеться*/
+    public function checkLike(User $user){
+        $first = Like::select(['id'])->where('target_id', $this->id)
+                ->where('who_id', $user->id)->first();
+        if($first==null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public function sendMessage($text, $who_user = null)
+    {
         $TargetUser = $this;
 
 
@@ -475,32 +490,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getGifts($limit = 5)
     {
-        $giftAct = GiftAct::select(
-                [
-                        'presents.name',
-                        'presents.image',
-                        'users.name as user_name',
-                        'users.id as user_id',
-                        'users.profile_url as  user_avatar_url'
-                ]
-        )->leftJoin(
-                'presents',
-                'presents.id',
-                '=',
-                'present_id'
-        )->leftJoin('users', 'gift_act.who_id', '=', 'users.id')->where(
-                'target_id',
-                $this->id
-        )->orderBy(
-                'gift_act.created_at',
-                'DESC'
-        )->limit($limit)->get();
+        $giftAct = GiftAct::select(['*'])->with('who', 'gift')->where(['target_id' => $this->id])->get();
 
         return $giftAct;
     }
 
-    public function getGiftForMe(){
-        return $this->hasMany(GiftAct::class,'target_id','id');
+    public function getGiftForMe()
+    {
+        return $this->hasMany(GiftAct::class, 'target_id', 'id');
     }
 
 
@@ -513,8 +510,9 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    public function city(){
-        return $this->hasOne(City::class,'id','city_id');
+    public function city()
+    {
+        return $this->hasOne(City::class, 'id', 'city_id');
     }
 
     public function sluggable(): array
@@ -564,12 +562,11 @@ class User extends Authenticatable implements MustVerifyEmail
         $eventReq = EventRequest::select(["*"])
                 ->select(
                         [
-                             '*'
+                                '*'
                         ]
                 )
                 ->where('user_id', '=', $this->id)
-                ->with(['user','event'])
-        ;
+                ->with(['user', 'event']);
 
         if ($OnlyUnread) {
             $eventReq->where(['event_request.status_id' => 1]);
@@ -594,8 +591,9 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function messagesForMe(){
-        return $this->hasMany(Message::class,'to','id');
+    public function messagesForMe()
+    {
+        return $this->hasMany(Message::class, 'to', 'id');
     }
 
 }

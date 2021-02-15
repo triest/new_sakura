@@ -6,7 +6,7 @@
 
                     <div class="modal-header">
                         <slot name="header">
-                            <b>1Подарки</b>
+                            <b>Подарки</b>
                         </slot>
                     </div>
 
@@ -37,9 +37,9 @@
                         </slot>
                     </div>
                     <slot name="footer">
-                        <a v-on:click="close()">
+                        <button class="btn btn-primary" v-on:click="close()" >
                             Закрыть
-                        </a>
+                        </button>
                     </slot>
                 </div>
 
@@ -62,7 +62,6 @@
             }
         },
         mounted() {
-            // this.getPresentsList();
             this.getPresents();
         },
         data() {
@@ -79,7 +78,7 @@
                 this.$emit('closeRequest')
             },
             getPresents() {
-                axios.get('/presents/',
+                axios.get('/api/presents/',
                 ).then((response) => {
                     //  this.anketList.push(response.data);
                     let data = response.data;
@@ -93,7 +92,7 @@
                 let formData = new FormData();
                 formData.append('present_id', present_id);
                 formData.append('user_id', this.user.id);
-                axios.post('/presents/make', formData
+                axios.post('/api/presents/make', formData
                 ).then(function () {
 
                 }).catch(function () {

@@ -47,9 +47,11 @@
             if($request->action=="like" && !Auth::user()){
                 return  response('',401);
             }
-            $user = User::get($request->user_id);
+
+            $user = User::find($request->user_id);
+
             if (!$user) {
-                return response()->json(false);
+                return response()->json(['result'=>false]);
             }
             $result=$user->newLike();
 
@@ -59,13 +61,18 @@
 
         public function checkLike(Request $request)
         {
-            $user = User::get($request->anket_id);
 
-            if ($user == null) {
-                return response()->json(false);
+            $user = User::get($request->user_id);
+
+            $authUser=Auth::user();
+
+
+            if ($user == null || $authUser==null) {
+                return response()->json(['result'=>false]);
             }
+            $result=$user->checkLike($authUser);
 
-            return response()->json($user->checkLike());
+            return response()->json(['result'=>$result]);
         }
 
 
