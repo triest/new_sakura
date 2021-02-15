@@ -3,7 +3,7 @@
         <transition name="modal" @close="showModal = false">
             <div class="modal-mask">
                 <div class="modal-wrapper">
-                  <section class="container">
+                  <div class="modal-container">
                     <img :src="'/'+photo.url" class="album-image" alt="image">
                     <div class="copy">
                       <a href="mailto:Email@domain.com" target="_top">Email</a>
@@ -12,7 +12,7 @@
                         <span class="tagline">Tagline</span>
                       </p>
                     </div>
-                  </section>
+                  </div>
 
                 </div>
             </div>
@@ -109,14 +109,6 @@
       height: auto;
     }
 
-    .modal-body {
-        margin: 20px 0;
-    }
-
-    .modal-default-button {
-        float: right;
-    }
-
     /*
      * The following styles are auto-applied to elements with
      * transition="modal" when their visibility is toggled
@@ -151,7 +143,7 @@
       right: 0;
     }
 
-.container {
+.modal-container {
   bottom: 0;
   left: 0;
   height: 300px;
