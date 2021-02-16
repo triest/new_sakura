@@ -2635,6 +2635,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       photos: null,
+      photo_item: null,
       photo: null,
       galerayFile: null,
       showPhotoModal: false,
@@ -2715,7 +2716,7 @@ __webpack_require__.r(__webpack_exports__);
       }); //   this.getPhotos();
     },
     showPhoto: function showPhoto(photo) {
-      this.photo = photo;
+      this.photo_item = photo;
       this.showPhotoModal = true;
     },
     closeModal: function closeModal() {
@@ -3289,6 +3290,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     photo: {
@@ -3299,7 +3302,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'modal',
   mounted: function mounted() {
     //console.log(this.id);
-    console.log(photo);
+    console.log(this.photo);
   },
   data: function data() {
     return {
@@ -9219,7 +9222,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\r\n    .modal-mask {\r\n        position: fixed;\r\n        z-index: 9998;\r\n        top: 0;\r\n        left: 0;\r\n        width: 80ch;\r\n        height: 100%;\r\n        background-color: rgba(0, 0, 0, .5);\r\n        display: table;\r\n        transition: opacity .3s ease;\r\n    }\r\n\r\n    .modal-wrapper {\r\n        display: table-cell;\r\n        vertical-align: middle;\r\n    }\r\n*/\n.modal-container[data-v-72c053a8] {\r\n        width: auto;\r\n        height: auto;\r\n        overflow-x: hidden;\r\n        /*height:300px;*/\r\n  /*      margin: 0px auto;\r\n        padding: 20px 30px;\r\n        background-color: #fff;\r\n        border-radius: 2px;\r\n        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\r\n        transition: all .3s ease;\r\n        font-family: Helvetica, Arial, sans-serif;\r\n        overflow: hidden*/\n}\n.modal-header h3[data-v-72c053a8] {\r\n        margin-top: 0;\r\n        color: #42b983;\n}\n.album-image[data-v-72c053a8]{\r\n      width:auto;\r\n      height: auto;\n}\r\n\r\n    /*\r\n     * The following styles are auto-applied to elements with\r\n     * transition=\"modal\" when their visibility is toggled\r\n     * by Vue.js.\r\n     *\r\n     * You can easily play with the modal transition by editing\r\n     * these styles.\r\n     */\n.modal-enter[data-v-72c053a8] {\r\n        opacity: 0;\n}\n.modal-leave-active[data-v-72c053a8] {\r\n        opacity: 0;\n}\n.album-image[data-v-72c053a8]{\r\n        width: 80ch;\n}\r\n/*\r\n    .modal-enter .modal-container,\r\n    .modal-leave-active .modal-container {\r\n        -webkit-transform: scale(1.1);\r\n        transform: scale(1.1);\r\n    }\r\n*/\n.newMessageModal[data-v-72c053a8] {\r\n      position: fixed;\r\n      bottom: 0;\r\n      right: 0;\n}\n.modal-container[data-v-72c053a8] {\r\n  bottom: 0;\r\n  left: 0;\r\n  height: 300px;\r\n  margin: auto;\r\n  position: absolute;\r\n  right: 0;\r\n  text-align: center;\r\n  top: 0;\r\n  width: 100%;\n}\n.container img[data-v-72c053a8] {\r\n  max-width: 100%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.modal-container[data-v-72c053a8] {\n        width: auto;\n        height: auto;\n        overflow-x: hidden;\n        overflow-y: hidden;\n        /*height:300px;*/\n  /*      margin: 0px auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n        transition: all .3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n        overflow: hidden*/\n}\n.modal-header h3[data-v-72c053a8] {\n        margin-top: 0;\n        color: #42b983;\n}\n.album-image[data-v-72c053a8]{\n      width:auto;\n      height: auto;\n}\n\n    /*\n     * The following styles are auto-applied to elements with\n     * transition=\"modal\" when their visibility is toggled\n     * by Vue.js.\n     *\n     * You can easily play with the modal transition by editing\n     * these styles.\n     */\n.modal-enter[data-v-72c053a8] {\n        opacity: 0;\n}\n.modal-leave-active[data-v-72c053a8] {\n        opacity: 0;\n}\n.album-image[data-v-72c053a8]{\n        width: 80ch;\n}\n/*\n    .modal-enter .modal-container,\n    .modal-leave-active .modal-container {\n        -webkit-transform: scale(1.1);\n        transform: scale(1.1);\n    }\n*/\n.newMessageModal[data-v-72c053a8] {\n      position: fixed;\n      bottom: 0;\n      right: 0;\n}\n.modal-container[data-v-72c053a8] {\n  bottom: 0;\n  left: 0;\n  height: 80%;\n  width: 80%;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  text-align: center;\n  top: 0;\n}\n.avatar[data-v-72c053a8]{\n height:  30%;\n}\n.container img[data-v-72c053a8] {\n  max-width: 100%;\n}\n.close_modal_button[data-v-72c053a8]{\n   position: relative;\n   right: -60%;\n}\n\n", ""]);
 
 // exports
 
@@ -51705,7 +51708,7 @@ var render = function() {
       _vm.showPhotoModal
         ? _c("photo-modal", {
             staticClass: "photoModal-component",
-            attrs: { photo: _vm.photo },
+            attrs: { photo: _vm.photo_item },
             on: {
               closePhotoModal: function($event) {
                 return _vm.closeModal()
@@ -52393,17 +52396,48 @@ var render = function() {
           _c("div", { staticClass: "modal-mask" }, [
             _c("div", { staticClass: "modal-wrapper" }, [
               _c("div", { staticClass: "modal-container" }, [
-                _c("img", {
-                  staticClass: "album-image",
-                  attrs: { src: "/" + _vm.photo.url, alt: "image" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "copy" }, [
-                  _vm._v(
-                    "\n                Загружено " +
-                      _vm._s(_vm.photo.created) +
-                      "\n                "
-                  )
+                _c("div", { staticClass: "modal-body" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "close",
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
+                        }
+                      }
+                    },
+                    [
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("×")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("img", {
+                    staticClass: "album-image",
+                    attrs: { src: "/" + _vm.photo.url, alt: "image" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "copy" }, [
+                    _vm._v(
+                      "\n              Загружено " +
+                        _vm._s(_vm.photo.created) +
+                        ",\n              " +
+                        _vm._s(_vm.photo.user.name) +
+                        "      "
+                    ),
+                    _c("a", { attrs: { href: /anket/ + _vm.photo.user.id } }, [
+                      _c("img", {
+                        attrs: {
+                          width: "50",
+                          height: "50",
+                          src: _vm.photo.user.photo_profile_url,
+                          alt: ""
+                        }
+                      })
+                    ])
+                  ])
                 ])
               ])
             ])

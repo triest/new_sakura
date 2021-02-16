@@ -1,20 +1,22 @@
 <template>
-    <div class="newMessageModal">
-        <transition name="modal" @close="showModal = false">
-            <div class="modal-mask">
-                <div class="modal-wrapper">
-                  <div class="modal-container">
-                    <img :src="'/'+photo.url" class="album-image" alt="image">
-                    <div class="copy">
-                    Загружено {{photo.created}}
-                    </div>
-                  </div>
-
-                </div>
+  <div class="newMessageModal">
+    <transition name="modal" @close="showModal = false">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+            <div class="modal-body">
+              <button class="close" v-on:click="close()"><span aria-hidden="true">&times;</span></button>
+              <img :src="'/'+photo.url" class="album-image" alt="image">
+              <div class="copy">
+                Загружено {{ photo.created }},
+                {{ photo.user.name }}      <a :href="/anket/+photo.user.id">  <img width="50" height="50" :src="photo.user.photo_profile_url" alt=""> </a>
+              </div>
             </div>
-        </transition>
-
-    </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -30,7 +32,7 @@
         name: 'modal',
         mounted() {
             //console.log(this.id);
-          console.log(photo);
+          console.log(this.photo);
         },
         data() {
             return {
@@ -56,34 +58,18 @@
                     this.$emit('close');
                     this.close();
                 });
-            }
+            },
         },
     };
 </script>
 
 <style scoped>
-/*
-    .modal-mask {
-        position: fixed;
-        z-index: 9998;
-        top: 0;
-        left: 0;
-        width: 80ch;
-        height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        display: table;
-        transition: opacity .3s ease;
-    }
 
-    .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-    }
-*/
     .modal-container {
         width: auto;
         height: auto;
         overflow-x: hidden;
+        overflow-y: hidden;
         /*height:300px;*/
   /*      margin: 0px auto;
         padding: 20px 30px;
@@ -142,17 +128,26 @@
 .modal-container {
   bottom: 0;
   left: 0;
-  height: 300px;
+  height: 80%;
+  width: 80%;
   margin: auto;
   position: absolute;
   right: 0;
   text-align: center;
   top: 0;
-  width: 100%;
+}
+
+.avatar{
+ height:  30%;
 }
 
 .container img {
   max-width: 100%;
+}
+
+.close_modal_button{
+   position: relative;
+   right: -60%;
 }
 
 </style>
