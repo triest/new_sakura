@@ -17,7 +17,9 @@
     <span class="not_photo" v-else>
        В альбоме нет фотографий
     </span>
-    <photo-modal :photo="photo_item" v-if="showPhotoModal" @closePhotoModal="closeModal()" class="photoModal-component"></photo-modal>
+    <div v-if="photos.length!=0">
+        <photo-modal :photo="photo_item" :photos="photos" v-if="showPhotoModal" @closePhotoModal="closeModal()" class="photoModal-component"></photo-modal>
+    </div>
   </div>
 </template>
 
@@ -42,6 +44,7 @@ export default {
   data() {
     return {
       photos: null,
+      photos_array:[],
       photo_item:null,
       photo: null,
       galerayFile: null,
@@ -130,6 +133,7 @@ export default {
     },
     showPhoto(photo){
         this.photo_item=photo;
+        this.photos_array=this.photos;
         this.showPhotoModal=true;
     },
     closeModal(){

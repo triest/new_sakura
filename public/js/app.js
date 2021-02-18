@@ -2615,6 +2615,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2635,6 +2637,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       photos: null,
+      photos_array: [],
       photo_item: null,
       photo: null,
       galerayFile: null,
@@ -2717,6 +2720,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     showPhoto: function showPhoto(photo) {
       this.photo_item = photo;
+      this.photos_array = this.photos;
       this.showPhotoModal = true;
     },
     closeModal: function closeModal() {
@@ -3292,44 +3296,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     photo: {
       type: Object,
       required: false
+    },
+    photos: {
+      type: Array,
+      required: false,
+      "default": []
     }
   },
   name: 'modal',
   mounted: function mounted() {
-    //console.log(this.id);
-    console.log(this.photo);
+    this.checkScroll();
+  },
+  computed: {
+    number: function number() {
+      var index = this.arrayKeySearch(this.photos, this.photo.id);
+      return index + 1;
+    }
   },
   data: function data() {
     return {
       MessageText: "",
       message: "",
-      showPhotoModal: false
+      showPhotoModal: false,
+      scrollNext: false,
+      scrollPrevision: false,
+      index: null
     };
   },
   methods: {
     close: function close() {
       this.$emit('closePhotoModal');
     },
-    findUserByid: function findUserByid() {},
-    send: function send() {
-      var _this = this;
+    arrayKeySearch: function arrayKeySearch(arr, val) {
+      //задает переменную по цвету
+      return arr.indexOf(this.photo);
+    },
+    checkScroll: function checkScroll() {
+      var index = this.arrayKeySearch(this.photos, this.photo.id); //индек текущей фотки в массивк
+      //проверка на возможность скролинга назад
 
-      console.log("send");
-      axios.post('/api/contact/conversation/sendModal', {
-        contact_id: this.user.id,
-        text: this.MessageText
-      }).then(function (response) {
-        _this.MessageText = "";
+      if (index === 0) {
+        this.scrollPrevision = false;
+      } else {
+        this.scrollPrevision = true;
+      } //проверка на возможность скролинга вперед
 
-        _this.$emit('close');
 
-        _this.close();
-      });
+      if (this.photos.length - 1 > index) {
+        this.scrollNext = true;
+      } else {
+        this.scrollNext = false;
+      }
+    },
+    scrollNextFunction: function scrollNextFunction() {
+      var index = this.arrayKeySearch(this.photos, this.photo); //индек текущей фотки в массивк
+
+      this.photo = this.photos[index + 1];
+      this.checkScroll();
+    },
+    scrollPrevisionFunction: function scrollPrevisionFunction() {
+      var index = this.arrayKeySearch(this.photos, this.photo); //индек текущей фотки в массивк
+
+      this.photo = this.photos[index - 1];
+      this.checkScroll();
     }
   }
 });
@@ -9222,7 +9260,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.modal-container[data-v-72c053a8] {\n        width: auto;\n        height: auto;\n        overflow-x: hidden;\n        overflow-y: hidden;\n        /*height:300px;*/\n  /*      margin: 0px auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n        transition: all .3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n        overflow: hidden*/\n}\n.modal-header h3[data-v-72c053a8] {\n        margin-top: 0;\n        color: #42b983;\n}\n.album-image[data-v-72c053a8]{\n      width:auto;\n      height: auto;\n}\n\n    /*\n     * The following styles are auto-applied to elements with\n     * transition=\"modal\" when their visibility is toggled\n     * by Vue.js.\n     *\n     * You can easily play with the modal transition by editing\n     * these styles.\n     */\n.modal-enter[data-v-72c053a8] {\n        opacity: 0;\n}\n.modal-leave-active[data-v-72c053a8] {\n        opacity: 0;\n}\n.album-image[data-v-72c053a8]{\n        width: 80ch;\n}\n/*\n    .modal-enter .modal-container,\n    .modal-leave-active .modal-container {\n        -webkit-transform: scale(1.1);\n        transform: scale(1.1);\n    }\n*/\n.newMessageModal[data-v-72c053a8] {\n      position: fixed;\n      bottom: 0;\n      right: 0;\n}\n.modal-container[data-v-72c053a8] {\n  bottom: 0;\n  left: 0;\n  height: 80%;\n  width: 80%;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  text-align: center;\n  top: 0;\n}\n.avatar[data-v-72c053a8]{\n height:  30%;\n}\n.container img[data-v-72c053a8] {\n  max-width: 100%;\n}\n.close_modal_button[data-v-72c053a8]{\n   position: relative;\n   right: -60%;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-container[data-v-72c053a8] {\n        width: auto;\n        height: auto;\n        overflow-x: hidden;\n        overflow-y: hidden;\n        /*height:300px;*/\n  /*      margin: 0px auto;\n        padding: 20px 30px;\n        background-color: #fff;\n        border-radius: 2px;\n        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n        transition: all .3s ease;\n        font-family: Helvetica, Arial, sans-serif;\n        overflow: hidden*/\n}\n.modal-header h3[data-v-72c053a8] {\n        margin-top: 0;\n        color: #42b983;\n}\n.album-image[data-v-72c053a8]{\n      width:auto;\n      height: auto;\n      max-height: 80ch;\n}\n\n    /*\n     * The following styles are auto-applied to elements with\n     * transition=\"modal\" when their visibility is toggled\n     * by Vue.js.\n     *\n     * You can easily play with the modal transition by editing\n     * these styles.\n     */\n.modal-enter[data-v-72c053a8] {\n        opacity: 0;\n}\n.modal-leave-active[data-v-72c053a8] {\n        opacity: 0;\n}\n.album-image[data-v-72c053a8]{\n        width: 80ch;\n}\n/*\n    .modal-enter .modal-container,\n    .modal-leave-active .modal-container {\n        -webkit-transform: scale(1.1);\n        transform: scale(1.1);\n    }\n*/\n.newMessageModal[data-v-72c053a8] {\n      position: fixed;\n      bottom: 0;\n      right: 0;\n}\n.modal-container[data-v-72c053a8] {\n  bottom: 0;\n  left: 0;\n  height: 80%;\n  width: 80%;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  text-align: center;\n  top: 0;\n}\n.avatar[data-v-72c053a8]{\n height:  30%;\n}\n.container img[data-v-72c053a8] {\n  max-width: 100%;\n}\n.close_modal_button[data-v-72c053a8]{\n   position: relative;\n   right: -60%;\n}\n\n", ""]);
 
 // exports
 
@@ -51622,103 +51660,107 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.owner
-        ? _c("div", [
-            _vm._v("\n    Загрузить фотографию\n    "),
-            _c("input", {
-              ref: "galerayFileInput",
-              attrs: { type: "file", id: "photo", name: "photo" },
-              on: {
-                change: function($event) {
-                  return _vm.handleFileUpload()
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.submitFile()
-                  }
-                }
-              },
-              [_vm._v("Загрузить")]
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.photos.length != 0
-        ? _c(
-            "div",
-            _vm._l(_vm.photos, function(item) {
-              return _c(
-                "div",
-                {
-                  staticClass:
-                    "col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow",
-                  staticStyle: {
-                    "padding-left": "60px",
-                    "padding-right": "20px",
-                    margin: "auto"
-                  }
-                },
-                [
-                  _c("img", {
-                    staticClass: "photo",
-                    attrs: { width: "250", height: "250", src: "/" + item.url },
-                    on: {
-                      click: function($event) {
-                        return _vm.showPhoto(item)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.owner
-                    ? _c("span", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-danger",
-                            on: {
-                              click: function($event) {
-                                return _vm.deletePhoto(item.id)
-                              }
-                            }
-                          },
-                          [_vm._v("Удалить")]
-                        )
-                      ])
-                    : _vm._e()
-                ]
-              )
-            }),
-            0
-          )
-        : _c("span", { staticClass: "not_photo" }, [
-            _vm._v("\n     В альбоме нет фотографий\n  ")
-          ]),
-      _vm._v(" "),
-      _vm.showPhotoModal
-        ? _c("photo-modal", {
-            staticClass: "photoModal-component",
-            attrs: { photo: _vm.photo_item },
+  return _c("div", [
+    _vm.owner
+      ? _c("div", [
+          _vm._v("\n    Загрузить фотографию\n    "),
+          _c("input", {
+            ref: "galerayFileInput",
+            attrs: { type: "file", id: "photo", name: "photo" },
             on: {
-              closePhotoModal: function($event) {
-                return _vm.closeModal()
+              change: function($event) {
+                return _vm.handleFileUpload()
               }
             }
-          })
-        : _vm._e()
-    ],
-    1
-  )
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.submitFile()
+                }
+              }
+            },
+            [_vm._v("Загрузить")]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.photos.length != 0
+      ? _c(
+          "div",
+          _vm._l(_vm.photos, function(item) {
+            return _c(
+              "div",
+              {
+                staticClass:
+                  "col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow",
+                staticStyle: {
+                  "padding-left": "60px",
+                  "padding-right": "20px",
+                  margin: "auto"
+                }
+              },
+              [
+                _c("img", {
+                  staticClass: "photo",
+                  attrs: { width: "250", height: "250", src: "/" + item.url },
+                  on: {
+                    click: function($event) {
+                      return _vm.showPhoto(item)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.owner
+                  ? _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.deletePhoto(item.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Удалить")]
+                      )
+                    ])
+                  : _vm._e()
+              ]
+            )
+          }),
+          0
+        )
+      : _c("span", { staticClass: "not_photo" }, [
+          _vm._v("\n     В альбоме нет фотографий\n  ")
+        ]),
+    _vm._v(" "),
+    _vm.photos.length != 0
+      ? _c(
+          "div",
+          [
+            _vm.showPhotoModal
+              ? _c("photo-modal", {
+                  staticClass: "photoModal-component",
+                  attrs: { photo: _vm.photo_item, photos: _vm.photos },
+                  on: {
+                    closePhotoModal: function($event) {
+                      return _vm.closeModal()
+                    }
+                  }
+                })
+              : _vm._e()
+          ],
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52396,7 +52438,28 @@ var render = function() {
           _c("div", { staticClass: "modal-mask" }, [
             _c("div", { staticClass: "modal-wrapper" }, [
               _c("div", { staticClass: "modal-container" }, [
+                _vm._v(
+                  "\n            Фотография " +
+                    _vm._s(_vm.number) +
+                    " из " +
+                    _vm._s(_vm.photos.length) +
+                    "\n          "
+                ),
                 _c("div", { staticClass: "modal-body" }, [
+                  _vm.scrollPrevision
+                    ? _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.scrollPrevisionFunction()
+                            }
+                          }
+                        },
+                        [_vm._v("Назад")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c(
                     "button",
                     {
@@ -52419,6 +52482,20 @@ var render = function() {
                     attrs: { src: "/" + _vm.photo.url, alt: "image" }
                   }),
                   _vm._v(" "),
+                  _vm.scrollNext
+                    ? _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.scrollNextFunction()
+                            }
+                          }
+                        },
+                        [_vm._v("Вперед")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c("div", { staticClass: "copy" }, [
                     _vm._v(
                       "\n              Загружено " +
@@ -52427,16 +52504,18 @@ var render = function() {
                         _vm._s(_vm.photo.user.name) +
                         "      "
                     ),
-                    _c("a", { attrs: { href: /anket/ + _vm.photo.user.id } }, [
+                    _c("a", { attrs: { href: "anket/" + _vm.photo.user.id } }, [
                       _c("img", {
                         attrs: {
                           width: "50",
                           height: "50",
-                          src: _vm.photo.user.photo_profile_url,
+                          src: "/" + _vm.photo.user.photo_profile_url,
                           alt: ""
                         }
                       })
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _c("hr")
                   ])
                 ])
               ])

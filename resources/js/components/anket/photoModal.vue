@@ -4,12 +4,16 @@
       <div class="modal-mask">
         <div class="modal-wrapper">
           <div class="modal-container">
+              Фотография {{number}} из {{photos.length}}
             <div class="modal-body">
+              <button v-if="scrollPrevision" v-on:click="scrollPrevisionFunction()">Назад</button>
               <button class="close" v-on:click="close()"><span aria-hidden="true">&times;</span></button>
               <img :src="'/'+photo.url" class="album-image" alt="image">
+              <button v-if="scrollNext" v-on:click="scrollNextFunction()">Вперед</button>
               <div class="copy">
                 Загружено {{ photo.created }},
-                {{ photo.user.name }}      <a :href="/anket/+photo.user.id">  <img width="50" height="50" :src="photo.user.photo_profile_url" alt=""> </a>
+                {{ photo.user.name }}      <a :href="'anket/'+photo.user.id">  <img width="50" height="50" :src="'/'+photo.user.photo_profile_url" alt=""> </a>
+                <hr>
               </div>
             </div>
           </div>
@@ -27,38 +31,65 @@
             photo:{
                 type: Object,
                 required: false
+            },
+            photos:{
+                type:Array,
+                required: false,
+                default:[]
             }
         },
         name: 'modal',
         mounted() {
-            //console.log(this.id);
-          console.log(this.photo);
+              this.checkScroll()
+        },
+        computed: {
+           number:function (){
+             let index=this.arrayKeySearch(this.photos,this.photo.id);
+             return index+1;
+           }
         },
         data() {
             return {
                 MessageText: "",
                 message: "",
-                showPhotoModal:false
+                showPhotoModal:false,
+                scrollNext:false,
+                scrollPrevision:false,
+                index:null
             }
         },
         methods: {
             close() {
                   this.$emit('closePhotoModal')
             },
-            findUserByid() {
-
+            arrayKeySearch(arr, val) {  //задает переменную по цвету
+              return arr.indexOf(this.photo);
             },
-            send() {
-                console.log("send")
-                axios.post('/api/contact/conversation/sendModal', {
-                    contact_id: this.user.id,
-                    text: this.MessageText
-                }).then((response) => {
-                    this.MessageText = "";
-                    this.$emit('close');
-                    this.close();
-                });
+            checkScroll(){
+                 let index=this.arrayKeySearch(this.photos,this.photo.id); //индек текущей фотки в массивк
+                  //проверка на возможность скролинга назад
+                 if(index===0){
+                   this.scrollPrevision=false;
+                 }else {
+                   this.scrollPrevision=true;
+                 }
+                  //проверка на возможность скролинга вперед
+                   if(this.photos.length-1 > (index)){
+                      this.scrollNext=true;
+                   }else {
+                      this.scrollNext=false;
+                   }
             },
+            scrollNextFunction(){
+              let index=this.arrayKeySearch(this.photos,this.photo); //индек текущей фотки в массивк
+              this.photo=this.photos[index+1];
+              this.checkScroll()
+            },
+            scrollPrevisionFunction(){
+              let index=this.arrayKeySearch(this.photos,this.photo); //индек текущей фотки в массивк
+              this.photo=this.photos[index-1];
+              this.checkScroll()
+            }
         },
     };
 </script>
@@ -89,6 +120,7 @@
     .album-image{
       width:auto;
       height: auto;
+      max-height: 80ch;
     }
 
     /*
