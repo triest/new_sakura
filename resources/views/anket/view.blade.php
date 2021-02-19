@@ -88,17 +88,18 @@
 
 
                 @isset($user->relation()->first()->name)
+                    <hr>
                     <p><label class="label_txt">Отношения: </label>
                         {{$user->relation()->first()->name}}
                     </p>
                 @endisset
-
+                    <hr>
 
                 <div class="row">
-                    <div class="col-sm-6 col-12">
+                    <div class="col-sm-8 col-12">
                         <div class="group">
                             <label class="label_txt"><span></span>Обо мне</label>
-                            {{$user->description}}
+                            <p>{{$user->description}}</p>
 
                         </div>
                     </div>

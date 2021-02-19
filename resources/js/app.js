@@ -17,6 +17,9 @@ import VModal from 'vue-js-modal'
 
 Vue.use(VModal)
 
+import Lingallery from 'lingallery';
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -44,7 +47,7 @@ Vue.component('header-bock', require('./components/layouts/header-bock').default
 Vue.component('event-in-my-city-side2', require('./components/events/EventInMyCitySide2').default);
 Vue.component('album', require('./components/anket/album').default);
 Vue.component('my-like', require('./components/anket/mylike').default);
-
+Vue.component('lingallery', Lingallery);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -138,7 +138,11 @@ class User extends Authenticatable implements MustVerifyEmail
             'contact_email',
             'email',
             'phone',
-            'private'
+            'private',
+            'banned',
+            'begin_vip',
+            'created_at',
+            'description'
     ];
 
     public $appends=['age'];

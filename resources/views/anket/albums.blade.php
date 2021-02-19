@@ -12,7 +12,7 @@
                     <div class="cell">
                         <div class="cell-overflow">
                             {{$item->name}},
-                            {{$item->coutPhotos()}} фотографий
+                            {{$item->countPhotos()}} фотографий
                         </div>
                     </div>
                 </a>
