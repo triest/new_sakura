@@ -3003,6 +3003,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3024,16 +3030,7 @@ __webpack_require__.r(__webpack_exports__);
   computed: {},
   data: function data() {
     return {
-      currentId: 0,
-      images: [{
-        src: 'https://picsum.photos/600/400/?image=0',
-        thumbnail: 'https://picsum.photos/64/64/?image=0',
-        caption: 'Some Caption',
-        id: 'someid1'
-      }, {
-        src: 'https://picsum.photos/600/400/?image=10',
-        thumbnail: 'https://picsum.photos/64/64/?image=10'
-      }],
+      currentId: '',
       ImageArray: []
     };
   },
@@ -3048,15 +3045,12 @@ __webpack_require__.r(__webpack_exports__);
     getPhotos: function getPhotos() {
       var url = '/api/anket/' + this.user_id + '/album/' + this.album_id;
       var that = this;
-      this.photos = [];
+      that.photos = [];
+      that.ImageArray = [];
       axios.get(url, {}).then(function (response) {
         var data = null;
         data = response.data;
         that.photos = data.photos;
-        console.log("this.photos");
-        console.log(that.photos);
-        console.log("this.images");
-        console.log(that.images);
 
         for (var i = 0; i < that.photos.length; i++) {
           var temp = {
@@ -3069,7 +3063,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    deletePhoto: function deletePhoto(id) {
+    deletePhoto: function deletePhoto() {
       var result = window.confirm("Удалить фотографию?");
 
       if (!result) {
@@ -3077,19 +3071,22 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       var formData = new FormData();
-      formData.append('image_id', id);
-      var url = '/api/anket/' + this.user_id + '/albums/' + this.album_id + '/delete/' + id;
+      formData.append('image_id', this.currentId);
+      console.log("this.currentId");
+      console.log(this.currentId);
+      return;
+      var url = '/api/anket/' + this.user_id + '/albums/' + this.album_id + '/delete/' + this.currentId;
       var that = this;
       axios["delete"](url, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (response) {
-        var data = null;
+        that.getPhotos();
       })["catch"](function () {
         Alert("Ошибка!");
+        that.getPhotos();
       });
-      this.getPhotos();
     },
     handleFileUpload: function handleFileUpload() {
       this.galerayFile = this.$refs.galerayFileInput.files[0];
@@ -3106,8 +3103,16 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         var data = null;
         data = response.data;
-        that.photos.push(data.photo);
-        $("#photo")[0].value = "";
+        console.log(data);
+        var temp = {
+          id: data.photo.id,
+          src: '/' + data.photo.url,
+          caption: data.photo.name,
+          thumbnail: '/' + data.photo.url
+        };
+        that.ImageArray.push(temp);
+        /* that.photos.push(data.photo)
+         $("#photo")[0].value = "";*/
       })["catch"](function (err) {
         var message = "";
 
@@ -60782,6 +60787,48 @@ var render = function() {
   return _c(
     "div",
     [
+      _vm.owner
+        ? _c("div", [
+            _vm._v("\n        Загрузить фотографию\n        "),
+            _c("input", {
+              ref: "galerayFileInput",
+              attrs: { type: "file", id: "photo", name: "photo" },
+              on: {
+                change: function($event) {
+                  return _vm.handleFileUpload()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.submitFile()
+                  }
+                }
+              },
+              [_vm._v("Загрузить")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.deletePhoto()
+                  }
+                }
+              },
+              [_vm._v("Удалить")]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("lingallery", {
         attrs: { iid: _vm.currentId, height: 500, items: _vm.ImageArray },
         on: {
