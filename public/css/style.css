@@ -3315,3 +3315,7 @@ input[type="file"] {
 .lt-ie9 .remodal {
     width: 600px;
 }
+
+.vgs.vgs__container{
+    top:30% !important;
+}

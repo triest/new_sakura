@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img v-for="(image, i) in images"  height="400rem" :src="image" @click="index = i">
+        <img class="image" v-for="(image, i) in images"  height="400rem" :src="image" @click="index = i">
         <vue-gallery-slideshow :images="images" :index="index" @close="index = null"></vue-gallery-slideshow>
     </div>
 </template>
@@ -43,13 +43,19 @@ export default {
     },
     mounted() {
         this.getPhotos();
-        this.$modal.show('example-modal')
+      /*  this.$modal.show('example-modal');*/
+        this.setStyle();
     },
     components: {
         photoModal,
         VueGallerySlideshow
     },
     methods: {
+        setStyle(){
+           let element=document.getElementsByClassName("vgs__container");
+           console.log(element)
+            element.style.top="15%";
+        },
         getPhotos() {
             let url = '/api/anket/' + this.user_id + '/album/' + this.album_id;
             let that = this;
@@ -162,5 +168,25 @@ export default {
     margin-top: auto;
     margin-left: auto;
 }
+
+.vgs.vgs__container{
+    top:30% !important;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    object-fit: contain;
+}
+
 
 </style>

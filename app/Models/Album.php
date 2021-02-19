@@ -22,7 +22,7 @@
             $item = $this->Photos()->first();
 
 
-            if ($item != null) {
+            if ($item) {
                 return $item->url;
             } else {
                 return "upload/no_avatar.gif";
@@ -34,7 +34,7 @@
             return $this->hasMany(AlbumPhoto::class);
         }
 
-        public function coutPhotos()
+        public function countPhotos()
         {
             return $this->Photos()->count();
         }

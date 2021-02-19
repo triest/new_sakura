@@ -3040,13 +3040,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getPhotos();
-    this.$modal.show('example-modal');
+    /*  this.$modal.show('example-modal');*/
+
+    this.setStyle();
   },
   components: {
     photoModal: _photoModal__WEBPACK_IMPORTED_MODULE_0__["default"],
     VueGallerySlideshow: vue_gallery_slideshow__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   methods: {
+    setStyle: function setStyle() {
+      var element = document.getElementsByClassName("vgs__container");
+      console.log(element);
+      element.style.top = "15%";
+    },
     getPhotos: function getPhotos() {
       var url = '/api/anket/' + this.user_id + '/album/' + this.album_id;
       var that = this;
@@ -9530,7 +9537,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.not_photo[data-v-594d9172] {\n    width: 25rem;\n    background-color: #eeeeee;\n    border: 1px solid transparent;\n    display: inline;\n    text-align: center;\n    position: absolute;\n    margin-left: 40%;\n}\n.photo[data-v-594d9172] {\n    cursor: pointer;\n}\n.photoModal-component[data-v-594d9172] {\n    position: absolute;\n    margin-top: auto;\n    margin-left: auto;\n}\n\n", ""]);
+exports.push([module.i, "\n.not_photo[data-v-594d9172] {\n    width: 25rem;\n    background-color: #eeeeee;\n    border: 1px solid transparent;\n    display: inline;\n    text-align: center;\n    position: absolute;\n    margin-left: 40%;\n}\n.photo[data-v-594d9172] {\n    cursor: pointer;\n}\n.photoModal-component[data-v-594d9172] {\n    position: absolute;\n    margin-top: auto;\n    margin-left: auto;\n}\n.vgs.vgs__container[data-v-594d9172]{\n    top:30% !important;\n}\nbody[data-v-594d9172] {\n    font-family: sans-serif;\n}\n.image[data-v-594d9172] {\n    width: 100px;\n    height: 100px;\n    background-size: cover;\n    cursor: pointer;\n    margin: 5px;\n    border-radius: 3px;\n    border: 1px solid lightgray;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n\n\n", ""]);
 
 // exports
 
@@ -52068,6 +52075,7 @@ var render = function() {
     [
       _vm._l(_vm.images, function(image, i) {
         return _c("img", {
+          staticClass: "image",
           attrs: { height: "400rem", src: image },
           on: {
             click: function($event) {
