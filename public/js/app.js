@@ -3009,6 +3009,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3063,7 +3074,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    deletePhoto: function deletePhoto() {
+    deletePhoto: function deletePhoto(id) {
+      console.log("this.currentId");
       var result = window.confirm("Удалить фотографию?");
 
       if (!result) {
@@ -3072,10 +3084,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var formData = new FormData();
       formData.append('image_id', this.currentId);
-      console.log("this.currentId");
-      console.log(this.currentId);
-      return;
-      var url = '/api/anket/' + this.user_id + '/albums/' + this.album_id + '/delete/' + this.currentId;
+      var url = '/api/anket/' + this.user_id + '/albums/' + this.album_id + '/delete/' + id;
       var that = this;
       axios["delete"](url, formData, {
         headers: {
@@ -9536,7 +9545,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.vgs__container[data-v-594d9172]{\n    top:15%\n}\n", ""]);
+exports.push([module.i, "\n.vgs__container[data-v-594d9172] {\n    top: 15%\n}\n", ""]);
 
 // exports
 
@@ -60784,62 +60793,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.owner
-        ? _c("div", [
-            _vm._v("\n        Загрузить фотографию\n        "),
-            _c("input", {
-              ref: "galerayFileInput",
-              attrs: { type: "file", id: "photo", name: "photo" },
+  return _c("div", [
+    _vm.owner
+      ? _c("div", [
+          _vm._v("\n        Загрузить фотографию\n        "),
+          _c("input", {
+            ref: "galerayFileInput",
+            attrs: { type: "file", id: "photo", name: "photo" },
+            on: {
+              change: function($event) {
+                return _vm.handleFileUpload()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "button" },
               on: {
-                change: function($event) {
-                  return _vm.handleFileUpload()
+                click: function($event) {
+                  return _vm.submitFile()
                 }
               }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.submitFile()
-                  }
+            },
+            [_vm._v("Загрузить")]
+          ),
+          _vm._v(" "),
+          _vm.ImageArray.length != 0
+            ? _c(
+                "div",
+                _vm._l(_vm.photos, function(item) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass:
+                        "col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow",
+                      staticStyle: {
+                        "padding-left": "60px",
+                        "padding-right": "20px",
+                        margin: "auto"
+                      }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "photo",
+                        attrs: {
+                          width: "250",
+                          height: "250",
+                          src: "/" + item.url
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.showPhoto(item)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.owner
+                        ? _c("span", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deletePhoto(item.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Удалить")]
+                            )
+                          ])
+                        : _vm._e()
+                    ]
+                  )
+                }),
+                0
+              )
+            : _vm._e()
+        ])
+      : _c(
+          "div",
+          [
+            _c("lingallery", {
+              attrs: { iid: _vm.currentId, height: 500, items: _vm.ImageArray },
+              on: {
+                "update:iid": function($event) {
+                  _vm.currentId = $event
                 }
-              },
-              [_vm._v("Загрузить")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.deletePhoto()
-                  }
-                }
-              },
-              [_vm._v("Удалить")]
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("lingallery", {
-        attrs: { iid: _vm.currentId, height: 500, items: _vm.ImageArray },
-        on: {
-          "update:iid": function($event) {
-            _vm.currentId = $event
-          }
-        }
-      })
-    ],
-    1
-  )
+              }
+            })
+          ],
+          1
+        )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

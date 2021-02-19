@@ -4,9 +4,20 @@
             Загрузить фотографию
             <input type="file" id="photo" name="photo" ref="galerayFileInput" v-on:change="handleFileUpload()">
             <button type="button" class="btn btn-primary" v-on:click="submitFile()">Загрузить</button>
-            <button type="button" v-on:click="deletePhoto()">Удалить</button>
+            <div v-if="ImageArray.length!=0">
+                <div class="col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow"
+                     v-for="item in photos"
+                     style="padding-left:60px; padding-right: 20px;margin: auto;">
+                    <img width="250" height="250" :src="'/'+item.url" class="photo" v-on:click="showPhoto(item)">
+                    <span v-if="owner">
+               <button class="btn btn-danger" v-on:click="deletePhoto(item.id)">Удалить</button>
+               </span>
+                </div>
+            </div>
         </div>
-        <lingallery :iid.sync="currentId" :height="500"  :items="ImageArray"/>
+        <div v-else>
+            <lingallery :iid.sync="currentId" :height="500" :items="ImageArray"/>
+        </div>
     </div>
 </template>
 
@@ -30,8 +41,7 @@ export default {
             required: false
         },
     },
-    computed: {
-    },
+    computed: {},
     data() {
         return {
             currentId: '',
@@ -52,24 +62,26 @@ export default {
             let url = '/api/anket/' + this.user_id + '/album/' + this.album_id;
             let that = this;
             that.photos = [];
-            that.ImageArray=[];
+            that.ImageArray = [];
             axios.get(url, {}).then(function (response) {
                 let data = null;
                 data = response.data;
                 that.photos = data.photos;
-                for (let i=0;i<that.photos.length;i++){
-                let temp={
-                    id:that.photos[i].id,
-                    src:'/'+that.photos[i].url,
-                    caption:that.photos[i].name,
-                    thumbnail:'/'+that.photos[i].url,
-                }
-                that.ImageArray.push(temp);
+                for (let i = 0; i < that.photos.length; i++) {
+                    let temp = {
+                        id: that.photos[i].id,
+                        src: '/' + that.photos[i].url,
+                        caption: that.photos[i].name,
+                        thumbnail: '/' + that.photos[i].url,
+                    }
+                    that.ImageArray.push(temp);
                 }
 
             });
         },
-        deletePhoto() {
+        deletePhoto(id) {
+            console.log("this.currentId")
+
             let result = window.confirm("Удалить фотографию?");
             if (!result) {
                 return;
@@ -77,10 +89,8 @@ export default {
             let formData = new FormData();
             formData.append('image_id', this.currentId);
 
-            console.log("this.currentId")
-            console.log(this.currentId)
-            return ;
-            let url = '/api/anket/' + this.user_id + '/albums/' + this.album_id + '/delete/' + this.currentId;
+
+            let url = '/api/anket/' + this.user_id + '/albums/' + this.album_id + '/delete/' + id;
             let that = this;
             axios.delete(url,
                 formData,
@@ -116,15 +126,15 @@ export default {
                 let data = null;
                 data = response.data;
                 console.log(data);
-                let temp={
-                    id:data.photo.id,
-                    src:'/'+data.photo.url,
-                    caption:data.photo.name,
-                    thumbnail:'/'+data.photo.url,
+                let temp = {
+                    id: data.photo.id,
+                    src: '/' + data.photo.url,
+                    caption: data.photo.name,
+                    thumbnail: '/' + data.photo.url,
                 }
                 that.ImageArray.push(temp);
-               /* that.photos.push(data.photo)
-                $("#photo")[0].value = "";*/
+                /* that.photos.push(data.photo)
+                 $("#photo")[0].value = "";*/
             })
                 .catch(err => {
                     let message = "";
@@ -154,7 +164,7 @@ export default {
 </script>
 
 <style scoped>
-.vgs__container{
-    top:15%
+.vgs__container {
+    top: 15%
 }
 </style>
