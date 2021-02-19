@@ -1,7 +1,6 @@
 <template>
     <div>
-        <img class="image33223" v-for="(image, i) in images"   :src="image" @click="index = i">
-        <vue-gallery-slideshow :images="images" :index="index" @close="index = null"></vue-gallery-slideshow>
+        <lingallery :iid.sync="currentId" :height="500"  :items="ImageArray"/>
     </div>
 </template>
 
@@ -25,36 +24,35 @@ export default {
             required: false
         },
     },
-    computed: {},
+    computed: {
+    },
     data() {
         return {
-            images: [],
-            photos: null,
-            photos_array: [],
-            photo_item: null,
-            photo: null,
-            galerayFile: null,
-            showPhotoModal: false,
-            resizable: true,
-            adaptive: true,
-            draggable: true,
-            index: null,
+            currentId: 0,
+            images: [{
+                src: 'https://picsum.photos/600/400/?image=0',
+                thumbnail: 'https://picsum.photos/64/64/?image=0',
+                caption: 'Some Caption',
+                id: 'someid1'
+            },
+                {
+                    src: 'https://picsum.photos/600/400/?image=10',
+                    thumbnail: 'https://picsum.photos/64/64/?image=10'
+                },
+            ],
+            ImageArray: []
         };
+
     },
     mounted() {
         this.getPhotos();
-      /*  this.$modal.show('example-modal');*/
-        this.setStyle();
     },
     components: {
         photoModal,
         VueGallerySlideshow
     },
     methods: {
-        setStyle(){
-           let temp=document.getElementsByClassName("vgs__container");
-            temp.removeAttribute("style")
-        },
+
         getPhotos() {
             let url = '/api/anket/' + this.user_id + '/album/' + this.album_id;
             let that = this;
@@ -63,17 +61,21 @@ export default {
                 let data = null;
                 data = response.data;
                 that.photos = data.photos;
-                that.getImages();
+                console.log("this.photos");
+                console.log(that.photos)
+                console.log("this.images")
+                console.log(that.images);
+                for (let i=0;i<that.photos.length;i++){
+                let temp={
+                    id:that.photos[i].id,
+                    src:'/'+that.photos[i].url,
+                    caption:that.photos[i].name,
+                    thumbnail:'/'+that.photos[i].url,
+                }
+                that.ImageArray.push(temp);
+                }
+
             });
-        },
-        getImages() {
-            let array = [];
-            for (let i = 0; i < this.photos.length; i++) {
-                console.log(this.photos[i].url)
-                this.images.push("/" + this.photos[i].url);
-            }
-            console.log(this.images);
-            //return array;
         },
         deletePhoto(id) {
             let result = window.confirm("Удалить фотографию?");
