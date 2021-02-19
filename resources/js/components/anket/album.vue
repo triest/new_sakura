@@ -1,7 +1,7 @@
 <template>
     <div>
-        <img class="image" v-for="(image, i) in images"  height="400rem" :src="image" @click="index = i">
-        <vue-gallery-slideshow :images="images" :index="index" @close="index = null"></vue-gallery-slideshow>
+        <img class="image" v-for="(image, i) in images"   :src="image" @click="index = i">
+        <vue-gallery-slideshow :images="images" :index="index" @close="index = null" style="top:25% !important; width:80%; height: 80%"></vue-gallery-slideshow>
     </div>
 </template>
 
@@ -178,14 +178,15 @@ body {
 }
 
 .image {
-    width: 100px;
-    height: 100px;
-    background-size: cover;
+
+    height: 300px;
+    width: 300px;
     cursor: pointer;
-    margin: 5px;
+   /* margin: 5px;
     border-radius: 3px;
     border: 1px solid lightgray;
     object-fit: contain;
+    */
 }
 
 
