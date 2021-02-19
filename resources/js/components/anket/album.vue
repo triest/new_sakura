@@ -1,7 +1,7 @@
 <template>
     <div>
-        <img class="image" v-for="(image, i) in images"   :src="image" @click="index = i">
-        <vue-gallery-slideshow :images="images" :index="index" @close="index = null" style="top:25% !important; width:80%; height: 80%"></vue-gallery-slideshow>
+        <img class="image33223" v-for="(image, i) in images"   :src="image" @click="index = i">
+        <vue-gallery-slideshow :images="images" :index="index" @close="index = null"></vue-gallery-slideshow>
     </div>
 </template>
 
@@ -52,9 +52,8 @@ export default {
     },
     methods: {
         setStyle(){
-           let element=document.getElementsByClassName("vgs__container");
-           console.log(element)
-            element.style.top="15%";
+           let temp=document.getElementsByClassName("vgs__container");
+            temp.removeAttribute("style")
         },
         getPhotos() {
             let url = '/api/anket/' + this.user_id + '/album/' + this.album_id;
@@ -149,45 +148,7 @@ export default {
 </script>
 
 <style scoped>
-.not_photo {
-    width: 25rem;
-    background-color: #eeeeee;
-    border: 1px solid transparent;
-    display: inline;
-    text-align: center;
-    position: absolute;
-    margin-left: 40%;
+.vgs__container{
+    top:15%
 }
-
-.photo {
-    cursor: pointer;
-}
-
-.photoModal-component {
-    position: absolute;
-    margin-top: auto;
-    margin-left: auto;
-}
-
-.vgs.vgs__container{
-    top:30% !important;
-}
-
-body {
-    font-family: sans-serif;
-}
-
-.image {
-
-    height: 300px;
-    width: 300px;
-    cursor: pointer;
-   /* margin: 5px;
-    border-radius: 3px;
-    border: 1px solid lightgray;
-    object-fit: contain;
-    */
-}
-
-
 </style>

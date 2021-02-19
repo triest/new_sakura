@@ -3050,9 +3050,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setStyle: function setStyle() {
-      var element = document.getElementsByClassName("vgs__container");
-      console.log(element);
-      element.style.top = "15%";
+      var temp = document.getElementsByClassName("vgs__container");
+      temp.removeAttribute("style");
     },
     getPhotos: function getPhotos() {
       var url = '/api/anket/' + this.user_id + '/album/' + this.album_id;
@@ -9537,7 +9536,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.not_photo[data-v-594d9172] {\n    width: 25rem;\n    background-color: #eeeeee;\n    border: 1px solid transparent;\n    display: inline;\n    text-align: center;\n    position: absolute;\n    margin-left: 40%;\n}\n.photo[data-v-594d9172] {\n    cursor: pointer;\n}\n.photoModal-component[data-v-594d9172] {\n    position: absolute;\n    margin-top: auto;\n    margin-left: auto;\n}\n.vgs.vgs__container[data-v-594d9172]{\n    top:30% !important;\n}\nbody[data-v-594d9172] {\n    font-family: sans-serif;\n}\n.image[data-v-594d9172] {\n\n    height: 300px;\n    width: 300px;\n    cursor: pointer;\n   /* margin: 5px;\n    border-radius: 3px;\n    border: 1px solid lightgray;\n    object-fit: contain;\n    */\n}\n\n\n", ""]);
+exports.push([module.i, "\n.vgs__container[data-v-594d9172]{\n    top:15%\n}\n", ""]);
 
 // exports
 
@@ -52075,7 +52074,7 @@ var render = function() {
     [
       _vm._l(_vm.images, function(image, i) {
         return _c("img", {
-          staticClass: "image",
+          staticClass: "image33223",
           attrs: { src: image },
           on: {
             click: function($event) {
@@ -52086,7 +52085,6 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("vue-gallery-slideshow", {
-        staticStyle: { top: "25% !important", width: "80%", height: "80%" },
         attrs: { images: _vm.images, index: _vm.index },
         on: {
           close: function($event) {
