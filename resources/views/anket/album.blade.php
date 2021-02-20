@@ -19,7 +19,7 @@
         <div id="album_app">
 
             @if($album->canUpload())
-            <album :user_id="{{$user->id}}" :album_id="{{$album->id}}" :owner=true></album>
+               <album-owner :user_id="{{$user->id}}" :album_id="{{$album->id}}" :owner=true></album-owner>
             @else
                 <album :user_id="{{$user->id}}" :album_id="{{$album->id}}" ></album>
             @endif

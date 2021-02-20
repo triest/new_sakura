@@ -1,25 +1,31 @@
 <template>
-  <div class="newMessageModal">
-    <transition name="modal" @close="showModal = false">
-      <div class="modal-mask">
-        <div class="modal-wrapper">
-          <div class="modal-container">
-              Фотография {{number}} из {{photos.length}}
-            <div class="modal-body">
-              <button v-if="scrollPrevision" v-on:click="scrollPrevisionFunction()">Назад</button>
-              <button class="close" v-on:click="close()"><span aria-hidden="true">&times;</span></button>
-              <img :src="'/'+photo.url" class="album-image" alt="image">
-              <button v-if="scrollNext" v-on:click="scrollNextFunction()">Вперед</button>
-              <div class="copy">
-                Загружено {{ photo.created }},
-                {{ photo.user.name }}      <a :href="'anket/'+photo.user.id">  <img width="50" height="50" :src="'/'+photo.user.photo_profile_url" alt=""> </a>
-                <hr>
-              </div>
+  <div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Recipient:</label>
+              <input type="text" class="form-control" id="recipient-name">
             </div>
-          </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Message:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Send message</button>
         </div>
       </div>
-    </transition>
+    </div>
   </div>
 </template>
 
@@ -35,12 +41,13 @@ export default {
         photos: {
             type: Array,
             required: false,
-            default: []
+            default: null
         }
     },
     name: 'modal',
     mounted() {
-        this.checkScroll()
+    //    this.checkScroll()
+
     },
     computed: {
         number: function () {
@@ -59,37 +66,9 @@ export default {
         }
     },
     methods: {
-        close() {
-            this.$emit('closePhotoModal')
-        },
-        arrayKeySearch(arr, val) {  //задает переменную по цвету
-            return arr.indexOf(this.photo);
-        },
-        checkScroll() {
-            let index = this.arrayKeySearch(this.photos, this.photo.id); //индек текущей фотки в массивк
-            //проверка на возможность скролинга назад
-            if (index === 0) {
-                this.scrollPrevision = false;
-            } else {
-                this.scrollPrevision = true;
-            }
-            //проверка на возможность скролинга вперед
-            if (this.photos.length - 1 > (index)) {
-                this.scrollNext = true;
-            } else {
-                this.scrollNext = false;
-            }
-        },
-        scrollNextFunction() {
-            let index = this.arrayKeySearch(this.photos, this.photo); //индек текущей фотки в массивк
-            this.photo = this.photos[index + 1];
-            this.checkScroll()
-        },
-        scrollPrevisionFunction() {
-            let index = this.arrayKeySearch(this.photos, this.photo); //индек текущей фотки в массивк
-            this.photo = this.photos[index - 1];
-            this.checkScroll()
-        }
+      show() {
+        //$(this.$el).modal();
+      },
     },
 };
 </script>
