@@ -3,12 +3,14 @@
     namespace App\Http\Controllers;
 
     use App\Http\Requests\AlbumRequwest;
+    use App\Http\Resources\AlbumPhotosResourse;
     use App\Models\Album;
     use App\Models\AlbumPhoto;
     use App\Models\Lk\User;
     use App\Service\AlbumService;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use phpDocumentor\Reflection\Types\Collection;
 
     class AlbumController extends Controller
     {
@@ -55,8 +57,7 @@
             $photos = $album->photos()->get();
             $user = User::get($id);
 
-
-            return view("anket.album")->with(["album" => $album, "photos" => $photos, "user" => $user]);
+            return view("anket.album")->with(["album" => $album, "user" => $user]);
         }
 
         public function apiAlbumItem($albumid,$anketid){
@@ -77,7 +78,13 @@
 
             $photos=$album->photos()->get();
 
-            return response()->json(['photos'=>$photos,'owner'=>$owner]);
+            $arr=[];
+            foreach ($photos as $photo){
+                $arr[]=  url('/')."/".$photo->url;
+            }
+
+            return response()->json($arr);
+        //   return AlbumPhotosResourse::collection($photos);
         }
 
         public function uploadPhoto($id, $albumid,AlbumRequwest $requwest)
