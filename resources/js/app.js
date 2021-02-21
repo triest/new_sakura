@@ -66,16 +66,5 @@ window.addEventListener('load', function () {
         el: '#headerApp',
     });
 
-    const event_in_my_city_side_app = new Vue({
-        el: '#event_in_my_city_side_app',
-    });
-
-    const event_in_my_city_side_app_2 = new Vue({
-        el: '#event_in_my_city_side_app_2',
-    });
-
-    const album_app = new Vue({
-        el: '#album_app',
-    });
 })
 

@@ -2,11 +2,5 @@
 @section('title', "Анкеты")
 
 @section('content')
-
-    <div id="app">
-
-        <anket-list style="margin: auto;"></anket-list>
-
-    </div>
-
+        <anket-list></anket-list>
 @endsection

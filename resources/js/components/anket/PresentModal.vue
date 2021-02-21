@@ -1,51 +1,43 @@
 <template>
-    <transition name="modal" @close="showModal = false">
-        <div class="modal-mask">
-            <div class="modal-wrapper">
-                <div class="modal-container">
-
-                    <div class="modal-header">
-                        <slot name="header">
-                            <b>Подарки</b>
-                        </slot>
-                    </div>
-
-                    <div class="modal-body">
-                        <slot name="body">
-                            <div v-for="present in presents">
-                                <table>
-                                    <tr>
-                                        <td style="vertical-align:middle;"><img width="200" height="200"
-                                                                                :src="'/upload/presents/'+present.image">
-                                        </td>
-                                        <td style="vertical-align:middle;" width="100">
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        {{present.name}} {{present.price}}
-                                                    </td>
-                                                    <td>
-                                                        <img src="/images/coin.png" height="20">
-                                                        <a class="btn btn-danger" v-on:click="makePresent(present.id)">Подарить</a>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </slot>
-                    </div>
-                    <slot name="footer">
-                        <button class="btn btn-primary" v-on:click="close()" >
-                            Закрыть
-                        </button>
-                    </slot>
-                </div>
-
-            </div>
+  <div class="modal fade" id="presentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Подарки</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </transition>
+        <div class="modal-body">
+          <div v-for="present in presents">
+            <table>
+              <tr>
+                <td style="vertical-align:middle;"><img width="200" height="200"
+                                                        :src="'/upload/presents/'+present.image">
+                </td>
+                <td style="vertical-align:middle;" width="100">
+                  <table>
+                    <tr>
+                      <td>
+                        {{present.name}} {{present.price}}
+                      </td>
+                      <td>
+                        <img src="/images/coin.png" height="20">
+                        <a class="btn btn-danger" v-on:click="makePresent(present.id)">Подарить</a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -57,10 +49,11 @@
             },
             user: {
                 type: Object,
-                required: false,
+                required: true,
                 default: null
             }
         },
+      name: 'presentModal',
         mounted() {
             this.getPresents();
         },
@@ -89,15 +82,18 @@
                 })
             },
             makePresent(present_id) {
+
+
                 let formData = new FormData();
                 formData.append('present_id', present_id);
                 formData.append('user_id', this.user.id);
                 axios.post('/api/presents/make', formData
-                ).then(function () {
-
-                }).catch(function () {
-                   // Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации")
-
+                ).then((response) => {
+                      console.log(response.data.result);
+                  Alert("Подарок подарен")
+                    }
+                ).catch(function () {
+                    Alert("Ошибка! Попробуйте еще раз или обратитесь к администрации")
                 })
                 this.close();
             }

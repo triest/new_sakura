@@ -22,6 +22,6 @@
 
         public function gift()
         {
-            return $this->hasOne(Present::class);
+            return $this->hasOne(Present::class,'id','present_id');
         }
     }

@@ -25,13 +25,13 @@
             $user = User::get(intval($request->user_id));
 
             if (!$user) {
-                return response()->json(false);
+                return response()->json(["result"=>false]);
             }
 
             if ($user->makeGift($request->present_id)) {
-                return response()->json(true);
+                return response()->json(["result"=>true]);
             } else {
-                return response()->json(false);
+                return response()->json(["result"=>false]);
             }
         }
 

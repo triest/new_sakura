@@ -78,7 +78,7 @@
 
 
             $gifts = $user->getGifts();
-         //   dump($gifts); die();
+
 
             return view('anket.view')->with([
                     'user' => $user,

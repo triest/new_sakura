@@ -157,7 +157,7 @@ export default {
                 this.numberApplicationPresents = data.gift;
                 this.numberUnreaded = data.messages;
                 this.numberApplication = data.countRequwest;
-                this.filter_enable = data.filter.filter_enable;
+             //   this.filter_enable = data.filter.filter_enable;
                 this.count_accept_notification = data.countAccept_notification;
               });
         },

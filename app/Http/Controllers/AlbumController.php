@@ -39,7 +39,7 @@
           $authUser=Auth::user();
 
 
-          $album=Album::getItem($anketid);
+          $album=Album::findOrFail($anketid);
           if(!$album){
               abort(404);
           }

@@ -118,7 +118,7 @@
                 @endif
 
 
-                <button type="submit" class="btn btn-default">Создать событие</button>
+                <button type="submit" class="btn btn-primary">Создать событие</button>
             </form>
         </div>
     </div>

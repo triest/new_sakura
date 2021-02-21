@@ -506,9 +506,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getGifts($limit = 5)
     {
-        $giftAct = GiftAct::select(['*'])->with('who', 'gift')->where(['target_id' => $this->id])->get();
-
-        return $giftAct;
+        return GiftAct::select(['*'])->with('who','gift')->where(['target_id' => $this->id])->get();
     }
 
     public function getGiftForMe()
