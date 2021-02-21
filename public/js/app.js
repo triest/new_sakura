@@ -2285,6 +2285,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     id: {
@@ -2330,6 +2333,7 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append('present_id', present_id);
       formData.append('user_id', this.user.id);
+      formData.append('text', this.text);
       axios.post('/api/presents/make', formData).then(function (response) {
         console.log(response.data.result);
         Alert("Подарок подарен");
@@ -2982,7 +2986,9 @@ __webpack_require__.r(__webpack_exports__);
     present: _PresentModal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     myPresentModal: _myPresentsModal__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log(this.gifts);
+  },
   methods: {
     openMyPresentsPodal: function openMyPresentsPodal() {
       this.showPresentModal = true;
@@ -4101,9 +4107,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     event: {
@@ -4172,6 +4175,9 @@ __webpack_require__.r(__webpack_exports__);
         _this3.request_list = response.data.request_list;
         console.log(_this3.request_list);
       });
+    },
+    setTab: function setTab(tab) {
+      this.currentTab = tab;
     }
   }
 });
@@ -11594,7 +11600,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.present_image[data-v-43338ce2] {\n    display: flex;\n    width: 60px;\n    height: 60px;\n    overflow: hidden;\n    align-items: center;\n    border-radius: 50%;\n    border: 1px solid #329BF0;\n    position: relative;\n}\n.present_image[data-v-43338ce2] {\n    border-radius: 50% !important;\n}\n.present_image[data-v-43338ce2]:hover {\n    cursor: pointer;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.present_image[data-v-43338ce2] {\n    display: flex;\n    width: 60px;\n    height: 60px;\n    overflow: hidden;\n    align-items: center;\n    border-radius: 50%;\n    border: 1px solid #329bf0;\n    position: relative;\n}\n.present_image[data-v-43338ce2] {\n    border-radius: 50% !important;\n}\n.present_image[data-v-43338ce2]:hover {\n    cursor: pointer;\n}\n\n\n", ""]);
 
 // exports
 
@@ -62596,66 +62602,102 @@ var render = function() {
           _c(
             "div",
             { staticClass: "modal-body" },
-            _vm._l(_vm.presents, function(present) {
-              return _c("div", [
-                _c("table", [
-                  _c("tr", [
-                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
-                      _c("img", {
-                        attrs: {
-                          width: "200",
-                          height: "200",
-                          src: "/upload/presents/" + present.image
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        staticStyle: { "vertical-align": "middle" },
-                        attrs: { width: "100" }
-                      },
-                      [
-                        _c("table", [
-                          _c("tr", [
-                            _c("td", [
-                              _vm._v(
-                                "\n                      " +
-                                  _vm._s(present.name) +
-                                  " " +
-                                  _vm._s(present.price) +
-                                  "\n                    "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("img", {
-                                attrs: { src: "/images/coin.png", height: "20" }
-                              }),
+            [
+              _vm._l(_vm.presents, function(present) {
+                return _c("div", [
+                  _c("table", [
+                    _c("tr", [
+                      _c(
+                        "td",
+                        { staticStyle: { "vertical-align": "middle" } },
+                        [
+                          _c("img", {
+                            attrs: {
+                              width: "200",
+                              height: "200",
+                              src: "/upload/presents/" + present.image
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticStyle: { "vertical-align": "middle" },
+                          attrs: { width: "100" }
+                        },
+                        [
+                          _c("table", [
+                            _c("tr", [
+                              _c("td", [
+                                _vm._v(
+                                  "\n                      " +
+                                    _vm._s(present.name) +
+                                    " " +
+                                    _vm._s(present.price) +
+                                    "\n                    "
+                                )
+                              ]),
                               _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-danger",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.makePresent(present.id)
-                                    }
+                              _c("td", [
+                                _c("img", {
+                                  attrs: {
+                                    src: "/images/coin.png",
+                                    height: "20"
                                   }
-                                },
-                                [_vm._v("Подарить")]
-                              )
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-danger",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.makePresent(present.id)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Подарить")]
+                                )
+                              ])
                             ])
                           ])
-                        ])
-                      ]
-                    )
+                        ]
+                      )
+                    ])
                   ])
                 ])
-              ])
-            }),
-            0
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "text" } }),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.text,
+                    expression: "text"
+                  }
+                ],
+                attrs: {
+                  name: "text",
+                  id: "text",
+                  placeholder: "Текст сообщения"
+                },
+                domProps: { value: _vm.text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.text = $event.target.value
+                  }
+                }
+              })
+            ],
+            2
           ),
           _vm._v(" "),
           _vm._m(1)
@@ -63481,7 +63523,7 @@ var render = function() {
             attrs: {
               id: "present_image",
               height: "40px",
-              src: "/upload/presents/" + gift.image
+              src: "/public/upload/presents/" + gift.gift.image
             },
             on: {
               click: function($event) {
@@ -64524,57 +64566,61 @@ var render = function() {
       ? _c("div", [_c("b", [_vm._v(" Максимальное число участников! ")])])
       : _vm._e(),
     _vm._v(" "),
-    _c("ul", { staticClass: "nav nav-tabs" }, [
+    _c("ul", { staticClass: "nav nav-pills flex-column flex-sm-row" }, [
       _c(
         "li",
         {
-          attrs: { role: "presentation" },
+          staticClass: "flex-sm-fill text-sm-center nav-link ",
+          class: _vm.currentTab === "accepted" ? "active" : "",
           on: {
             click: function($event) {
-              _vm.currentTab = "accepted"
+              return _vm.setTab("accepted")
             }
           }
         },
-        [_vm._m(0)]
+        [_c("b", [_vm._v("Принятые")])]
       ),
       _vm._v(" "),
       _c(
         "li",
         {
-          attrs: { role: "presentation" },
+          staticClass: "flex-sm-fill text-sm-center nav-link ",
+          class: _vm.currentTab === "rejected" ? "active" : "",
           on: {
             click: function($event) {
-              _vm.currentTab = "rejected"
+              return _vm.setTab("rejected")
             }
           }
         },
-        [_vm._m(1)]
+        [_c("b", [_vm._v("Отклоненные")])]
       ),
       _vm._v(" "),
       _c(
         "li",
         {
-          attrs: { role: "presentation" },
+          staticClass: "flex-sm-fill text-sm-center nav-link ",
+          class: _vm.currentTab === "unredded" ? "active" : "",
           on: {
             click: function($event) {
-              _vm.currentTab = "unredded"
+              return _vm.setTab("unredded")
             }
           }
         },
-        [_vm._m(2)]
+        [_c("b", [_vm._v("Непрочитанные")])]
       ),
       _vm._v(" "),
       _c(
         "li",
         {
-          attrs: { role: "presentation" },
+          staticClass: "flex-sm-fill text-sm-center nav-link ",
+          class: _vm.currentTab === "all" ? "active" : "",
           on: {
             click: function($event) {
-              _vm.currentTab = "all"
+              return _vm.setTab("all")
             }
           }
         },
-        [_vm._m(3)]
+        [_c("b", [_vm._v("Все")])]
       )
     ]),
     _vm._v(" "),
@@ -64787,161 +64833,138 @@ var render = function() {
                           },
                           [
                             _c("div", { staticClass: "card-body" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "card  border-dark",
-                                  staticStyle: {
-                                    width: "18rem",
-                                    "background-color": "#eeeeee",
-                                    border: "1px solid transparent",
-                                    "border-color": "#666869"
-                                  }
-                                },
-                                [
-                                  _c("div", { staticClass: "card-body" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.myFunction(requwest.id)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("img", {
-                                          attrs: {
-                                            src: requwest.user.profile_url,
-                                            height: "150"
-                                          }
-                                        })
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.myFunction(requwest.id)
-                                          }
-                                        }
-                                      },
-                                      [
+                              _c("div", { staticClass: "card-body" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.myFunction(requwest.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("img", {
+                                      attrs: {
+                                        src: requwest.user.profile_url,
+                                        height: "150"
+                                      }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.myFunction(requwest.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("p", [
+                                      _vm._v(
+                                        _vm._s(requwest.user.name) +
+                                          ",\n                          " +
+                                          _vm._s(requwest.user.age)
+                                      )
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                requwest.status_id == 1
+                                  ? _c("h5", [
+                                      _c("p", [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "btn btn-primary",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.accept(requwest.id)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                            Принять\n                          "
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "btn btn-danger",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.reject(requwest.id)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                            Отклонить\n                          "
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                requwest.status_id == 2
+                                  ? _c("h5", [
+                                      _c("b", [
                                         _c("p", [
-                                          _vm._v(
-                                            _vm._s(requwest.user.name) +
-                                              ",\n                          " +
-                                              _vm._s(requwest.user.age)
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass: "btn btn-danger",
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.reject(requwest.id)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                            Отклонить\n                          "
+                                              )
+                                            ]
                                           )
                                         ])
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    requwest.status_id == 1
-                                      ? _c("h5", [
-                                          _c("p", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "btn btn-primary",
-                                                on: {
-                                                  click: function($event) {
-                                                    return _vm.accept(
-                                                      requwest.id
-                                                    )
-                                                  }
+                                      ])
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                requwest.status_id == 3
+                                  ? _c("h5", [
+                                      _c("b", [
+                                        _c("p", [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass: "btn btn-primary",
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.accept(requwest.id)
                                                 }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                            Принять\n                          "
-                                                )
-                                              ]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("p", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "btn btn-danger",
-                                                on: {
-                                                  click: function($event) {
-                                                    return _vm.reject(
-                                                      requwest.id
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                            Отклонить\n                          "
-                                                )
-                                              ]
-                                            )
-                                          ])
-                                        ])
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    requwest.status_id == 2
-                                      ? _c("h5", [
-                                          _c("b", [
-                                            _c("p", [
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass: "btn btn-danger",
-                                                  on: {
-                                                    click: function($event) {
-                                                      return _vm.reject(
-                                                        requwest.id
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                            Отклонить\n                          "
-                                                  )
-                                                ]
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                            Принять\n                          "
                                               )
-                                            ])
-                                          ])
+                                            ]
+                                          )
                                         ])
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    requwest.status_id == 3
-                                      ? _c("h5", [
-                                          _c("b", [
-                                            _c("p", [
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass:
-                                                    "btn btn-primary",
-                                                  on: {
-                                                    click: function($event) {
-                                                      return _vm.accept(
-                                                        requwest.id
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                            Принять\n                          "
-                                                  )
-                                                ]
-                                              )
-                                            ])
-                                          ])
-                                        ])
-                                      : _vm._e()
-                                  ])
-                                ]
-                              )
+                                      ])
+                                    ])
+                                  : _vm._e()
+                              ])
                             ])
                           ]
                         )
@@ -65165,34 +65188,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [_c("b", [_vm._v("Принятые")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [_c("b", [_vm._v("Отклоненные")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("b", [_vm._v("Непрочитанные")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [_c("b", [_vm._v("Все")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

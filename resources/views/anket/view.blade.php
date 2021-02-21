@@ -50,7 +50,6 @@
                         </div>
                     </div>
                     <div class="row">
-
                         <anket-component2 :user="{{$user}}" :gifts="{{$gifts}}"></anket-component2>
                     </div>
                 </div>

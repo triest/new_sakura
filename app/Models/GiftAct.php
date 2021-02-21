@@ -9,6 +9,10 @@
     {
         //
         protected $table = "gift_act";
+        /**
+         * @var mixed|null
+         */
+        private $text;
 
         public function who()
         {

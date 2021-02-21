@@ -485,7 +485,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $message;
     }
 
-    public function makeGift($present_id)
+    public function makeGift($present_id,$text=null)
     {
         $giftAct = new GiftAct();
         $auth_user = Auth::user();
@@ -500,6 +500,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $giftAct->target_id = $this->id;
         $giftAct->who_id = $auth_user->id;
         $giftAct->present_id = $present->id;
+        $giftAct->comment=$text;
         $giftAct->save();
         return true;
     }

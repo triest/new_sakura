@@ -8,11 +8,11 @@
       <b> Максимальное число участников! </b>
     </div>
 
-    <ul class="nav nav-tabs">
-      <li role="presentation" @click="currentTab = 'accepted'"><a href="#"><b>Принятые</b></a></li>
-      <li role="presentation" @click="currentTab = 'rejected'"><a href="#"><b>Отклоненные</b></a></li>
-      <li role="presentation" @click="currentTab = 'unredded'"><a href="#"><b>Непрочитанные</b></a></li>
-      <li role="presentation" @click="currentTab = 'all'"><a href="#"><b>Все</b></a>
+    <ul class="nav nav-pills flex-column flex-sm-row">
+      <li class="flex-sm-fill text-sm-center nav-link " v-bind:class="currentTab==='accepted'?'active':''" @click="setTab('accepted')"><b>Принятые</b></li>
+      <li class="flex-sm-fill text-sm-center nav-link "  v-bind:class="currentTab==='rejected'?'active':''" @click="setTab('rejected')"><b>Отклоненные</b></li>
+      <li class="flex-sm-fill text-sm-center nav-link "  v-bind:class="currentTab==='unredded'?'active':''"  @click="setTab('unredded')"><b>Непрочитанные</b></li>
+      <li class="flex-sm-fill text-sm-center nav-link " v-bind:class="currentTab==='all'?'active':''"  @click="setTab('all')"><b>Все</b>
       </li>
     </ul>
     <div class="applicationClass">
@@ -80,10 +80,7 @@
 ">
               <div class="card-body">
 
-                  <div class="card  border-dark" style="width: 18rem; background-color: #eeeeee;
-             border: 1px solid transparent;
-             border-color: #666869;
-">
+
                     <div class="card-body">
 
                       <a @click="myFunction(requwest.id)">
@@ -121,7 +118,7 @@
                       </b>
                       </h5>
                     </div>
-                </div>
+
               </div>
             </div>
           </div>
@@ -258,6 +255,10 @@ export default {
             this.request_list = response.data.request_list;
             console.log(this.request_list)
           });
+    },
+
+    setTab(tab){
+        this.currentTab=tab;
     }
 
 

@@ -31,7 +31,10 @@
               </tr>
             </table>
           </div>
+          <label for="text"></label>
+          <textarea name="text" id="text" v-model="text" placeholder="Текст сообщения"></textarea>
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
         </div>
@@ -87,6 +90,7 @@
                 let formData = new FormData();
                 formData.append('present_id', present_id);
                 formData.append('user_id', this.user.id);
+                formData.append('text', this.text);
                 axios.post('/api/presents/make', formData
                 ).then((response) => {
                       console.log(response.data.result);

@@ -28,7 +28,7 @@
                 return response()->json(["result"=>false]);
             }
 
-            if ($user->makeGift($request->present_id)) {
+            if ($user->makeGift($request->present_id,$request->text)) {
                 return response()->json(["result"=>true]);
             } else {
                 return response()->json(["result"=>false]);
