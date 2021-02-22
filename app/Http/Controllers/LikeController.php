@@ -31,8 +31,6 @@ class LikeController extends Controller
             return redirect('/login');
         }
 
-        //   $likeService = new LikeService();
-        //   $likes = $likeService->getMyLikes();
         return view('like.index');
     }
 

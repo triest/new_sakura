@@ -36,6 +36,10 @@
             return response()->json($messages);
         }
 
+        public function countUnreaded(ContactService $contactService){
+           return $contactService->getUnreaded()->count();
+        }
+
         public function send(SendMessageToUser $request)
         {
             $user = User::get($request->contact_id);

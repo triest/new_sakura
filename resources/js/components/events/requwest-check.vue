@@ -193,11 +193,7 @@ export default {
   },
   components: {},
   mounted() {
-    this.getrequwests();
-    //  this.getunreaded();
-    //this.getacepted();
-    // this.getdenided();
-    // this.requwestcount();
+    this.getrequests();
   },
   data() {
     return {
@@ -205,24 +201,21 @@ export default {
       currentTab: 'all',
       accepted: null,
       rejected: null,
-      unredded: null,
+      unreadded: null,
       countaccepted: null,
       max_people: null,
     }
   },
   methods: {
     gatall() {
-      this.getrequwests();
-      this.getacepted();
-      this.getdenided();
-      this.requwestcount();
+      this.getrequests();
     },
 
     accept(req_id) {
       this.request_list = [];
       this.accepted = null;
       this.rejected = null;
-      this.unredded = null;
+      this.unreadded = null;
       axios.get('/api/events/accept', {
             params: {
               action: 'accept',
@@ -231,7 +224,7 @@ export default {
           }
       )
           .then((response) => {
-            this.getrequwests();
+            this.getrequests();
           });
     },
     reject(req_id) {
@@ -244,11 +237,11 @@ export default {
           }
       )
           .then((response) => {
-            this.getrequwests();
+            this.getrequests();
           });
       //  this.gatall();
     },
-    getrequwests() {
+    getrequests() {
       this.request_list = null;
       axios.get('/api/events/' + this.event.id + '/request-list')
           .then((response) => {
@@ -267,5 +260,8 @@ export default {
 </script>
 
 <style scoped>
+ .flex-sm-fill{
+    cursor: pointer;
+ }
 
 </style>

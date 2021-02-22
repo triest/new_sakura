@@ -56,13 +56,14 @@ Route::prefix('like')->name('like.')->group(
         }
 );
 
-Route::prefix('contact')->name('contact.')->group(
+Route::prefix('contact')->middleware('auth')->name('contact.')->group(
         function () {
             Route::get('/', 'ContactController@index')->name('main')->middleware('auth');
             Route::get('/contacts', 'ContactController@get');
             Route::get('/conversation/{id}', 'ContactController@getMessagesFor');
             Route::post('/conversation/send', 'ContactController@send');
             Route::post('/conversation/sendModal', 'ContactController@send');
+            Route::get('/count-unreaded', 'ContactController@countUnreaded');
         }
 );
 

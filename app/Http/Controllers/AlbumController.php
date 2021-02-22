@@ -74,7 +74,6 @@
                 $albums->push($album);
             }
 
-            $photos = $album->photos()->get();
             $user = User::get($id);
 
             return view("anket.album")->with(["album" => $album, "user" => $user]);
@@ -120,15 +119,11 @@
         }
 
         public function deletePhoto(Request $request,$id,$albumid,$photoid){
-
-
-            $user=Auth::user();
             $photo=AlbumPhoto::get($photoid);
 
             if(!$photo){
                 return false;
             }
-            $album=$photo->album()->first();
             $albumService=new AlbumService();
 
             return  $albumService->deletePhoto($photo);

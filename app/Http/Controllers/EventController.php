@@ -134,7 +134,11 @@ class EventController extends Controller
         }
 
 
-        $event->save();
+        if(!is_string($event)) {
+            $event->save();
+        }else{
+            return back()->withErrors(['msg'=>$event]);
+        }
 
         return redirect()->route('events.view', ['id' => $event->id]);
     }

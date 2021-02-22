@@ -31,15 +31,10 @@
         mounted() {
             console.log("listen");
             console.log(`messages.${this.user.id}`);
-            Echo.private(`messages.${this.user.id}`)
+            Echo.private(`user.${this.user.id}`)
                 .listen('NewMessage', (e) => {
-                    console.log("newMessage");
-                    console.log(e.message)
                     this.hanleIncoming(e.message);
-
                 });
-            console.log("contacts");
-            console.log(this.user.id)
             axios.get('api/contact/contacts')
                 .then((response) => {
                     this.contacts = response.data;

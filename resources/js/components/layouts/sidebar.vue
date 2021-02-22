@@ -63,34 +63,34 @@ export default {
    // this.inSearch();
     this.getAllDataForSidePanel();
     this.getNumberUnreadedEventRequwest();
-    Echo.private(`messages.${this.user.id}`)
+    Echo.private(`user.${this.user.id}`)
         .listen('NewMessage', (e) => {
           console.log('NewMessage');
-          axios.get('/getCountUnreaded')
+          console.log(e)
+          /*axios.get('api/getCountUnreaded')
               .then((response) => {
                 this.numberUnreaded = response.data;
-              });
+              });*/
           this.getNumberUnreadedMessages();
           this.showNemMessageModal = true;
         });
-    Echo.private(`requwests.${this.user.id}`)
+    Echo.private(`user.${this.user.id}`)
         .listen('newApplication', (e) => {
           console.log('NewRequwest');
-          axios.get('/getCountUnreadedRequwest')
+          axios.get('api/getCountUnreadedRequwest')
               .then((response) => {
                 this.numberApplication = response.data;
               })
         });
-    Echo.private(`gifs.${this.user.id}`)
+    Echo.private(`user.${this.user.id}`)
         .listen('eventPreasent', (e) => {
           this.getNumberUnreadedPresents();
-          console.log("presrn");
         });
-    Echo.private(`eventsrequwest.${this.user.id}`)
+    Echo.private(`user.${this.user.id}`)
         .listen('Newevent', (e) => {
           console.log('NewRequwestEvent');
         });
-    Echo.private(`App.User.${this.user.id}`)
+    Echo.private(`user.${this.user.id}`)
         .listen('Newevent', (e) => {
           this.getNumberUnreadedEventRequwest();
         });
@@ -111,7 +111,7 @@ export default {
           this.showLikeModal = false;
         },
         getNumberUnreadedMessages() {
-          axios.get('/getCountUnreaded')
+          axios.get('/api/contact/count-unreaded')
               .then((response) => {
                 this.numberUnreaded = response.data;
               })
@@ -188,7 +188,7 @@ export default {
         },
         logout() {
 
-          axios.post('logout').then(response => {
+          axios.post('/logout').then(response => {
             if (response.status === 302 || 401) {
               console.log('logout')
               location.reload();

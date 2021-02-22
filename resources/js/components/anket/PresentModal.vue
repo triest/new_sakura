@@ -22,7 +22,7 @@
                         {{present.name}} {{present.price}}
                       </td>
                       <td>
-                        <img src="/images/coin.png" height="20">
+                        <img src="/public/images/coin.png" height="20">
                         <a class="btn btn-danger" v-on:click="makePresent(present.id)">Подарить</a>
                       </td>
                     </tr>
@@ -65,7 +65,8 @@
                 presents: [],
                 currentAnket: '',
                 userMoney: '',
-                showModal: true
+                showModal: true,
+                text:'',
             }
         },
         methods: {

@@ -59,4 +59,15 @@
             $messages = Message::where('from', $user->id)->orWhere('to', $user->id)->get();
             return $messages;
         }
+        public function getUnreaded(User $user=null){
+            if ($user == null) {
+                $user = Auth::user();
+            }
+
+            if ($user == null) {
+                return false;
+            }
+
+            return Message::where('to', $user->id)->where(['readed'=>false])->orWhere('to', $user->id);
+        }
     }
