@@ -10,7 +10,7 @@
           <div class="bg-light rounded py-2 px-3 mb-2">
             <p class="text-small mb-0 text-muted">{{message.text}}</p>
           </div>
-          <p class="small text-muted">{{ message.created_at }}</p>
+          <p class="small text-muted">{{ message.date }}</p>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
           <div class="bg-primary rounded py-2 px-3 mb-2">
             <p class="text-small mb-0 text-white">{{message.text}}</p>
           </div>
-          <p class="small text-muted"> {{message.created_at}}</p>
+          <p class="small text-muted"> {{message.date}}</p>
         </div>
       </div>
 

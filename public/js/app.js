@@ -64310,7 +64310,7 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("p", { staticClass: "small text-muted" }, [
-                      _vm._v(_vm._s(message.created_at))
+                      _vm._v(_vm._s(message.date))
                     ])
                   ])
                 ])
@@ -64330,7 +64330,7 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("p", { staticClass: "small text-muted" }, [
-                      _vm._v(" " + _vm._s(message.created_at))
+                      _vm._v(" " + _vm._s(message.date))
                     ])
                   ])
                 ])
