@@ -30,6 +30,15 @@
         </div>
         <SearchModal class="search-modal" v-if="seachModal" @closeSeachModal="closeSeachModal()"></SearchModal>
       </div>
+      <span style="width: 70px; display: inline-block">
+      <button id="next2" v-if="prev_page_url!=null" class="btn btn-primar" v-on:click="seach(prev_page_url)">
+        Назад
+      </button>
+      </span>
+      <span style="width: 200px; display: inline-block">
+       {{current_page}} из {{page_count}}
+         <button v-if="next_page_url!=null" class="btn btn-primary" v-on:click="seach(next_page_url)">Вперед</button>
+      </span>
     </div>
   </div>
 </template>

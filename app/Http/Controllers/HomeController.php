@@ -46,24 +46,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        /*
-        $user = User::select(['*'])->whereNull('age')->first();
-        // return $user;
-        if (!$user) {
-            return \response()->json();
-        }
-        try {
-            $dateBith = $user->date_birth;
-            $mytime = Carbon::now();
-            $last_login = Carbon::createFromFormat('Y-m-d', $dateBith);
-            $dateBith = Carbon::instance($mytime);
-            //    $datediff = date_diff($last_login, $mytime);
-            $user->age = $dateBith->diffInYears($last_login);
-            $user->save();
-            return \response()->json($user);
-        } catch (IOException $exception) {
-            return \response()->json($exception);
-        }*/
         return view('chat');
     }
 

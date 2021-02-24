@@ -37,7 +37,8 @@
         },
         mounted() {
             Echo.private(`user.${this.user.id}`)
-                .listen('NewMessage', (e) => {
+                .listen('messages', (e) => {
+                    console.log("new message")
                     this.hanleIncoming(e.message);
                     this.getContacts()
                 });

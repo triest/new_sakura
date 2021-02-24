@@ -3051,6 +3051,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -3483,7 +3492,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    Echo["private"]("user.".concat(this.user.id)).listen('NewMessage', function (e) {
+    Echo["private"]("user.".concat(this.user.id)).listen('messages', function (e) {
+      console.log("new message");
+
       _this.hanleIncoming(e.message);
 
       _this.getContacts();
@@ -63731,7 +63742,49 @@ var render = function() {
             : _vm._e()
         ],
         2
-      )
+      ),
+      _vm._v(" "),
+      _c("span", { staticStyle: { width: "70px", display: "inline-block" } }, [
+        _vm.prev_page_url != null
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-primar",
+                attrs: { id: "next2" },
+                on: {
+                  click: function($event) {
+                    return _vm.seach(_vm.prev_page_url)
+                  }
+                }
+              },
+              [_vm._v("\n      Назад\n    ")]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("span", { staticStyle: { width: "200px", display: "inline-block" } }, [
+        _vm._v(
+          "\n     " +
+            _vm._s(_vm.current_page) +
+            " из " +
+            _vm._s(_vm.page_count) +
+            "\n       "
+        ),
+        _vm.next_page_url != null
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                on: {
+                  click: function($event) {
+                    return _vm.seach(_vm.next_page_url)
+                  }
+                }
+              },
+              [_vm._v("Вперед")]
+            )
+          : _vm._e()
+      ])
     ])
   ])
 }
