@@ -36,10 +36,12 @@
             };
         },
         mounted() {
+
             Echo.private(`user.${this.user.id}`)
                 .listen('NewMessage', (e) => {
                     console.log("new message");
                     this.hanleIncoming(e.message);
+                  eventHub.$on('scroll_to_down', true)
                     this.getContacts()
                 });
             this.getContacts()

@@ -3497,6 +3497,8 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.hanleIncoming(e.message);
 
+      eventHub.$on('scroll_to_down', true);
+
       _this.getContacts();
     });
     this.getContacts();
@@ -3679,6 +3681,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log(this.messages);
+  },
+  watch: {
+    messages: function messages(val) {
+      console.log("change");
+      var container = this.$el.querySelector("#messages-div");
+      container.scrollTop = container.scrollHeight;
+    }
   },
   methods: {
     sendMessage: function sendMessage(text) {
@@ -64335,7 +64344,7 @@ var render = function() {
     _c("div", { staticClass: "px-4 py-5 chat-box bg-white" }, [
       _c(
         "div",
-        { staticClass: "messages-div" },
+        { staticClass: "messages-div", attrs: { id: "messages-div" } },
         _vm._l(_vm.messages, function(message) {
           return _c("span", [
             message.to == _vm.contact.id
@@ -78085,6 +78094,7 @@ Vue.component('lingallery', lingallery__WEBPACK_IMPORTED_MODULE_2___default.a);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+var eventHub = new Vue();
 window.addEventListener('load', function () {
   //your script
   var app = new Vue({

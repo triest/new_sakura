@@ -55,7 +55,7 @@ Vue.component('lingallery', Lingallery);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
+var eventHub = new Vue();
 
 window.addEventListener('load', function () {
     //your script

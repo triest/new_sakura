@@ -1,7 +1,7 @@
 <template>
   <div class="col-7 px-0">
     <div class="px-4 py-5 chat-box bg-white">
-      <div class="messages-div">
+      <div id="messages-div" class="messages-div">
       <span v-for="message in messages">
       <!-- Sender Message-->
 
@@ -56,6 +56,13 @@
          mounted() {
           console.log(this.messages)
         },
+      watch: {
+        messages:function (val){
+          console.log("change")
+          var container = this.$el.querySelector("#messages-div");
+          container.scrollTop = container.scrollHeight;
+        }
+      },
         methods: {
             sendMessage(text) {
                 if (!this.contact) {
