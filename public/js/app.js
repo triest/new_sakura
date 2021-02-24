@@ -3483,28 +3483,34 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log("listen");
-    console.log("messages.".concat(this.user.id));
     Echo["private"]("user.".concat(this.user.id)).listen('NewMessage', function (e) {
       _this.hanleIncoming(e.message);
+
+      _this.getContacts();
     });
-    axios.get('api/contact/contacts').then(function (response) {
-      _this.contacts = response.data;
-    });
+    this.getContacts();
   },
   methods: {
-    startConversationWith: function startConversationWith(contact, image) {
+    getContacts: function getContacts() {
       var _this2 = this;
+
+      axios.get('api/contact/contacts').then(function (response) {
+        _this2.contacts = response.data;
+      });
+    },
+    startConversationWith: function startConversationWith(contact, image) {
+      var _this3 = this;
 
       console.log("start conversation"); //     this.updateUnreadCount(contact, true);
 
       axios.get("api/contact/conversation/".concat(contact.id)).then(function (response) {
-        _this2.messages = response.data;
-        _this2.selectedContact = contact;
+        _this3.messages = response.data;
+        _this3.selectedContact = contact;
       });
     },
     saveNewMessage: function saveNewMessage(message) {
       this.messages.push(message);
+      this.getContacts();
     },
     hanleIncoming: function hanleIncoming(message) {
       if (this.selectedContact && message.from == this.selectedContact.id) {
@@ -64222,7 +64228,7 @@ var render = function() {
               "list-group-item list-group-item-action active text-white rounded-0",
             on: {
               click: function($event) {
-                return _vm.selectContact(contact)
+                return _vm.selectContact(contact.other)
               }
             }
           },
@@ -64230,7 +64236,7 @@ var render = function() {
             _c("div", { staticClass: "media" }, [
               _c("img", {
                 staticClass: "rounded-circle",
-                attrs: { src: contact.photo_profile_url, width: "50" }
+                attrs: { src: contact.other.photo_profile_url, width: "50" }
               }),
               _vm._v(" "),
               _c("div", { staticClass: "media-body ml-4" }, [
@@ -64242,10 +64248,10 @@ var render = function() {
                   },
                   [
                     _c("h6", { staticClass: "mb-0" }, [
-                      _vm._v(_vm._s(contact.name))
+                      _vm._v(_vm._s(contact.other.name))
                     ]),
                     _c("small", { staticClass: "small font-weight-bold" }, [
-                      _vm._v("25 Dec")
+                      _vm._v(_vm._s(contact.date))
                     ])
                   ]
                 )

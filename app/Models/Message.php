@@ -26,8 +26,6 @@
         }
 
         public function getDateAttribute(){
-          //  return "dsdssd";
-           /* $created=$this->created;*/
             $mytime = Carbon::now();
             $date=$this->created_at->format('Y-m-d H:i:s');
             $date=Carbon::createFromFormat('Y-m-d H:i:s', $date);

@@ -30,18 +30,10 @@
                 return null;
             }
 
-            $dialogs = Dialog::select('id', 'my_id', 'other_id')
-                    ->where('my_id', $user->id)->get();
-            $contacts = [];
-            foreach ($dialogs as $dialog) {
-                $other = $dialog->other_id;
-                $user = DB::table('users')
-                        ->select('*')
-                        ->where('users.id', $other)->first();
-                // $user=DB::table('users')->join('gitls')
-                array_push($contacts, $user);
-            }
-            return $contacts;
+
+            $diologs=$user->dialogs()->with('other')->orderBy('lastMessage','desc')->get();
+
+            return $diologs;
         }
 
         public function getMessagesFor(User $user = null)

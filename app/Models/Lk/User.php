@@ -467,7 +467,11 @@ class User extends Authenticatable implements MustVerifyEmail
             $dialog3 = new Dialog();
             $dialog3->my_id = $user->id;
             $dialog3->other_id = $id2;
+            $dialog3->lastMessage=Carbon::now();
             $dialog3->save();
+        }else{
+            $dialog->lastMessage=Carbon::now();
+            $dialog->save();
         }
         $dialog2 = Dialog::select(['id', 'my_id', 'other_id'])
                 ->where('other_id', $user->id)->where(
@@ -478,7 +482,11 @@ class User extends Authenticatable implements MustVerifyEmail
             $dialog4 = new Dialog();
             $dialog4->other_id = $user->id;
             $dialog4->my_id = $id2;
+            $dialog4->lastMessage=Carbon::now();
             $dialog4->save();
+        }else{
+            $dialog2->lastMessage=Carbon::now();
+            $dialog2->save();
         }
         broadcast(new NewMessage($message));
 
@@ -609,6 +617,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function messagesForMe()
     {
         return $this->hasMany(Message::class, 'to', 'id');
+    }
+
+    public function dialogs()
+    {
+            return $this->hasMany(Dialog::class,'my_id','id');
     }
 
 }

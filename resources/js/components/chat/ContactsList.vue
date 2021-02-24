@@ -2,11 +2,11 @@
 <template>
   <div class="messages-box">
     <div class="list-group rounded-0">
-      <a class="list-group-item list-group-item-action active text-white rounded-0"  v-for="contact in sortedContacts" :key="contact.id" @click="selectContact(contact)">
-        <div class="media"><img  :src="contact.photo_profile_url"  width="50" class="rounded-circle">
+      <a class="list-group-item list-group-item-action active text-white rounded-0"  v-for="contact in sortedContacts" :key="contact.id" @click="selectContact(contact.other)">
+        <div class="media"><img  :src="contact.other.photo_profile_url"  width="50" class="rounded-circle">
           <div class="media-body ml-4">
             <div class="d-flex align-items-center justify-content-between mb-1">
-              <h6 class="mb-0">{{ contact.name }}</h6><small class="small font-weight-bold">25 Dec</small>
+              <h6 class="mb-0">{{ contact.other.name }}</h6><small class="small font-weight-bold">{{contact.date}}</small>
             </div>
           </div>
         </div>

@@ -36,18 +36,20 @@
             };
         },
         mounted() {
-            console.log("listen");
-            console.log(`messages.${this.user.id}`);
             Echo.private(`user.${this.user.id}`)
                 .listen('NewMessage', (e) => {
                     this.hanleIncoming(e.message);
+                    this.getContacts()
                 });
-            axios.get('api/contact/contacts')
-                .then((response) => {
-                    this.contacts = response.data;
-                });
+            this.getContacts()
         },
         methods: {
+            getContacts(){
+              axios.get('api/contact/contacts')
+                  .then((response) => {
+                    this.contacts = response.data;
+                  });
+            },
             startConversationWith(contact, image) {
                 console.log("start conversation");
                 //     this.updateUnreadCount(contact, true);
@@ -61,6 +63,7 @@
             },
             saveNewMessage(message) {
                 this.messages.push(message);
+                this.getContacts();
             },
             hanleIncoming(message) {
                 if (this.selectedContact && message.from == this.selectedContact.id) {
