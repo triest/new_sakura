@@ -46,7 +46,7 @@
                 return null;
             }
 
-            Message::where('from', $user->id)->where('to', $user->id)
+            Message::where('to', $user->id)
                     ->update(['readed' => true]);
             $messages = Message::where('from', $user->id)->orWhere('to', $user->id)->get();
             return $messages;

@@ -38,6 +38,11 @@ class Dialog extends Model
     public function getDateAttribute(){
         $mytime = Carbon::now();
         $date=$this->lastMessage;
+
+        if(!$date){
+            return null;
+        }
+
         $date=Carbon::createFromFormat('Y-m-d H:i:s', $date);
 
         $datediff = date_diff($date, $mytime);
