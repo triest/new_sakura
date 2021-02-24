@@ -1,12 +1,19 @@
 <template>
-    <div class="chat-app"> <!-- lg комп-->
-        <div class="col-sm-2 col-12">
+  <div>
+
+      <div class="row rounded-lg overflow-hidden ">
+        <!-- Users box-->
+        <div class="col-5 px-0">
+          <div class="bg-white">
             <ContactsList :contacts="contacts" @selected="startConversationWith"/>
+          </div>
         </div>
-        <div class="col-sm-6 col-12">
-            <Conversation :contact="selectedContact" :unreaded="unreaded" :messages="messages" @new="saveNewMessage"/>
-        </div>
-    </div>
+        <!-- Chat Box-->
+        <Conversation :contact="selectedContact" :unreaded="unreaded" :messages="messages" @new="saveNewMessage"/>
+      </div>
+
+
+  </div>
 </template>
 
 <script>

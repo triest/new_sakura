@@ -46,6 +46,7 @@ class HomeController extends Controller
 
     public function test()
     {
+        /*
         $user = User::select(['*'])->whereNull('age')->first();
         // return $user;
         if (!$user) {
@@ -62,7 +63,8 @@ class HomeController extends Controller
             return \response()->json($user);
         } catch (IOException $exception) {
             return \response()->json($exception);
-        }
+        }*/
+        return view('chat');
     }
 
     public function calculatAge()

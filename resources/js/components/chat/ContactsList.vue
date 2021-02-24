@@ -1,18 +1,19 @@
+
 <template>
-    <div class="contacts-list">
-        <ul>
-            <li v-for="contact in sortedContacts" :key="contact.id" @click="selectContact(contact)"
-                :class="{ 'selected': contact == selected }">
-                <div class="avatar">
-                    <img :src="contact.profile_url" :alt="contact.name">
-                </div>
-                <div class="contact">
-                    <p class="name">{{ contact.name }}</p>
-                </div>
-                <span class="unread" v-if="contact.unread">{{ contact.unread }}</span>
-            </li>
-        </ul>
+  <div class="messages-box">
+    <div class="list-group rounded-0">
+      <a class="list-group-item list-group-item-action active text-white rounded-0"  v-for="contact in sortedContacts" :key="contact.id" @click="selectContact(contact)">
+        <div class="media"><img  :src="contact.photo_profile_url"  width="50" class="rounded-circle">
+          <div class="media-body ml-4">
+            <div class="d-flex align-items-center justify-content-between mb-1">
+              <h6 class="mb-0">{{ contact.name }}</h6><small class="small font-weight-bold">25 Dec</small>
+            </div>
+          </div>
+        </div>
+      </a>
+
     </div>
+  </div>
 </template>
 
 <script>
@@ -50,7 +51,12 @@
 </script>
 
 <style lang="scss" scoped>
-    .contacts-list {
+
+  .list-group-item{
+      cursor: pointer;
+  }
+
+/*    .contacts-list {
         flex: 2;
         max-height: 600px;
         overflow: scroll;
@@ -122,4 +128,6 @@
             }
         }
     }
+    */
+
 </style>

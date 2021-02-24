@@ -1,11 +1,41 @@
 <template>
-    <div class="conversation">
-        <h1>{{ contact ? contact.name : 'Выберите собеседника' }}</h1>
-        <MessagesFeed :contact="contact" :messages="messages"/>
-        <div v-if="contact">
-            <MessageComposer @send="sendMessage"/>
+  <div class="col-7 px-0">
+    <div class="px-4 py-5 chat-box bg-white">
+      <div class="messages-div">
+      <span v-for="message in messages">
+      <!-- Sender Message-->
+
+      <div v-if="message.to == contact.id" class="media w-50 mb-3"><img :src="contact.photo_profile_url" alt="user" width="50" class="rounded-circle">
+        <div class="media-body ml-3">
+          <div class="bg-light rounded py-2 px-3 mb-2">
+            <p class="text-small mb-0 text-muted">{{message.text}}</p>
+          </div>
+          <p class="small text-muted">{{ message.created_at }}</p>
         </div>
+      </div>
+
+      <!-- Reciever Message-->
+
+      <div v-if="message.to != contact.id" class="media w-50 ml-auto mb-3">
+        <div class="media-body">
+          <div class="bg-primary rounded py-2 px-3 mb-2">
+            <p class="text-small mb-0 text-white">{{message.text}}</p>
+          </div>
+          <p class="small text-muted"> {{message.created_at}}</p>
+        </div>
+      </div>
+
+      </span>
+      </div>
+    <!-- Typing area -->
+
+
     </div>
+    <div v-if="contact">
+      <MessageComposer @send="sendMessage"/>
+    </div>
+
+  </div>
 </template>
 
 <script>
@@ -23,6 +53,9 @@
                 default: []
             }
         },
+         mounted() {
+          console.log(this.messages)
+        },
         methods: {
             sendMessage(text) {
                 if (!this.contact) {
@@ -38,11 +71,17 @@
             }
         },
         components: {MessagesFeed, MessageComposer}
+
     }
 </script>
 
 <style lang="scss" scoped>
-    .conversation {
+    .messages-div{
+      max-height: 50vh;
+      overflow-y: scroll;
+    }
+
+ /*   .conversation {
         flex: 5;
         display: flex;
         flex-direction: column;
@@ -55,4 +94,5 @@
             border-bottom: 1px dashed lightgray;
         }
     }
+  */
 </style>

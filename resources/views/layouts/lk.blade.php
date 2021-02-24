@@ -1,60 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title> @yield('title')</title>
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Bootstrap core CSS -->
-
-
-
+    <title>Chat</title>
     <script src="{{ asset('public/js/app.js') }}"></script>
-    <!-- Bootstrap core CSS -->
-
-    <!-- custom buttons -->
-
-
-
-
-    <!-- Styles -->
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
-
-
-
-    <!-- Bootstrap core CSS -->
-
-    <link rel="icon" href="<?php echo asset("public/images/icons/favicon-16x16.png")?>" type="image/x-icon">
-
-
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
 </head>
-
+<!--Coded With Love By Mutiullah Samim-->
 <body>
-<? $city = \App\Models\City::getCurrentCity();?>
-<script src="{{ asset('public/js/axios.min.js') }}"></script>
-<!-- тут меню -->
 
 <div id="app">
     @include('layouts.header')
-    <div class="row">
-        <div style="width: 25rem;
-             border: 1px solid transparent;" class="col-sm  visible-lg">
-            <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
-        </div>
-        <div class="col-sm-7">
-            @yield('content')
-        </div>
-        <div class="col-sm">
+    <div class="container py-5 px-4">
 
-        </div>
+
+        @yield('content')
     </div>
-</div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 
+</div>
 </body>
 </html>
+

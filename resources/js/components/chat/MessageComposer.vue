@@ -1,8 +1,11 @@
 <template>
     <div class="composer">
+      <div class="input-group">
         <textarea v-model="message" @keydown.enter="send" placeholder="Введите сообщение!"></textarea>
-        <br>
-        <button class="btn btn-primary" @click="send">Отправить</button>
+
+        <button class="btn btn-primary" @click="send"><i class="fa fa-paper-plane"></i></button>
+
+      </div>
     </div>
 </template>
 
@@ -30,10 +33,10 @@
 <style lang="scss" scoped>
     .composer textarea {
         width: 98%;
-        margin: 10px;
         resize: none;
         border-radius: 3px;
         border: 1px solid lightgray;
         padding: 6px;
     }
+
 </style>
