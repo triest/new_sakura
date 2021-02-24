@@ -3492,7 +3492,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    Echo["private"]("user.".concat(this.user.id)).listen('messages', function (e) {
+    Echo["private"]("user.".concat(this.user.id)).listen('NewMessage', function (e) {
       console.log("new message");
 
       _this.hanleIncoming(e.message);
@@ -3520,11 +3520,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     saveNewMessage: function saveNewMessage(message) {
-      this.messages.push(message);
-      this.getContacts();
+      this.messages.push(message); //   this.getContacts();
     },
     hanleIncoming: function hanleIncoming(message) {
-      if (this.selectedContact && message.from == this.selectedContact.id) {
+      if (this.selectedContact && message.to == this.selectedContact.id) {
         this.saveNewMessage(message);
         return;
       }
@@ -4384,13 +4383,6 @@ __webpack_require__.r(__webpack_exports__);
     this.getAllDataForSidePanel();
     this.getNumberUnreadedEventRequwest();
     Echo["private"]("user.".concat(this.user.id)).listen('NewMessage', function (e) {
-      console.log('NewMessage');
-      console.log(e);
-      /*axios.get('api/getCountUnreaded')
-          .then((response) => {
-            this.numberUnreaded = response.data;
-          });*/
-
       _this.getNumberUnreadedMessages();
 
       _this.showNemMessageModal = true;
@@ -78147,7 +78139,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "68cff25802da8182ecc1",
+  key: "eb786791b77e35544cb9",
   cluster: "eu",
   forceTLS: true
 });

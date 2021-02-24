@@ -65,12 +65,7 @@ export default {
     this.getNumberUnreadedEventRequwest();
     Echo.private(`user.${this.user.id}`)
         .listen('NewMessage', (e) => {
-          console.log('NewMessage');
-          console.log(e)
-          /*axios.get('api/getCountUnreaded')
-              .then((response) => {
-                this.numberUnreaded = response.data;
-              });*/
+
           this.getNumberUnreadedMessages();
           this.showNemMessageModal = true;
         });

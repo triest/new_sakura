@@ -452,8 +452,8 @@ class User extends Authenticatable implements MustVerifyEmail
                             'text' => $text,
                     ]);*/
         $message = new Message();
-        $message->from = $user->id;
-        $message->to = $TargetUser->id;
+        $message->to = $user->id;
+        $message->from = $TargetUser->id;
         $message->text = $text;
         $message->save();
 
