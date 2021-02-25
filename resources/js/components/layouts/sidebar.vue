@@ -2,9 +2,7 @@
   <div class="d-flex justify-content-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-      <a class="btn btn-primary" href="/applications" style="cursor: pointer">Заявки на открытие анкеты
-        <div v-if="numberApplication>0">({{ numberApplication }})</div>
-      </a>
+
       <a class="btn btn-secondary" href="/contact" style="cursor: pointer">Сообщения
         <div v-if="numberUnreaded>0">({{ numberUnreaded }})</div>
       </a>
@@ -69,29 +67,29 @@ export default {
           this.getNumberUnreadedMessages();
           this.showNemMessageModal = true;
         });
+
+    // заявка на моё событие
     Echo.private(`user.${this.user.id}`)
-        .listen('newApplication', (e) => {
-          console.log('NewRequwest');
-          axios.get('api/getCountUnreadedRequwest')
-              .then((response) => {
-                this.numberApplication = response.data;
-              })
+        .listen('NewEventRequest', (e) => {
+           console.log('new Event Request')
+       //      this.handleIncomingEventRequest(e.eventRequest)
         });
+
     Echo.private(`user.${this.user.id}`)
-        .listen('eventPreasent', (e) => {
-          this.getNumberUnreadedPresents();
-        });
-    Echo.private(`user.${this.user.id}`)
-        .listen('Newevent', (e) => {
-          console.log('NewRequwestEvent');
-        });
-    Echo.private(`user.${this.user.id}`)
-        .listen('Newevent', (e) => {
-          this.getNumberUnreadedEventRequwest();
+        .listen('ChangeEventRequestStatus', (e) => {
+          console.log('ChangeEventRequestStatus')
+     //     this.handleChangeEventRequestStatus(e.eventRequest)
         });
   },
   methods:
       {
+        handleIncomingEventRequest(e){
+            this.getAllDataForSidePanel()
+            this.getNumberUnreadedEventRequwest();
+        },
+        handleChangeEventRequestStatus(e){
+
+        },
         triger() {
           clearTimeout(this.timer);
           this.timer = setTimeout(() => {
@@ -152,6 +150,7 @@ export default {
                 this.numberApplicationPresents = data.gift;
                 this.numberUnreaded = data.messages;
                 this.numberApplication = data.countRequwest;
+                this.unreeadedEventRequwest=data.eventRequest
              //   this.filter_enable = data.filter.filter_enable;
                 this.count_accept_notification = data.countAccept_notification;
               });

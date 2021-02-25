@@ -4,6 +4,7 @@
 
     <div class="container" id="app">
         <a class="btn btn-primary" href="{{route('events.create')}}">Создать событие</a>
+        @if(count($events))
         <input class="form-control" id="myInput" type="text" placeholder="Найти">
         <div class="profile-form">
             <table class="table">
@@ -19,15 +20,19 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    <script>
-        $(document).ready(function(){
-            $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            <script>
+                $(document).ready(function(){
+                    $("#myInput").on("keyup", function() {
+                        var value = $(this).val().toLowerCase();
+                        $("#myTable tr").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                    });
                 });
-            });
-        });
-    </script>
+            </script>
+        @else
+            Событий нет. Можно его создать!
+            <a class="btn btn-primary" href="{{route('events.create')}}">Создать событие</a>
+        @endif
+    </div>
 @endsection

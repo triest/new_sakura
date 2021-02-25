@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\ChangeEventRequestStatus;
+use App\Events\NewEventRequest;
 use App\EventStatus;
 use App\Models\Lk\User;
 use Carbon\Carbon;
@@ -86,6 +88,10 @@ class Event extends Model
         $eventRequwest->event_id = $this->id;
         $eventRequwest->status_id=1;
         $eventRequwest->save();
+        /*события для владелься*/
+        broadcast(new NewEventRequest($eventRequwest));
+
+
         return EventRequest::select(['*'])->with('status')->where('id',$eventRequwest->id)->first();
 
     }

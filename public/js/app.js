@@ -3687,10 +3687,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.scrollDown();
-    this.scrollDown();
   },
   watch: {
     messages: function messages(val) {
+      this.scrollDown();
+    },
+    contact: function contact() {
       this.scrollDown();
     }
   },
@@ -3698,7 +3700,7 @@ __webpack_require__.r(__webpack_exports__);
     scrollDown: function scrollDown() {
       console.log("scroll wown");
       var container = this.$el.querySelector("#messages-div");
-      container.scrollTop = container.scrollHeight;
+      container.scrollTop = container.scrollHeight - container.clientHeight;
     },
     sendMessage: function sendMessage(text) {
       var _this = this;
@@ -4369,8 +4371,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -4405,24 +4405,21 @@ __webpack_require__.r(__webpack_exports__);
       _this.getNumberUnreadedMessages();
 
       _this.showNemMessageModal = true;
+    }); // заявка на моё событие
+
+    Echo["private"]("user.".concat(this.user.id)).listen('NewEventRequest', function (e) {
+      console.log('new Event Request'); //      this.handleIncomingEventRequest(e.eventRequest)
     });
-    Echo["private"]("user.".concat(this.user.id)).listen('newApplication', function (e) {
-      console.log('NewRequwest');
-      axios.get('api/getCountUnreadedRequwest').then(function (response) {
-        _this.numberApplication = response.data;
-      });
-    });
-    Echo["private"]("user.".concat(this.user.id)).listen('eventPreasent', function (e) {
-      _this.getNumberUnreadedPresents();
-    });
-    Echo["private"]("user.".concat(this.user.id)).listen('Newevent', function (e) {
-      console.log('NewRequwestEvent');
-    });
-    Echo["private"]("user.".concat(this.user.id)).listen('Newevent', function (e) {
-      _this.getNumberUnreadedEventRequwest();
+    Echo["private"]("user.".concat(this.user.id)).listen('ChangeEventRequestStatus', function (e) {
+      console.log('ChangeEventRequestStatus'); //     this.handleChangeEventRequestStatus(e.eventRequest)
     });
   },
   methods: {
+    handleIncomingEventRequest: function handleIncomingEventRequest(e) {
+      this.getAllDataForSidePanel();
+      this.getNumberUnreadedEventRequwest();
+    },
+    handleChangeEventRequestStatus: function handleChangeEventRequestStatus(e) {},
     triger: function triger() {
       var _this2 = this;
 
@@ -4490,7 +4487,8 @@ __webpack_require__.r(__webpack_exports__);
         _this7.likesNumber = data.like;
         _this7.numberApplicationPresents = data.gift;
         _this7.numberUnreaded = data.messages;
-        _this7.numberApplication = data.countRequwest; //   this.filter_enable = data.filter.filter_enable;
+        _this7.numberApplication = data.countRequwest;
+        _this7.unreeadedEventRequwest = data.eventRequest; //   this.filter_enable = data.filter.filter_enable;
 
         _this7.count_accept_notification = data.countAccept_notification;
       });
@@ -64368,7 +64366,11 @@ var render = function() {
     _c("div", { staticClass: "px-4 py-5 chat-box bg-white" }, [
       _c(
         "div",
-        { staticClass: "messages-div", attrs: { id: "messages-div" } },
+        {
+          ref: "chat",
+          staticClass: "messages-div",
+          attrs: { id: "messages-div" }
+        },
         _vm._l(_vm.messages, function(message) {
           return _c("span", [
             message.to == _vm.contact.id
@@ -65509,21 +65511,6 @@ var render = function() {
       "nav",
       { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
       [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-primary",
-            staticStyle: { cursor: "pointer" },
-            attrs: { href: "/applications" }
-          },
-          [
-            _vm._v("Заявки на открытие анкеты\n      "),
-            _vm.numberApplication > 0
-              ? _c("div", [_vm._v("(" + _vm._s(_vm.numberApplication) + ")")])
-              : _vm._e()
-          ]
-        ),
-        _vm._v(" "),
         _c(
           "a",
           {

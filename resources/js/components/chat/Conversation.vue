@@ -1,7 +1,7 @@
 <template>
   <div class="col-7 px-0">
     <div class="px-4 py-5 chat-box bg-white">
-      <div id="messages-div" class="messages-div">
+      <div id="messages-div" class="messages-div"  ref="chat">
       <span v-for="message in messages">
       <!-- Sender Message-->
 
@@ -55,11 +55,13 @@
         },
          mounted() {
            this.scrollDown();
-           this.scrollDown();
         },
       watch: {
         messages:function (val){
 
+          this.scrollDown()
+        },
+        contact:function (){
           this.scrollDown()
         }
       },
@@ -67,7 +69,9 @@
             scrollDown(){
               console.log("scroll wown")
               let container = this.$el.querySelector("#messages-div");
-              container.scrollTop = container.scrollHeight;
+
+              container.scrollTop = container.scrollHeight - container.clientHeight;
+
             },
             sendMessage(text) {
                 if (!this.contact) {

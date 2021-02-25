@@ -3,7 +3,7 @@
     namespace App\Models;
 
     use App\EventRequestStatus;
-    use App\EventStatus;
+    use App\Events\ChangeEventRequestStatus;
     use Illuminate\Database\Eloquent\Model;
     use App\Models\Lk\User;
 
@@ -19,11 +19,13 @@
         public function denied(){
             $this->status_id = 3;
             $this->save();
+            broadcast(new ChangeEventRequestStatus($this));
         }
 
         public function accept(){
             $this->status_id = 2;
             $this->save();
+            broadcast(new ChangeEventRequestStatus($this));
         }
 
         public function user(){

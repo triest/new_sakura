@@ -582,6 +582,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getEventRequests($OnlyUnread = false)
     {
+        /* */
         $eventReq = EventRequest::select(["*"])
                 ->select(
                         [
@@ -594,6 +595,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($OnlyUnread) {
             $eventReq->where(['event_request.status_id' => 1]);
         }
+
 
 
         return $eventReq;

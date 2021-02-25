@@ -11,9 +11,14 @@
 </head>
 <!--Coded With Love By Mutiullah Samim-->
 <body>
-
+<? $city = \App\Models\City::getCurrentCity();?>
 <div id="app">
     @include('layouts.header')
+
+    <div style="width: 25rem;
+             border: 1px solid transparent;" class="visible-lg">
+        <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
+    </div>
     <div class="container py-5 px-4">
 
 

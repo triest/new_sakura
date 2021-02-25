@@ -53,7 +53,7 @@ class EventController extends Controller
         $builder->setCityId($request->city_id);
         $builder->setPlace($request->place);
         $builder->setMaxPeople($request->max);
-        $builder->setMinPiople($request->min);
+        $builder->setMinPeople($request->min);
         $builder->setEndApplications($request->end_date . " " . $request->time_end);
 
         $event = $builder->getResult();
@@ -332,6 +332,7 @@ class EventController extends Controller
             return response()->json([false]);
         }
         $eventReq->accept();
+
 
         return response()->json([true]);
     }
