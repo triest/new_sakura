@@ -3593,13 +3593,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      selected: this.contacts.length ? this.contacts[0] : null
+      selected: this.contacts.length ? this.contacts[0] : null,
+      selectedContactId: 0
     };
   },
   methods: {
     selectContact: function selectContact(contact) {
-      this.selected = contact;
-      this.$emit('selected', contact);
+      this.selected = contact.other;
+      this.selectedContactId = contact.id;
+      this.$emit('selected', contact.other);
+    },
+    colorContact: function colorContact(id) {
+      return id === this.selectedContactId;
     }
   },
   computed: {
@@ -64285,10 +64290,11 @@ var render = function() {
           {
             key: contact.id,
             staticClass:
-              "list-group-item list-group-item-action active text-white rounded-0",
+              "list-group-item list-group-item-action text-white rounded-0",
+            class: _vm.colorContact(contact.id) ? "active" : "",
             on: {
               click: function($event) {
-                return _vm.selectContact(contact.other)
+                return _vm.selectContact(contact)
               }
             }
           },
@@ -64307,12 +64313,24 @@ var render = function() {
                       "d-flex align-items-center justify-content-between mb-1"
                   },
                   [
-                    _c("h6", { staticClass: "mb-0" }, [
-                      _vm._v(_vm._s(contact.other.name))
-                    ]),
-                    _c("small", { staticClass: "small font-weight-bold" }, [
-                      _vm._v(_vm._s(contact.date))
-                    ])
+                    _c(
+                      "h6",
+                      {
+                        class: _vm.colorContact(contact.id)
+                          ? "text-white"
+                          : "text-muted"
+                      },
+                      [_vm._v(_vm._s(contact.other.name))]
+                    ),
+                    _c(
+                      "small",
+                      {
+                        class: _vm.colorContact(contact.id)
+                          ? "text-white"
+                          : "text-muted"
+                      },
+                      [_vm._v(_vm._s(contact.date))]
+                    )
                   ]
                 )
               ])
