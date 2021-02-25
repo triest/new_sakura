@@ -1,11 +1,11 @@
 <template>
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div  class="modal fade"    id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <div class="modal-title" id="staticBackdropLabel">    <img :src="'/'+user.photo_profile_url" height="30px" width="30px">
             {{user.name}},{{user.age}}</div>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" id="close" class="close"  data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -36,7 +36,8 @@ export default {
   data() {
     return {
       MessageText: "",
-      message: ""
+      message: "",
+      modalShow: true
     }
   },
   methods: {
@@ -50,7 +51,8 @@ export default {
         text: this.MessageText
       }).then((response) => {
         this.MessageText = "";
-        $('#staticBackdrop').modal('hide');
+        document.getElementById('close').click();
+    //    $('#staticBackdrop').modal('hide');
 
       });
     }

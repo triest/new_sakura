@@ -3421,7 +3421,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       MessageText: "",
-      message: ""
+      message: "",
+      modalShow: true
     };
   },
   methods: {
@@ -3435,7 +3436,7 @@ __webpack_require__.r(__webpack_exports__);
         text: this.MessageText
       }).then(function (response) {
         _this.MessageText = "";
-        $('#staticBackdrop').modal('hide');
+        document.getElementById('close').click(); //    $('#staticBackdrop').modal('hide');
       });
     }
   }
@@ -3680,16 +3681,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log(this.messages);
+    this.scrollDown();
+    this.scrollDown();
   },
   watch: {
     messages: function messages(val) {
-      console.log("change");
-      var container = this.$el.querySelector("#messages-div");
-      container.scrollTop = container.scrollHeight;
+      this.scrollDown();
     }
   },
   methods: {
+    scrollDown: function scrollDown() {
+      console.log("scroll wown");
+      var container = this.$el.querySelector("#messages-div");
+      container.scrollTop = container.scrollHeight;
+    },
     sendMessage: function sendMessage(text) {
       var _this = this;
 
@@ -64186,6 +64191,7 @@ var staticRenderFns = [
         staticClass: "close",
         attrs: {
           type: "button",
+          id: "close",
           "data-dismiss": "modal",
           "aria-label": "Close"
         }

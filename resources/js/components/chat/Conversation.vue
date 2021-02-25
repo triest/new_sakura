@@ -54,16 +54,21 @@
             }
         },
          mounted() {
-          console.log(this.messages)
+           this.scrollDown();
+           this.scrollDown();
         },
       watch: {
         messages:function (val){
-          console.log("change")
-          var container = this.$el.querySelector("#messages-div");
-          container.scrollTop = container.scrollHeight;
+
+          this.scrollDown()
         }
       },
         methods: {
+            scrollDown(){
+              console.log("scroll wown")
+              let container = this.$el.querySelector("#messages-div");
+              container.scrollTop = container.scrollHeight;
+            },
             sendMessage(text) {
                 if (!this.contact) {
                     return;

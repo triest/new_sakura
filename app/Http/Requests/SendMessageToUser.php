@@ -29,4 +29,11 @@ class SendMessageToUser extends FormRequest
                 'text' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+                'text.required' => 'Текст обязателен!',
+        ];
+    }
 }
