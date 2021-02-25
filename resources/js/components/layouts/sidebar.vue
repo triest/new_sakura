@@ -27,10 +27,15 @@
         </div>
       </div>
     </nav>
+    <myPresentModal :user="user" :gifts="gifts" v-if="showPresentModal"
+                    @closeRequest='clousePresentModal()'></myPresentModal>
   </div>
 </template>
 
 <script>
+import eventRequestModal from "./modals/NewEventRequestModal";
+import present from '../anket/PresentModal.vue'
+import myPresentModal from './modals/myPresentsModal'
 
 export default {
   props: {
@@ -39,9 +44,14 @@ export default {
       required: true
     }
   },
-  components: {},
+  components: {
+    eventRequestModal,
+    myPresentModal
+  },
   data() {
     return {
+      showEventRequestModal:false,
+      showPresentModal:false,
       numberUnreaded: 0,
       numberApplication: 0,
       numberApplicationPresents: 0,
@@ -71,7 +81,9 @@ export default {
     // заявка на моё событие
     Echo.private(`user.${this.user.id}`)
         .listen('NewEventRequest', (e) => {
-           console.log('new Event Request')
+           console.log('new Event Request');
+           this.showEventRequestModal=true;
+           this.showPresentModal=true;
        //      this.handleIncomingEventRequest(e.eventRequest)
         });
 
