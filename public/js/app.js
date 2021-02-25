@@ -4330,10 +4330,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4444,8 +4444,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _anket_PresentModal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../anket/PresentModal.vue */ "./resources/js/components/anket/PresentModal.vue");
-/* harmony import */ var _modals_myPresentsModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals/myPresentsModal */ "./resources/js/components/layouts/modals/myPresentsModal.vue");
+/* harmony import */ var _modals_eventRequestModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modals/eventRequestModal */ "./resources/js/components/layouts/modals/eventRequestModal.vue");
 //
 //
 //
@@ -4480,7 +4479,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -4490,7 +4488,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    myPresentModal: _modals_myPresentsModal__WEBPACK_IMPORTED_MODULE_1__["default"]
+    eventRequestModal: _modals_eventRequestModal__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -11885,10 +11883,10 @@ exports.push([module.i, "\n.flex-sm-fill[data-v-18561d3c]{\n   cursor: pointer;\
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css&":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11897,7 +11895,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ntextarea[data-v-e347385e] {\r\n  width: 90%; /* Ширина поля в процентах */\r\n  height: 200px; /* Высота поля в пикселах */\r\n  resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask[data-v-e347385e] {\r\n  position: fixed;\r\n  z-index: 9998;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: table;\r\n  transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-e347385e] {\r\n  display: table-cell;\r\n  vertical-align: middle;\n}\n.modal-container[data-v-e347385e] {\r\n  width: 600px;\r\n  margin: 0px auto;\r\n  padding: 20px 30px;\r\n  background-color: #fff;\r\n  border-radius: 2px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\r\n  transition: all .3s ease;\r\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-e347385e] {\r\n  margin-top: 0;\r\n  color: #42b983;\n}\n.modal-body[data-v-e347385e] {\r\n  margin: 20px 0;\n}\n.modal-default-button[data-v-e347385e] {\r\n  float: right;\n}\r\n\r\n/*\r\n * The following styles are auto-applied to elements with\r\n * transition=\"modal\" when their visibility is toggled\r\n * by Vue.js.\r\n *\r\n * You can easily play with the modal transition by editing\r\n * these styles.\r\n */\n.modal-enter[data-v-e347385e] {\r\n  opacity: 0;\n}\n.modal-leave-active[data-v-e347385e] {\r\n  opacity: 0;\n}\n.modal-enter .modal-container[data-v-e347385e],\r\n.modal-leave-active .modal-container[data-v-e347385e] {\r\n  transform: scale(1.1);\n}\n.avatar_image[data-v-e347385e] {\r\n  display: flex;\r\n  width: 60px;\r\n  height: 60px;\r\n  overflow: hidden;\r\n  align-items: center;\r\n  border-radius: 50%;\r\n  border: 1px solid #329BF0;\r\n  position: relative;\n}\n.avatar_image[data-v-e347385e] {\r\n  border-radius: 50% !important;\n}\n.avatar_image[data-v-e347385e]:hover {\r\n  cursor: pointer;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\ntextarea[data-v-59cf3580] {\r\n  width: 90%; /* Ширина поля в процентах */\r\n  height: 200px; /* Высота поля в пикселах */\r\n  resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask[data-v-59cf3580] {\r\n  position: fixed;\r\n  z-index: 9998;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: table;\r\n  transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-59cf3580] {\r\n  display: table-cell;\r\n  vertical-align: middle;\n}\n.modal-container[data-v-59cf3580] {\r\n  width: 600px;\r\n  margin: 0px auto;\r\n  padding: 20px 30px;\r\n  background-color: #fff;\r\n  border-radius: 2px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\r\n  transition: all .3s ease;\r\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-59cf3580] {\r\n  margin-top: 0;\r\n  color: #42b983;\n}\n.modal-body[data-v-59cf3580] {\r\n  margin: 20px 0;\n}\n.modal-default-button[data-v-59cf3580] {\r\n  float: right;\n}\r\n\r\n/*\r\n * The following styles are auto-applied to elements with\r\n * transition=\"modal\" when their visibility is toggled\r\n * by Vue.js.\r\n *\r\n * You can easily play with the modal transition by editing\r\n * these styles.\r\n */\n.modal-enter[data-v-59cf3580] {\r\n  opacity: 0;\n}\n.modal-leave-active[data-v-59cf3580] {\r\n  opacity: 0;\n}\n.modal-enter .modal-container[data-v-59cf3580],\r\n.modal-leave-active .modal-container[data-v-59cf3580] {\r\n  transform: scale(1.1);\n}\n.avatar_image[data-v-59cf3580] {\r\n  display: flex;\r\n  width: 60px;\r\n  height: 60px;\r\n  overflow: hidden;\r\n  align-items: center;\r\n  border-radius: 50%;\r\n  border: 1px solid #329BF0;\r\n  position: relative;\n}\n.avatar_image[data-v-59cf3580] {\r\n  border-radius: 50% !important;\n}\n.avatar_image[data-v-59cf3580]:hover {\r\n  cursor: pointer;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -58473,15 +58471,15 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css&":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css&");
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -65663,10 +65661,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=template&id=e347385e&scoped=true&":
-/*!*********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=template&id=e347385e&scoped=true& ***!
-  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=template&id=59cf3580&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=template&id=59cf3580&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65930,7 +65928,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm.showPresentModal
-        ? _c("myPresentModal", {
+        ? _c("eventRequestModal", {
             attrs: { eventRequest: _vm.eventRequest },
             on: {
               closeRequest: function($event) {
@@ -80380,18 +80378,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/modals/myPresentsModal.vue":
-/*!********************************************************************!*\
-  !*** ./resources/js/components/layouts/modals/myPresentsModal.vue ***!
-  \********************************************************************/
+/***/ "./resources/js/components/layouts/modals/eventRequestModal.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/layouts/modals/eventRequestModal.vue ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _myPresentsModal_vue_vue_type_template_id_e347385e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./myPresentsModal.vue?vue&type=template&id=e347385e&scoped=true& */ "./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=template&id=e347385e&scoped=true&");
-/* harmony import */ var _myPresentsModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./myPresentsModal.vue?vue&type=script&lang=js& */ "./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _myPresentsModal_vue_vue_type_style_index_0_id_e347385e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css& */ "./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css&");
+/* harmony import */ var _eventRequestModal_vue_vue_type_template_id_59cf3580_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./eventRequestModal.vue?vue&type=template&id=59cf3580&scoped=true& */ "./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=template&id=59cf3580&scoped=true&");
+/* harmony import */ var _eventRequestModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventRequestModal.vue?vue&type=script&lang=js& */ "./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _eventRequestModal_vue_vue_type_style_index_0_id_59cf3580_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css& */ "./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -80402,66 +80400,66 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _myPresentsModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _myPresentsModal_vue_vue_type_template_id_e347385e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _myPresentsModal_vue_vue_type_template_id_e347385e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _eventRequestModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _eventRequestModal_vue_vue_type_template_id_59cf3580_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _eventRequestModal_vue_vue_type_template_id_59cf3580_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "e347385e",
+  "59cf3580",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/layouts/modals/myPresentsModal.vue"
+component.options.__file = "resources/js/components/layouts/modals/eventRequestModal.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************!*\
-  !*** ./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************/
+/***/ "./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./myPresentsModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./eventRequestModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css&":
-/*!*****************************************************************************************************************************!*\
-  !*** ./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css& ***!
-  \*****************************************************************************************************************************/
+/***/ "./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************!*\
+  !*** ./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_style_index_0_id_e347385e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=style&index=0&id=e347385e&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_style_index_0_id_e347385e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_style_index_0_id_e347385e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_style_index_0_id_e347385e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_style_index_0_id_e347385e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_style_index_0_id_59cf3580_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=style&index=0&id=59cf3580&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_style_index_0_id_59cf3580_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_style_index_0_id_59cf3580_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_style_index_0_id_59cf3580_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_style_index_0_id_59cf3580_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=template&id=e347385e&scoped=true&":
-/*!***************************************************************************************************************!*\
-  !*** ./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=template&id=e347385e&scoped=true& ***!
-  \***************************************************************************************************************/
+/***/ "./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=template&id=59cf3580&scoped=true&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=template&id=59cf3580&scoped=true& ***!
+  \*****************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_template_id_e347385e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./myPresentsModal.vue?vue&type=template&id=e347385e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/myPresentsModal.vue?vue&type=template&id=e347385e&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_template_id_e347385e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_template_id_59cf3580_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./eventRequestModal.vue?vue&type=template&id=59cf3580&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/modals/eventRequestModal.vue?vue&type=template&id=59cf3580&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_template_id_59cf3580_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_myPresentsModal_vue_vue_type_template_id_e347385e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_eventRequestModal_vue_vue_type_template_id_59cf3580_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

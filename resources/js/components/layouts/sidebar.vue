@@ -27,15 +27,14 @@
         </div>
       </div>
     </nav>
-    <myPresentModal :eventRequest="eventRequest" v-if="showPresentModal"
-                    @closeRequest='clousePresentModal()'></myPresentModal>
+    <eventRequestModal :eventRequest="eventRequest" v-if="showPresentModal"
+                    @closeRequest='clousePresentModal()'></eventRequestModal>
   </div>
 </template>
 
 <script>
 
-import present from '../anket/PresentModal.vue'
-import myPresentModal from './modals/myPresentsModal'
+import eventRequestModal from './modals/eventRequestModal'
 
 export default {
   props: {
@@ -45,7 +44,7 @@ export default {
     }
   },
   components: {
-    myPresentModal
+    eventRequestModal
   },
   data() {
     return {
