@@ -27,14 +27,15 @@
         </div>
       </div>
     </nav>
-    <eventRequestModal :eventRequest="eventRequest" v-if="showPresentModal"
-                    @closeRequest='clousePresentModal()'></eventRequestModal>
+    <eventRequestModal :eventRequest="eventRequest" v-if="showPresentModal" @closeRequest='clousePresentModal()'></eventRequestModal>
+    <changeEventRequestStatusModal :eventRequest="eventRequest" v-if="showChangeEvemtRequestStatusPresentModal" @closeRequest='clousePresentModal()'></changeEventRequestStatusModal>
   </div>
 </template>
 
 <script>
 
 import eventRequestModal from './modals/eventRequestModal'
+import changeEventRequestStatusModal from './modals/ChangeEventRequestStatusModal'
 
 export default {
   props: {
@@ -44,12 +45,14 @@ export default {
     }
   },
   components: {
-    eventRequestModal
+    eventRequestModal,
+    changeEventRequestStatusModal,
   },
   data() {
     return {
       showEventRequestModal:false,
       showPresentModal:false,
+      showChangeEvemtRequestStatusPresentModal:false,
       numberUnreaded: 0,
       numberApplication: 0,
       numberApplicationPresents: 0,
@@ -89,7 +92,7 @@ export default {
     Echo.private(`user.${this.user.id}`)
         .listen('ChangeEventRequestStatus', (e) => {
           console.log('ChangeEventRequestStatus')
-     //     this.handleChangeEventRequestStatus(e.eventRequest)
+          this.handleChangeEventRequestStatus(e.eventRequest)
         });
   },
   methods:
@@ -102,7 +105,8 @@ export default {
             this.showEventRequestModal=true;
         },
         handleChangeEventRequestStatus(e){
-
+              this.eventRequest=e;
+              this.showChangeEvemtRequestStatusPresentModal=true;
         },
         triger() {
           clearTimeout(this.timer);

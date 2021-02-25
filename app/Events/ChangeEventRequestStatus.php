@@ -43,7 +43,7 @@ class ChangeEventRequestStatus   implements ShouldBroadcastNow
 
     public function broadcastWith()
     {
-        $this->eventRequest->load('user');
+        $this->eventRequest->load('user')->load('event')->load('status');
         return ["eventRequest" => $this->eventRequest];
     }
 }
