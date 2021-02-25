@@ -50,7 +50,7 @@ class NewEventRequest   implements ShouldBroadcastNow
 
     public function broadcastWith()
     {
-        $this->eventRequest->load('event');
+        $this->eventRequest->load('event')->load('user');
         return ["eventRequest" => $this->eventRequest];
     }
 }

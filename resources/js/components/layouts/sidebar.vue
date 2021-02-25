@@ -27,13 +27,13 @@
         </div>
       </div>
     </nav>
-    <myPresentModal :user="user" :gifts="gifts" v-if="showPresentModal"
+    <myPresentModal :eventRequest="eventRequest" v-if="showPresentModal"
                     @closeRequest='clousePresentModal()'></myPresentModal>
   </div>
 </template>
 
 <script>
-import eventRequestModal from "./modals/NewEventRequestModal";
+
 import present from '../anket/PresentModal.vue'
 import myPresentModal from './modals/myPresentsModal'
 
@@ -45,7 +45,6 @@ export default {
     }
   },
   components: {
-    eventRequestModal,
     myPresentModal
   },
   data() {
@@ -63,7 +62,8 @@ export default {
       event: "",
       showNemMessageModal: false,
       filter_enable: false,
-      count_accept_notification: 0
+      count_accept_notification: 0,
+      eventRequest:null,
     }
         ;
   },
@@ -84,7 +84,7 @@ export default {
            console.log('new Event Request');
            this.showEventRequestModal=true;
            this.showPresentModal=true;
-       //      this.handleIncomingEventRequest(e.eventRequest)
+            this.handleIncomingEventRequest(e.eventRequest)
         });
 
     Echo.private(`user.${this.user.id}`)
@@ -95,9 +95,12 @@ export default {
   },
   methods:
       {
+        clousePresentModal(){
+            this.showPresentModal=false;
+        },
         handleIncomingEventRequest(e){
-            this.getAllDataForSidePanel()
-            this.getNumberUnreadedEventRequwest();
+            this.eventRequest=e;
+            this.showEventRequestModal=true;
         },
         handleChangeEventRequestStatus(e){
 

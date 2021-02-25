@@ -239,7 +239,7 @@ export default {
           .then((response) => {
             this.getrequests();
           });
-      //  this.gatall();
+
     },
     getrequests() {
       this.request_list = null;
