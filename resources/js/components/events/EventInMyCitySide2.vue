@@ -9,7 +9,7 @@
             Место:{{ event.place }} <br>
             Дата: {{ event.begin }} <br>
             {{ event.status.name }}
-            <span v-if="typeof user.id!=='undefined'&& event.user_id===user.id">
+            <span v-if="user!=null && typeof user.id!=='undefined'&& event.user_id===user.id">
               владелец
               <!--
               <carousel :loop ="true" :autoplay="true" :autoplayTimeout="3000" :autoplayHoverPause="true" :perPage="1" :navigationEnabled="true" :paginationEnabled="false" >

@@ -65014,6 +65014,7 @@ var render = function() {
                   _vm._v(
                     "\n          " + _vm._s(event.status.name) + "\n          "
                   ),
+                  _vm.user != null &&
                   typeof _vm.user.id !== "undefined" &&
                   event.user_id === _vm.user.id
                     ? _c("span", [

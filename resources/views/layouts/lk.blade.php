@@ -11,21 +11,22 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <title></title>
 </head>
 <!--Coded With Love By Mutiullah Samim-->
 <body>
 <? $city = \App\Models\City::getCurrentCity();?>
 <div id="app">
     @include('layouts.header')
-        <div class="row">
-            <div class="col-sm-2 ">
-                <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
+    <div class="row">
+        <div class="col-sm-2 ">
+            <event-in-my-city-side2 :city="{{$city}}"></event-in-my-city-side2>
+        </div>
+        <div class="col-sm-8">
+            <div class="container py-5 px-4">
+                @yield('content')
             </div>
-            <div class="col-sm-8">
-                <div class="container py-5 px-4">
-                    @yield('content')
-                </div>
-            </div>
+        </div>
     </div>
 </div>
 </body>
