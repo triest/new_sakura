@@ -4725,6 +4725,9 @@ __webpack_require__.r(__webpack_exports__);
         _this8.unreeadedEventRequwest = response.data.organizer;
       });
     },
+    clouseChangeRventRequestModal: function clouseChangeRventRequestModal() {
+      this.showChangeEvemtRequestStatusPresentModal = false;
+    },
     remidese: function remidese() {
       var _this9 = this;
 
@@ -65895,6 +65898,7 @@ var render = function() {
                 _c(
                   "a",
                   {
+                    staticClass: "btn btn-primary",
                     on: {
                       click: function($event) {
                         return _vm.close()
@@ -66201,7 +66205,7 @@ var render = function() {
             attrs: { eventRequest: _vm.eventRequest },
             on: {
               closeRequest: function($event) {
-                return _vm.clousePresentModal()
+                return _vm.clouseChangeRventRequestModal()
               }
             }
           })

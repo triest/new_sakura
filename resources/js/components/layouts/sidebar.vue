@@ -28,7 +28,7 @@
       </div>
     </nav>
     <eventRequestModal :eventRequest="eventRequest" v-if="showPresentModal" @closeRequest='clousePresentModal()'></eventRequestModal>
-    <changeEventRequestStatusModal :eventRequest="eventRequest" v-if="showChangeEvemtRequestStatusPresentModal" @closeRequest='clousePresentModal()'></changeEventRequestStatusModal>
+    <changeEventRequestStatusModal :eventRequest="eventRequest" v-if="showChangeEvemtRequestStatusPresentModal" @closeRequest='clouseChangeRventRequestModal()'></changeEventRequestStatusModal>
   </div>
 </template>
 
@@ -182,6 +182,9 @@ export default {
                   }
               )
           ;
+        },
+        clouseChangeRventRequestModal(){
+           this.showChangeEvemtRequestStatusPresentModal=false;
         },
         remidese() {
           axios.get('/api/events/reminders', {})

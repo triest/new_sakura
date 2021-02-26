@@ -19,7 +19,7 @@
 
           </div>
           <slot name="footer">
-            <a v-on:click="close()">
+            <a class="btn btn-primary" v-on:click="close()">
               Закрыть
             </a>
           </slot>
@@ -41,7 +41,7 @@ export default {
 
   },
   mounted() {
-    console.log(this.eventRequest);
+
   },
   data() {
     return {
