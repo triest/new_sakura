@@ -19,6 +19,9 @@ Vue.use(VModal)
 
 import Lingallery from 'lingallery';
 
+import VueCarousel from 'vue-carousel';
+Vue.use(VueCarousel);
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -62,9 +65,5 @@ window.addEventListener('load', function () {
     const app = new Vue({
         el: '#app',
     });
-    const headerApp = new Vue({
-        el: '#headerApp',
-    });
-
 })
 

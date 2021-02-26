@@ -214,10 +214,19 @@ class EventController extends Controller
             $participator = null;
             $partifucationArray = array();
 
-            foreach ($events as $item) {
-                $participator = $item->checkUserParticipation();
+            $user=Auth::user();
+
+            $requestArray=[];
+
+            foreach ($events as $event) {
+                $participator = $event->checkUserParticipation();
                 if ($participator != false) {
                     array_push($partifucationArray, $participator);
+                }
+
+                /*сли пользователь оргенизатор события*/
+                if ($user && $event->user_id == $user->id) {
+                    $requestArray[]=$event->request()->with('user')->with('status')->get();
                 }
             }
 
@@ -226,6 +235,7 @@ class EventController extends Controller
                     [
                             "events" => $events,
                             "partificators" => $partifucationArray,
+                            "requests"=>$requestArray
                     ]
             );
         } else {

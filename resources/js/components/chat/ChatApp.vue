@@ -3,7 +3,7 @@
 
       <div class="row rounded-lg overflow-hidden ">
         <!-- Users box-->
-        <div class="col-5 px-0">
+        <div class="col-4 px-0">
           <div class="bg-white">
             <ContactsList :contacts="contacts" @selected="startConversationWith"/>
           </div>

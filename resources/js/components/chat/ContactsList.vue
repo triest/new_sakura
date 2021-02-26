@@ -62,6 +62,8 @@
       cursor: pointer;
   }
 
+
+
 /*    .contacts-list {
         flex: 2;
         max-height: 600px;
