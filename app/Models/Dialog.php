@@ -55,8 +55,12 @@ class Dialog extends Model
             return $this->created_at->format('H:i');
         }elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0){
             return $this->created_at->format('H:i');
-        }else{
-            return $this->created_at->format('Y-m-d H:i:s');
+        }
+        elseif ($datediff->y==0 && $datediff->m==0 && $datediff->d==1){
+            return  "вчера ".$this->created_at->format('H:i');
+        }
+        else{
+            return $this->created_at->format('Y-m-d H:i');
         }
     }
 }

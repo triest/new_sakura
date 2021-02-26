@@ -25,24 +25,26 @@
             return $this->hasOne(User::class, 'id', 'to');
         }
 
-        public function getDateAttribute(){
+        public function getDateAttribute()
+        {
             $mytime = Carbon::now();
-            $date=$this->created_at->format('Y-m-d H:i:s');
-            $date=Carbon::createFromFormat('Y-m-d H:i:s', $date);
+            $date = $this->created_at->format('Y-m-d H:i:s');
+            $date = Carbon::createFromFormat('Y-m-d H:i:s', $date);
 
             $datediff = date_diff($date, $mytime);
 
-            if ( $datediff->y == 0 && $datediff->m == 0 && $datediff->i == 0  && $datediff->h == 0 ){
+            if ($datediff->y == 0 && $datediff->m == 0 && $datediff->i == 0 && $datediff->h == 0) {
                 return "только что";
-            }elseif ( $datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0  && $datediff->i > 0  && $datediff->i < 30 && $datediff->h == 0){
-                return $datediff->i. " минуты назад";
-            }elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0  && $datediff->i > 0  && $datediff->h > 0){
+            } elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0 && $datediff->i > 0 && $datediff->i < 30 && $datediff->h == 0) {
+                return $datediff->i . " минуты назад";
+            } elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0 && $datediff->i > 0 && $datediff->h > 0) {
                 return $this->created_at->format('H:i');
-            }elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0){
+            } elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0) {
                 return $this->created_at->format('H:i');
-            }else{
-                return $this->created_at->format('Y-m-d H:i:s');
+            } elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 1) {
+                return "вчера " . $this->created_at->format('H:i');
+            } else {
+                return $this->created_at->format('Y-m-d H:i');
             }
-
         }
     }

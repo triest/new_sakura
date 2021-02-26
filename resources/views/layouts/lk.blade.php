@@ -11,6 +11,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <link rel="shortcut icon" href="/public/images/icons/favicon.ico" type="image/png">
     @if(isset($title))
     <title>{{$title}}</title>
     @else
