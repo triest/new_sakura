@@ -65009,7 +65009,7 @@ var render = function() {
                   _c("br"),
                   _vm._v("\n          Место:" + _vm._s(event.place) + " "),
                   _c("br"),
-                  _vm._v("\n          Дата: " + _vm._s(event.begin) + " "),
+                  _vm._v("\n          Начало: " + _vm._s(event.begin) + " "),
                   _c("br"),
                   _vm._v(
                     "\n          " + _vm._s(event.status.name) + "\n          "

@@ -7,7 +7,7 @@
             <div class="col-sm-1"></div>
             <b>{{ event.name }}</b> <br>
             Место:{{ event.place }} <br>
-            Дата: {{ event.begin }} <br>
+            Начало: {{ event.begin }} <br>
             {{ event.status.name }}
             <span v-if="user!=null && typeof user.id!=='undefined'&& event.user_id===user.id">
               владелец
