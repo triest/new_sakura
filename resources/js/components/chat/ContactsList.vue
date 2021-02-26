@@ -3,7 +3,7 @@
   <div class="messages-box">
     <div class="list-group rounded-0">
       <a class="list-group-item list-group-item-action text-white rounded-0" v-bind:class="colorContact(contact.id) ?'active':''" v-for="contact in sortedContacts" :key="contact.id" @click="selectContact(contact)">
-        <div class="media"><img  :src="contact.other.photo_profile_url"  width="50" class="rounded-circle">
+        <div class="media"><img  :src="contact.other.photo_profile_url"  width="50" height="50" class="rounded-circle">
           <div class="media-body ml-4">
             <div class="d-flex align-items-center justify-content-between mb-1">
               <h6 class="" v-bind:class="colorContact(contact.id) ? 'text-white':'text-muted'">{{ contact.other.name }}</h6><small  class="" v-bind:class="colorContact(contact.id) ? 'text-white':'text-muted'">{{contact.date}}</small>

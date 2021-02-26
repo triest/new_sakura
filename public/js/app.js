@@ -64680,7 +64680,11 @@ var render = function() {
             _c("div", { staticClass: "media" }, [
               _c("img", {
                 staticClass: "rounded-circle",
-                attrs: { src: contact.other.photo_profile_url, width: "50" }
+                attrs: {
+                  src: contact.other.photo_profile_url,
+                  width: "50",
+                  height: "50"
+                }
               }),
               _vm._v(" "),
               _c("div", { staticClass: "media-body ml-4" }, [

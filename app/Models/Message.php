@@ -36,7 +36,13 @@
             if ($datediff->y == 0 && $datediff->m == 0 && $datediff->i == 0 && $datediff->h == 0) {
                 return "только что";
             } elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0 && $datediff->i > 0 && $datediff->i < 30 && $datediff->h == 0) {
-                return $datediff->i . " минуты назад";
+                if($datediff->i==1){
+                    return "минуту назад";
+                }elseif ($datediff->i>=5 && $datediff->i<=9){
+                    return "минут назад";
+                }else {
+                    return $datediff->i . " минуты назад";
+                }
             } elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0 && $datediff->i > 0 && $datediff->h > 0) {
                 return $this->created_at->format('H:i');
             } elseif ($datediff->y == 0 && $datediff->m == 0 && $datediff->d == 0) {
