@@ -6,7 +6,7 @@
                           <img :src="'/'+message.to_contact.small_photo_profile_url" height="35px" class="avatar">
                           <span class="text">
                           {{message.to_contact.name}}
-                                   Прочитать сообщение:
+                            <a href="/contact" target="_blank">Прочитать сообщение:</a>
                           </span>
                 </div>
             </div>
@@ -185,6 +185,7 @@
 
     .text{
         font-size: small;
+        cursor: pointer;
     }
 
 
