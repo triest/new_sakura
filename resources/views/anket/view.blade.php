@@ -1,4 +1,4 @@
-@extends('layouts.lk')
+@extends('layouts.lk', ['title'=> $user->name])
 
 @section('title', $user->name)
 

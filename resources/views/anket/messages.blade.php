@@ -1,4 +1,5 @@
-@extends('layouts.lk')
+@extends('layouts.lk', ['title'=>"Сообщения"])
+
 @section('title', "Сообщения")
 @section('content')
         <chat-app :user="{{auth()->user()}}"></chat-app>

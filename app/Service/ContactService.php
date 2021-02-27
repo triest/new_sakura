@@ -31,7 +31,7 @@
             }
 
 
-            $diologs=$user->dialogs()->with('other')->orderBy('lastMessage','desc')->get();
+            $diologs=$user->dialogs()->with('other')->orderBy('lastMessage','asc')->get();
 
             return $diologs;
         }

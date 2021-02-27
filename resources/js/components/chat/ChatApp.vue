@@ -70,7 +70,7 @@
              //   this.getContacts();
             },
             hanleIncoming(message) {
-                if (this.selectedContact && message.to == this.selectedContact.id) {
+                if (this.selectedContact && message.to === this.selectedContact.id) {
                     this.saveNewMessage(message);
                     return;
                 }

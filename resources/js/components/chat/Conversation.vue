@@ -67,10 +67,10 @@
       },
         methods: {
             scrollDown(){
-              console.log("scroll wown")
+              console.log("scroll down")
               let container = this.$el.querySelector("#messages-div");
 
-              container.scrollTop = container.scrollHeight - container.clientHeight;
+              container.scrollTop = container.scrollHeight - container.clientHeight+10;
 
             },
             sendMessage(text) {

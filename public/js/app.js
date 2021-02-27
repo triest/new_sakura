@@ -3525,7 +3525,7 @@ __webpack_require__.r(__webpack_exports__);
       this.messages.push(message); //   this.getContacts();
     },
     hanleIncoming: function hanleIncoming(message) {
-      if (this.selectedContact && message.to == this.selectedContact.id) {
+      if (this.selectedContact && message.to === this.selectedContact.id) {
         this.saveNewMessage(message);
         return;
       }
@@ -3695,9 +3695,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     scrollDown: function scrollDown() {
-      console.log("scroll wown");
+      console.log("scroll down");
       var container = this.$el.querySelector("#messages-div");
-      container.scrollTop = container.scrollHeight - container.clientHeight;
+      container.scrollTop = container.scrollHeight - container.clientHeight + 10;
     },
     sendMessage: function sendMessage(text) {
       var _this = this;
