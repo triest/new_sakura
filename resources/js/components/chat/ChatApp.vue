@@ -41,7 +41,7 @@
                 .listen('NewMessage', (e) => {
                     console.log("new message");
                     this.hanleIncoming(e.message);
-                  eventHub.$on('scroll_to_down', true)
+             //     eventHub.$on('scroll_to_down', true)
                     this.getContacts()
                 });
             this.getContacts()
@@ -77,8 +77,8 @@
 
                 this.updateUnreadCount(message.from_contact, false);
             },
-            /*  updateUnreadCount(contact, reset) {
-                  this.contacts = this.contacts.map((single) => {
+              updateUnreadCount(contact, reset) {
+                  /*this.contacts = this.contacts.map((single) => {
                       if (single.id !== contact.id) {
                           return single;
                       }
@@ -90,9 +90,9 @@
 
                       return single;
                   }),
-                      this.unreaded = single.unread;
+                      this.unreaded = single.unread;*/
               }
-              */
+
         },
         components: {Conversation, ContactsList}
     }

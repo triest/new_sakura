@@ -27,8 +27,11 @@
         </div>
       </div>
     </nav>
-    <eventRequestModal :eventRequest="eventRequest" v-if="showPresentModal" @closeRequest='clousePresentModal()'></eventRequestModal>
+    <eventRequestModal :eventRequest="eventRequest" v-if="showEventRequestModal" @closeRequest='clousePresentModal()'></eventRequestModal>
     <changeEventRequestStatusModal :eventRequest="eventRequest" v-if="showChangeEvemtRequestStatusPresentModal" @closeRequest='clouseChangeRventRequestModal()'></changeEventRequestStatusModal>
+
+    <IncomingMessage :user="user" :message="message"  v-if="showNewIncomingMessageModal"
+                    @closeRequest='showNewIncomingMessageModal=false'></IncomingMessage>
   </div>
 </template>
 
@@ -36,6 +39,7 @@
 
 import eventRequestModal from './modals/eventRequestModal'
 import changeEventRequestStatusModal from './modals/ChangeEventRequestStatusModal'
+import IncomingMessage from "./modals/IncomingMessage";
 
 export default {
   props: {
@@ -47,6 +51,7 @@ export default {
   components: {
     eventRequestModal,
     changeEventRequestStatusModal,
+    IncomingMessage,
   },
   data() {
     return {
@@ -66,6 +71,8 @@ export default {
       filter_enable: false,
       count_accept_notification: 0,
       eventRequest:null,
+      showNewIncomingMessageModal:false,
+      message:null
     }
         ;
   },
@@ -75,16 +82,19 @@ export default {
     this.getNumberUnreadedEventRequwest();
     Echo.private(`user.${this.user.id}`)
         .listen('NewMessage', (e) => {
-
-          this.getNumberUnreadedMessages();
-          this.showNemMessageModal = true;
+            console.log("new message11")
+          //  console.log(e)
+        //  this.getNumberUnreadedMessages();
+          this.showNewIncomingMessageModal = true;
+            this.showPresentModal=true;
+            this.message=e.message;
         });
 
     // заявка на моё событие
     Echo.private(`user.${this.user.id}`)
         .listen('NewEventRequest', (e) => {
            console.log('new Event Request');
-           this.showEventRequestModal=true;
+          // this.showEventRequestModal=true;
            this.showPresentModal=true;
             this.handleIncomingEventRequest(e.eventRequest)
         });
