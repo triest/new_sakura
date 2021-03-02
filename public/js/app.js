@@ -3599,6 +3599,7 @@ __webpack_require__.r(__webpack_exports__);
       this.selected = contact.other;
       this.selectedContactId = contact.id;
       this.$emit('selected', contact.other);
+      document.title = contact.other.name;
     },
     colorContact: function colorContact(id) {
       return id === this.selectedContactId;

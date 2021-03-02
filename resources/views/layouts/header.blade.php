@@ -8,8 +8,8 @@
         @guest
             <div class="d-flex justify-content-center">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <b><a class="button blue" href="{{ url('/login') }}">Войти</a></b>
-            <b><a class="button green" href="{{ url('/register') }}">Зарегистрироваться</a></b>
+            <b><a class="btn btn-primary" href="{{ url('/login') }}">Войти</a></b> &nbsp;
+            <b><a class="btn btn-secondary" href="{{ url('/register') }}">Зарегистрироваться</a></b>
             </nav>
             </div>
         @endguest

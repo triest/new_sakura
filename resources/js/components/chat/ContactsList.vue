@@ -35,6 +35,7 @@
                 this.selected = contact.other;
                 this.selectedContactId=contact.id;
                 this.$emit('selected', contact.other);
+                document.title=contact.other.name;
 
             },
           colorContact(id){
