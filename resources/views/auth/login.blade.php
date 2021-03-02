@@ -66,7 +66,7 @@
                                             <button class="btn btn-primary" type="submit">
                                                 Войти
                                             </button>
-                                            <a class="btn btn-secondary" href="{{route('main')}}">Назад</a>
+                                            <a class="btn btn-secondary" href="{{route('anket.main')}}">Назад</a>
 
                                             @if (Route::has('password.request'))
                                                 <a class="" href="{{ route('password.request') }}">

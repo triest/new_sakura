@@ -28,7 +28,7 @@ class StoreUserProfile extends FormRequest
                 'date_birth' => 'required|date|before:-18 years',
                 'description' => 'min:30',
                 'sex' => 'required|',
-                 'file-upload-photo-profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+              //   'file-upload-photo-profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 

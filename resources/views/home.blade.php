@@ -1,23 +1,32 @@
-@extends('layouts.app')
+@extends('layouts.home2')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+    @if (Route::has('login'))
+        <div class="top-right links">
+            @if (Auth::check())
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+            @else
+                <a href="{{ url('/login') }}">Войти</a>
+                <a href="{{ url('/join') }}">Зарегистрироваться</a>
+            @endif
+        </div>
+    @endif
 
-                    You are logged in!
-                </div>
+    <div class="content">
+        <div class="title m-b-md">
+
+        </div>
+
+        <img height="350" src="<?php echo asset("/images/new.jpeg")?>">
+        <div class="links">
+            <br>
+            <div class="links">
+                <br>
+                <a class="button green" href="" value="Смотреть анкеты" role="link">Смотреть анкеты</a>
+                <a class="button blue" href="" value="Смотреть анкеты" role="link">Разместить
+                    анкету</a>
             </div>
+
         </div>
     </div>
-</div>
 @endsection

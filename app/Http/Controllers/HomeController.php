@@ -22,14 +22,17 @@ class HomeController extends Controller
 //        $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
-        return view('home.index');
+
+        $user=Auth::user();
+
+        if($user!=null){
+            return redirect('/anket');
+        }
+
+        return view('home');
     }
 
 

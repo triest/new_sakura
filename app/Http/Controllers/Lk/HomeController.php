@@ -126,9 +126,18 @@ class HomeController extends Controller
     public function store_profile(StoreUserProfile $request)
     {
         $user = Auth::user();
+
+
         if (!$user) {
             return redirect('login');
         }
+
+        if(!$user->photo_profile){
+            if(!$request->hasFile('file-upload-photo-profile')){
+                    back()->with('photo-error','Добавитe фотографию!')->withInput();
+            }
+        }
+
         $data = $request->all();
         $user->fill($data);
 

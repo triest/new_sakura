@@ -12,17 +12,13 @@
 
             <form class="form-lk" action="{{ route('lk.profileStore') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
-
-
-                <div class="form-lk_h2">Личные данные</div>
-
                 <div class="group">
-
-
                     <div class="group-photo_upload">
-
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }} </div>
+                        @endforeach
                         <div class="group-upload_profile">
-                            <label class="label_txt"><span></span>Изображение профиля</label>
+                            <label class="label_txt"><span></span></label>
                             @if($size!="")
                                 <div class="group-file_upload_yes">
                                     <div class="txt" id="txt">/avatarka.jpg ({{$size}}Кб)</div>
@@ -30,7 +26,14 @@
                             @else
                                 <div class="txt" id="txt"></div>
                             @endif
-                            <img src="{{asset( "$user->photo_profile_url")}}" height="250px" width="250px">
+                            @if($user &&$user->photo_profile_url!=null)
+                                <img src="{{asset( "$user->photo_profile_url")}}" height="250px" width="250px">
+                            @endif
+                            @if(session()->has('photo-error'))
+                                <div class="alert alert-danger">
+                                    {{ session()->get('photo-error') }}
+                                </div>
+                            @endif
                         </div>
 
                         <div class="photo_profile" id="photo_profile" data-remodal-target="upload_img">
@@ -64,6 +67,16 @@
                         </div>
                     </div>
 
+                    <div class="group">
+                        <label class="label_txt"><span></span>Ищу</label>
+                        <div class="group_input">
+                            <select name="met" id="met">
+                                <option value="female" @if($user->meet=='female') selected @endif>Женщину</option>
+                                <option value="male" @if($user->meet=='male') selected @endif>Мужчину</option>
+                            </select>
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="col-sm-6 col-12">
@@ -73,13 +86,14 @@
                                     <input type="date" class="input" id="date_birth" name="date_birth"
                                            value="{{old('date_birth') ?? $user->date_birth }}">
                                 </div>
+                                @if($errors->has('date_birth'))
+                                    <div class="alert alert-danger">
+                                        <div class="error">{{ $errors->first('date_birth') }}</div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                        @if($errors->has('date_birth'))
-                            <div class="alert alert-danger">
-                                <div class="error">{{ $errors->first('date_birth') }}</div>
-                            </div>
-                        @endif
+
                     </div>
                     <div class="row">
                         @if($targets->isNotEmpty())
@@ -159,9 +173,6 @@
         </div>
 
     </div>
-
-
-
 
 
 @endsection

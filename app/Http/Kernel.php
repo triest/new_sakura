@@ -68,6 +68,7 @@
                 'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
                 'api_token' => \App\Http\Middleware\ApiToken::class,
                 'admin' => \App\Http\Middleware\admin::class,
+                'not_login'=> \App\Http\Middleware\NotLogin::class,
         ];
 
         /**

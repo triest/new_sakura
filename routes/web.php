@@ -1,11 +1,6 @@
 <?php
 
-Route::get(
-        '/',
-        function () {
-            return redirect('/anket');
-        }
-)->name('main');
+Route::get('/','HomeController@index')->middleware('not_login')->name('index');
 Route::get('/lesson', 'HomeController@lesson')->name('lesson');
 
 Auth::routes(['verify' => true]);
@@ -13,7 +8,7 @@ Auth::routes(['verify' => true]);
 
 // Общий роутинг
 //Route::redirect('/', '/lk');
-Route::prefix('anket')->name('anket.')->group(
+Route::prefix('anket')->name('anket.')->middleware('auth')->group(
         function () {
             Route::get('{id}', 'AnketController@view')->name('view');
             Route::get('/', 'AnketController@index')->name('main');
@@ -29,7 +24,7 @@ Route::prefix('contact')->name('contact.')->group(
         }
 );
 
-Route::prefix('events')->name('events.')->group(
+Route::prefix('events')->middleware('auth')->middleware('auth')->name('events.')->group(
         function () {
 
             Route::get('/', 'EventController@index')->name('index'); //сщбытия в моём горроде
@@ -47,7 +42,7 @@ Route::prefix('events')->name('events.')->group(
 
 
 // Личный кабинет
-Route::prefix('lk')->name('lk.')->namespace('Lk')->group(
+Route::prefix('lk')->middleware('auth')->name('lk.')->namespace('Lk')->group(
         function () {
             Route::auth(['verify' => true]);
             Route::redirect('/', '/lk/home');
@@ -75,13 +70,13 @@ Route::prefix('lk')->name('lk.')->namespace('Lk')->group(
         }
 );
 
-Route::prefix('like-carousel')->name('like-carousel.')->group(
+Route::prefix('like-carousel')->middleware('auth')->name('like-carousel.')->group(
         function () {
             Route::get('/', 'LikeCarouselController@index')->name('index');
         }
 );
 
-Route::prefix('likes')->name('likes.')->group(
+Route::prefix('likes')->middleware('auth')->name('likes.')->group(
         function () {
             Route::get('/', 'LikeController@index')->name('index')->middleware('auth');
         }
