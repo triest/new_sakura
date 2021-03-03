@@ -128,3 +128,27 @@ export default {
 }
 </script>
 
+
+<style scoped>
+.cell {
+  position: absolute;
+  top: 180px;
+  right: 0;
+  bottom: 30px;
+  left: 0;
+  box-sizing: border-box;
+  display: block;
+  padding: 20px;
+  width: 100%;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.cell-overflow {
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: white;
+}
+
+</style>

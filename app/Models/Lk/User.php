@@ -26,7 +26,9 @@ use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\SluggableScopeHelpers;
 use Carbon\Carbon;
 use Composer\Util\Git;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -34,55 +36,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Lk\User
- *
- * @property int $id
- * @property string $name
- * @property string $email
- * @property string $phone
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereUpdatedAt($value)
- * @mixin \Eloquent
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Lk\User onlyTrashed()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereDeletedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Lk\User withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Lk\User withoutTrashed()
- * @property string $surname
- * @property int $active
- * @property string|null $last_active
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereLastActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereSurname($value)
- * @property-read string $full_name
- * @property string|null $carousel_uid
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User whereCarouselUid($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Lk\Children[] $childrens
- * @property-read int|null $childrens_count
- * @property-read \Illuminate\Database\Eloquent\Collection $groups
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Lk\Purchase[] $purchases
- * @property-read int|null $purchases_count
- * @property string $photo
- * @property-read \Illuminate\Database\Eloquent\Collection $children_groups
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Lk\User wherePhoto($value)
- */
+*/
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -668,5 +622,33 @@ class User extends Authenticatable implements MustVerifyEmail
         $visits = Visit::select(['*'])->whereIN('id', $collection)->with('who')->has('who')->get();
 
         return $visits;
+    }
+/*
+    public function scopeOrderByLastLogin($query, $direction = 'desc')
+    {
+        $query->orderBy(User::select('created_at')
+                                ->whereColumn('logins.user_id', 'users.id')
+                                ->latest()
+                                ->take(1),
+                        $direction
+        );
+    }
+*/
+    /**
+     * Позволяет выбирать товары категории и всех ее потомков
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param array $parents
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Order by name ASC
+     /*   static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('created_at', 'desc');
+        });
+     */
     }
 }
