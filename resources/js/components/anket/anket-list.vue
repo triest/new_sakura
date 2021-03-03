@@ -19,14 +19,7 @@
       <div class="row">
         <br>
         <div class="card" v-for="item in anketList">
-          <a :href="/anket/+item.id">
-            <img width="250" height="250" :src="item.photo_profile_url">
-            <div class="cell">
-              <div class="cell-overflow">
-                {{ item.name }}, {{ item.age }}
-              </div>
-            </div>
-          </a>
+          <anket-short-view :user="item"></anket-short-view>
         </div>
         <SearchModal class="search-modal" v-if="seachModal" @closeSeachModal="closeSeachModal()"></SearchModal>
       </div>
@@ -45,6 +38,7 @@
 
 <script>
 import SearchModal from './SearchModal'
+import AnketShortView from "./AnketShortView";
 
 export default {
 
@@ -68,7 +62,7 @@ export default {
       current_page: null
     }
   },
-  components: {SearchModal},
+  components: {SearchModal,AnketShortView},
   methods: {
 
     seach(url = 'api/anket/search') {

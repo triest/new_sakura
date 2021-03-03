@@ -1,27 +1,25 @@
 <template>
   <div class="row">
-
     <div class="card" v-for="item in visits">
       <div v-if="item.who!==null">
-        <a :href="/anket/+item.who.id">
-          <img width="250" height="250" :src="item.who.photo_profile_url">
-          <div class="cell">
-            <div class="cell-overflow">
-              {{item.who.name}}
-              {{item.date}}
-            </div>
+        <anket-short-view :user="item.who"></anket-short-view>
+        <div class="cell">
+          <div class="cell-overflow">
+            {{ item.date }}
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import AnketShortView from "./AnketShortView";
+
 export default {
   name: "visit",
   props: {},
-  components: {},
+  components: {AnketShortView},
   data() {
     return {
       visits: null
@@ -47,4 +45,25 @@ export default {
 
 <style scoped>
 
+.cell {
+  position: absolute;
+  top: 180px;
+  right: 0;
+  bottom: 30px;
+  left: 100px;
+  box-sizing: border-box;
+  display: block;
+  padding: 20px;
+  width: 100%;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.cell-overflow {
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: white;
+}
 </style>
