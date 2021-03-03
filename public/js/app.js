@@ -2256,6 +2256,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AnketShortView",
   props: {
@@ -12002,7 +12007,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.cell[data-v-2d5649e1] {\r\n  position: absolute;\r\n  top: 180px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n}\n.cell-overflow[data-v-2d5649e1] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.cell[data-v-2d5649e1] {\r\n  position: absolute;\r\n  top: 180px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n}\n.cell-overflow[data-v-2d5649e1] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\n}\n.cell-online[data-v-2d5649e1] {\r\n  position: absolute;\r\n  top: 5px;\r\n  left: 200px;\r\n  bottom: 30px;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n}\n.cell-online-overflow[data-v-2d5649e1] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\n}\n.online[data-v-2d5649e1] {\r\n  height: 10px;\r\n  width: 10px;\r\n  background-color: #26ff26;\r\n  border-radius: 50%;\r\n  display: inline-block;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -12135,7 +12140,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.cell[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 180px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n}\n.cell-overflow[data-v-228b89eb] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.cell[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 180px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n}\n.cell-overflow[data-v-228b89eb] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\n}\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -63410,6 +63415,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("a", { attrs: { href: /anket/ + _vm.user.id } }, [
+      _vm._m(0),
+      _vm._v(" "),
       _c("img", {
         attrs: { width: "250", height: "250", src: _vm.user.photo_profile_url }
       }),
@@ -63428,7 +63435,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "cell-online" }, [
+      _c("div", { staticClass: "cell-online-overflow" }, [
+        _c("span", { staticClass: "online" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
