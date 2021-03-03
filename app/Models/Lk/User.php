@@ -15,6 +15,7 @@ use App\Models\Message;
 use App\Models\Relation;
 use App\Models\SearchSettings;
 use App\Models\Target;
+use App\Models\Visit;
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
 use App\Models\Present;
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Lk\User
@@ -626,4 +628,45 @@ class User extends Authenticatable implements MustVerifyEmail
             return $this->hasMany(Dialog::class,'my_id','id');
     }
 
+    public function whoVisit(){
+        return $this->hasMany(Visit::class,'who_id','id');
+    }
+
+    public function targetVisit(){
+        return $this->hasOne(Visit::class);
+    }
+
+    public function saveVisit(){
+         $authUser=Auth::user();
+
+         $authUser=User::select(['*'])->where(['id'=>$authUser->id])->first();
+        if($authUser==null){
+            return;
+        }
+
+         $visit=new Visit();
+         $visit->target()->associate($this);
+         $visit->who()->associate($authUser);
+        $visit->save();
+    }
+
+    public function getVisits()
+    {
+        //    $visits=Visit::select(['*'])->where('target_id',$this->id)->groupBy('who_id')->with('who')->orderBy('created_at','desc')->get();
+        $visits = DB::table('visits')
+                ->select('id','who_id')
+                ->orderBy('created_at', 'desc')
+                ->where('target_id', $this->id)
+             //   ->groupBy('who_id')
+                ->get();
+
+
+
+        $collection = $visits->pluck('id')->toArray();
+
+
+        $visits = Visit::select(['*'])->whereIN('id', $collection)->with('who')->has('who')->get();
+
+        return $visits;
+    }
 }

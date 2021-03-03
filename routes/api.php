@@ -12,6 +12,7 @@ Route::middleware('api_token')->group(
 );
 
 Route::get('getalldataforsidepanel','HomeController@getAllDataForSidePanel');
+Route::get('visits', 'AnketController@apiVisits')->middleware('auth')->name('visits');
 
 
 Route::prefix('anket/search')->name('search.')->group(

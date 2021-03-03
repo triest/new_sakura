@@ -52,6 +52,7 @@ Vue.component('album', require('./components/anket/album').default);
 Vue.component('album-owner', require('./components/anket/albumOwner').default);
 Vue.component('my-like', require('./components/anket/mylike').default);
 Vue.component('lingallery', Lingallery);
+Vue.component('visit',require('./components/anket/visit').default)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

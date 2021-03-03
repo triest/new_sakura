@@ -45,6 +45,29 @@
             return view("anket.index");
         }
 
+        public function visits(Request $request){
+
+
+           $user=Auth::user();
+            if($user==null){
+                return null;
+            }
+
+            return view('anket.visits');
+        }
+
+        public function apiVisits(Request $request){
+            $user=Auth::user();
+            if($user==null){
+                return null;
+            }
+
+       //    $visits=$user->whoVisit()->with('who')->distinct('who_id')->groupBy('who_id','id','target_id')->get();
+            $visits=$user->getVisits();
+
+            return  response()->json($visits);
+        }
+
         //
         public function view(Request $request, $id)
         {
@@ -75,6 +98,7 @@
                 array_push($anketInterest, $item->id);
             }
 
+            $user->saveVisit();
 
 
             $gifts = $user->getGifts();
@@ -100,4 +124,6 @@
 
             return $str;
         }
+
+
     }

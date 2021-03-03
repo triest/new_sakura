@@ -5,6 +5,7 @@ Route::get('/lesson', 'HomeController@lesson')->name('lesson');
 
 Auth::routes(['verify' => true]);
 
+Route::get('visits', 'AnketController@visits')->middleware('auth')->name('visits');
 
 // Общий роутинг
 //Route::redirect('/', '/lk');
@@ -15,6 +16,7 @@ Route::prefix('anket')->name('anket.')->middleware('auth')->group(
             Route::get('{id}/albums', 'AlbumController@albums')->name('albums');
             Route::get('{id}/albums/{albumid}', 'AlbumController@albumItem')->name('albumItem');
             Route::post('{id}/albums/{albumid}/upload/image', 'AlbumController@uploadPhoto')->name("uploadPhoto");
+            Route::get('visits', 'AnketController@visits')->name('visits');
         }
 );
 //csrf

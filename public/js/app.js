@@ -3444,6 +3444,60 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/visit.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/visit.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "visit",
+  props: {},
+  components: {},
+  data: function data() {
+    return {
+      visits: null
+    };
+  },
+  mounted: function mounted() {
+    console.log('visits');
+    this.getVisits();
+  },
+  methods: {
+    getVisits: function getVisits() {
+      var _this = this;
+
+      axios.get('/api/visits').then(function (response) {
+        _this.visits = response.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/chat/ChatApp.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/chat/ChatApp.vue?vue&type=script&lang=js& ***!
@@ -4668,6 +4722,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modals_eventRequestModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modals/eventRequestModal */ "./resources/js/components/layouts/modals/eventRequestModal.vue");
 /* harmony import */ var _modals_ChangeEventRequestStatusModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals/ChangeEventRequestStatusModal */ "./resources/js/components/layouts/modals/ChangeEventRequestStatusModal.vue");
 /* harmony import */ var _modals_IncomingMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/IncomingMessage */ "./resources/js/components/layouts/modals/IncomingMessage.vue");
+//
+//
 //
 //
 //
@@ -64737,6 +64793,63 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/visit.vue?vue&type=template&id=8b0cdb64&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/anket/visit.vue?vue&type=template&id=8b0cdb64&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "row" },
+    _vm._l(_vm.visits, function(item) {
+      return _c("div", { staticClass: "card" }, [
+        item.who !== null
+          ? _c("div", [
+              _c("a", { attrs: { href: /anket/ + item.who.id } }, [
+                _c("img", {
+                  attrs: {
+                    width: "250",
+                    height: "250",
+                    src: item.who.photo_profile_url
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "cell" }, [
+                  _c("div", { staticClass: "cell-overflow" }, [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(item.who.name) +
+                        "\n            " +
+                        _vm._s(item.date) +
+                        "\n          "
+                    )
+                  ])
+                ])
+              ])
+            ])
+          : _vm._e()
+      ])
+    }),
+    0
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/chat/ChatApp.vue?vue&type=template&id=1526169d&":
 /*!***************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/chat/ChatApp.vue?vue&type=template&id=1526169d& ***!
@@ -66417,6 +66530,16 @@ var render = function() {
                 ? _c("div", [_vm._v("(" + _vm._s(_vm.numberUnreaded) + ")")])
                 : _vm._e()
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-secondary",
+              staticStyle: { cursor: "pointer" },
+              attrs: { href: "/visits" }
+            },
+            [_vm._v("Мои посетители\n    ")]
           ),
           _vm._v(" "),
           _c(
@@ -79033,6 +79156,7 @@ Vue.component('album', __webpack_require__(/*! ./components/anket/album */ "./re
 Vue.component('album-owner', __webpack_require__(/*! ./components/anket/albumOwner */ "./resources/js/components/anket/albumOwner.vue")["default"]);
 Vue.component('my-like', __webpack_require__(/*! ./components/anket/mylike */ "./resources/js/components/anket/mylike.vue")["default"]);
 Vue.component('lingallery', lingallery__WEBPACK_IMPORTED_MODULE_2___default.a);
+Vue.component('visit', __webpack_require__(/*! ./components/anket/visit */ "./resources/js/components/anket/visit.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -80239,6 +80363,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_newMessageModal_vue_vue_type_template_id_54ecfa69___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_newMessageModal_vue_vue_type_template_id_54ecfa69___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/anket/visit.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/anket/visit.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _visit_vue_vue_type_template_id_8b0cdb64_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./visit.vue?vue&type=template&id=8b0cdb64&scoped=true& */ "./resources/js/components/anket/visit.vue?vue&type=template&id=8b0cdb64&scoped=true&");
+/* harmony import */ var _visit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./visit.vue?vue&type=script&lang=js& */ "./resources/js/components/anket/visit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _visit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _visit_vue_vue_type_template_id_8b0cdb64_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _visit_vue_vue_type_template_id_8b0cdb64_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "8b0cdb64",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/anket/visit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/anket/visit.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/anket/visit.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_visit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./visit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/visit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_visit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/anket/visit.vue?vue&type=template&id=8b0cdb64&scoped=true&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/anket/visit.vue?vue&type=template&id=8b0cdb64&scoped=true& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_visit_vue_vue_type_template_id_8b0cdb64_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./visit.vue?vue&type=template&id=8b0cdb64&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/anket/visit.vue?vue&type=template&id=8b0cdb64&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_visit_vue_vue_type_template_id_8b0cdb64_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_visit_vue_vue_type_template_id_8b0cdb64_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
