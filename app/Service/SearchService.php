@@ -62,7 +62,8 @@ class SearchService
                     'users.date_birth',
                     'users.created_at',
                     'users.age',
-                    'users.photo_profile_url'
+                    'users.photo_profile_url',
+                    'online'
             )->distinct('users.id')->limit($this->limit);
 
 

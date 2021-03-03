@@ -2999,6 +2999,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     closeNewMessageModal: function closeNewMessageModal() {
       this.showMessageModal = false;
+    },
+    clousePresentModal: function clousePresentModal() {
+      this.showPresentModal = false;
     }
   }
 });
@@ -3213,6 +3216,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -64546,7 +64551,35 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "modal-header" },
-                [_vm._t("header", [_c("b", [_vm._v("Подарки")])])],
+                [
+                  _vm._t("header", [_c("b", [_vm._v("Подарки")])]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "close",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-label": "Close"
+                      }
+                    },
+                    [
+                      _c(
+                        "span",
+                        {
+                          attrs: { "aria-hidden": "true" },
+                          on: {
+                            click: function($event) {
+                              return _vm.close()
+                            }
+                          }
+                        },
+                        [_vm._v("×")]
+                      )
+                    ]
+                  )
+                ],
                 2
               ),
               _vm._v(" "),
@@ -64616,6 +64649,7 @@ var render = function() {
                 _c(
                   "a",
                   {
+                    staticStyle: { cursor: "pointer" },
                     on: {
                       click: function($event) {
                         return _vm.close()
@@ -64624,7 +64658,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                        Закрыть1\n                    "
+                      "\n                        Закрыть\n                    "
                     )
                   ]
                 )

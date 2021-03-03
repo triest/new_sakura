@@ -101,7 +101,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'description'
     ];
 
-    public $appends=['age'];
+    public $appends=['age','online'];
 
     /**
      * The attributes that should be cast to native types.
@@ -282,6 +282,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return \Cache::has('user-is-online-' . $this->id);
     }
+
+    public function getOnlineAttribute(){
+        $online=\Cache::has('user-is-online-' . $this->id);
+        if($online){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     public function lastLoginFormat()
     {

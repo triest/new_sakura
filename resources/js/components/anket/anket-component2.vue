@@ -50,6 +50,9 @@
             closeNewMessageModal() {
                 this.showMessageModal = false;
             },
+          clousePresentModal(){
+              this.showPresentModal=false;
+          }
         }
     }
 </script>

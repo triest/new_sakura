@@ -22,7 +22,8 @@
                     'name' => $this->name,
                     'profile_url' => $this->profile_url,
                     'age' => $this->age,
-                    'photo_profile_url'=>$this->photo_profile_url
+                    'photo_profile_url'=>$this->photo_profile_url,
+                    'online'=>$this->online
             ];
         }
     }

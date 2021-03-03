@@ -8,6 +8,9 @@
                         <slot name="header">
                             <b>Подарки</b>
                         </slot>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" v-on:click="close()">&times;</span>
+                      </button>
                     </div>
 
                     <div class="modal-body">
@@ -35,12 +38,11 @@
                         </slot>
                     </div>
                     <slot name="footer">
-                        <a v-on:click="close()">
-                            Закрыть1
+                        <a v-on:click="close()" style="cursor: pointer">
+                            Закрыть
                         </a>
                     </slot>
                 </div>
-
             </div>
         </div>
     </transition>
