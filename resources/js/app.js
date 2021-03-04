@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import Vue from 'vue/dist/vue'
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -33,6 +35,8 @@ Vue.use(VueCarousel);
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+import EventInMyCitySide2 from "./components/events/EventInMyCitySide2";
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('anket-list', require('./components/anket/anket-list.vue').default);

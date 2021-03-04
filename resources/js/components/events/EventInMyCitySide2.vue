@@ -44,6 +44,7 @@
 import {Carousel, Slide} from 'vue-carousel';
 
 export default {
+  name:'EventInMyCitySide2',
   props: {
     city: {
       type: Object,
