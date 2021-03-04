@@ -19,6 +19,7 @@ use App\Models\Visit;
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
 use App\Models\Present;
+use App\Observers\UserObserver;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -33,6 +34,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Filesystem\Exception\IOException;
 
 /**
  * App\Models\Lk\User
@@ -101,7 +103,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'description'
     ];
 
-    public $appends=['age','online'];
+    public $appends=['online'];
 
     /**
      * The attributes that should be cast to native types.
@@ -161,11 +163,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getAge()
     {
-        $dateBith = $this->date_birth;
-        $mytime = Carbon::now();
-        $last_login = Carbon::createFromFormat('Y-m-d', $dateBith);
-        $datediff = date_diff($last_login, $mytime);
-        return $datediff->y;
+        try {
+            $dateBith = $this->date_birth;
+            if(!$dateBith){
+                return;
+            }
+            $mytime = Carbon::now();
+            $last_login = Carbon::createFromFormat('Y-m-d', $dateBith);
+            $dateBith = Carbon::instance($mytime);
+            //    $datediff = date_diff($last_login, $mytime);
+            return  $dateBith->diffInYears($last_login);
+
+        } catch (IOException $exception) {
+        }
     }
 
 
@@ -597,7 +607,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function targetVisit(){
-        return $this->hasOne(Visit::class);
+        return $this->hasOne(Visit::class,'target_id','id');
     }
 
     public function saveVisit(){
@@ -630,35 +640,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
         $visits = Visit::select(['*'])->whereIN('id', $collection)->with('who')->has('who')->get();
+        $res= Visit::whereIN('id', $collection)->update(['read'=>1]);
 
         return $visits;
     }
-/*
-    public function scopeOrderByLastLogin($query, $direction = 'desc')
-    {
-        $query->orderBy(User::select('created_at')
-                                ->whereColumn('logins.user_id', 'users.id')
-                                ->latest()
-                                ->take(1),
-                        $direction
-        );
-    }
-*/
-    /**
-     * Позволяет выбирать товары категории и всех ее потомков
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param array $parents
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    protected static function boot()
-    {
-        parent::boot();
 
-        // Order by name ASC
-     /*   static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('created_at', 'desc');
-        });
-     */
-    }
 }

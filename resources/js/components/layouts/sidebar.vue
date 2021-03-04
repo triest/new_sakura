@@ -6,7 +6,8 @@
       <a class="btn btn-secondary" href="/contact" style="cursor: pointer">Сообщения
         <div v-if="numberUnreaded>0">({{ numberUnreaded }})</div>
       </a>
-      <a class="btn btn-secondary" href="/visits" style="cursor: pointer">Мои посетители
+
+      <a class="btn btn-secondary" href="/visits" style="cursor: pointer">Мои посетители    <div v-if="numberVisits>0">({{ numberVisits }})</div>
       </a>
       <a class="btn btn-info" href="/mypresents">Мои подарки</a>
       <a class="btn btn-info" href="/events/my-events-list">Мои события
@@ -63,6 +64,7 @@ export default {
       numberUnreaded: 0,
       numberApplication: 0,
       numberApplicationPresents: 0,
+      numberVisits:0,
       inseach: false,
       likesNumber: 0,
       showLikeModal: false,
@@ -183,6 +185,8 @@ export default {
                 this.unreeadedEventRequwest=data.eventRequest
              //   this.filter_enable = data.filter.filter_enable;
                 this.count_accept_notification = data.countAccept_notification;
+                this.numberVisits=data.visits;
+
               });
         },
         //

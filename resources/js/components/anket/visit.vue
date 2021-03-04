@@ -6,6 +6,10 @@
         <div class="cell">
           <div class="cell-overflow">
             {{ item.date }}
+
+          </div>
+          <div class="cell-new">
+          <span v-if="item.read===0" class="new">Новый!</span>
           </div>
         </div>
       </div>
@@ -65,5 +69,22 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
   color: white;
+}
+
+.cell-new {
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: white;
+  position: relative;
+  bottom: 200px;
+  left: 40;
+}
+
+
+
+.new{
+  color: #ff0000;
 }
 </style>

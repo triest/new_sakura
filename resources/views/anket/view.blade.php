@@ -41,20 +41,13 @@
 
                         </div>
 
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-12">
-                            <div class="group">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <anket-component2 :user="{{$user}}" :gifts="{{$gifts}}"></anket-component2>
                     </div>
                 </div>
                 <div class="group">
                     <a href="{{route("anket.albums",['id'=>$user->id])}}" class="personal-area">Фотографии</a>
+                </div>
+                <div class="cell-online-overflow">
+                <span class="online"></span>
                 </div>
                 <div class="row">
                     @if($targets->isNotEmpty())
@@ -64,7 +57,6 @@
                                 @foreach($targets as $item)
                                     <p>
                                         {{$item->name}}
-
                                     </p>
                                 @endforeach
                             </div>
@@ -111,7 +103,39 @@
         <a class="btn btn-primary" href="{{route("anket.main")}}">К списку анкет</a>
     </div>
 
+<style>
+/*
+    .cell-online {
+        position: absolute;
+        top: 5px;
+        left: 1px;
+        bottom: 1px;
+        box-sizing: border-box;
+        display: block;
+        padding: 1px;
+        width: 100%;
+        color: white;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
 
+    .cell-online-overflow {
+        box-sizing: border-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: white;
+    }
+*/
+    .online {
+        height: 10px;
+        width: 10px;
+        background-color: #26ff26;
+        border-radius: 50%;
+        display: inline-block;
+
+    }
+
+</style>
 
 
 @endsection

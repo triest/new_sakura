@@ -26,6 +26,8 @@ class PanelService
 
         $data['eventRequest']=$user->getEventRequests(true)->count();
 
+        $data['visits']=$user->targetVisit()->where('read',0)->count();
+
         return $data;
     }
 

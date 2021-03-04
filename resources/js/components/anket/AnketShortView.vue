@@ -1,7 +1,7 @@
 <template>
   <div>
     <a :href="/anket/+user.id">
-      <div class="cell-online">
+      <div v-if="user.online===true" class="cell-online">
         <div class="cell-online-overflow">
           <span class="online"></span>
         </div>

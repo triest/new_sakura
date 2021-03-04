@@ -3509,6 +3509,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "visit",
@@ -4801,6 +4805,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -4824,6 +4829,7 @@ __webpack_require__.r(__webpack_exports__);
       numberUnreaded: 0,
       numberApplication: 0,
       numberApplicationPresents: 0,
+      numberVisits: 0,
       inseach: false,
       likesNumber: 0,
       showLikeModal: false,
@@ -4949,6 +4955,7 @@ __webpack_require__.r(__webpack_exports__);
         _this7.unreeadedEventRequwest = data.eventRequest; //   this.filter_enable = data.filter.filter_enable;
 
         _this7.count_accept_notification = data.countAccept_notification;
+        _this7.numberVisits = data.visits;
       });
     },
     //
@@ -12140,7 +12147,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.cell[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 180px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n}\n.cell-overflow[data-v-228b89eb] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\n}\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.cell[data-v-228b89eb] {\r\n  position: absolute;\r\n  top: 180px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n}\n.cell-overflow[data-v-228b89eb] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -12216,7 +12223,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.cell[data-v-8b0cdb64] {\r\n  position: absolute;\r\n  top: 180px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 100px;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n}\n.cell-overflow[data-v-8b0cdb64] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\n}\r\n", ""]);
+exports.push([module.i, "\n.cell[data-v-8b0cdb64] {\r\n  position: absolute;\r\n  top: 180px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 100px;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 20px;\r\n  width: 100%;\r\n  color: white;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n}\n.cell-overflow[data-v-8b0cdb64] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\n}\n.cell-new[data-v-8b0cdb64] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\r\n  position: relative;\r\n  bottom: 200px;\r\n  left: 40;\n}\n.new[data-v-8b0cdb64]{\r\n  color: #ff0000;\n}\r\n", ""]);
 
 // exports
 
@@ -63415,7 +63422,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("a", { attrs: { href: /anket/ + _vm.user.id } }, [
-      _vm._m(0),
+      _vm.user.online === true
+        ? _c("div", { staticClass: "cell-online" }, [_vm._m(0)])
+        : _vm._e(),
       _vm._v(" "),
       _c("img", {
         attrs: { width: "250", height: "250", src: _vm.user.photo_profile_url }
@@ -63440,10 +63449,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cell-online" }, [
-      _c("div", { staticClass: "cell-online-overflow" }, [
-        _c("span", { staticClass: "online" })
-      ])
+    return _c("div", { staticClass: "cell-online-overflow" }, [
+      _c("span", { staticClass: "online" })
     ])
   }
 ]
@@ -65075,7 +65082,13 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "cell" }, [
                   _c("div", { staticClass: "cell-overflow" }, [
-                    _vm._v("\n          " + _vm._s(item.date) + "\n        ")
+                    _vm._v("\n          " + _vm._s(item.date) + "\n\n        ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "cell-new" }, [
+                    item.read === 0
+                      ? _c("span", { staticClass: "new" }, [_vm._v("Новый!")])
+                      : _vm._e()
                   ])
                 ])
               ],
@@ -66783,7 +66796,12 @@ var render = function() {
               staticStyle: { cursor: "pointer" },
               attrs: { href: "/visits" }
             },
-            [_vm._v("Мои посетители\n    ")]
+            [
+              _vm._v("Мои посетители    "),
+              _vm.numberVisits > 0
+                ? _c("div", [_vm._v("(" + _vm._s(_vm.numberVisits) + ")")])
+                : _vm._e()
+            ]
           ),
           _vm._v(" "),
           _c(
