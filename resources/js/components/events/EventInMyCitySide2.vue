@@ -33,7 +33,7 @@
       </carousel>
     </div>
     <div v-else>
-      Событий в вашем городе нет.
+      Событий в вашем городе нет. <br>
       <a class="btn btn-primary" href="/events/create">Создать событие!</a>
     </div>
 

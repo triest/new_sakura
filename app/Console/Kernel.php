@@ -27,7 +27,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->job(new RecalculateAge)->timezone('Europe/Moscow')->dailyAt('03:00');
+         $schedule->command('calculateAge')->everyMinute();
+         $schedule->command('command:calculateAge')->everyMinute();
     }
 
     /**

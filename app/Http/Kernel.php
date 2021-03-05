@@ -2,6 +2,8 @@
 
     namespace App\Http;
 
+    use App\Jobs\RecalculateAge;
+    use Illuminate\Console\Scheduling\Schedule;
     use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
     class Kernel extends HttpKernel
@@ -87,4 +89,18 @@
                 \Illuminate\Routing\Middleware\SubstituteBindings::class,
                 \Illuminate\Auth\Middleware\Authorize::class,
         ];
+
+        /**
+         * Define the application's command schedule.
+         *
+         * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+         * @return void
+         */
+        protected function schedule(Schedule $schedule)
+        {
+            // $schedule->command('inspire')
+            //          ->hourly();
+            $schedule->job(new RecalculateAge)->timezone('Europe/Moscow')->dailyAt('03:00')->withoutOverlapping() ;
+        }
+
     }
