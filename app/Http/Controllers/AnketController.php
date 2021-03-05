@@ -65,49 +65,21 @@
        //    $visits=$user->whoVisit()->with('who')->distinct('who_id')->groupBy('who_id','id','target_id')->get();
             $visits=$user->getVisits();
 
+
             return  response()->json($visits);
         }
 
         //
         public function view(Request $request, $id)
         {
+            $user=User::select(['id','name','age','sex','description','city_id','relation_id','photo_profile_url'])->where('id', $id)->with('target','interest','like','relation','city','getGiftForMe','city')->first();
 
-            $user = User::get($id);
-
-
-            if ($user == null) {
-                return null;
+            if(!$user){
+                abort(404);
             }
-
-            $target = Target::select(['*'])->get();
-
-            $interst = Interest::select(['*'])->get();
-
-
-            $targets = $user->target()->get();
-
-            $anketTarget = [];
-            foreach ($targets as $tag) {
-                array_push($anketTarget, $tag->id);
-            }
-
-            $interests = $user->interest()->get();
-
-            $anketInterest = [];
-            foreach ($interests as $item) {
-                array_push($anketInterest, $item->id);
-            }
-
-            $user->saveVisit();
-
-
-            $gifts = $user->getGifts();
 
             return view('anket.view')->with([
                     'user' => $user,
-                    'targets' => $target,
-                    'interests' => $interst,
-                    'gifts' => $gifts
             ]);
         }
 

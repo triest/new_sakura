@@ -36,6 +36,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Filesystem\Exception\IOException;
 
+use function Symfony\Component\Translation\t;
+
 /**
  * App\Models\Lk\User
 */
@@ -166,7 +168,7 @@ class User extends Authenticatable implements MustVerifyEmail
         try {
             $dateBith = $this->date_birth;
             if(!$dateBith){
-                return;
+                return null;
             }
             $mytime = Carbon::now();
             $last_login = Carbon::createFromFormat('Y-m-d', $dateBith);
@@ -223,8 +225,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function relation()
     {
-        return $this->belongsTo(Relation::class);
+        return $this->hasOne(Relation::class,'id','relation_id');
     }
+
+    public function city()
+    {
+        return $this->hasOne(City::class, 'id', 'city_id');
+    }
+
 
 
     public static function Ipstatic()
@@ -509,10 +517,6 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    public function city()
-    {
-        return $this->hasOne(City::class, 'id', 'city_id');
-    }
 
     public function sluggable(): array
     {
@@ -626,21 +630,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getVisits()
     {
-        //    $visits=Visit::select(['*'])->where('target_id',$this->id)->groupBy('who_id')->with('who')->orderBy('created_at','desc')->get();
-        $visits = DB::table('visits')
-                ->select('id','who_id')
-                ->orderBy('created_at', 'desc')
-                ->where('target_id', $this->id)
-             //   ->groupBy('who_id')
-                ->get();
-
-
-
-        $collection = $visits->pluck('id')->toArray();
-
-
-        $visits = Visit::select(['*'])->whereIN('id', $collection)->with('who')->has('who')->get();
-        $res= Visit::whereIN('id', $collection)->update(['read'=>1]);
+        $visits=$this->targetVisit()->orderBy('created_at', 'desc')->with('who')->has('who')->get();
+         Visit::whereIN('id', $visits->pluck('id'))->update(['read'=>1]);
 
         return $visits;
     }

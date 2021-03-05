@@ -9,7 +9,9 @@
         <div class="profile-form">
 
             <div class="form-lk_name"><b>{{$user->name}}</b>, {{$user->age}}
-                <small> ,{{$user->getCity()->name}}</small>
+                @isset($user->city->name)
+                    <small> ,{{$user->city->name}}</small>
+                @endisset
             </div>
             <div class="">
             </div>
@@ -50,11 +52,11 @@
                 <span class="online"></span>
                 </div>
                 <div class="row">
-                    @if($targets->isNotEmpty())
+                    @if($user->target->isNotEmpty())
                         <div class="col-sm-6 col-12">
                             <div class="group">
                                 <label class="label_txt"><span></span>Цель знакомства</label>
-                                @foreach($targets as $item)
+                                @foreach($user->target as $item)
                                     <p>
                                         {{$item->name}}
                                     </p>
@@ -63,11 +65,11 @@
                         </div>
                     @endif
 
-                    @if($interests->isNotEmpty())
+                    @if($user->interest->isNotEmpty())
                         <div class="col-sm-6 col-12">
                             <div class="group">
                                 <label class="label_txt">Интересы</label>
-                                @foreach($interests as $item)
+                                @foreach($user->interest as $item)
                                     <p>
                                         {{$item->name}}
                                     </p>
@@ -78,10 +80,10 @@
                 </div>
 
 
-                @isset($user->relation()->first()->name)
+                @isset($user->relation->name)
                     <hr>
                     <p><label class="label_txt">Отношения: </label>
-                        {{$user->relation()->first()->name}}
+                        {{$user->relation->name}}
                     </p>
                 @endisset
                     <hr>
@@ -102,7 +104,6 @@
         </div>
         <a class="btn btn-primary" href="{{route("anket.main")}}">К списку анкет</a>
     </div>
-
 <style>
 /*
     .cell-online {
