@@ -2,6 +2,7 @@
 
 namespace App\Models\Lk;
 
+use App\Jobs\SendNotification;
 use App\Models\Album;
 use App\Models\City;
 use App\Models\Dialog;
@@ -57,6 +58,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     protected $guard = 'lk';
+
+    private $delayNotificationMinutes=10;
 
     /**
      * The attributes that are mass assignable.
@@ -429,12 +432,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($user == null || $TargetUser == null) {
             return false;
         }
-        /*
-                    $message = Message::create([
-                            'from' => $user->id,
-                            'to' => $TargetUser->id,
-                            'text' => $text,
-                    ]);*/
+
         $message = new Message();
         $message->to = $user->id;
         $message->from = $TargetUser->id;
@@ -472,7 +470,13 @@ class User extends Authenticatable implements MustVerifyEmail
             $dialog2->lastMessage=Carbon::now();
             $dialog2->save();
         }
-        broadcast(new NewMessage($message));
+
+        if($this->isOnline()) {
+            broadcast(new NewMessage($message));
+        }else{
+            $on = \Carbon\Carbon::now()->addMinutes($this->delayNotificationMinutes); // отправим через 10 минут
+            dispatch(new SendNotification($message))->delay($on);
+        }
 
         return $message;
     }
