@@ -165,7 +165,7 @@
                 <button class="mt-24 btn-light btn_100 btn-small btn-animate" type="button"
                         data-remodal-target="upload_img" id="buttonTarget" hidden>Продолжить
                 </button>
-                <button class="btn btn-primary mt-24 btn-light btn_100 btn-small btn-animate" type="submit">Сохранить
+                <button class="btn btn-primary" type="submit">Сохранить
                 </button>
                 <a href="/" class="btn btn-secondary">Отменить</a>
             </form>
