@@ -46,7 +46,7 @@ export default {
     },
     send() {
       console.log("send")
-      axios.post('/api/contact/conversation/sendModal', {
+      axios.post('/api/contact/conversation/send', {
         contact_id: this.user.id,
         text: this.MessageText
       }).then((response) => {

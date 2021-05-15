@@ -20,24 +20,19 @@ use App\Models\Visit;
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
 use App\Models\Present;
-use App\Observers\UserObserver;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
+use Cache;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\SluggableScopeHelpers;
 use Carbon\Carbon;
-use Composer\Util\Git;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Symfony\Component\Filesystem\Exception\IOException;
-
-use function Symfony\Component\Translation\t;
 
 /**
  * App\Models\Lk\User
@@ -180,6 +175,7 @@ class User extends Authenticatable implements MustVerifyEmail
             return  $dateBith->diffInYears($last_login);
 
         } catch (IOException $exception) {
+            return null;
         }
     }
 
@@ -301,16 +297,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isOnline()
     {
-        return \Cache::has('user-is-online-' . $this->id);
+        return Cache::has('user-is-online-' . $this->id);
     }
 
     public function getOnlineAttribute(){
-        $online=\Cache::has('user-is-online-' . $this->id);
-        if($online){
-            return true;
-        }else{
-            return false;
-        }
+        return Cache::has('user-is-online-' . $this->id);
     }
 
 
@@ -474,7 +465,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if($this->isOnline()) {
             broadcast(new NewMessage($message));
         }else{
-            $on = \Carbon\Carbon::now()->addMinutes($this->delayNotificationMinutes); // отправим через 10 минут
+            $on = Carbon::now()->addMinutes($this->delayNotificationMinutes); // отправим через 10 минут
             dispatch(new SendNotification($message))->delay($on);
         }
 
@@ -503,10 +494,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getGifts($limit = 5)
     {
-        return GiftAct::select(['*'])->with('who','gift')->where(['target_id' => $this->id])->get();
+        return GiftAct::select(['*'])->with('who','gift')->where(['target_id' => $this->id])->limit($limit)->get();
     }
 
-    public function getGiftForMe()
+    public function GiftForMe()
     {
         return $this->hasMany(GiftAct::class, 'target_id', 'id');
     }

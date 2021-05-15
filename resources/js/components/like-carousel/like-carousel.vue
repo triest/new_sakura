@@ -76,7 +76,7 @@ export default {
   methods:
       {
         getAnket() {
-          axios.get('api/like-carousel/getAnket')
+          axios.get('api/like-carousel/get-anket')
               .then((response) => {
                 this.item = response.data.ankets;
                 this.online = response.data.online;

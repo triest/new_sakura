@@ -9,8 +9,8 @@
 
       <a class="btn btn-secondary" href="/visits" style="cursor: pointer">Мои посетители    <div v-if="numberVisits>0">({{ numberVisits }})</div>
       </a>
-      <a class="btn btn-info" href="/mypresents">Мои подарки</a>
-      <a class="btn btn-info" href="/events/my-events-list">Мои события
+      <a class="btn btn-info" href="/presents/my">Мои подарки</a>
+      <a class="btn btn-info" href="/events/my/events-list">Мои события
         <div v-if="unreeadedEventRequwest>0">{{ unreeadedEventRequwest }}</div>
       </a>
       <span class="span-like" v-if="likesNumber>0">

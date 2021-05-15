@@ -32,8 +32,8 @@
                     @endif
                 </div>
                 Фотография события:
-                <input type="file" id="images" accept="image/*" name="file" value="{{ old('file')}}">
-                @if($errors->has('file'))
+                <input type="file" id="image" accept="image/*" name="file" value="{{ old('file')}}">
+                @if($errors->has('image'))
                     <font color="red"><p>  {{$errors->first('file')}}</p></font>
                 @endif
 

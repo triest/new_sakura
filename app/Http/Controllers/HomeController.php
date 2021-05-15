@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use app\models\lk\User;
 use App\Service\PanelService;
-use Carbon\Carbon;
 use http\Env\Response;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\Filesystem\Exception\IOException;
 
 class HomeController extends Controller
 {

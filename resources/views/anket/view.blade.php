@@ -16,7 +16,7 @@
             <div class="">
             </div>
 
-            <form class="form-lk" action="{{ route('lk.profileStore') }}" method="post" enctype="multipart/form-data">
+            <form class="form-lk" action="{{ route('lk.profile.store') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
 

@@ -1,7 +1,14 @@
 <?php
 
+
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\AnketController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\LikeCarouselController;
+use App\Http\Controllers\PresentController;
+use App\Http\Controllers\SearchController;
 
 Route::middleware('api_token')->group(
         function () {
@@ -11,33 +18,33 @@ Route::middleware('api_token')->group(
         }
 );
 
-Route::get('getalldataforsidepanel','HomeController@getAllDataForSidePanel');
-Route::get('visits', 'AnketController@apiVisits')->middleware('auth')->name('visits');
+Route::get('getalldataforsidepanel',[HomeController::class,'getAllDataForSidePanel']);
+Route::get('visits', [AnketController::class,'apiVisits'])->middleware('auth')->name('visits');
 
 
 Route::prefix('anket/search')->name('search.')->group(
         function () {
-            Route::get('/', 'SearchController@search')->name('main');
-            Route::post('/savesettings', 'SearchController@saveSettings')->name('main');
-            Route::get('/getsettings', 'SearchController@getSettings')->name('main');
+            Route::get('/', [SearchController::class,'search'])->name('main');
+            Route::post('/savesettings', [SearchController::class,'saveSettings'])->name('main');
+            Route::get('/getsettings',  [SearchController::class,'getSettings'])->name('main');
         }
 );
 
 Route::prefix('anket')->name('anket.')->group(
         function () {
-            Route::get('{anketid}/album/{id}/', 'AlbumController@apiAlbumItem')->name('main');
-            Route::get('{anketid}/album/{id}/owner', 'AlbumController@apiAlbumOwner')->name('main');
-            Route::post('{id}/albums/{albumid}/upload/image', 'AlbumController@uploadPhoto');
-            Route::delete('{id}/albums/{albumid}/delete/{photoid}', 'AlbumController@deletePhoto');
+            Route::get('{anketid}/album/{id}/', [AlbumController::class,'apiAlbumItem'])->name('main');
+            Route::get('{anketid}/album/{id}/owner', [AlbumController::class,'apiAlbumOwner'])->name('main');
+            Route::post('{id}/albums/{albumid}/upload/image',[AlbumController::class,'uploadPhoto']);
+            Route::delete('{id}/albums/{albumid}/delete/{photoid}', [AlbumController::class,'deletePhoto']);
         }
 );
 
 //подарки
 Route::prefix('presents')->name('present.')->group(
         function () {
-            Route::get('/', 'PresentController@list')->name('list');
-            Route::post('/make', 'PresentController@make')->name('make');
-            Route::get('/get-anket-presents', 'PresentController@getAnketPresents')->name('getAnketPresents');
+            Route::get('/', [PresentController::class,'list'])->name('list');
+            Route::post('/make',[PresentController::class,'make'])->name('make');
+            Route::get('/get-anket-presents', [PresentController::class,'getAnketPresents'])->name('getAnketPresents');
         }
 );
 
@@ -45,39 +52,38 @@ Route::prefix('presents')->name('present.')->group(
 
 Route::prefix('like-carousel')->name('like-carousel.')->group(
         function () {
-            Route::get('/getAnket', 'LikeCarouselController@getAnket')->name('getAnket');
-            Route::post('/like', 'LikeCarouselController@newLike');
-            Route::get('/checkLike', 'LikeCarouselController@checkLike');
+            Route::get('/get-anket', [LikeCarouselController::class,'getAnket'])->name('getAnket');
+            Route::post('/like', [LikeCarouselController::class,'newLike']);
+            Route::get('/check-like', [LikeCarouselController::class,'checkLike']);
         }
 );
 
 Route::prefix('like')->name('like.')->group(
         function () {
-            Route::get('/get-my-likes', 'LikeController@getMyLikes')->name('getMyLikes');
+            Route::get('/get-my-likes', [LikeCarouselController::class,'getMyLikes'])->name('getMyLikes');
         }
 );
 
 Route::prefix('contact')->middleware('auth')->name('contact.')->group(
         function () {
-            Route::get('/', 'ContactController@index')->name('main')->middleware('auth');
-            Route::get('/contacts', 'ContactController@get');
-            Route::get('/conversation/{id}', 'ContactController@getMessagesFor');
-            Route::post('/conversation/send', 'ContactController@send');
-            Route::post('/conversation/sendModal', 'ContactController@send');
-            Route::get('/count-unreaded', 'ContactController@countUnreaded');
+            Route::get('/', [ContactController::class,'index'])->name('main')->middleware('auth');
+            Route::get('/contacts', [ContactController::class,'get']);
+            Route::get('/conversation/{id}', [ContactController::class,'getMessagesFor']);
+            Route::post('/conversation/send', [ContactController::class,'send']);
+            Route::get('/count-unreaded', [ContactController::class,'countUnreaded']);
         }
 );
 
 Route::prefix('events')->name('events.')->group(
         function () {
-            Route::get('/inmycity', 'EventController@inmycity')->name('inmycity');
-            Route::get('/check-request', 'EventController@check_request')->name('check_request');
-            Route::get('/make-request', 'EventController@makeRequest')->name('make-request');
-            Route::get('/accept', 'EventController@accept')->name('accept');
-            Route::get('/denied', 'EventController@denied');
-            Route::get('/{id}', 'EventController@view')->name('view');
-            Route::get('/request-list', 'EventController@requestList');
-            Route::get('/request/unread', 'EventController@numberUnreadRequested')->name('number');
-            Route::get('/{id}/request-list', 'EventController@requestList')->name('requestList');
+            Route::get('/inmycity', [EventController::class,'inmycity'])->name('inmycity');
+            Route::get('/check-request', [EventController::class,'check_request'])->name('check_request');
+            Route::get('/make-request', [EventController::class,'makeRequest'])->name('make-request');
+            Route::get('/accept', [EventController::class,'accept'])->name('accept');
+            Route::get('/denied', [EventController::class,'denied']);
+            Route::get('/{id}', [EventController::class,'view'])->name('view');
+            Route::get('/request-list',  [EventController::class,'requestList']);
+            Route::get('/request/unread', [EventController::class,'numberUnreadRequested'])->name('number');
+            Route::get('/{id}/request-list', [EventController::class,'requestList'])->name('requestList');
         }
 );

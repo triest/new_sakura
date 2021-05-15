@@ -9,7 +9,7 @@
                     {{$event->name}}
                 </div>
             </div>
-            <a class="btn btn-primary" href="{{route('events.edit',['id'=>$event->id])}}">Редактировать</a> <br>
+            <a class="btn btn-primary" href="{{route('event.edit',['event'=>$event->id])}}">Редактировать</a> <br>
             <img  src="{{asset( "$event->photo_url")}}" alt="" id="profile_image" height="250px">
             <div class="form-group">
                 Организатор:

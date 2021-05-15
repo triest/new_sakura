@@ -2,7 +2,7 @@
 
     namespace App\Http\Controllers\Admin;
 
-    use App\Present;
+    use App\Models\Present;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use App\Http\Controllers\Controller;
@@ -77,13 +77,8 @@
 
 
                 $image_new_name = md5(microtime(true));
-
-                $midle_path = 'public/upload/presents/';
-                $image_new_name .= ".png";
-                $request->file('file')
-                        ->move(base_path() . '/' . $midle_path,
-                                strtolower($image_new_name));
-
+                $path = $request->file('file')->store('public/presents');
+                $present->image_url = 'storage/app/' . $path;
                 $present->image = $image_new_name;
                 $present->save();
             }

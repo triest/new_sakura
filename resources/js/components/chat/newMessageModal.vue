@@ -53,7 +53,7 @@
             },
             saveChange() {
 
-                axios.post('api/conversation/sendModal', {
+                axios.post('api/conversation/send', {
                     contact_id: this.id,
                     text: this.MessageText
                 }).then((response) => {

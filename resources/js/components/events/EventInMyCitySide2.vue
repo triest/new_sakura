@@ -26,7 +26,7 @@
                   }} </a>
               </div>
               <div v-else>
-                <a class="btn btn-primary" v-bind:href="'/events/'+event.id">Записаться!</a>
+                <a class="btn btn-primary" v-bind:href="'/event/'+event.id">Записаться!</a>
               </div>
             </div>
           </slide>

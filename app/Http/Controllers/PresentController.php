@@ -13,6 +13,18 @@
 
     class PresentController extends Controller
     {
+
+        public function my(){
+            $user=Auth::user();
+            if(!$user){
+                return  redirect(route('login'));
+            }
+            $giftActs=$user->getGifts(100);
+            dump($giftActs);
+
+            return view('presents.my')->with(['giftActs'=>$giftActs]);
+        }
+
         //
         public function list(Request $request)
         {

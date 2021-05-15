@@ -89,7 +89,7 @@
                     });
             },
             checkLike() {
-                axios.get('/api/like-carousel/checkLike', {
+                axios.get('/api/like-carousel/check-like', {
                     params: {
                         user_id: this.user.id,
                         action: "checkLike",

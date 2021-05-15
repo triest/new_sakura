@@ -20,7 +20,7 @@ class PanelService
 
         $data['like']=$user->like()->where('readed',0)->count();
 
-        $data['gift']=$user->getGiftForMe()->where('readed',0)->count();
+        $data['gift']=$user->GiftForMe()->where('readed',0)->count();
 
         $data['messages']=$user->messagesForMe()->where('readed',0)->count();
 

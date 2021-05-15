@@ -2872,7 +2872,7 @@ __webpack_require__.r(__webpack_exports__);
     checkLike: function checkLike() {
       var _this2 = this;
 
-      axios.get('/api/like-carousel/checkLike', {
+      axios.get('/api/like-carousel/check-like', {
         params: {
           user_id: this.user.id,
           action: "checkLike"
@@ -3389,7 +3389,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       console.log("send");
-      axios.post('/api/contact/conversation/sendModal', {
+      axios.post('/api/contact/conversation/send', {
         contact_id: this.user.id,
         text: this.MessageText
       }).then(function (response) {
@@ -5040,7 +5040,7 @@ __webpack_require__.r(__webpack_exports__);
     getAnket: function getAnket() {
       var _this = this;
 
-      axios.get('api/like-carousel/getAnket').then(function (response) {
+      axios.get('api/like-carousel/get-anket').then(function (response) {
         _this.item = response.data.ankets;
         _this.online = response.data.online;
         _this.city = response.data.city;
@@ -12320,7 +12320,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.eventPanel[data-v-47489380] {\r\n  max-width: 250px;\n}\n.VueCarousel-slide[data-v-47489380] {\r\n /* height: 30px;*/\r\n  width: 30px;\r\n  white-space: 1px;\r\n  text-align: center;\n}\n.VueCarousel-slide .img-container[data-v-47489380] {\r\n  height: 50px;\r\n  width: 100%;\r\n  /*float: left;*/\n}\n.VueCarousel-slide img[data-v-47489380] {\r\n  margin: 0 auto;\n}\n.VueCarousel-slide h3[data-v-47489380] {\r\n  height: 30px;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.eventPanel[data-v-47489380] {\n  max-width: 250px;\n}\n.VueCarousel-slide[data-v-47489380] {\n /* height: 30px;*/\n  width: 30px;\n  white-space: 1px;\n  text-align: center;\n}\n.VueCarousel-slide .img-container[data-v-47489380] {\n  height: 50px;\n  width: 100%;\n  /*float: left;*/\n}\n.VueCarousel-slide img[data-v-47489380] {\n  margin: 0 auto;\n}\n.VueCarousel-slide h3[data-v-47489380] {\n  height: 30px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12464,7 +12464,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dropdown[data-v-7236835b] {\r\n  position: relative;\r\n  display: inline-block;\n}\n.dropdown-content[data-v-7236835b] {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(231, 199, 199, 0.2);\r\n  z-index: 1;\n}\n.dropdown-content a[data-v-7236835b] {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\n.dropdown-content a[data-v-7236835b]:hover {\r\n  background-color: #ddd;\n}\n.dropdown:hover .dropdown-content[data-v-7236835b] {\r\n  display: block;\n}\n.navbar[data-v-7236835b] {\r\n  position: relative;\r\n  width: 100%;\r\n  left: 0;\r\n  text-align: center;\n}\n.indigo-text[data-v-7236835b]{\r\n  color:red;\r\n  height: 50px;\r\n  cursor: pointer;\n}\n.like-number[data-v-7236835b]{\r\n  color: red;\r\n  top:3px\n}\n.span-like[data-v-7236835b]{\r\n  position: relative;\r\n    top: 5px;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dropdown[data-v-7236835b] {\n  position: relative;\n  display: inline-block;\n}\n.dropdown-content[data-v-7236835b] {\n  display: none;\n  position: absolute;\n  background-color: #f1f1f1;\n  min-width: 160px;\n  box-shadow: 0px 8px 16px 0px rgba(231, 199, 199, 0.2);\n  z-index: 1;\n}\n.dropdown-content a[data-v-7236835b] {\n  color: black;\n  padding: 12px 16px;\n  text-decoration: none;\n  display: block;\n}\n.dropdown-content a[data-v-7236835b]:hover {\n  background-color: #ddd;\n}\n.dropdown:hover .dropdown-content[data-v-7236835b] {\n  display: block;\n}\n.navbar[data-v-7236835b] {\n  position: relative;\n  width: 100%;\n  left: 0;\n  text-align: center;\n}\n.indigo-text[data-v-7236835b]{\n  color:red;\n  height: 50px;\n  cursor: pointer;\n}\n.like-number[data-v-7236835b]{\n  color: red;\n  top:3px\n}\n.span-like[data-v-7236835b]{\n  position: relative;\n    top: 5px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12488,7 +12488,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.btn-primary[data-v-4a82c5e2] {\r\n  background-color: #44c767;\r\n  border-radius: 50%;\r\n  border: 1px solid #18ab29;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2f6627;\r\n  position: relative;\n}\n.btn-primary[data-v-4a82c5e2]:hover {\r\n  background-color: #5cbf2a;\n}\n.btn-primary[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.btn-secondary[data-v-4a82c5e2] {\r\n  background-color: #2a38c7;\r\n  border-radius: 50%;\r\n  border: 1px solid #0300af;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2a38c7;\n}\n.btn-secondary[data-v-4a82c5e2]:hover {\r\n  background-color: #110aaf;\n}\n.btn-secondary[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.btn-danger[data-v-4a82c5e2] {\r\n  background-color: #ee001e;\r\n  border-radius: 50%;\r\n  border: 1px solid #ee001e;\r\n  display: inline-block;\r\n  cursor: pointer;\r\n  color: #ffffff;\r\n  font-family: Arial;\r\n  font-size: 22px;\r\n  padding: 16px 18px;\r\n  text-decoration: none;\r\n  text-shadow: 0px 1px 0px #2f6627;\n}\n.btn-danger[data-v-4a82c5e2]:hover {\r\n  background-color: #b30011;\n}\n.btn-danger[data-v-4a82c5e2]:active {\r\n  position: relative;\r\n  top: 1px;\n}\n.cell[data-v-4a82c5e2] {\r\n  position: absolute;\r\n  top: 300px;\r\n  right: 0;\r\n  bottom: 30px;\r\n  left: 0;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  padding: 70px;\r\n  width: 100%;\r\n  color: white !important;\r\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\r\n  cursor: pointer;\n}\n.cell-overflow[data-v-4a82c5e2] {\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  color: white;\r\n  cursor: pointer;\n}\n.match-font[data-v-4a82c5e2]{\r\n  font-family: Impact, Charcoal, sans-serif;\r\n  font-size: 40px;\r\n  letter-spacing: 5px;\r\n  word-spacing: 6px;\r\n  color: #2EFF2C;\r\n  font-weight: 700;\r\n  -webkit-text-decoration: rgb(68, 68, 68);\r\n          text-decoration: rgb(68, 68, 68);\r\n  font-style: italic;\r\n  font-variant: small-caps;\r\n  text-transform: uppercase;\r\n  margin-left: -45px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.btn-primary[data-v-4a82c5e2] {\n  background-color: #44c767;\n  border-radius: 50%;\n  border: 1px solid #18ab29;\n  display: inline-block;\n  cursor: pointer;\n  color: #ffffff;\n  font-family: Arial;\n  font-size: 22px;\n  padding: 16px 18px;\n  text-decoration: none;\n  text-shadow: 0px 1px 0px #2f6627;\n  position: relative;\n}\n.btn-primary[data-v-4a82c5e2]:hover {\n  background-color: #5cbf2a;\n}\n.btn-primary[data-v-4a82c5e2]:active {\n  position: relative;\n  top: 1px;\n}\n.btn-secondary[data-v-4a82c5e2] {\n  background-color: #2a38c7;\n  border-radius: 50%;\n  border: 1px solid #0300af;\n  display: inline-block;\n  cursor: pointer;\n  color: #ffffff;\n  font-family: Arial;\n  font-size: 22px;\n  padding: 16px 18px;\n  text-decoration: none;\n  text-shadow: 0px 1px 0px #2a38c7;\n}\n.btn-secondary[data-v-4a82c5e2]:hover {\n  background-color: #110aaf;\n}\n.btn-secondary[data-v-4a82c5e2]:active {\n  position: relative;\n  top: 1px;\n}\n.btn-danger[data-v-4a82c5e2] {\n  background-color: #ee001e;\n  border-radius: 50%;\n  border: 1px solid #ee001e;\n  display: inline-block;\n  cursor: pointer;\n  color: #ffffff;\n  font-family: Arial;\n  font-size: 22px;\n  padding: 16px 18px;\n  text-decoration: none;\n  text-shadow: 0px 1px 0px #2f6627;\n}\n.btn-danger[data-v-4a82c5e2]:hover {\n  background-color: #b30011;\n}\n.btn-danger[data-v-4a82c5e2]:active {\n  position: relative;\n  top: 1px;\n}\n.cell[data-v-4a82c5e2] {\n  position: absolute;\n  top: 300px;\n  right: 0;\n  bottom: 30px;\n  left: 0;\n  box-sizing: border-box;\n  display: block;\n  padding: 70px;\n  width: 100%;\n  color: white !important;\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n  cursor: pointer;\n}\n.cell-overflow[data-v-4a82c5e2] {\n  box-sizing: border-box;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  color: white;\n  cursor: pointer;\n}\n.match-font[data-v-4a82c5e2]{\n  font-family: Impact, Charcoal, sans-serif;\n  font-size: 40px;\n  letter-spacing: 5px;\n  word-spacing: 6px;\n  color: #2EFF2C;\n  font-weight: 700;\n  -webkit-text-decoration: rgb(68, 68, 68);\n          text-decoration: rgb(68, 68, 68);\n  font-style: italic;\n  font-variant: small-caps;\n  text-transform: uppercase;\n  margin-left: -45px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -67876,7 +67876,7 @@ var render = function() {
                                 "a",
                                 {
                                   staticClass: "btn btn-primary",
-                                  attrs: { href: "/events/" + event.id }
+                                  attrs: { href: "/event/" + event.id }
                                 },
                                 [_vm._v("Записаться!")]
                               )
@@ -69124,7 +69124,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "a",
-            { staticClass: "btn btn-info", attrs: { href: "/mypresents" } },
+            { staticClass: "btn btn-info", attrs: { href: "/presents/my" } },
             [_vm._v("Мои подарки")]
           ),
           _vm._v(" "),
@@ -69132,7 +69132,7 @@ var render = function() {
             "a",
             {
               staticClass: "btn btn-info",
-              attrs: { href: "/events/my-events-list" }
+              attrs: { href: "/events/my/events-list" }
             },
             [
               _vm._v("Мои события\n      "),

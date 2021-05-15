@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Builders\EventBuilder;
 use App\EventStatus;
-use App\Exceptions\ExceptionWithMessageForUser;
-use App\Http\Requests\StoreEvent;
 use App\Models\City;
 use App\Models\Event;
 use App\Models\EventRequest;
@@ -16,9 +14,14 @@ use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
-    //
-    public function index(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
+        //
     }
 
     public function myEventsList(Request $request)
@@ -37,6 +40,8 @@ class EventController extends Controller
         return view('event.eventList')->with(['events' => $events]);
     }
 
+
+
     public function create()
     {
         $city = City::getCurrentCity();
@@ -44,7 +49,8 @@ class EventController extends Controller
         return view("event.create")->with(["city" => $city]);
     }
 
-    public function store(StoreEvent $request)
+
+    public function store(Request $request)
     {
         $builder = new EventBuilder();
         $builder->setName($request->name);
@@ -61,11 +67,11 @@ class EventController extends Controller
         if (!is_object($event)) {
             return redirect()->back()->withErrors(['msg' => $event])->withInput();
         }
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('image')) {
             if ($event->photo != null) {
                 Storage::delete($event->photo);
             }
-            $path = $request->file('file')->store('public/event');
+            $path = $request->file('image')->store('public/event');
             $event->photo_url = 'storage/app/' . $path;
             $event->photo = $path;
         }
@@ -73,14 +79,78 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('events.view', ['id' => $event->id]);
+        return redirect()->route('events.show', ['id' => $event->id]);
     }
 
-    public function edit($id){
-           $event=Event::get($id);
-           if(!$event){
-               abort(404);
-           }
+
+    public function show($id)
+    {
+
+        $event = Event::select(['*'])->with('status', 'user')->where('id', $id)->first();
+        if (!$event) {
+            abort(404);
+        }
+
+        $user = Auth::user();
+        if ($user != null && $user->id == $event->user_id) {
+            $date = $event->begin;
+            $date = explode(" ", $date);
+
+            $end = $event->end_applications;
+
+            $end = explode(" ", $end);
+
+            $city = City::get($event->city_id);
+
+
+            return view("event.viewmy")->with(
+                [
+                    "event" => $event,
+                    "date_begin" => $date[0],
+                    "time_begin" => $date[1],
+                    "date_applications" => $end[0],
+                    "time_applications" => $end[1],
+                    "city" => $city
+                ]
+            );
+        } else {
+            $date = $event->begin;
+            $date = explode(" ", $date);
+
+            $end = $event->end_applications;
+            $end = explode(" ", $end);
+
+
+            // проверяем запросы от этого пользователя
+            $eventRequest = null;
+            if ($user != null) {
+                $eventRequest = EventRequest::select(["*"])->with("event")->where(
+                    "user_id",
+                    $user->id
+                )->where("event_id", $id)->get();
+            }
+
+
+            return view("event.view")->with(
+                [
+                    "event" => $event,
+                    "date_begin" => $date[0],
+                    "time_begin" => $date[1],
+                    "date_applications" => $end[0],
+                    "time_applications" => $end[1],
+                    "event_request" => $eventRequest
+                ]
+            );
+        }
+    }
+
+
+    public function edit($event)
+    {
+        $event=Event::get($event);
+        if(!$event){
+            abort(404);
+        }
 
         $arr = explode(' ', $event->begin);
         $date = $arr[0];
@@ -93,24 +163,31 @@ class EventController extends Controller
         $city = City::getCurrentCity();
 
         return view('event.edit')->with(
-                [
-                        'event' => $event,
-                        'date_begin' => $date,
-                        'time_begin' => $time,
-                        'date_applications' => $end_application[0],
-                        'time_applications' => $end_application[1],
-                        'statuses' => $statuses,
-                         'city' => $city
-                ]
+            [
+                'event' => $event,
+                'date_begin' => $date,
+                'time_begin' => $time,
+                'date_applications' => $end_application[0],
+                'time_applications' => $end_application[1],
+                'statuses' => $statuses,
+                'city' => $city
+            ]
         );
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     *
+     */
+    public function update(Request $request)
+    {
 
-    public function update($id,StoreEvent $request){
-
-        $event=Event::get($id);
+        $event=Event::findOrFail($request->get('event'));
         if(!$event){
-          return back()->withErrors(['msg'=>'Ошибка! Обратитесь к администратору']);
+            return back()->withErrors(['msg'=>'Ошибка! Обратитесь к администратору']);
         }
         $builder = new EventBuilder($event);
         $builder->setName($request->name);
@@ -140,69 +217,20 @@ class EventController extends Controller
             return back()->withErrors(['msg'=>$event]);
         }
 
-        return redirect()->route('events.view', ['id' => $event->id]);
+        return redirect()->route('event.show', ['event' => $event->id]);
     }
 
-
-    public function view($id, Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $event = Event::select(['*'])->with('status', 'user')->where('id', $id)->first();
-        if (!$event) {
-            abort(404);
-        }
-
-        $user = Auth::user();
-        if ($user != null && $user->id == $event->user_id) {
-            $date = $event->begin;
-            $date = explode(" ", $date);
-
-            $end = $event->end_applications;
-
-            $end = explode(" ", $end);
-
-            $city = City::get($event->city_id);
-
-
-            return view("event.viewmy")->with(
-                    [
-                            "event" => $event,
-                            "date_begin" => $date[0],
-                            "time_begin" => $date[1],
-                            "date_applications" => $end[0],
-                            "time_applications" => $end[1],
-                            "city" => $city
-                    ]
-            );
-        } else {
-            $date = $event->begin;
-            $date = explode(" ", $date);
-
-            $end = $event->end_applications;
-            $end = explode(" ", $end);
-
-
-            // проверяем запросы от этого пользователя
-            $eventRequest = null;
-            if ($user != null) {
-                $eventRequest = EventRequest::select(["*"])->with("event")->where(
-                        "user_id",
-                        $user->id
-                )->where("event_id", $id)->get();
-            }
-
-
-            return view("event.view")->with(
-                    [
-                            "event" => $event,
-                            "date_begin" => $date[0],
-                            "time_begin" => $date[1],
-                            "date_applications" => $end[0],
-                            "time_applications" => $end[1],
-                            "event_request" => $eventRequest
-                    ]
-            );
-        }
+        //
     }
+
 
     public function inmycity(Request $request)
     {
@@ -232,11 +260,11 @@ class EventController extends Controller
 
 
             return response()->json(
-                    [
-                            "events" => $events,
-                            "partificators" => $partifucationArray,
-                            "requests"=>$requestArray
-                    ]
+                [
+                    "events" => $events,
+                    "partificators" => $partifucationArray,
+                    "requests"=>$requestArray
+                ]
             );
         } else {
             return response()->json();
@@ -245,7 +273,8 @@ class EventController extends Controller
 
     public function singup($id)
     {
-        $events = Event::get($id);
+
+        $events = Event::findOrFail($id);
         //моё ли это событие
         $auth_user = Auth::user();
         $girl_id = $auth_user->id;
@@ -255,27 +284,27 @@ class EventController extends Controller
         }
 
         $days = [
-                'Воскресенье',
-                'Понедельник',
-                'Вторник',
-                'Среда',
-                'Четверг',
-                'Пятница',
-                'Суббота',
+            'Воскресенье',
+            'Понедельник',
+            'Вторник',
+            'Среда',
+            'Четверг',
+            'Пятница',
+            'Суббота',
         ];
         $months = [
-                'Январь',
-                'Февраль',
-                'Март',
-                'Апрель',
-                'Май',
-                'Июнь',
-                'Июль',
-                'Август',
-                'Сентябрь',
-                'Октябрь',
-                'Ноябрь',
-                'Декабрь',
+            'Январь',
+            'Февраль',
+            'Март',
+            'Апрель',
+            'Май',
+            'Июнь',
+            'Июль',
+            'Август',
+            'Сентябрь',
+            'Октябрь',
+            'Ноябрь',
+            'Декабрь',
         ];
         $arr = explode(" ", $events->begin);
         $day_num = date("w", strtotime($arr[0]));
@@ -286,21 +315,21 @@ class EventController extends Controller
 
 
         $organizer = User::select(['id', 'name', 'main_image'])
-                ->where('id', $events->organizer_id)->first();
+            ->where('id', $events->organizer_id)->first();
         $photo = $events->photo()->get();
 
 
         return view('event.singup')->with(
-                [
-                        'event' => $events,
-                        'day_name' => $day_name,
-                        'month_name' => $month_name,
-                        'day' => $day,
-                        'time' => $arr[1],
-                        'organizer' => $organizer,
-                        'photo' => $photo
-                    /* 'count' => $count*/
-                ]
+            [
+                'event' => $events,
+                'day_name' => $day_name,
+                'month_name' => $month_name,
+                'day' => $day,
+                'time' => $arr[1],
+                'organizer' => $organizer,
+                'photo' => $photo
+                /* 'count' => $count*/
+            ]
         );
     }
 
@@ -327,11 +356,11 @@ class EventController extends Controller
         if(!$event){
             return response()->json(['result'=>false]);
         }
-         if($result=$event->makeRequest()){
-             return response()->json(['result'=>$result]);
-         }else{
+        if($result=$event->makeRequest()){
+            return response()->json(['result'=>$result]);
+        }else{
             return  response()->json(['result'=>false,'message'=>$result]);
-         }
+        }
     }
 
     public function accept(Request $request)
