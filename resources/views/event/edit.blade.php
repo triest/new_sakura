@@ -6,7 +6,7 @@
         <div class="profile-form">
 
 
-            <form class="form-lk" action="{{route('events.update',['event'=>$event->id])}}" method="post"
+            <form class="form-lk" action="{{route('event.update',['event'=>$event->id])}}" method="post"
                   enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @if ($errors->any())

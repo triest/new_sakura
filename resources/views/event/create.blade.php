@@ -6,7 +6,7 @@
         <div class="profile-form">
 
 
-            <form class="form-lk" action="{{route('events.store')}}" method="post" enctype="multipart/form-data">
+            <form class="form-lk" action="{{route('event.store')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     @if($errors->any())

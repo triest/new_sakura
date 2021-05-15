@@ -11936,7 +11936,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".composer textarea[data-v-8892cb8a] {\n  width: 98%;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n  padding: 6px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".composer textarea[data-v-8892cb8a] {\n  width: 100%;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n  padding: 6px;\n}\n.asdf[data-v-8892cb8a] {\n  margin-left: auto;\n  margin-right: 0;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -67695,11 +67695,17 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", on: { click: _vm.send } },
-        [_c("i", { staticClass: "fa fa-paper-plane" })]
-      )
+      _c("div", { staticClass: "asdf" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary pull-right",
+            attrs: { type: "button" },
+            on: { click: _vm.send }
+          },
+          [_c("i", { staticClass: "fa fa-paper-plane" })]
+        )
+      ])
     ])
   ])
 }
