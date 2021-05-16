@@ -461,7 +461,6 @@ class User extends Authenticatable implements MustVerifyEmail
             $dialog2->lastMessage=Carbon::now();
             $dialog2->save();
         }
-
         if($this->isOnline()) {
             broadcast(new NewMessage($message));
         }else{

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AnketController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ContactController;
@@ -19,10 +20,9 @@ Route::prefix('anket')->name('anket.')->middleware('auth')->group(
         function () {
             Route::get('/', [AnketController::class,'index'])->name('main');
             Route::get('{id}', [AnketController::class,'view'])->name('view');
-            Route::get('{id}/albums', [AnketController::class,'albums'])->name('albums');
-            Route::get('{id}/albums/{albumid}', [AnketController::class,'albumItem'])->name('albumItem');
-            Route::post('{id}/albums/{albumid}/upload/image', [AnketController::class,'uploadPhoto'])->name("uploadPhoto");
-
+            Route::get('{id}/albums', [AlbumController::class,'albums'])->name('albums');
+            Route::get('{id}/albums/{albumid}', [AlbumController::class,'albumItem'])->name('albumItem');
+            Route::post('{id}/albums/{albumid}/upload/image', [AlbumController::class,'uploadPhoto'])->name("uploadPhoto");
         }
 );
 Route::get('/visits',  [AnketController::class,'visits'])->name('visits');
@@ -33,8 +33,8 @@ Route::prefix('contact')->name('contact.')->group(
         }
 );
 
-Route::resource('event', 'EventController')->except('update')->middleware('auth'); //сщбытия в моём горроде
-Route::post('event/update', 'EventController@update')->name('events.update')->middleware('auth'); //сщбытия в моём горроде
+Route::resource('event', EventController::class)->except('update')->middleware('auth'); //сщбытия в моём горроде
+Route::post('event/update', [' EventController::class','update'])->name('events.update')->middleware('auth'); //сщбытия в моём горроде
 Route::prefix('events')->middleware('auth')->middleware('auth')->name('events.')->group(
         function () {
 
