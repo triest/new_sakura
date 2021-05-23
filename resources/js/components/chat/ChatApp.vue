@@ -5,7 +5,7 @@
         <!-- Users box-->
         <div class="col-4 px-0">
           <div class="bg-white">
-            <ContactsList :contacts="contacts" @selected="startConversationWith"/>
+            <ContactsList :contacts="contacts" :target_user="target_user" @selected="startConversationWith"/>
           </div>
         </div>
         <!-- Chat Box-->
@@ -25,6 +25,11 @@
             user: {
                 type: Object,
                 required: true
+            },
+            target_user:{
+                type: Object,
+                required: false,
+                default:null,
             }
         },
         data() {
@@ -45,6 +50,11 @@
                     this.getContacts()
                 });
             this.getContacts()
+
+
+            if(this.target_user!=null){
+                this.startConversationWith(this.target_user,null)
+            }
         },
         methods: {
             getContacts(){

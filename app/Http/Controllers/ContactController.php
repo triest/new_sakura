@@ -15,9 +15,18 @@
     class ContactController extends Controller
     {
         //
-        public function index()
+        public function index(Request $request)
         {
-            return view('anket.messages');
+            $contact_id=$request->get('contact',null);
+
+            if($contact_id){
+                $user=User::select()->where(['id'=>$contact_id])->first();
+            }else{
+                $user=null;
+            }
+
+
+            return view('anket.messages')->with(['user'=>$user]);
         }
 
         public function get(ContactService $contactService)

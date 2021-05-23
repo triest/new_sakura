@@ -9,8 +9,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img :src="'/'+message.to_contact.small_photo_profile_url" height="100" class="avatar"><br>
-                    <a href="/contact" type="button" class="btn btn-primary">Прочитать!</a>
+                    <img :src="'/'+message.from_contact.small_photo_profile_url" height="100" class="avatar"><br>
+                    <a :href="'/contact?contact='+message.from_contact.user_id" type="button" class="btn btn-primary">Прочитать!</a>
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@ Route::get('/visits',  [AnketController::class,'visits'])->name('visits');
 Route::prefix('contact')->name('contact.')->group(
         function () {
             Route::get('/', [ContactController::class,'index'])->name('main')->middleware('auth');
-        }
+            }
 );
 
 Route::resource('event', EventController::class)->except('update')->middleware('auth'); //сщбытия в моём горроде

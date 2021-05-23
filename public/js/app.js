@@ -3500,6 +3500,11 @@ __webpack_require__.r(__webpack_exports__);
     user: {
       type: Object,
       required: true
+    },
+    target_user: {
+      type: Object,
+      required: false,
+      "default": null
     }
   },
   data: function data() {
@@ -3522,6 +3527,10 @@ __webpack_require__.r(__webpack_exports__);
       _this.getContacts();
     });
     this.getContacts();
+
+    if (this.target_user != null) {
+      this.startConversationWith(this.target_user, null);
+    }
   },
   methods: {
     getContacts: function getContacts() {
@@ -3608,6 +3617,11 @@ __webpack_require__.r(__webpack_exports__);
     contacts: {
       type: Array,
       "default": []
+    },
+    target_user: {
+      type: Object,
+      required: false,
+      "default": null
     }
   },
   data: function data() {
@@ -3624,7 +3638,11 @@ __webpack_require__.r(__webpack_exports__);
       document.title = contact.other.name;
     },
     colorContact: function colorContact(id) {
-      return id === this.selectedContactId;
+      if (id === this.selectedContactId || this.target_user != null && id === this.target_user.id) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   computed: {
@@ -67372,7 +67390,7 @@ var render = function() {
             { staticClass: "bg-white" },
             [
               _c("ContactsList", {
-                attrs: { contacts: _vm.contacts },
+                attrs: { contacts: _vm.contacts, target_user: _vm.target_user },
                 on: { selected: _vm.startConversationWith }
               })
             ],
@@ -67427,7 +67445,7 @@ var render = function() {
             key: contact.id,
             staticClass:
               "list-group-item list-group-item-action text-white rounded-0",
-            class: _vm.colorContact(contact.id) ? "active" : "",
+            class: _vm.colorContact(contact.other.id) ? "active" : "",
             on: {
               click: function($event) {
                 return _vm.selectContact(contact)
@@ -68842,7 +68860,7 @@ var render = function() {
             _c("img", {
               staticClass: "avatar",
               attrs: {
-                src: "/" + _vm.message.to_contact.small_photo_profile_url,
+                src: "/" + _vm.message.from_contact.small_photo_profile_url,
                 height: "100"
               }
             }),
@@ -68852,7 +68870,10 @@ var render = function() {
               "a",
               {
                 staticClass: "btn btn-primary",
-                attrs: { href: "/contact", type: "button" }
+                attrs: {
+                  href: "/contact?contact=" + _vm.message.from_contact.user_id,
+                  type: "button"
+                }
               },
               [_vm._v("Прочитать!")]
             )
