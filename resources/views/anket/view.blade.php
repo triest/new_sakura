@@ -105,28 +105,7 @@
         <a class="btn btn-primary" href="{{route("anket.main")}}">К списку анкет</a>
     </div>
 <style>
-/*
-    .cell-online {
-        position: absolute;
-        top: 5px;
-        left: 1px;
-        bottom: 1px;
-        box-sizing: border-box;
-        display: block;
-        padding: 1px;
-        width: 100%;
-        color: white;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    }
 
-    .cell-online-overflow {
-        box-sizing: border-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: white;
-    }
-*/
     .online {
         height: 10px;
         width: 10px;

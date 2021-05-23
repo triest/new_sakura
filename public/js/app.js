@@ -4526,12 +4526,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     message: {
-      type: Array,
+      type: Object,
       required: false,
-      "default": []
+      "default": null
     },
     user: {
       type: Object,
@@ -12392,7 +12396,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ntextarea[data-v-9a1b16ee] {\n    width: 90%; /* Ширина поля в процентах */\n    height: 200px; /* Высота поля в пикселах */\n    resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask[data-v-9a1b16ee] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-9a1b16ee] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-9a1b16ee] {\n    width: 150px;\n    height: 100px;\n    position:fixed;\n    bottom:10px;\n    right:10px;\n    margin:0px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n   overflow: hidden;\n}\n.modal-header h3[data-v-9a1b16ee] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-9a1b16ee] {\n    margin: 20px 0;\n}\n.modal-default-button[data-v-9a1b16ee] {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter[data-v-9a1b16ee] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-9a1b16ee] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-9a1b16ee],\n.modal-leave-active .modal-container[data-v-9a1b16ee] {\n    transform: scale(1.1);\n}\n.avatar_image[data-v-9a1b16ee] {\n    display: flex;\n    width: 60px;\n    height: 60px;\n    overflow: hidden;\n    align-items: center;\n    border-radius: 50%;\n    border: 1px solid #329BF0;\n    position: relative;\n}\n.avatar_image[data-v-9a1b16ee] {\n    border-radius: 50% !important;\n}\n.avatar_image[data-v-9a1b16ee]:hover {\n    cursor: pointer;\n}\n.close-button[data-v-9a1b16ee]{\n   position: relative;\n   top:-30%;\n   right:-110%;\n   cursor: pointer;\n}\n.text[data-v-9a1b16ee]{\n    font-size: small;\n    cursor: pointer;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntextarea[data-v-9a1b16ee] {\n    width: 90%; /* Ширина поля в процентах */\n    height: 200px; /* Высота поля в пикселах */\n    resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask[data-v-9a1b16ee] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-dialog[data-v-9a1b16ee] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-dialog[data-v-9a1b16ee] {\n/*    width: 150px;\n    height: 100px;\n    */\n    position: fixed;\n    bottom: 10px;\n    right: 10px;\n    margin: 0px;\n    background-color: #fff;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n    overflow: hidden;\n    border-radius: 15px;\n}\n.modal-header h3[data-v-9a1b16ee] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-9a1b16ee] {\n    margin: 20px 0;\n}\n.modal-default-button[data-v-9a1b16ee] {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter[data-v-9a1b16ee] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-9a1b16ee] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-9a1b16ee],\n.modal-leave-active .modal-container[data-v-9a1b16ee] {\n    transform: scale(1.1);\n}\n.avatar image[data-v-9a1b16ee] {\n    display: flex;\n    width: 60px;\n    height: 60px;\n    overflow: hidden;\n    align-items: center;\n    border-radius: 50%;\n    border: 1px solid #329BF0;\n    position: relative;\n}\n.avatar image[data-v-9a1b16ee] {\n    border-radius: 50% !important;\n}\n.avatar image[data-v-9a1b16ee]:hover {\n    cursor: pointer;\n}\n.close[data-v-9a1b16ee] {\n    /*  top:-45%;\n      right:-90%;*/\n    position: relative;\n    top: -20%;\n}\n.text[data-v-9a1b16ee] {\n    font-size: small;\n    cursor: pointer;\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -68811,38 +68815,39 @@ var render = function() {
       }
     },
     [
-      _c("div", { staticClass: "modal-wrapper" }, [
-        _c("div", { staticClass: "modal-container" }, [
-          _c(
-            "span",
-            {
-              staticClass: "close-button",
-              on: {
-                click: function($event) {
-                  return _vm.close()
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _vm._v("\n                Новое сообщение!\n                "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "modal",
+                  "aria-label": "Close"
                 }
+              },
+              [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("img", {
+              staticClass: "avatar",
+              attrs: {
+                src: "/" + _vm.message.to_contact.small_photo_profile_url,
+                height: "100"
               }
-            },
-            [_vm._v("x")]
-          ),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "avatar",
-            attrs: {
-              src: "/" + _vm.message.to_contact.small_photo_profile_url,
-              height: "35px"
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "text" }, [
-            _vm._v(
-              "\n                      " +
-                _vm._s(_vm.message.to_contact.name) +
-                "\n                        "
-            ),
-            _c("a", { attrs: { href: "/contact", target: "_blank" } }, [
-              _vm._v("Прочитать сообщение:")
-            ])
+            }),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "button" } },
+              [_vm._v("Прочитать!")]
+            )
           ])
         ])
       ])
