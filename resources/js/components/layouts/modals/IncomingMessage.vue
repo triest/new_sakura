@@ -4,13 +4,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     Новое сообщение!
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close" v-on:click="close()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <img :src="'/'+message.to_contact.small_photo_profile_url" height="100" class="avatar"><br>
-                    <button type="button" class="btn btn-primary">Прочитать!</button>
+                    <a href="/contact" type="button" class="btn btn-primary">Прочитать!</a>
                 </div>
             </div>
         </div>

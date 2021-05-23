@@ -68822,11 +68822,16 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "close",
+                staticClass: "close float-right",
                 attrs: {
                   type: "button",
                   "data-dismiss": "modal",
                   "aria-label": "Close"
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.close()
+                  }
                 }
               },
               [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
@@ -68844,8 +68849,11 @@ var render = function() {
             _c("br"),
             _vm._v(" "),
             _c(
-              "button",
-              { staticClass: "btn btn-primary", attrs: { type: "button" } },
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: "/contact", type: "button" }
+              },
               [_vm._v("Прочитать!")]
             )
           ])
