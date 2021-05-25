@@ -3630,6 +3630,11 @@ __webpack_require__.r(__webpack_exports__);
       selectedContactId: 0
     };
   },
+  mounted: function mounted() {
+    if (this.target_user != null) {
+      this.selectedContactId = this.target_user.id;
+    }
+  },
   methods: {
     selectContact: function selectContact(contact) {
       this.selected = contact.other;
@@ -3723,6 +3728,11 @@ __webpack_require__.r(__webpack_exports__);
     messages: {
       type: Array,
       "default": []
+    },
+    target_user: {
+      type: Object,
+      required: false,
+      "default": null
     }
   },
   mounted: function mounted() {
@@ -3731,6 +3741,8 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     messages: function messages(val) {
       this.scrollDown();
+      this.scrollDown();
+      this.scrollDown();
     },
     contact: function contact() {
       this.scrollDown();
@@ -3738,8 +3750,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     scrollDown: function scrollDown() {
-      console.log("scroll down");
       var container = this.$el.querySelector("#messages-div");
+      console.log("scroll");
       container.scrollTop = container.scrollHeight - container.clientHeight + 10;
     },
     sendMessage: function sendMessage(text) {
@@ -67402,6 +67414,7 @@ var render = function() {
           attrs: {
             contact: _vm.selectedContact,
             unreaded: _vm.unreaded,
+            target_user: _vm.target_user,
             messages: _vm.messages
           },
           on: { new: _vm.saveNewMessage }
@@ -67474,7 +67487,7 @@ var render = function() {
                     _c(
                       "h6",
                       {
-                        class: _vm.colorContact(contact.id)
+                        class: _vm.colorContact(contact.other.id)
                           ? "text-white"
                           : "text-muted"
                       },
@@ -67483,7 +67496,7 @@ var render = function() {
                     _c(
                       "small",
                       {
-                        class: _vm.colorContact(contact.id)
+                        class: _vm.colorContact(contact.other.id)
                           ? "text-white"
                           : "text-muted"
                       },

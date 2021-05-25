@@ -6,7 +6,7 @@
         <div class="media"><img  :src="contact.other.photo_profile_url"  width="50" height="50" class="rounded-circle">
           <div class="media-body ml-4">
             <div class="d-flex align-items-center justify-content-between mb-1">
-              <h6 class="" v-bind:class="colorContact(contact.id) ? 'text-white':'text-muted'">{{ contact.other.name }}</h6><small  class="" v-bind:class="colorContact(contact.id) ? 'text-white':'text-muted'">{{contact.date}}</small>
+              <h6 class="" v-bind:class="colorContact(contact.other.id) ? 'text-white':'text-muted'">{{ contact.other.name }}</h6><small  class="" v-bind:class="colorContact(contact.other.id) ? 'text-white':'text-muted'">{{contact.date}}</small>
             </div>
           </div>
         </div>
@@ -34,6 +34,11 @@
                 selected: this.contacts.length ? this.contacts[0] : null,
                 selectedContactId: 0
             };
+        },
+        mounted() {
+            if(this.target_user!=null){
+                this.selectedContactId=this.target_user.id;
+            }
         },
 
         methods: {

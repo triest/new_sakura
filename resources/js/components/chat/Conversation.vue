@@ -51,14 +51,22 @@
             messages: {
                 type: Array,
                 default: []
+            },
+            target_user:{
+                type: Object,
+                required: false,
+                default:null,
             }
         },
          mounted() {
            this.scrollDown();
         },
+
       watch: {
         messages:function (val){
 
+          this.scrollDown()
+          this.scrollDown()
           this.scrollDown()
         },
         contact:function (){
@@ -67,8 +75,8 @@
       },
         methods: {
             scrollDown(){
-              console.log("scroll down")
               let container = this.$el.querySelector("#messages-div");
+              console.log("scroll")
 
               container.scrollTop = container.scrollHeight - container.clientHeight+10;
 

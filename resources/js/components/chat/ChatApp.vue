@@ -9,7 +9,7 @@
           </div>
         </div>
         <!-- Chat Box-->
-        <Conversation :contact="selectedContact" :unreaded="unreaded" :messages="messages" @new="saveNewMessage"/>
+        <Conversation :contact="selectedContact" :unreaded="unreaded" :target_user="target_user" :messages="messages" @new="saveNewMessage"/>
       </div>
 
 
