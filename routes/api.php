@@ -87,3 +87,9 @@ Route::prefix('events')->name('events.')->group(
             Route::get('/{id}/request-list', [EventController::class,'requestList'])->name('requestList');
         }
 );
+
+Route::prefix('likes')->middleware('auth')->name('likes.')->group(
+    function () {
+        Route::get('/', [LikeController::class,'index'])->name('index')->middleware('auth');
+    }
+);

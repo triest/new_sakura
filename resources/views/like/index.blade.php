@@ -1,4 +1,4 @@
-@extends('layouts.lk', ['title' => 'Создать событие'])
+@extends('layouts.lk', ['title' => 'Лайки'])
 @section('title', "Мои лайки")
 @section('content')
             <div id="album_app">

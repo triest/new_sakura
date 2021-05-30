@@ -2,12 +2,17 @@
   <div class="d-flex justify-content-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
+        <a class="btn btn-secondary" href="/anket" style="cursor: pointer">Анкеты</a>
 
       <a class="btn btn-secondary" href="/contact" style="cursor: pointer">Сообщения
         <div v-if="numberUnreaded>0">({{ numberUnreaded }})</div>
       </a>
+        <a class="btn btn-secondary" href="/likes" style="cursor: pointer">Симпатии
 
-      <a class="btn btn-secondary" href="/visits" style="cursor: pointer">Мои посетители    <div v-if="numberVisits>0">({{ numberVisits }})</div>
+        </a>
+
+
+        <a class="btn btn-secondary" href="/visits" style="cursor: pointer">Мои посетители    <div v-if="numberVisits>0">({{ numberVisits }})</div>
       </a>
       <a class="btn btn-info" href="/presents/my">Мои подарки</a>
       <a class="btn btn-info" href="/events/my/events-list">Мои события
@@ -160,7 +165,7 @@ export default {
               })
         },
         getLikesNumber() {
-          axios.get('/getLikesNumberAuch', {
+          axios.get('api/getLikesNumberAuch', {
             params: {
               girl_id: this.girlid
             }

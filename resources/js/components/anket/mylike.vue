@@ -1,143 +1,74 @@
 <template>
-  <div>
-    <div class="col-lg-3 col-md-5 col-sm-6  justify-content-center col-xs-9 box-shadow" v-for="item in likes"
-         style="padding-left:60px; padding-right: 20px;margin: auto;">
-      <a>
-        <img width="250" height="250" :src="item.blur_photo_profile_url">
-        <div class="cell">
-          <div class="cell-overflow">
-          </div>
+    <div>
+        <div class="bd-example bd-example-tabs">
+            <div class="row">
+                <div class="col-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <p>Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem sint. Veniam sint duis incididunt do esse magna mollit excepteur laborum qui. Id id reprehenderit sit est eu aliqua occaecat quis et velit excepteur laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate minim reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu deserunt excepteur ea incididunt minim occaecat.</p>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <p>Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt duis pariatur mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt commodo et minim in quis laboris ipsum velit id veniam. Quis ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip labore Lorem enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui esse anim eiusmod do sint minim consectetur qui.</p>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <p>Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute qui magna. Ad proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure occaecat velit nostrud magna nulla. Velit et et proident Lorem do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna commodo est ea veniam consectetur.</p>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                            <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </a>
     </div>
-  </div>
 
 </template>
 
 <script>
 export default {
-  name: "like",
-  mounted() {
-
-    this.getMyLikes();
-  },
-  data() {
-    return {
-      likes:[]
-    }
-  },
-  methods:
-      {
-        getMyLikes() {
-          console.log("likes")
-          axios.get('api/like/get-my-likes')
-              .then((response) => {
-                let data = response.data;
-                this.likes=data.data;
-              });
+    props: {
+        event: {
+            type: Object,
+            required: false
         },
-        like(action) {
+    },
+    components: {},
+    mounted() {
 
+    },
+    data() {
+        return {
+            request_list: null,
+            currentTab: 'all',
+            accepted: null,
+            rejected: null,
+            unreadded: null,
+            countaccepted: null,
+            max_people: null,
         }
-      }
+    },
+    methods: {
+
+        setTab(tab) {
+            this.currentTab = tab;
+        }
+
+
+    },
 }
 </script>
 
 <style scoped>
-* {
-  box-sizing: border-box;
+.flex-sm-fill {
+    cursor: pointer;
 }
 
-.buttons-scroll{
-  margin-left: 50px;
-}
-
-.search-container {
-  margin-left: 55px;
-  left: 200px;
-  top: 5px
-}
-
-.search-modal{
-  max-width: calc(100vh - 225px);;
-  max-height: calc(100vh - 225px);;
-}
-
-
-.circle:before {
-  content: ' \25CF';
-  font-size: 20px;
-  margin: 0 auto;
-  position: absolute;
-  bottom: 0;
-  background: rgb(0, 0, 0); /* Fallback color */
-  background: rgba(145, 100, 153, 0); /* Black background with 0.5 opacity */
-  color: #20f100;
-  width: 100%;
-  padding: 10px;
-}
-
-.container img {
-  vertical-align: middle;
-}
-
-.searchCount {
-  position: absolute;
-  top: 5px;
-  left: 200px;
-}
-
-.container .content {
-  position: absolute;
-  bottom: 0;
-  background: rgb(0, 0, 0); /* Fallback color */
-  background: rgba(0, 0, 0, 0); /* Black background with 0.5 opacity */
-  color: #f1f1f1;
-  width: 100%;
-  padding: 0px;
-  margin: 115px;
-}
-
-.cell {
-  position: absolute;
-  top: 150px;
-  right: 0;
-  bottom: 30px;
-  left: 0;
-  box-sizing: border-box;
-  display: block;
-  padding: 70px;
-  width: 100%;
-  color: white !important;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  cursor: pointer;
-}
-
-.cell-overflow {
-  box-sizing: border-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: white;
-  cursor: pointer;
-}
-
-.previous {
-  cursor: pointer;
-  margin-left: 50%;
-
-}
-
-.white:link {
-  color: white;
-}
-
-.notfound {
-
-}
-
-#searchCount {
-  margin-left: auto;
-  margin-right: auto;
-}
 </style>

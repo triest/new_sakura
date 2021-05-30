@@ -59,10 +59,10 @@ Route::prefix('like-carousel')->middleware('auth')->name('like-carousel.')->grou
         }
 );
 
-Route::prefix('likes')->middleware('auth')->name('likes.')->group(
-        function () {
-            Route::get('/', [LikeController::class,'index'])->name('index')->middleware('auth');
-        }
+Route::prefix('likes')->middleware('auth')->name('likes')->group(
+    function () {
+        Route::get('/', [LikeController::class,'index'])->name('index');
+    }
 );
 
 //подарки
