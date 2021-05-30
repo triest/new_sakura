@@ -2814,8 +2814,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -12205,7 +12203,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.present-icon[data-v-7fcca700]{\n   cursor: pointer;\n}\n@-webkit-keyframes heartbeat-data-v-7fcca700 {\n0% {\n    transform: scale(1) rotate(-45deg);\n}\n20% {\n    transform: scale(1.25) rotate(-45deg);\n}\n40% {\n    transform: scale(1.5) rotate(-45deg);\n}\n}\n@keyframes heartbeat-data-v-7fcca700 {\n0% {\n    transform: scale(1) rotate(-45deg);\n}\n20% {\n    transform: scale(1.25) rotate(-45deg);\n}\n40% {\n    transform: scale(1.5) rotate(-45deg);\n}\n}\n.human-heart[data-v-7fcca700] {\n /* margin: 5em;*/\n  -webkit-animation: .8s infinite beatHeart-data-v-7fcca700;\n          animation: .8s infinite beatHeart-data-v-7fcca700;\n  color: red;\n}\n@-webkit-keyframes beatHeart-data-v-7fcca700 {\n0% {\n    transform: scale(1);\n}\n25% {\n    transform: scale(1.1);\n}\n40% {\n    transform: scale(1);\n}\n60% {\n    transform: scale(1.1);\n}\n100% {\n    transform: scale(1);\n}\n}\n@keyframes beatHeart-data-v-7fcca700 {\n0% {\n    transform: scale(1);\n}\n25% {\n    transform: scale(1.1);\n}\n40% {\n    transform: scale(1);\n}\n60% {\n    transform: scale(1.1);\n}\n100% {\n    transform: scale(1);\n}\n}\n.match-font[data-v-7fcca700]{\n  font-family: Impact, Charcoal, sans-serif;\n  font-size: 40px;\n  letter-spacing: 5px;\n  word-spacing: 6px;\n  color: #2EFF2C;\n  font-weight: 700;\n  -webkit-text-decoration: rgb(68, 68, 68);\n          text-decoration: rgb(68, 68, 68);\n  font-style: italic;\n  font-variant: small-caps;\n  text-transform: uppercase;\n  margin-left: -45px;\n}\n#color[data-v-7fcca700]{\n  color:red;\n  cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.present-icon[data-v-7fcca700]{\n   cursor: pointer;\n}\n@-webkit-keyframes heartbeat-data-v-7fcca700 {\n0% {\n    transform: scale(1) rotate(-45deg);\n}\n20% {\n    transform: scale(1.25) rotate(-45deg);\n}\n40% {\n    transform: scale(1.5) rotate(-45deg);\n}\n}\n@keyframes heartbeat-data-v-7fcca700 {\n0% {\n    transform: scale(1) rotate(-45deg);\n}\n20% {\n    transform: scale(1.25) rotate(-45deg);\n}\n40% {\n    transform: scale(1.5) rotate(-45deg);\n}\n}\n.human-heart[data-v-7fcca700] {\n    /* margin: 5em;*/\n    -webkit-animation: .8s infinite beatHeart-data-v-7fcca700;\n            animation: .8s infinite beatHeart-data-v-7fcca700;\n    color: red;\n    top: 1em;\n    margin-top: 5%;\n}\n#heart[data-v-7fcca700]{\n    margin-top: 5%;\n}\n@-webkit-keyframes beatHeart-data-v-7fcca700 {\n0% {\n    transform: scale(1);\n}\n25% {\n    transform: scale(1.1);\n}\n40% {\n    transform: scale(1);\n}\n60% {\n    transform: scale(1.1);\n}\n100% {\n    transform: scale(1);\n}\n}\n@keyframes beatHeart-data-v-7fcca700 {\n0% {\n    transform: scale(1);\n}\n25% {\n    transform: scale(1.1);\n}\n40% {\n    transform: scale(1);\n}\n60% {\n    transform: scale(1.1);\n}\n100% {\n    transform: scale(1);\n}\n}\n.match-font[data-v-7fcca700]{\n  font-family: Impact, Charcoal, sans-serif;\n  font-size: 40px;\n  letter-spacing: 5px;\n  word-spacing: 6px;\n  color: #2EFF2C;\n  font-weight: 700;\n  -webkit-text-decoration: rgb(68, 68, 68);\n          text-decoration: rgb(68, 68, 68);\n  font-style: italic;\n  font-variant: small-caps;\n  text-transform: uppercase;\n  margin-left: -45px;\n}\n#color[data-v-7fcca700]{\n  color:red;\n  cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -66649,8 +66647,10 @@ var render = function() {
         ? _c("span", [
             _c("i", {
               staticClass: "fas fa-heart fa-2x indigo-text pr-3 human-heart",
+              staticStyle: { "margin-top": "5px" },
               attrs: {
                 "aria-hidden": "true",
+                id: "heart",
                 title: "Вам нравиться эта анкета"
               }
             })

@@ -62,14 +62,14 @@
         //
         public function view(Request $request, $id)
         {
-            $user=User::select(['id','name','age','sex','description','city_id','relation_id','photo_profile_url'])->where('id', $id)->with('target','interest','like','relation','city','GiftForMe')->first();
+            $user = User::select(['*'])->where('id', $id)->with('target', 'interest', 'like', 'relation', 'city', 'GiftForMe')->first();
 
-            if(!$user){
+            if (!$user) {
                 abort(404);
             }
 
             return view('anket.view')->with([
-                    'user' => $user,
+                'user' => $user,
             ]);
         }
 

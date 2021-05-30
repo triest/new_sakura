@@ -273,16 +273,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function age()
-    {
-        $now = Carbon::now();
-        if ($this->date_birth == null) {
-            return null;
-        }
-        $data = Carbon::createFromDate($this->date_birth);
-        $year = (date_diff($now, $data));
-        return $year->y;
-    }
+
 
     public function getAgeAttribute(){
         $now = Carbon::now();

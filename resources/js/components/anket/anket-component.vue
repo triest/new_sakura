@@ -13,9 +13,7 @@
             <a v-on:click="like()"><i id="color" class="fas fa-heart fa-2x indigo-text pr-3" aria-hidden="true" title="Поставить лайк"></i></a>
         </p>
         <span v-if="likeExist===true">
-              <i class="fas fa-heart fa-2x indigo-text pr-3 human-heart" aria-hidden="true" title="Вам нравиться эта анкета"></i>
-
-
+              <i class="fas fa-heart fa-2x indigo-text pr-3 human-heart" style="margin-top: 5px" aria-hidden="true" id="heart" title="Вам нравиться эта анкета"></i>
         </span>
 
 
@@ -123,9 +121,15 @@
   }
 
   .human-heart {
-   /* margin: 5em;*/
-    animation: .8s infinite beatHeart;
-    color: red;
+      /* margin: 5em;*/
+      animation: .8s infinite beatHeart;
+      color: red;
+      top: 1em;
+      margin-top: 5%;
+  }
+
+  #heart{
+      margin-top: 5%;
   }
 
   @keyframes beatHeart {
