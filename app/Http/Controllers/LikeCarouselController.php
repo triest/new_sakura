@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\Models\City;
+    use App\Models\Like;
     use App\Models\Lk\User;
     use App\Service\LikeCarouselService;
     use http\Env\Response;
@@ -41,6 +42,9 @@
             );
         }
 
+        /*
+         *  ставит лайк от авторизованного пользователя тому, с которого вызван метод
+         * */
         public function newLike(Request $request)
         {
 
@@ -59,6 +63,7 @@
             return response()->json($result);
         }
 
+        /*проверяет, что пользователь переданный ф функцию, поставил лайк пользователю, чей метод вызываеться*/
         public function checkLike(Request $request)
         {
 
@@ -73,6 +78,36 @@
             $result=$user->checkLike($authUser);
 
             return response()->json(['result'=>$result]);
+        }
+
+        public function getLikesList(){
+            $authUser=Auth::user();
+
+            if ($authUser==null) {
+                return response()->json(['result'=>false]);
+            }
+
+          $myLikes= Like::select(['*'])->where('who_id',$authUser->id)->with('target')->get() ;        //  //лайки которые коставил я
+
+            $likesForMe=   Like::select(['*'])->where('target_id',$authUser->id)->with('who')->get() ;     //меня лайкнулу
+
+        //взаимные лайки
+            //
+            //
+            $mutual = collect();
+
+            foreach ($myLikes as $myLike){
+                foreach ($likesForMe as $liksForMe){
+                    if($myLike->target_id==$liksForMe->who_id){
+                            $mutual->add($liksForMe);
+                    }
+                }
+            }
+
+
+
+          return response()->json(['myLikes'=>$myLikes,'likesForMe'=>$likesForMe,'mutual'=>$mutual]);
+
         }
 
 

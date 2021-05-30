@@ -60,7 +60,7 @@ Route::prefix('like-carousel')->name('like-carousel.')->group(
 
 Route::prefix('like')->name('like.')->group(
         function () {
-            Route::get('/get-my-likes', [LikeCarouselController::class,'getMyLikes'])->name('getMyLikes');
+            Route::get('/get-like-list', [LikeCarouselController::class,'getLikesList'])->name('getLikesList');
         }
 );
 
