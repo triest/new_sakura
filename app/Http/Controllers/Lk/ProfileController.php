@@ -102,9 +102,8 @@ class ProfileController extends Controller
                 back()->with('photo-error','Добавитe фотографию!')->withInput();
             }
         }
-
-        $data = $request->all();
-        $user->fill($data);
+        
+        $user->fill($request->all());
 
         if ($request->hasFile('file-upload-photo-profile')) {
             if ($user->photo_profile != null) {

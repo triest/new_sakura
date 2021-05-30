@@ -80,7 +80,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'inn',
             'date_birth',
             'description',
-            'sex'
+            'sex',
+            'relation_id'
     ];
 
     /**
@@ -423,40 +424,41 @@ class User extends Authenticatable implements MustVerifyEmail
 
         $id2 = $TargetUser->id;
         $dialog = Dialog::select(['id', 'my_id', 'other_id'])
-                ->where('my_id', $user->id)->where(
-                        'other_id',
-                        $id2
-                )->first();
+            ->where('my_id', $user->id)->where(
+                'other_id',
+                $id2
+            )->first();
         if ($dialog == null) {
             $dialog3 = new Dialog();
             $dialog3->my_id = $user->id;
             $dialog3->other_id = $id2;
-            $dialog3->lastMessage=Carbon::now();
+            $dialog3->lastMessage = Carbon::now();
             $dialog3->save();
-        }else{
-            $dialog->lastMessage=Carbon::now();
+        } else {
+            $dialog->lastMessage = Carbon::now();
             $dialog->save();
         }
         $dialog2 = Dialog::select(['id', 'my_id', 'other_id'])
-                ->where('other_id', $user->id)->where(
-                        'my_id',
-                        $id2
-                )->first();
+            ->where('other_id', $user->id)->where(
+                'my_id',
+                $id2
+            )->first();
         if ($dialog2 == null) {
             $dialog4 = new Dialog();
             $dialog4->other_id = $user->id;
             $dialog4->my_id = $id2;
-            $dialog4->lastMessage=Carbon::now();
+            $dialog4->lastMessage = Carbon::now();
             $dialog4->save();
-        }else{
-            $dialog2->lastMessage=Carbon::now();
+        } else {
+            $dialog2->lastMessage = Carbon::now();
             $dialog2->save();
         }
+
         if($this->isOnline()) {
             broadcast(new NewMessage($message));
         }else{
             $on = Carbon::now()->addMinutes($this->delayNotificationMinutes); // отправим через 10 минут
-            dispatch(new SendNotification($message))->delay($on);
+            dispatch(new SendNotification($message))->delay(1);
         }
 
         return $message;

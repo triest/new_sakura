@@ -146,7 +146,7 @@
                     @endif
                     Отношения:
 
-                    <select name="relation" id="relarion">
+                    <select name="relation_id" id="relarion">
                         @foreach($relations as $item)
                             <p>
                                 <option value="{{$item->id}}"
