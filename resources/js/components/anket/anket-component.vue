@@ -13,7 +13,7 @@
                                                            aria-hidden="true" title="Поставить лайк"></i></a>
 
         <i v-if="likeExist===true" class="fas fa-heart fa-2x indigo-text pr-3 human-heart"
-           style="position: absolute; margin-top: 45px"
+           style="position: absolute; margin-top: 45px; margin-left: 3px"
            aria-hidden="true" id="heart" title="Вам нравиться эта анкета"></i>
 
 

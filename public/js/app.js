@@ -66646,7 +66646,11 @@ var render = function() {
       _vm.likeExist === true
         ? _c("i", {
             staticClass: "fas fa-heart fa-2x indigo-text pr-3 human-heart",
-            staticStyle: { position: "absolute", "margin-top": "45px" },
+            staticStyle: {
+              position: "absolute",
+              "margin-top": "45px",
+              "margin-left": "3px"
+            },
             attrs: {
               "aria-hidden": "true",
               id: "heart",
