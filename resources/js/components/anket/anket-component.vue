@@ -9,7 +9,7 @@
        <modal  :user="user" data-backdrop="static" data-keyboard="false" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel" aria-hidden="true"></modal>
 
 
-        <a v-if="likeExist===false" v-on:click="like()"><i id="color" class="fas fa-heart fa-2x indigo-text pr-3"  style="position: absolute; margin-top: 45px"
+        <a v-if="likeExist===false" v-on:click="like()"><i id="color" class="fas fa-heart fa-2x indigo-text pr-3"  style="position: absolute; margin-top: 2px"
                                                            aria-hidden="true" title="Поставить лайк"></i></a>
 
         <i v-if="likeExist===true" class="fas fa-heart fa-2x indigo-text pr-3 human-heart"

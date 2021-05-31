@@ -66632,7 +66632,7 @@ var render = function() {
             [
               _c("i", {
                 staticClass: "fas fa-heart fa-2x indigo-text pr-3",
-                staticStyle: { position: "absolute", "margin-top": "45px" },
+                staticStyle: { position: "absolute", "margin-top": "2px" },
                 attrs: {
                   id: "color",
                   "aria-hidden": "true",
