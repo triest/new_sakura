@@ -9,10 +9,10 @@
        <modal  :user="user" data-backdrop="static" data-keyboard="false" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel" aria-hidden="true"></modal>
 
 
-        <a v-if="likeExist===false" v-on:click="like()"><i id="color" class="fas fa-heart fa-2x indigo-text pr-3"  style="position: absolute; margin-top: 2px"
+        <a v-if="likeExist===false" v-on:click="like('like')"><i id="color" class="fas fa-heart fa-2x indigo-text pr-3"  style="position: absolute; margin-top: 2px"
                                                            aria-hidden="true" title="Поставить лайк"></i></a>
 
-        <i v-if="likeExist===true" class="fas fa-heart fa-2x indigo-text pr-3 human-heart"
+        <i v-if="likeExist===true"  v-on:click="like('dislike')" class="fas fa-heart fa-2x indigo-text pr-3 human-heart"
            style="position: absolute; margin-top: 45px; margin-left: 3px"
            aria-hidden="true" id="heart" title="Вам нравиться эта анкета"></i>
 
@@ -67,19 +67,20 @@
             clouseNewMessageModal() {
                 this.showMessageModal = false;
             },
-            like() {
+            like(action) {
                 axios.post('/api/like-carousel/like',
                      {
                         user_id: this.user.id,
-                        action: "like",
+                        action: action,
                     }
                 )
                     .then((response) => {
-                       console.log(response.data.result);
                         let res=response.data;
 
-                      if(res.result===true){
+                      if(res.result===true && action==="like"){
                         this.likeExist=true;
+                      }else {
+                          this.likeExist=false;
                       }
                       if(res.match===true){
                           this.matchVisibly=true;

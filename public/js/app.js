@@ -2849,18 +2849,19 @@ __webpack_require__.r(__webpack_exports__);
     clouseNewMessageModal: function clouseNewMessageModal() {
       this.showMessageModal = false;
     },
-    like: function like() {
+    like: function like(action) {
       var _this = this;
 
       axios.post('/api/like-carousel/like', {
         user_id: this.user.id,
-        action: "like"
+        action: action
       }).then(function (response) {
-        console.log(response.data.result);
         var res = response.data;
 
-        if (res.result === true) {
+        if (res.result === true && action === "like") {
           _this.likeExist = true;
+        } else {
+          _this.likeExist = false;
         }
 
         if (res.match === true) {
@@ -66625,7 +66626,7 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  return _vm.like()
+                  return _vm.like("like")
                 }
               }
             },
@@ -66655,6 +66656,11 @@ var render = function() {
               "aria-hidden": "true",
               id: "heart",
               title: "Вам нравиться эта анкета"
+            },
+            on: {
+              click: function($event) {
+                return _vm.like("dislike")
+              }
             }
           })
         : _vm._e(),
