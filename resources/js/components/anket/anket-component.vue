@@ -9,17 +9,18 @@
        <modal  :user="user" data-backdrop="static" data-keyboard="false" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel" aria-hidden="true"></modal>
 
 
-        <p v-if="likeExist===false">
-            <a v-on:click="like()"><i id="color" class="fas fa-heart fa-2x indigo-text pr-3" aria-hidden="true" title="Поставить лайк"></i></a>
-        </p>
-        <span v-if="likeExist===true">
-              <i class="fas fa-heart fa-2x indigo-text pr-3 human-heart" style="margin-top: 5px" aria-hidden="true" id="heart" title="Вам нравиться эта анкета"></i>
-        </span>
+        <a v-if="likeExist===false" v-on:click="like()"><i id="color" class="fas fa-heart fa-2x indigo-text pr-3"  style="position: absolute; margin-top: 45px"
+                                                           aria-hidden="true" title="Поставить лайк"></i></a>
+
+        <i v-if="likeExist===true" class="fas fa-heart fa-2x indigo-text pr-3 human-heart"
+           style="position: absolute; margin-top: 45px"
+           aria-hidden="true" id="heart" title="Вам нравиться эта анкета"></i>
 
 
-        <img class="present-icon" data-toggle="modal" data-target="#presentModal"  height="40" src="/public/images/icons/gift.jpg">
+        <img class="present-icon" data-toggle="modal" data-target="#presentModal" height="40"
+             src="/public/images/icons/gift.jpg"    style="position: absolute; margin-left: 35px">
 
-         <present-modal :user="user" data-backdrop="static" data-keyboard="false" tabindex="-1" id="presentModal" aria-labelledby="staticBackdropLabel" aria-hidden="true"></present-modal>
+        <present-modal :user="user" data-backdrop="static" data-keyboard="false" tabindex="-1" id="presentModal" aria-labelledby="staticBackdropLabel" aria-hidden="true"></present-modal>
 
 
       <div v-if="matchVisibly===true">

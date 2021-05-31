@@ -2814,6 +2814,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -66619,46 +66620,44 @@ var render = function() {
       }),
       _vm._v(" "),
       _vm.likeExist === false
-        ? _c("p", [
-            _c(
-              "a",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.like()
-                  }
+        ? _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.like()
                 }
-              },
-              [
-                _c("i", {
-                  staticClass: "fas fa-heart fa-2x indigo-text pr-3",
-                  attrs: {
-                    id: "color",
-                    "aria-hidden": "true",
-                    title: "Поставить лайк"
-                  }
-                })
-              ]
-            )
-          ])
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fas fa-heart fa-2x indigo-text pr-3",
+                staticStyle: { position: "absolute", "margin-top": "45px" },
+                attrs: {
+                  id: "color",
+                  "aria-hidden": "true",
+                  title: "Поставить лайк"
+                }
+              })
+            ]
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.likeExist === true
-        ? _c("span", [
-            _c("i", {
-              staticClass: "fas fa-heart fa-2x indigo-text pr-3 human-heart",
-              staticStyle: { "margin-top": "5px" },
-              attrs: {
-                "aria-hidden": "true",
-                id: "heart",
-                title: "Вам нравиться эта анкета"
-              }
-            })
-          ])
+        ? _c("i", {
+            staticClass: "fas fa-heart fa-2x indigo-text pr-3 human-heart",
+            staticStyle: { position: "absolute", "margin-top": "45px" },
+            attrs: {
+              "aria-hidden": "true",
+              id: "heart",
+              title: "Вам нравиться эта анкета"
+            }
+          })
         : _vm._e(),
       _vm._v(" "),
       _c("img", {
         staticClass: "present-icon",
+        staticStyle: { position: "absolute", "margin-left": "35px" },
         attrs: {
           "data-toggle": "modal",
           "data-target": "#presentModal",
