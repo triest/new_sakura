@@ -12133,7 +12133,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ntextarea {\r\n  width: 90%; /* Ширина поля в процентах */\r\n  height: 200px; /* Высота поля в пикселах */\r\n  resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask {\r\n  position: fixed;\r\n  z-index: 9998;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: table;\r\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\r\n  display: table-cell;\r\n  vertical-align: middle;\n}\n.modal-container {\r\n  width: calc(100vw - 30px);\r\n  height: calc(100vh - 100px);\r\n  margin: 0px auto;\r\n  padding: 20px 30px;\r\n  background-color: #fff;\r\n  border-radius: 2px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\r\n  transition: all .3s ease;\r\n  font-family: Helvetica, Arial, sans-serif;\r\n  max-width: calc(100vh - 50px);\r\n  max-height: calc(100vh - 20px);\r\n  overflow: scroll;\n}\n.modal-header h3 {\r\n  margin-top: 0;\r\n  color: #42b983;\n}\n.modal-body {\r\n  margin: 20px 0;\n}\n.modal-default-button {\r\n  float: right;\n}\r\n\r\n/*\r\n * The following styles are auto-applied to elements with\r\n * transition=\"modal\" when their visibility is toggled\r\n * by Vue.js.\r\n *\r\n * You can easily play with the modal transition by editing\r\n * these styles.\r\n */\n.modal-enter {\r\n  opacity: 0;\n}\n.modal-leave-active {\r\n  opacity: 0;\n}\n.modal-enter .modal-container,\r\n.modal-leave-active .modal-container {\r\n  transform: scale(1.1);\n}\n.filterSettingsModal {\r\n  position: fixed;\r\n  bottom: 0;\r\n  right: 0;\r\n  z-index: 999;\n}\ninput.apple-switch {\r\n  position: relative;\r\n  -webkit-appearance: none;\r\n     -moz-appearance: none;\r\n          appearance: none;\r\n  outline: none;\r\n  width: 50px;\r\n  height: 30px;\r\n  background-color: #ffffff;\r\n  border: 1px solid #D9DADC;\r\n  border-radius: 50px;\r\n  box-shadow: inset -20px 0 0 0 #ffffff;\r\n  transition-duration: 200ms;\n}\ninput.apple-switch:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 1px;\r\n  left: 1px;\r\n  width: 26px;\r\n  height: 13px;\r\n  background-color: transparent;\r\n  border-radius: 50%;\r\n  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\r\n  border-color: #4ED164;\r\n  box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\r\n  left: 20px;\r\n  box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\r\n  -webkit-animation: bounce-in .5s;\r\n          animation: bounce-in .5s;\n}\n.bounce-leave-active {\r\n  animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\r\n    transform: scale(0);\n}\n50% {\r\n    transform: scale(1.5);\n}\n100% {\r\n    transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\r\n    transform: scale(0);\n}\n50% {\r\n    transform: scale(1.5);\n}\n100% {\r\n    transform: scale(1);\n}\n}\n.v-fade {\r\n  transition: all 4s ease-out;\n}\r\n\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntextarea {\n  width: 90%; /* Ширина поля в процентах */\n  height: 200px; /* Высота поля в пикселах */\n  resize: none; /* Запрещаем изменять размер */\n}\n.modal-mask {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, .5);\n  display: table;\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  width: calc(100vw - 30px);\n  height: calc(100vh - 100px);\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n  transition: all .3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n  max-width: calc(100vh - 50px);\n  max-height: calc(100vh - 20px);\n  overflow-y: auto;\n}\n.modal-header h3 {\n  margin-top: 0;\n  color: #42b983;\n}\n.modal-body {\n  margin: 20px 0;\n}\n.modal-default-button {\n  float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n  opacity: 0;\n}\n.modal-leave-active {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n  transform: scale(1.1);\n}\n.filterSettingsModal {\n  position: fixed;\n  bottom: 0;\n  right: 0;\n  z-index: 999;\n}\ninput.apple-switch {\n  position: relative;\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  outline: none;\n  width: 50px;\n  height: 30px;\n  background-color: #ffffff;\n  border: 1px solid #D9DADC;\n  border-radius: 50px;\n  box-shadow: inset -20px 0 0 0 #ffffff;\n  transition-duration: 200ms;\n}\ninput.apple-switch:after {\n  content: \"\";\n  position: absolute;\n  top: 1px;\n  left: 1px;\n  width: 26px;\n  height: 13px;\n  background-color: transparent;\n  border-radius: 50%;\n  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);\n}\ninput.apple-switch:checked {\n  border-color: #4ED164;\n  box-shadow: inset 20px 0 0 0 #4ED164;\n}\ninput.apple-switch:checked:after {\n  left: 20px;\n  box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);\n}\n.bounce-enter-active {\n  -webkit-animation: bounce-in .5s;\n          animation: bounce-in .5s;\n}\n.bounce-leave-active {\n  animation: bounce-in .5s reverse;\n}\n@-webkit-keyframes bounce-in {\n0% {\n    transform: scale(0);\n}\n50% {\n    transform: scale(1.5);\n}\n100% {\n    transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\n    transform: scale(0);\n}\n50% {\n    transform: scale(1.5);\n}\n100% {\n    transform: scale(1);\n}\n}\n.v-fade {\n  transition: all 4s ease-out;\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -69301,16 +69301,19 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
+          _c("i", {
+            staticClass: "fas fa-heart fa-2x indigo-text pr-3",
+            staticStyle: { position: "relative", "margin-top": "19px" },
+            attrs: {
+              id: "color",
+              "aria-hidden": "true",
+              title: "Поставить лайк"
+            }
+          }),
+          _vm._v(" "),
           _vm.likesNumber > 0
             ? _c("span", { staticClass: "span-like" }, [
-                _c("i", {
-                  staticClass: "fas fa-heart fa-2x indigo-text pr-3",
-                  attrs: { "aria-hidden": "true" }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "like-number" }, [
-                  _vm._v(" " + _vm._s(_vm.likesNumber) + " ")
-                ])
+                _vm._v(_vm._s(_vm.likesNumber))
               ])
             : _vm._e(),
           _vm._v(" "),

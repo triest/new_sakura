@@ -269,7 +269,7 @@ textarea {
   font-family: Helvetica, Arial, sans-serif;
   max-width: calc(100vh - 50px);
   max-height: calc(100vh - 20px);
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .modal-header h3 {

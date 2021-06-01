@@ -18,10 +18,10 @@
       <a class="btn btn-info" href="/events/my/events-list">Мои события
         <div v-if="unreeadedEventRequwest>0">{{ unreeadedEventRequwest }}</div>
       </a>
-      <span class="span-like" v-if="likesNumber>0">
-        <i class="fas fa-heart fa-2x indigo-text pr-3" aria-hidden="true"></i>
-        <span class="like-number"> {{likesNumber}} </span>
-      </span>
+
+     <i id="color" class="fas fa-heart fa-2x indigo-text pr-3"  style="position: relative; margin-top: 19px"
+        aria-hidden="true" title="Поставить лайк"></i>
+        <span class="span-like" v-if="likesNumber>0">{{likesNumber}}</span>
       <div class="dropdown" style="cursor: pointer">
         <div v-if="user.photo_profile_url">
           <img :src="'/'+user.small_photo_profile_url" height="35px" class="dropbtn">
