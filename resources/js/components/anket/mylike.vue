@@ -16,20 +16,32 @@
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                              aria-labelledby="v-pills-home-tab">
-                            <div v-for="likes in likesForMe">
-                                <anket-short-view :user="likes.who"></anket-short-view>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="card" v-for="likes in likesForMe">
+                                        <anket-short-view :user="likes.target"></anket-short-view>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                              aria-labelledby="v-pills-profile-tab">
-                            <div v-for="likes in myLikes">
-                                <anket-short-view :user="likes.target"></anket-short-view>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="card" v-for="likes in myLikes">
+                                        <anket-short-view :user="likes.target"></anket-short-view>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                              aria-labelledby="v-pills-messages-tab">
-                            <div v-for="likes in mutual">
-                                <anket-short-view :user="likes.who"></anket-short-view>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="card" v-for="likes in mutual">
+                                        <anket-short-view :user="likes.target"></anket-short-view>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -57,21 +69,19 @@ export default {
     data() {
         return {
             currentTab: 'all',
-            myLikes:[],
-            likesForMe:[],
-            mutual:[]
+            myLikes: [],
+            likesForMe: [],
+            mutual: []
         }
     },
     methods: {
-        getLikes(){
-            axios.get('/api/like/get-like-list', {
-
-                }
+        getLikes() {
+            axios.get('/api/like/get-like-list', {}
             )
                 .then((response) => {
-                    this.myLikes=response.data.myLikes;
-                    this.likesForMe=response.data.likesForMe;
-                    this.mutual=response.data.mutual;
+                    this.myLikes = response.data.myLikes;
+                    this.likesForMe = response.data.likesForMe;
+                    this.mutual = response.data.mutual;
 
                 });
 

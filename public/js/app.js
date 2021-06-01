@@ -3333,6 +3333,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -67209,14 +67221,27 @@ var render = function() {
                     "aria-labelledby": "v-pills-home-tab"
                   }
                 },
-                _vm._l(_vm.likesForMe, function(likes) {
-                  return _c(
-                    "div",
-                    [_c("anket-short-view", { attrs: { user: likes.who } })],
-                    1
-                  )
-                }),
-                0
+                [
+                  _c("div", { staticClass: "container" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      _vm._l(_vm.likesForMe, function(likes) {
+                        return _c(
+                          "div",
+                          { staticClass: "card" },
+                          [
+                            _c("anket-short-view", {
+                              attrs: { user: likes.target }
+                            })
+                          ],
+                          1
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -67229,14 +67254,27 @@ var render = function() {
                     "aria-labelledby": "v-pills-profile-tab"
                   }
                 },
-                _vm._l(_vm.myLikes, function(likes) {
-                  return _c(
-                    "div",
-                    [_c("anket-short-view", { attrs: { user: likes.target } })],
-                    1
-                  )
-                }),
-                0
+                [
+                  _c("div", { staticClass: "container" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      _vm._l(_vm.myLikes, function(likes) {
+                        return _c(
+                          "div",
+                          { staticClass: "card" },
+                          [
+                            _c("anket-short-view", {
+                              attrs: { user: likes.target }
+                            })
+                          ],
+                          1
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -67249,14 +67287,27 @@ var render = function() {
                     "aria-labelledby": "v-pills-messages-tab"
                   }
                 },
-                _vm._l(_vm.mutual, function(likes) {
-                  return _c(
-                    "div",
-                    [_c("anket-short-view", { attrs: { user: likes.who } })],
-                    1
-                  )
-                }),
-                0
+                [
+                  _c("div", { staticClass: "container" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      _vm._l(_vm.mutual, function(likes) {
+                        return _c(
+                          "div",
+                          { staticClass: "card" },
+                          [
+                            _c("anket-short-view", {
+                              attrs: { user: likes.target }
+                            })
+                          ],
+                          1
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ]
               )
             ]
           )
